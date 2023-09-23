@@ -1,10 +1,15 @@
+
 .footer {
-    background-color: #e7c6ff;
-    color: #fff;
+    background-color: white;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 40px;
+    position: fixed;
+    bottom: 0; /* Position at the bottom */
+    left: 0;
+    right: 0;
 }
 
 .footer-logo {
@@ -33,6 +38,6 @@
 
 .footer-links a {
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-weight: bold;
 }

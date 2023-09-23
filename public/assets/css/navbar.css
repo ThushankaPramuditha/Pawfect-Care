@@ -5,8 +5,8 @@ body {
 }
 
 .navbar {
-    background-color: #c8b6ff; /* Change the background color as desired */
-    color: #fff; /* Change the text color as desired */
+    background-color: white; /* Change the background color as desired */
+    color:black; /* Change the text color as desired */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,6 +41,6 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-weight: bold;
 }

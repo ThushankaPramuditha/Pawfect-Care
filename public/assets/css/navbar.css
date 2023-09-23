@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #c8b6ff; /* Change the background color as desired */
+    color: #fff; /* Change the text color as desired */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px ;
+    
+    
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Vertically align the logo and text */
+}
+
+.logo img {
+    width: 120px; /* Set the width of your logo image */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 10px; /* Adjust the spacing between the logo and text */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}

@@ -1,0 +1,38 @@
+.footer {
+    background-color: #e7c6ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}

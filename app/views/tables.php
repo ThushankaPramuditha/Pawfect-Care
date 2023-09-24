@@ -25,8 +25,8 @@
             <tr>
                 <td>What time are you open on Friday?</td>
                 <td>8:00 am to 9:00 pm</td>
-                <td><button>Send</button></td>
-                <td><button>Post</button></td>
+                <td><button class="t-button">Send</button></td>
+                <td><button class="t-button">Post</button></td>
                 <td class="edit-action-buttons">
                     <button class="edit-icon"></button>
                 </td>

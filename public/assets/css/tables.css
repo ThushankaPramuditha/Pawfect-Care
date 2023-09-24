@@ -22,21 +22,43 @@
             
         }
 
-        .td button{
+        .t-button {
             padding: 5px 10px;
             margin-right: 5px;
-            background-color:lightblue;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: white;
         }
 
         .edit-action-buttons button {
             padding: 5px 10px;
             margin-right: 5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
             
         }
         .delete-action-buttons button {
             padding: 5px 10px;
             margin-right: 5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
           
+        }
+
+        .edit-action-buttons button:hover {
+            background-color: #e7c6ff; 
+            
+        }
+
+        .delete-action-buttons button:hover {
+            background-color: #e7c6ff; 
+        }
+
+        .t-button:hover {
+            background-color:#e7c6ff ; 
         }
 
         .edit-icon::before {

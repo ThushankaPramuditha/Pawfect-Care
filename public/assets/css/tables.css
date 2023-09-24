@@ -23,7 +23,23 @@ tr{
     justify-content: space-between; 
     
 }
+.add-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
+.remove-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 .t-button {
     padding: 5px 10px;
     margin-right: 5px;
@@ -64,9 +80,9 @@ tr{
 }
 
 .edit-icon::before {
-    content: "\270E"; /* Unicode character for a pencil icon */
+    content: "\270E"; 
 }
 
 .delete-icon::before {
-    content: "\1F5D1"; /* Unicode character for a trash bin icon */
+    content: "\1F5D1"; 
 }

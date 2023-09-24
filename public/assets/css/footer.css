@@ -1,13 +1,12 @@
-
 .footer {
     background-color: white;
     color: black;
     display: flex;
-    align-items: center;
+    align-items:center;
     justify-content: space-between;
     padding: 20px 40px;
     position: fixed;
-    bottom: 0; /* Position at the bottom */
+    bottom: 0;
     left: 0;
     right: 0;
 }
@@ -20,7 +19,7 @@
 }
 
 .footer-logo img {
-    width: 40px;
+    width: 120px;
     height: auto;
     margin-right: 10px;
 }
@@ -29,7 +28,9 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    
+    display: flex;
+    align-items: center;
+    margin-right: 500px;
 }
 
 .footer-links li {
@@ -42,3 +43,4 @@
     color: black;
     font-weight: bold;  
 }
+

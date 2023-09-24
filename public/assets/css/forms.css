@@ -1,0 +1,59 @@
+/* CSS styles for the veterinarian profile form */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    align-items:left;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+button[type="button"] {
+    background-color: #e7c6ff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="button"]:hover {
+    background-color: #cdb4db;
+}
+
+input[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}

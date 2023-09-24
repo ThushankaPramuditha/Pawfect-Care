@@ -8,7 +8,6 @@
 <body>
     <?php include 'navbar.php'; ?> 
     <?php include 'footer.php'; ?>
-    <?php include 'daycarebookingtable.php'; ?>
     <!-- Your webpage content goes here -->
 </body>
 </html>

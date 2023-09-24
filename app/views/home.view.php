@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?> 
-    <?php include 'tables.php'; ?>
+    <?php include 'FAQtables.php'; ?>
     <?php include 'footer.php'; ?>
     <!-- Your webpage content goes here -->
 </body>

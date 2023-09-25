@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/tables.css">
+    <link rel="stylesheet" href="<?php ROOT?>assets/css/tables.css">
     <script>
        
         function updateSlots(row, action) {

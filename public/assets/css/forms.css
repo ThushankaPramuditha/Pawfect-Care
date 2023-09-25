@@ -23,6 +23,7 @@ body {
 
 h1 {
     color: #333;
+    font-size: 40px;
     text-align:left;
     margin-bottom: 40px;
 }
@@ -30,6 +31,8 @@ h1 {
 form {
     max-width: 100%;
     margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 label {
@@ -39,7 +42,7 @@ label {
 }
 
 label:hover {
-    border-color: #e7c6ff;
+    border-color: #9971FE;
 }
 
 
@@ -51,15 +54,15 @@ input[type="email"]{
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 50px;
+    border-radius: 15px;
     font-size: 16px;
-    outline-color:#e7c6ff;
+    outline-color:#9971FE;
 }
 
 button[type="button"] {
-    background-color: #e7c6ff;
+    background-color: #9971FE;
     width: 100%;
-    color: black;
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 50px;
     padding: 10px 20px;
@@ -71,10 +74,21 @@ button[type="button"] {
 }
 
 button[type="button"]:hover {
-    background-color: #cdb4db;
+    background-color: #8A5BFF;
 }
 
 input[readonly] {
     background-color: #eee;
     cursor: not-allowed;
+}
+
+/*for long text fields*/
+textarea {
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+    outline-color:#9971FE;
 }

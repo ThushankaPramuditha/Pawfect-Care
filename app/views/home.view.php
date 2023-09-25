@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?> 
-    <?php include 'loginform.php'; ?> 
+    <?php include 'addstaffform.php'; ?> 
     <?php include 'footer.php'; ?>
     <!-- Your webpage content goes here -->
 </body>

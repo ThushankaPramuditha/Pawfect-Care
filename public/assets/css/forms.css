@@ -19,13 +19,6 @@ body {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
- #edit-profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Adjust the height as needed */
-}
 
 
 h1 {
@@ -51,7 +44,7 @@ label:hover {
 
 
 input[type="text"],
-input[type="tel"] {
+input[type="tel"], input[type="password"]{
     width: 93%;
     padding: 10px;
     margin-bottom: 20px;

@@ -11,7 +11,8 @@ th, td {
 }
 
 th {
-    background-color: #e7c6ff;
+    background-color: #9971FE;
+    color:white;
 }
 
 tr{
@@ -67,16 +68,16 @@ tr{
 }
 
 .edit-action-buttons button:hover {
-    background-color: #e7c6ff; 
+    background-color: #9971FE; 
     
 }
 
 .delete-action-buttons button:hover {
-    background-color: #e7c6ff; 
+    background-color: #9971FE; 
 }
 
 .t-button:hover {
-    background-color:#e7c6ff ; 
+    background-color:#9971FE ; 
 }
 
 .edit-icon::before {

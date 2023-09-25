@@ -7,7 +7,6 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?> 
-    <?php include 'addserviceform.php'; ?> 
     <?php include 'footer.php'; ?>
     <!-- Your webpage content goes here -->
 </body>

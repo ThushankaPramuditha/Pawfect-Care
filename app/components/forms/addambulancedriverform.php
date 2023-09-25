@@ -27,7 +27,7 @@
             <input type="email" id="email" name="email" required><br>
 
             <label for="licence-number">License Number:</label>
-            <input type="text" id="icence-number" name="icence-number" required><br>
+            <input type="text" id="licence-number" name="licence-number" required><br>
 
             <div class="flex-container">
                 <button type="button" id="add-ambulance-driver-button" onclick="addAmbulanceDriver()">Add Ambulance Driver</button>

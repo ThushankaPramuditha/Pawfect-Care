@@ -44,7 +44,9 @@ label:hover {
 
 
 input[type="text"],
-input[type="tel"], input[type="password"]{
+input[type="tel"], 
+input[type="password"], 
+input[type="email"]{
     width: 93%;
     padding: 10px;
     margin-bottom: 20px;

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('vet-profile-form');
+    const form = document.getElementById('edit-profile-form');
     const updateButton = document.getElementById('update-button');
 
     updateButton.addEventListener('click', function () {

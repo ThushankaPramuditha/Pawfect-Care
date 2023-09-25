@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?> 
+    <?php include 'editprofileform.php'; ?> 
     <?php include 'footer.php'; ?>
     <!-- Your webpage content goes here -->
 </body>

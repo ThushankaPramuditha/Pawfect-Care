@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="form-container">
-        <form id="add-ambulance-driver-form">
-            <h1>Add Ambulance Driver</h1>
+        <form id="sign-up-form">
+            <h1>Sign Up</h1>
             
             <label for="full-name">Full Name:</label>
             <input type="text" id="full-name" name="full-name" required><br>
@@ -26,15 +26,19 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br>
 
-            <label for="licence-number">License Number:</label>
-            <input type="text" id="licence-number" name="licence-number" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
 
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required><br>
+
+           
             <div class="flex-container">
-                <button type="button" id="add-ambulance-driver-button" onclick="addAmbulanceDriver()">Add Ambulance Driver</button>
+                <button type="button" id="sign-up-button" onclick="signUp()">Sign Up</button>
             </div>
         </form>
     </div>
 
-    <script src="addstaffform.js"></script>
+    <script src="signupform.js"></script>
 </body>
 </html>

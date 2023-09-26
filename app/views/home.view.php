@@ -6,9 +6,8 @@
     <title>Pawfect Care - Home</title>
 </head>
 <body>
-    <?php include 'navbar.php'?>
-    <?php include 'footer.php'?>
-   
+    <?php include 'navbar.php'; ?> 
+    <?php include 'signupform.php'; ?> 
+    <?php include 'footer.php'; ?>
 </body>
 </html>
-

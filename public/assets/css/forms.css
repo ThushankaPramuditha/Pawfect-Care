@@ -96,3 +96,36 @@ textarea {
     outline-color:#9971FE;
 }
 
+/* Basic style for radio buttons */
+input[type="radio"] {
+    margin-right: 5px; 
+}
+
+/* Styling for the radio button when it's checked */
+input[type="radio"]:checked {
+    border: 2px solid #9971FE; /* Change the border color when the radio button is checked */
+    background-color: #9971FE; /* Change the background color when the radio button is checked */
+}
+
+
+/* Style for the image container */
+.img-container {
+    width: 40%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 50px; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+/* Style for the "+ Add Image" label */
+.image-label {
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the label */
+}
+
+/* Style for the image preview */
+#pet-image-preview {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    max-height: 200px; 
+    margin-top: 10px; /* Add space between the label and the image preview */
+}

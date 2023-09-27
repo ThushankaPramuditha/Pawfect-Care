@@ -6,8 +6,8 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBNAME', 'Pawfect_Care');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('DBDRIVER', '');
+	define('DBPASS', 'pawfect123');
+	define('DBDRIVER', 'mysql');
 	
 	define('ROOT', 'http://localhost/mvc/public');
 
@@ -18,14 +18,14 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', '');
-	define('DBDRIVER', '');
+	define('DBDRIVER', 'mysql');
 
 	define('ROOT', 'https://www.yourwebsite.com');
 
 }
 
-define('APP_NAME', "My Webiste");
-define('APP_DESC', "Best website on the planet");
+define('APP_NAME', "Pawfect Care");
+define('APP_DESC', "Serving love and care, the Pawfect way!");
 
 /** true means show errors **/
 define('DEBUG', true);

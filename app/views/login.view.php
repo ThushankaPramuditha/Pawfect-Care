@@ -1,5 +1,5 @@
 <?php
- include 'components/forms/loginform.php'
+
 ?>
 
 

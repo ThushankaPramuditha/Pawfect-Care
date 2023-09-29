@@ -19,6 +19,5 @@
             <li><a href="/login">Login</a></li>
         </ul>
     </div>
-    <!-- Your webpage content goes here -->
 </body>
 </html>

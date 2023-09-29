@@ -4,7 +4,7 @@
 /**
  * User class
  */
-class User
+Class User
 {
 	
 	use Model;

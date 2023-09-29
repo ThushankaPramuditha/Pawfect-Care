@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="form-container">
-        <form id="sign-up-form">
+    <form id="sign-up-form" method="POST">
             <h1>Sign Up</h1>
             
             <label for="full-name">Full Name:</label>
@@ -41,4 +41,5 @@
 
     <script src="signupform.js"></script>
 </body>
-</html>
+</html> 
+

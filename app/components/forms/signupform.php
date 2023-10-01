@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Staff</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="<?php ROOT?>assets/css/forms.css">
 </head>
 <body>

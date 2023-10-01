@@ -3,22 +3,22 @@
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
 	/** database config **/
-	define('DBNAME', 'Pawfect_Care');
+	define('DBNAME', 'pawfect-care');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
-	define('DBPASS', 'pawfect123');
-	define('DBDRIVER', 'mysql');
+	define('DBPASS', '');
+	define('DBDRIVER', '');
 	
-	define('ROOT', 'http://localhost/mvc/public');
+	define('ROOT', 'http://localhost/Pawfect-Care/public/');
 
 }else
 {
 	/** database config **/
-	define('DBNAME', 'Pawfect_Care');
+	define('DBNAME', 'pawfect-care');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', '');
-	define('DBDRIVER', 'mysql');
+	define('DBDRIVER', '');
 
 	define('ROOT', 'https://www.yourwebsite.com');
 

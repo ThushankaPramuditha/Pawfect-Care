@@ -10,7 +10,7 @@
 
 <div class="footer">
 <div class="footer-logo">
-        <img src="assets/images/footer-logo.png" alt="Footer Logo">
+        <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Footer Logo">
     </div>
     <ul class="footer-links">
         <li><a href="/privacy">Privacy Policy</a></li>

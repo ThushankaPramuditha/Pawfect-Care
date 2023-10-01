@@ -120,8 +120,8 @@ Trait Model
 
 		$data[$id_column] = $id;
          
-	    echo $query;
-		//$this->query($query, $data);
+	    // echo $query;
+		$this->query($query, $data);
 		return false;
 
 	}

@@ -1,40 +1,102 @@
-/* CSS styles for the veterinarian profile form */
+/* CSS styles for the login form */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color:#f4f4f4;
     padding: 20px;
-}
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%; /* Set container width to half of the viewport width */
-    margin-left: 50%;
+    margin: 0;
 }
 
-
-/* for the button*/
-.flex-container {
+.container {
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: space-between; /* Display children in a row with space between them */
     align-items: center; /* Center vertically */
+    height: 100vh; /* Set container height to 100% of viewport height */
+    width: 50%; /* Set container width to 100% of viewport width */
+    margin-left: 25%;
+    background-color: #f4f4f4;
+    border-radius: 50px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+
 }
 
+/* Styling for the image container */
+.img-container {
+    width: 50%;
+    background-color: none;
+    border-radius: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    padding-left: 60px;
+}
+.img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+/* Styling for the login form container */
+.form-container {
+    width: 40%;
+    background-color:none;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    align-items: center;
+    display: flex;
+    border: none;
+    margin-top: 5px;
+}
 
 h1 {
     color: #333;
-    font-size: 40px;
-    text-align:left;
-    margin-bottom: 40px;
+    font-size: 28px;
+    text-align: center;
+    margin-top:140px;
 }
 
 form {
     max-width: 100%;
     margin: 0 auto;
-    margin-top: 40px;
-    margin-bottom: 60px;
+    margin-top:0;
+  
 }
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+/* Style for the "Don't have an account?" link */
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p a {
+    color: #1c038c;
+    text-decoration: none;
+}
+
+/* Style for the "Don't have an account?" link on hover */
+p a:hover {
+    text-decoration: underline;
+}
+
+
 
 label {
     margin-bottom: 5px;
@@ -106,27 +168,4 @@ input[type="radio"] {
 input[type="radio"]:checked {
     border: 2px solid #9971FE; /* Change the border color when the radio button is checked */
     background-color: #9971FE; /* Change the background color when the radio button is checked */
-}
-
-
-/* Style for the image container */
-.img-container {
-    width: 40%;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 50px; 
-    padding: 10px; 
-    text-align: center; 
-}
-
-/* Style for the "+ Add Image" label */
-.image-label {
-    cursor: pointer; /* Change the cursor to a pointer when hovering over the label */
-}
-
-/* Style for the image preview */
-#pet-image-preview {
-    max-width: 100%; /* Ensure the image doesn't exceed the container width */
-    max-height: 200px; 
-    margin-top: 10px; /* Add space between the label and the image preview */
 }

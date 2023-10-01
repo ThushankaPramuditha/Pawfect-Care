@@ -1,7 +1,7 @@
 <?php 
 
 /**
- *LogOut class
+ * logout class
  */
 class Logout
 {
@@ -9,11 +9,11 @@ class Logout
 
 	public function index()
 	{
-        if(!empty($_SESSION['USER']))
-         unset($_SESSION['USER']);
-    
-        redirect('home');
-		
+
+		if(!empty($_SESSION['USER']))
+			unset($_SESSION['USER']);
+
+		redirect('home');
 	}
 
 }

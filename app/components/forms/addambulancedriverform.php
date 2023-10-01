@@ -30,7 +30,7 @@
             <input type="text" id="licence-number" name="licence-number" required><br>
 
             <div class="flex-container">
-                <button type="button" id="add-ambulance-driver-button" onclick="addAmbulanceDriver()">Add Ambulance Driver</button>
+                <button type="submit" id="add-ambulance-driver-button" onclick="addAmbulanceDriver()">Add Ambulance Driver</button>
             </div>
         </form>
     </div>

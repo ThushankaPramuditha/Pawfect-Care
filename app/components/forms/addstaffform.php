@@ -30,7 +30,7 @@
             <textarea id="qualifications" name="qualifications" style="border-radius: 10px;" rows="4" required></textarea>
 
             <div class="flex-container">
-                <button type="button" id="add-staff-button" onclick="addStaff()">Add Staff</button>
+                <button type="submit" id="add-staff-button" onclick="addStaff()">Add Staff</button>
             </div>
         </form>
     </div>

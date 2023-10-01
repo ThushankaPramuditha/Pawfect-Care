@@ -28,7 +28,7 @@
 
         
             <div class="flex-container">
-                <button type="button" id="add-vaccination-button" onclick="addVaccination()">Add Vaccination</button>
+                <button type="submit" id="add-vaccination-button" onclick="addVaccination()">Add Vaccination</button>
             </div>
         </form>
     </div>

@@ -24,17 +24,17 @@
                
                 <h1>Sign Up</h1>
                 
-                <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="full-name" required><br>
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" required><br>
 
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" required><br>
 
-                <label for="contact-number">Contact Number:</label>
-                <input type="tel" id="contact-number" name="contact-number" required pattern="[0-9]{10}"><br>
+                <label for="contact_number">Contact Number:</label>
+                <input type="tel" id="contact_number" name="contact_number" required pattern="[0-9]{10}"><br>
 
-                <label for="nic">NIC:</label>
-                <input type="text" id="nic" name="nic" required><br>
+                <label for="NIC">NIC:</label>
+                <input type="text" id="NIC" name="NIC" required><br>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required><br>
@@ -42,8 +42,8 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br>
 
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required><br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required><br>
                 
                 <input type="checkbox" name="terms" checked> I agree to the terms and conditions.
                

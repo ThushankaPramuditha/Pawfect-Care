@@ -9,7 +9,9 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBPASS', '');
 	define('DBDRIVER', '');
 	
+	
 	define('ROOT', 'http://localhost/Pawfect-Care/public/');
+  
 
 }else
 {
@@ -21,7 +23,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBDRIVER', '');
 
 	define('ROOT', 'https://www.yourwebsite.com');
-
+    
 }
 
 define('APP_NAME', "Pawfect Care");

@@ -1,8 +1,10 @@
+<!--
 
 
-<!-- /**
+/**
  * User class
  */
+
 // Class User
 // {
     
@@ -12,12 +14,14 @@
 
 //     protected $allowedColumns = [
 
-//         'full-name',
+//         'full_name',
 //         'address',
-//         'contact-number',
-//         'nic',
+//         'contact_number',
+//         'NIC',
 //         'email',
 //         'password',
+//         'confirm_password',
+
 //     ];
 
 //     public function validate($data)
@@ -32,10 +36,10 @@
 //         }
 	
 //         // Check if the email address is already in use
-// 		$existingUser = $this->where(['email' => $data['email']])->first();
-//         if ($existingUser) {
-//             $this->errors['email'] = 'Email address is already in use';
-//         }
+// 		// $existingUser = $this->where(['email' => $data['email']])->first();
+//         // if ($existingUser) {
+//         //     $this->errors['email'] = 'Email address is already in use';
+//         // }
 
 //         // Check if the password is strong enough
 //         if (strlen($data['password']) < 8) {
@@ -61,19 +65,34 @@
 
 //         return false;
 //     }
-// } -->
+// } 
 
 <?php
+
 
 /**
  * User class
  */
+
 Class User
 {
     
     use Model;
 
-    
+    protected $table = 'users';
+
+    protected $allowedColumns = [
+
+        'full_name',
+        'address',
+        'contact_number',
+        'NIC',
+        'email',
+        'password',
+        'confirm_password',
+
+    ];
+
     public function validate($data)
     {
         $this->errors = [];
@@ -86,10 +105,10 @@ Class User
         }
     
         // Check if the email address is already in use
-        // $existingUser = $this->where(['email' => $data['email']])->first();
-        // if ($existingUser) {
-        //     $this->errors['email'] = 'Email address is already in use';
-        // }
+        $existingUser = $this->where(['email' => $data['email']])->first();
+        if ($existingUser) {
+            $this->errors['email'] = 'Email address is already in use';
+        }
 
         // Check if the password is strong enough
         if (strlen($data['password']) < 8) {
@@ -97,9 +116,12 @@ Class User
         } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W]).{8,}$/', $data['password'])) {
             $this->errors['password'] = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one symbol';
         }
-		
+
+        // Hash the password
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
         // Check if the password and confirm password match
-        if ($data['password'] !== $data['confirm_password']) {
+        if ($data['password'] !== password_hash($data['confirm_password'], PASSWORD_DEFAULT)) {
             $this->errors['confirm_password'] = 'Password and confirm password do not match';
         }
 
@@ -115,4 +137,4 @@ Class User
 
         return false;
     }
-}
+} 

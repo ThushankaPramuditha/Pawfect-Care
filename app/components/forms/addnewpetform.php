@@ -40,7 +40,7 @@
             </div><br>
 
             <div class="flex-container">
-                <button type="button" id="add-pet-button" onclick="addPet()">Add Pet</button>
+                <button type="submit" id="add-pet-button" onclick="addPet()">Add Pet</button>
             </div>
         </form>
     </div>

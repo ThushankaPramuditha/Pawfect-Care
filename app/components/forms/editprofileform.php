@@ -20,7 +20,7 @@
                 <input type="tel" id="contact-number" name="contact-number" required pattern="[0-9]{10}"><br>
 
                 <div class = "flex-container">
-                    <button type="button" id="update-button" onclick="updateProfile()">Update Profile</button>
+                    <button type="submit" id="update-button" onclick="updateProfile()">Update Profile</button>
                 </div>
             </form>   
         

@@ -18,7 +18,7 @@
             <textarea id="description" name="description" style="border-radius: 10px;" rows="4" required></textarea>
 
             <div class="flex-container">
-                <button type="button" id="add-service-button" onclick="addService()">Add Service</button>
+                <button type="submit" id="add-service-button" onclick="addService()">Add Service</button>
             </div>
         </form>
     </div>

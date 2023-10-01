@@ -34,7 +34,7 @@
 
            
             <div class="flex-container">
-                <button type="button" id="sign-up-button" onclick="signUp()">Sign Up</button>
+                <button type="submit" id="sign-up-button" onclick="signUp()">Sign Up</button>
             </div>
         </form>
     </div>

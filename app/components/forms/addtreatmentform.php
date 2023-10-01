@@ -27,7 +27,7 @@
             <textarea id="remarks" name="remarks" rows="4" required></textarea><br>
 
             <div class="flex-container">
-                <button type="button" id="add-treatment-button" onclick="addTreatment()">Add Treatment</button>
+                <button type="submit" id="add-treatment-button" onclick="addTreatment()">Add Treatment</button>
             </div>
         </form>
     </div>

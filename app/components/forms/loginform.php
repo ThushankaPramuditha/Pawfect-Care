@@ -17,7 +17,7 @@
                 <input type="password" id="password" name="password" required><br>
 
                 <div class = "flex-container">
-                    <button type="button" id="log-in-button" onclick="logIn()">Log In</button>
+                    <button type="submit" id="log-in-button" onclick="logIn()">Log In</button>
                 </div>
             </form>   
         

@@ -20,7 +20,7 @@
                 <input type="password" id="confirm-password" name="confirm-password" required><br>
 
                 <div class="flex-container">
-                    <button type="button" id="change-password-button" onclick="changePassword()">Change Password</button>
+                    <button type="submit" id="change-password-button" onclick="changePassword()">Change Password</button>
                 </div>
             </form>   
         

@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
-    <link rel="stylesheet" href="<?php ROOT?>assets/css/signup.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/css/signup.css">
    
 </head>
 <body>
   
    <div>
+   <div class="logo">
+             <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    </div>
+
     <div class="container">
         <div class="img-container">
-            <img src="<?php ROOT?>assets/images/signup-photo.jpg" alt="Sign Up Photo">
+            <img src="<?=ROOT?>assets/images/signup-photo2.jpg" alt="Sign Up Photo">
         </div>
-
+          
         <div class="form-container">
             <form method="post">
-              <?php if(!empty($errors)):?>
-                <div class="alert alert-danger">
-                    <?= implode("<br>", $errors)?>
-                </div>
-                <?php endif;?>
-  
+               
                 <h1>Sign Up</h1>
                 
                 <label for="full-name">Full Name:</label>

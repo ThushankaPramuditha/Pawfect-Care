@@ -13,16 +13,15 @@ body {
     align-items: center; /* Center vertically */
     height: 130vh; /* Set container height to 100% of viewport height */
     width: 50%; /* Set container width to 100% of viewport width */
-    background-color: #f4f4f4;
+    background-color:#FCFCFE;
     border-radius: 50px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     margin-left:25%;
     margin-top:50px;
 
-
 }
-.Logo{
-   margin-left:70%;
+.logo{
+    margin-left:70%;
     margin-top:10px;
     width: 50px;
     height: 50px;

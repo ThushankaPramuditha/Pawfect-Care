@@ -6,6 +6,14 @@ body {
     margin: 0;
 }
 
+.logo{
+    margin-left:70%;
+    margin-top:10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
 .container {
     display: flex;
     justify-content: space-between; /* Display children in a row with space between them */
@@ -16,8 +24,7 @@ body {
     background-color: #f4f4f4;
     border-radius: 50px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-
+    margin-top: 100px;
 }
 
 /* Styling for the image container */

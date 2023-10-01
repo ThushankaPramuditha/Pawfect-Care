@@ -11,12 +11,12 @@
   
    <div>
    <div class="logo">
-                    <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
-     </div>
+             <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    </div>
 
     <div class="container">
         <div class="img-container">
-            <img src="<?=ROOT?>assets/images/signup-photo.jpg" alt="Sign Up Photo">
+            <img src="<?=ROOT?>assets/images/signup-photo2.jpg" alt="Sign Up Photo">
         </div>
           
         <div class="form-container">

@@ -9,6 +9,10 @@
 
 <body>
 
+<div class="logo">
+    <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+ </div>
+
 <div class="container">
   <div class="img-container">
     <img src="<?php ROOT?>assets/images/login-photo1.jpg" alt="Login Photo">
@@ -24,7 +28,6 @@
       <input type="password" id="password" name="password" required><br>
 
       <div class="flex-container">
-        <!-- <button type="submit">Login</button> -->
         <button class="button" type="submit" name="login">Login</button>
       </div>
         <p>Don't have an account? <a href="<?=ROOT?>/signup">Sign up</a>.</p>

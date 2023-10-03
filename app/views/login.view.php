@@ -10,7 +10,9 @@
 <body>
 
 <div class="logo">
+    <a href="<?=ROOT?>/home">
     <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+   </a>
  </div>
 
 <div class="container">

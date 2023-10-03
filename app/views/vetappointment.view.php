@@ -8,9 +8,13 @@
 
 </head>
 <body>
+
 <div class="logo">
-            <img src="<?= ROOT ?>assets/images/Logo 2.png" alt="Pawfect Care Logo">
+   <a href="<?=ROOT?>/home">
+    <img src="<?= ROOT ?>assets/images/Logo 2.png" alt="Pawfect Care Logo">
+  </a>
 </div>
+
 <h1>Book your preferred vet</h1>
 
 <div class="cardcontainer">

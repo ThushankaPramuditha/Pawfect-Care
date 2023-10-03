@@ -6,12 +6,14 @@
     <title>Pawfect Care - Sign Up</title>
     <link rel="stylesheet" href="<?=ROOT?>assets/css/signup.css">
    
-</head>
+</head>  
 <body>
   
    <div>
    <div class="logo">
-             <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+       <a href="<?=ROOT?>/home">
+       <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+      </a>
     </div>
 
     <div class="container">

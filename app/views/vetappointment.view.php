@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Appointment</title>
-    <link rel="stylesheet" href="<?= ROOT ?>assets/css/vetappointment.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/booking.css">
 
 </head>
 <body>
+
 <div class="logo">
-            <img src="<?= ROOT ?>assets/images/Logo 2.png" alt="Pawfect Care Logo">
+   <a href="<?=ROOT?>/home">
+    <img src="<?= ROOT ?>assets/images/Logo 2.png" alt="Pawfect Care Logo">
+  </a>
 </div>
+
 <h1>Book your preferred vet</h1>
 
 <div class="cardcontainer">
@@ -35,7 +39,7 @@
   <div class="container">
     <h4><b>DR.WASANTHI ALWIS</b></h4> 
     <p class="not-available">not available</p> 
-    <button class="button" type="submit" name="book">Book an Appointment</button>
+    <button class="button" type="submit" name="book" style="opacity: 0.5; pointer-events: none;">Bookan Appointment</button>
     <p class="app-number" style="visibility:hidden">Current No.</p>
     <p class="app-number" style="visibility:hidden">15</p>
   </div>

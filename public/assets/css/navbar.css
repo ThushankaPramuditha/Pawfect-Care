@@ -15,14 +15,14 @@ body {
     
 }
 
-.logo {
+.navlogo {
     font-size: 24px;
     font-weight: bold;
     display: flex;
     align-items: center; /* Vertically align the logo and text */
 }
 
-.logo img {
+.navlogo img {
     width: 120px; /* Set the width of your logo image */
     height: auto; /* Maintain the aspect ratio */
     margin-right: 10px; /* Adjust the spacing between the logo and text */

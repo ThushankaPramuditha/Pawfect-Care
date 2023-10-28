@@ -86,7 +86,7 @@ Class User
         'full_name',
         'address',
         'contact_number',
-        'NIC',
+        'nic',
         'email',
         'password',
         'confirm_password',

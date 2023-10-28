@@ -20,7 +20,7 @@
 <div class="cardcontainer">
 <div class="card">
   <div class="image-container">
-  <img src="<?= ROOT?>assets/images/maledoctor.jpg" alt="Avatar" style="width:100%">
+  <img src="<?= ROOT?>assets/images/dr1.jpg" alt="Avatar" style="width:100%">
   </div>  
   <div class="container">
     <h4><b>DR.MIHIRAJ MAGAMAGE</b></h4> 

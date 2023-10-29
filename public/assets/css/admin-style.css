@@ -1,0 +1,53 @@
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color:#f4f4f4;
+    color: #3f2f69; /* theme color */
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+}
+
+/* Remove ul disc style */
+.nav {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nav-item {
+    margin-bottom: 15px;
+}
+
+.nav-link {
+    color: #3f2f69; /* New text color */
+    font-size: 20px; /* Increase the font size */
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;  
+    
+}
+
+.nav-item:hover {
+    background-color: #3f2f69; /* Theme color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+.nav-item a:hover {
+    background-color: #3f2f69; /* Theme color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+/* Active menu item */
+.nav-item.active {
+    background-color: #3f2f69; /* Theme color for active item */
+    color: #fff; /* Text color for active item */
+}
+
+/* Content container styles (adjust according to your layout) */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+}

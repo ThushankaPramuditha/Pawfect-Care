@@ -6,9 +6,10 @@
     <title>Pawfect Care - Home</title>
 </head>
 <body>
-    <?php include 'navbar.php'; ?> 
-    <?php include 'footer.php'; ?>
-    <?php include 'petdetailstable.php'; ?>
+   
+    <?php include 'adminsidebarmenu.php'; ?>
+    <?php include 'card.php'; ?>
     <!-- Your webpage content goes here -->
+    
 </body>
 </html>

@@ -9,15 +9,17 @@
 :root{
     /* ===== Colors ===== */
     --primary-color: #f5f3f5;
-    --panel-color: #f0e0ed;
+    --panel-color: #ffffff;
     --text-color: #000;
     --black-light-color: #13040d;
     --border-color: #c5c2c4;
     --toggle-color: #8a3bdd;
-    --box1-color: #744dff;
-    --box2-color: #ace6ff;
-    --box3-color: #E7D1FC;
+    --box1-color: #8167de;
+    --box2-color: #5fc7f4;
+    --box3-color: #e784c3;
+    --box4-color: #6576e4;
     --title-icon-color: #fff;
+    --nav-color:#f2e3ef;
     
     /* ====== Transition ====== */
     --tran-05: all 0.5s ease;
@@ -55,7 +57,7 @@ nav{
     height: 100%;
     width: 250px;
     padding: 10px 14px;
-    background-color: var(--panel-color);
+    background-color:var(--nav-color);
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
 }
@@ -72,7 +74,7 @@ nav .logo-image {
 
 .logo-image .sidebar-toggle {
     color: #211f1f;
-    font-size: 24px;
+    font-size: 26px;
     margin-right: 14px;
     cursor: pointer;
   }
@@ -202,11 +204,7 @@ nav.close ~ .dashboard .top{
     left: 73px;
     width: calc(100% - 73px);
 }
-.dashboard .top .sidebar-toggle{
-    font-size: 26px;
-    color: var(--text-color);
-    cursor: pointer;
-}
+
 .dashboard .top .search-box{
     position: relative;
     height: 45px;
@@ -235,6 +233,19 @@ nav.close ~ .dashboard .top{
     top: 50%;
     transform: translateY(-50%);
     color: var(--black-light-color);
+}
+.dashboard .top .greeting{
+    text-align:right;
+    font-style:normal;
+    font-family:sans-serif;
+    color:var(--text-color);
+    font-weight: 500;
+    position:relative; 
+    top: 0;
+    left: 15px; 
+    margin: 0; 
+    padding: 5px;
+    display: inline;
 }
 .top img{
     width: 40px;
@@ -277,7 +288,7 @@ nav.close ~ .dashboard .top{
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    width: calc(100% / 3 - 15px);
+    width: calc(100% / 4 - 15px);
     padding: 15px 20px;
     background-color: var(--box1-color);
     transition: var(--tran-05);
@@ -288,7 +299,7 @@ nav.close ~ .dashboard .top{
 }
 .boxes .box .text{
     white-space: nowrap;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 500;
     color: var(--text-color);
 }
@@ -302,6 +313,9 @@ nav.close ~ .dashboard .top{
 }
 .boxes .box.box3{
     background-color: var(--box3-color);
+}
+.boxes .box.box4{
+    background-color: var(--box4-color);
 }
 .dash-content .activity .activity-data{
     display: flex;

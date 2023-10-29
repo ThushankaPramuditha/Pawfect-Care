@@ -11,7 +11,7 @@
   
    <div>
    <div class="logo">
-       <a href="<?=ROOT?>/home">
+       <a href="<?=ROOT?>home">
        <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
       </a>
     </div>
@@ -35,8 +35,8 @@
                 <label for="contact_number">Contact Number:</label>
                 <input type="tel" id="contact_number" name="contact_number" required pattern="[0-9]{10}"><br>
 
-                <label for="NIC">NIC:</label>
-                <input type="text" id="NIC" name="NIC" required><br>
+                <label for="nic">NIC:</label>
+                <input type="text" id="nic" name="nic" required><br>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required><br>
@@ -52,7 +52,7 @@
                 <div class="flex-container">
                     <button class="button" type="submit" name="signup">Sign up</button>
                 </div>
-                <p>Already have an account? <a href="<?=ROOT?>/login">Login</a>.</p>
+                <p>Already have an account? <a href="<?=ROOT?>login">Login</a>.</p>
                 
             </form>
                

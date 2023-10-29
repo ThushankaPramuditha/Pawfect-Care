@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Home</title>
 </head>
+
 <body>
-   
-    <?php include 'adminsidebarmenu.php'; ?>
-    <?php include 'card.php'; ?>
-    <!-- Your webpage content goes here -->
-    
+
+    <?php include 'navbar.php'; ?>  
+    <?php include 'footer.php'; ?>
+
 </body>
 </html>

@@ -1,0 +1,132 @@
+/* CSS styles for the veterinarian profile form */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%; /* Set container width to half of the viewport width */
+    margin-left: 50%;
+}
+
+
+/* for the button*/
+.flex-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+
+h1 {
+    color: #333;
+    font-size: 40px;
+    text-align:left;
+    margin-bottom: 40px;
+}
+
+form {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left;
+    
+}
+
+label:hover {
+    border-color: #9971FE;
+}
+
+
+input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+    outline-color:#9971FE;
+}
+
+button[type="submit"] {
+    background-color: #9971FE;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #8A5BFF;
+}
+
+input[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+/*for long text fields*/
+textarea {
+    font-family: Arial, sans-serif;
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+    outline-color:#9971FE;
+}
+
+/* Basic style for radio buttons */
+input[type="radio"] {
+    margin-right: 5px; 
+}
+
+/* Styling for the radio button when it's checked */
+input[type="radio"]:checked {
+    border: 2px solid #9971FE; /* Change the border color when the radio button is checked */
+    background-color: #9971FE; /* Change the background color when the radio button is checked */
+}
+
+
+/* Style for the image container */
+.img-container {
+    width: 40%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 50px; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+/* Style for the "+ Add Image" label */
+.image-label {
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the label */
+}
+
+/* Style for the image preview */
+#pet-image-preview {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    max-height: 200px; 
+    margin-top: 10px; /* Add space between the label and the image preview */
+}

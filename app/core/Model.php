@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 /**
- * Main Model trait
+ * Main Model Trait
  */
+
 Trait Model
 {
 	use Database;
@@ -119,9 +120,8 @@ Trait Model
 		$query .= " where $id_column = :$id_column ";
 
 		$data[$id_column] = $id;
-         
-	    echo $query;
-		//$this->query($query, $data);
+
+		$this->query($query, $data);
 		return false;
 
 	}
@@ -137,5 +137,5 @@ Trait Model
 
 	}
 
-	
 }
+?>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
     <link rel="stylesheet" href="<?=ROOT?>assets/css/signup.css">
+    <script src="<?=ROOT?>assets/js/signup.js"></script>
    
 </head>  
 <body>

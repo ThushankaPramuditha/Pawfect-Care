@@ -9,7 +9,7 @@
 <body>
     <div class="navbar">
         <div class="navlogo">
-            <img src="assets/images/logo 1.png" alt="Pawfect Care Logo">
+            <img src="assets/images/logocolor.png" alt="Pawfect Care Logo">
         </div>
         <ul class="nav-links">
             <li><a href="<?=ROOT?>/home">Home</a></li>

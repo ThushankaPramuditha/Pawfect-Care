@@ -10,8 +10,7 @@
 <h1>Edit Pet Details</h1>
     <div class="form-container">
         <form id="edit-pet-details-form">
-            
-            
+
             <label for="pet-name">Name:</label>
             <input type="text" id="pet-name" name="pet-name" required><br>
 

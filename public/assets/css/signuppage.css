@@ -1,7 +1,8 @@
 /* CSS styles for the login form */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
+    background: linear-gradient(to right, #d6caf3, #f8c3dd, #ff93f8);
     padding: 20px;
     margin: 0;
     color: #333;
@@ -22,14 +23,14 @@ body {
 
 }
 .logo{
-    margin-left:90%;
+    margin-left:85%;
     margin-top:3px;
     width: 25px;
     height: 25px;
     border-radius: 5px;
 }
 .logo img {
-    width: 150px; /* Adjust the width to your desired size */
+    width: 200px; /* Adjust the width to your desired size */
     height: auto; /* Maintain the aspect ratio by setting height to 'auto' */
 }
 

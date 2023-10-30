@@ -1,7 +1,15 @@
 /* CSS styles for the login form */
 body {
     font-family: Arial, sans-serif;
-    background-color:#f4f4f4;
+    /* background-color:#f4f4f4; */
+   background: linear-gradient(
+      117.86deg,
+      #d877ff -3.22%,
+      rgb(107, 149, 255) 12.22%,
+      rgb(255, 252, 252) 38.4%
+      
+    ),
+    #ffffff;
     padding: 20px;
     margin: 0;
 }

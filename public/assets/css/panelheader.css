@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px ;
+}
+
+.search-bar {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 40px; /* Make corners more curved */
+    display: flex; /* Display button and input in a row */
+    overflow: hidden; /* Hide overflowed button */
+}
+
+.search-input {
+    border: none; /* Remove input border */
+    padding: 10px; /* Increase padding */
+    flex: 1; /* Input takes remaining space */
+}
+
+.search-button {
+    background: #9971FE; /* Blue background color */
+    border: none; /* Remove button border */
+    border-radius: 40px;
+    margin: 2px;
+    color: white; /* White text color */
+    padding: 10px 15px; /* Adjust padding */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.add-new-button {
+    background: #9971FE; /* Purple background color */
+    border: none; /* Remove button border */
+    border-radius: 50px;
+    color: white; /* White text color */
+    padding: 10px 40px; /* Adjust padding */
+    cursor: pointer; /* Add cursor pointer */
+}

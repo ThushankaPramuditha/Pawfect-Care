@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
+
     <div class="form-container">
         <form id="add-staff-form">
-            <h1>Add Staff</h1>
+            
             
             <label for="full-name">Full Name:</label>
             <input type="text" id="full-name" name="full-name" required><br>

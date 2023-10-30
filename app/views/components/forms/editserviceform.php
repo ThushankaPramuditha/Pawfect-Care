@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
+<h1>Edit Service</h1>
     <div class="form-container">
         <form id="edit-service-form">
-            <h1>Edit Service</h1>
+            
             
             <label for="service">Service:</label>
             <input type="text" id="service" name="service" required><br>

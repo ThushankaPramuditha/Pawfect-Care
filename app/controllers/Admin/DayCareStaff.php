@@ -1,9 +1,9 @@
 <?php 
 
 /**
- * services class
+ * daycarestaff class
  */
-class Services
+class DayCareStaff
 {
 	use Controller;
 
@@ -12,7 +12,7 @@ class Services
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/services',$data);
+		$this->view('admin/daycarestaff',$data);
 	}
 
 }

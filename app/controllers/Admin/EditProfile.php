@@ -1,9 +1,9 @@
 <?php 
 
 /**
- * services class
+ * editprofile class
  */
-class Services
+class EditProfile
 {
 	use Controller;
 
@@ -12,7 +12,7 @@ class Services
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/services',$data);
+		$this->view('admin/editprofile',$data);
 	}
 
 }

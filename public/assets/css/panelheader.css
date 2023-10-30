@@ -12,7 +12,11 @@ body {
     align-items: center;
     padding: 10px ;
 }
-
+.greetuser {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px ;
+}
 .search-bar {
     background: #f1f1f1;
     border: 1px solid #ddd;

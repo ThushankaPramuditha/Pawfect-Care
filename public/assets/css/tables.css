@@ -87,3 +87,31 @@ tr{
 .delete-icon::before {
     content: "\1F5D1"; 
 }
+
+
+/* Style the Deactivate button */
+.deactivate-action-buttons button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #e8deff; /* Background color for Deactivate button */
+    color: 333; /* Text color for Deactivate button */
+    cursor: pointer;
+}
+
+.deactivate-button {
+    background: #e8deff; /* Purple background color */
+    border: none; /* Remove button border */
+    border-radius: 50px;
+    color: #333; /*  text color */
+    padding: 10px 40px; /* Adjust padding */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.deactivate-action-buttons button:hover {
+    background-color: #9971FE; 
+    
+}
+

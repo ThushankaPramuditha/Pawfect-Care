@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Staff</title>
+    <title>Add Ambulance Driver</title>
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
-<h1>Add Ambulance Driver</h1>
+
     <div class="form-container">
-        <form id="add-ambulance-driver-form">
+        <form id="add-staff-form">
             
             
             <label for="full-name">Full Name:</label>
@@ -27,11 +27,11 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br>
 
-            <label for="licence-number">License Number:</label>
-            <input type="text" id="licence-number" name="licence-number" required><br>
+            <label for="license-number">License Number:</label>
+            <input type="text" id="license-number" name="license-number" required><br>
 
             <div class="flex-container">
-                <button type="submit" id="add-ambulance-driver-button" onclick="addAmbulanceDriver()">Add Ambulance Driver</button>
+                <button type="submit" id="add-staff-button" onclick="addStaff()">Add Driver</button>
             </div>
         </form>
     </div>

@@ -1,9 +1,6 @@
 <?php 
 
-/**
- * services class
- */
-class Services
+class AddAmbulanceDriver
 {
 	use Controller;
 
@@ -12,7 +9,7 @@ class Services
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/services',$data);
+		$this->view('admin/addambulancedriver',$data);
 	}
 
 }

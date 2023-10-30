@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
-<h1>Add Staff</h1>
+
     <div class="form-container">
         <form id="add-staff-form">
             

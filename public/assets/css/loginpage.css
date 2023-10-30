@@ -1,44 +1,46 @@
 /* CSS styles for the login form */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color:#f4f4f4;
     padding: 20px;
     margin: 0;
-    color: #333;
-    
+}
+
+.logo{
+    margin-left:90%;
+    margin-top:5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+.logo img {
+    width: 150px; /* Adjust the width to your desired size */
+    height: auto; /* Maintain the aspect ratio by setting height to 'auto' */
 }
 
 .container {
-    display:flex;
+    display: flex;
     justify-content: space-between; /* Display children in a row with space between them */
     align-items: center; /* Center vertically */
-    height: 130vh; /* Set container height to 100% of viewport height */
+    height: 88vh; /* Set container height to 100% of viewport height */
     width: 50%; /* Set container width to 100% of viewport width */
-    background-color:#FCFCFE;
+    margin-left: 25%;
+    background-color: #f4f4f4;
     border-radius: 50px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    margin-left:25%;
-    margin-top:50px;
-
+    margin-top: 10px;
 }
-.logo{
-    margin-left:70%;
-    margin-top:10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-}
-
 
 /* Styling for the image container */
 .img-container {
+    width: 50%;
     background-color: none;
     border-radius: 0;
     text-align: center;
     display: flex;
     align-items: center;
-    margin-top: 80px;
-    padding-left: 20px;
+    margin-top: 0;
+    padding-left: 60px;
 }
 .img-container img {
     width: 100%;
@@ -47,21 +49,21 @@ body {
 }
 /* Styling for the login form container */
 .form-container {
-    width: 60%;
+    width: 40%;
     background-color:none;
     border: 1px solid #ccc;
     border-radius: 15px;
     align-items: center;
     display: flex;
     border: none;
-    height: auto;
+    margin-top: 5px;
 }
 
 h1 {
     color: #333;
     font-size: 28px;
     text-align: center;
-    margin-top:140px;
+    margin-top:80px;
 }
 
 form {
@@ -74,7 +76,8 @@ form {
 label {
     display: block;
     margin-bottom: 10px;
-    font-weight: none;
+    font-weight: normal;
+    
 }
 
 input[type="email"],
@@ -87,22 +90,7 @@ input[type="password"] {
     font-size: 16px;
 }
 
-/* Style for the login button */
-button[type="submit"] {
-    background-color: #9971FE;
-    width: 100%;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-button[type="submit"]:hover {
-    background-color: #8A5BFF;
-}
 
 /* Style for the "Don't have an account?" link */
 p {
@@ -111,7 +99,7 @@ p {
 }
 
 p a {
-    color: #9971FE;
+    color: #1c038c;
     text-decoration: none;
 }
 

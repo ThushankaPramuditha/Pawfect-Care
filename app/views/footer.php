@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Pawfect Care -Footer</title>
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/footer.css">
 </head>
 <body>
 
 <div class="footer">
 <div class="footer-logo">
-        <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Footer Logo">
+        <img src="<?php echo ROOT?>assets/images/footer-logo.png" alt="Footer Logo">
     </div>
     <ul class="footer-links">
         <li><a href="/privacy">Privacy Policy</a></li>

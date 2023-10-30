@@ -9,7 +9,7 @@ class User
     protected $table = 'users';
 
     protected $allowedColumns = [
-        'full_name',
+        'name',
         'address',
         'contact_no',
         'nic',
@@ -27,8 +27,8 @@ class User
             $this->errors['email'] = "Email is not valid";
         }
 
-        if(empty($data['full_name'])) {
-            $this->errors['full_name'] = "Full name is required";
+        if(empty($data['name'])) {
+            $this->errors['name'] = "Name is required";
         }
 
         if(empty($data['address'])) {
@@ -41,10 +41,12 @@ class User
             $this->errors['contact_no'] = "Contact number is not valid";
         }
 
-        if(empty($data['nic'])) {
+       
+        if (empty($data['nic'])) {
             $this->errors['nic'] = "NIC is required";
-        } 
-         
+        } elseif (!preg_match('/^[0-9]{9}[vVxX]$|^([0-9]{12})$/', $data['nic'])) {
+            $this->errors['nic'] = "NIC is not valid";
+        }
 
         if (empty($data['password'])) {
             $this->errors['password'] = "Password is required";

@@ -1,42 +1,48 @@
 /* CSS styles for the login form */
 body {
     font-family: Arial, sans-serif;
-    background-color:#f4f4f4;
+    background-color: #f4f4f4;
     padding: 20px;
     margin: 0;
-}
-
-.logo{
-    margin-left:70%;
-    margin-top:10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
+    color: #333;
+    
 }
 
 .container {
-    display: flex;
+    display:flex;
     justify-content: space-between; /* Display children in a row with space between them */
     align-items: center; /* Center vertically */
     height: 100vh; /* Set container height to 100% of viewport height */
     width: 50%; /* Set container width to 100% of viewport width */
-    margin-left: 25%;
-    background-color: #f4f4f4;
+    background-color:#FCFCFE;
     border-radius: 50px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    margin-top: 100px;
+    margin-left:25%;
+    margin-top:5px;
+
 }
+.logo{
+    margin-left:90%;
+    margin-top:3px;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+.logo img {
+    width: 150px; /* Adjust the width to your desired size */
+    height: auto; /* Maintain the aspect ratio by setting height to 'auto' */
+}
+
 
 /* Styling for the image container */
 .img-container {
-    width: 50%;
     background-color: none;
     border-radius: 0;
     text-align: center;
     display: flex;
     align-items: center;
-    margin-top: 0;
-    padding-left: 60px;
+    margin-top: 5px;
+    padding-left: 20px;
 }
 .img-container img {
     width: 100%;
@@ -45,21 +51,21 @@ body {
 }
 /* Styling for the login form container */
 .form-container {
-    width: 40%;
+    width: 60%;
     background-color:none;
     border: 1px solid #ccc;
     border-radius: 15px;
     align-items: center;
     display: flex;
     border: none;
-    margin-top: 5px;
+    height: auto;
 }
 
 h1 {
     color: #333;
     font-size: 28px;
     text-align: center;
-    margin-top:140px;
+    margin-top:50px;
 }
 
 form {
@@ -72,8 +78,7 @@ form {
 label {
     display: block;
     margin-bottom: 10px;
-    font-weight: normal;
-    
+    font-weight: none;
 }
 
 input[type="email"],
@@ -86,16 +91,31 @@ input[type="password"] {
     font-size: 16px;
 }
 
+/* Style for the login button */
+button[type="submit"] {
+    background-color: #9971FE;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
+button[type="submit"]:hover {
+    background-color: #8A5BFF;
+}
 
 /* Style for the "Don't have an account?" link */
 p {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 2px;
 }
 
 p a {
-    color: #1c038c;
+    color: #9971FE;
     text-decoration: none;
 }
 
@@ -124,8 +144,8 @@ input[type="email"],
 input[type="date"]{
     font-family: Arial, sans-serif;
     width: 93%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 8px;
+    margin-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 15px;
     font-size: 16px;

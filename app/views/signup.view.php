@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
-    <link rel="stylesheet" href="<?=ROOT?>assets/css/signup.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/css/signuppage.css">
    
 </head>  
 <body>
@@ -33,8 +33,8 @@
                 <h1>Sign Up</h1>
                 
                 <div>
-                <label for="full_name">Full Name:</label>
-                <input type="text" id="full_name" name="full_name" required><br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
                 </div>
 
                 <div>
@@ -68,7 +68,7 @@
                 </div>
                 
                 <div>
-                <input type="checkbox" name="terms" checked> I agree to the terms and conditions.
+                <input type="checkbox" name="terms" required> I agree to the terms and conditions.
                 </div>
 
                 <div class="flex-container">

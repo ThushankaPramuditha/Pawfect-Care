@@ -1,6 +1,6 @@
 <?php 
 
-class AddVeterinarian
+class AddMedicalStaff
 {
 	use Controller;
 
@@ -9,7 +9,7 @@ class AddVeterinarian
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/addveterinarian',$data);
+		$this->view('admin/addmedicalstaff',$data);
 	}
 
 }

@@ -21,7 +21,7 @@ class App {
             'Admin',
             'Veterinarian',
             'MedicalStaff',
-            'DaycareStaff',
+            'DayCareStaff',
             'Receptionist',
             'AmbulanceDriver',
             'PetOwner',

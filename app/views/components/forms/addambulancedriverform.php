@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
+<h1>Add Ambulance Driver</h1>
     <div class="form-container">
         <form id="add-ambulance-driver-form">
-            <h1>Add Ambulance Driver</h1>
+            
             
             <label for="full-name">Full Name:</label>
             <input type="text" id="full-name" name="full-name" required><br>

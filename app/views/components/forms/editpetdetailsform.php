@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
+<h1>Edit Pet Details</h1>
     <div class="form-container">
         <form id="edit-pet-details-form">
-            <h1>Edit Pet Details</h1>
+            
             
             <label for="pet-name">Name:</label>
             <input type="text" id="pet-name" name="pet-name" required><br>

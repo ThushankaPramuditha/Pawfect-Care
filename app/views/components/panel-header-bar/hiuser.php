@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/panelheader.css">
 </head>
 <body>
-        <div class="header">
+        <div class="greetuser">
             <p>Hi, Admin!</p>
         </div>
 </body>

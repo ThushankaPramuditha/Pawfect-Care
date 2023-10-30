@@ -4,13 +4,13 @@ body {
     background-color: #f4f4f4;
     padding: 20px;
 }
+
 .form-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%; /* Set container width to half of the viewport width */
-    margin-left: 50%;
+    align-items: left;
+    justify-content: flex-start;
+    width: 40%; /* Set container width to half of the viewport width */
 }
 
 
@@ -24,21 +24,20 @@ body {
 
 h1 {
     color: #333;
-    font-size: 40px;
+    font-size: 60px;
     text-align:left;
     margin-bottom: 40px;
 }
 
 form {
     max-width: 100%;
-    margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 0px;
     margin-bottom: 60px;
 }
-
 label {
     margin-bottom: 5px;
     text-align: left;
+    font-size: 20px;
     
 }
 

@@ -1,0 +1,88 @@
+/* CSS styles for the veterinarian profile form */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%; /* Set container width to half of the viewport width */
+    margin-left: 50%;
+}
+
+
+/* for the button*/
+.flex-container {
+    display: flex;
+    justify-content: flex-start; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+
+h1 {
+    color: #333;
+    font-size: 60px;
+    text-align:left;
+    margin-bottom: 70px;
+    text-decoration: none;
+}
+.key {
+    color: #333;
+    width: 30%;
+    font-size: 20px;
+    text-align:left;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+.value {
+    color: #adadad;
+    font-size: 20px;
+    text-align:left;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+button[type="submit"] {
+    background-color: #9971FE;
+    width: 20%;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin:60px 100px 30px 0px ;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #8A5BFF;
+}
+
+/* Style for the image container */
+.img-container {
+    width: 40%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 50px; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+/* Style for the "+ Add Image" label */
+.image-label {
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the label */
+}
+
+.pair{
+    display:flex;
+}
+
+/* Style for the image preview */
+#pet-image-preview {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    max-height: 200px; 
+    margin-top: 10px; /* Add space between the label and the image preview */
+}

@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
+<h1>Add Treatment</h1>
     <div class="form-container">
         <form id="add-treatment-form">
-            <h1>Add Treatment</h1>
+            
             
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required><br>

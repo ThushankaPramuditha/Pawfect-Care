@@ -14,12 +14,26 @@ class App {
     public function loadController(): void {
         $URL = $this->splitURL();
 
+        $controllerName = ucfirst($URL[0]);
+
+        // array of valid user types
+        $validUserTypes = [
+            'Admin',
+            'Veterinarian',
+            'MedicalStaff',
+            'DayCareStaff',
+            'Receptionist',
+            'AmbulanceDriver',
+            'PetOwner',
+        ];
+
         // Select controller
-        if ($URL[0] == 'admin'){
+        if (in_array($controllerName, $validUserTypes)){
             unset($URL[0]);
             // echo $URL[1];
+            $filename = "../app/controllers/{$controllerName}/" . ucfirst($URL[1]) . ".php";
 
-            $filename = "../app/controllers/Admin/" . ucfirst($URL[1]) . ".php";
+            //$filename = "../app/controllers/Admin/" . ucfirst($URL[1]) . ".php";
 
             if (file_exists($filename)) {
                 require $filename;

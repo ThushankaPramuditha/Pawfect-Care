@@ -1,5 +1,7 @@
 .footer {
     background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
     color: black;
     display: flex;
     align-items:center;

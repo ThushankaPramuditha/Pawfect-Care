@@ -66,7 +66,7 @@ class App {
             }
         }
 
-
+        AuthMiddleware::run_middleware($this->controller, $this->method);
         call_user_func_array([$controller, $this->method], $URL);
     }
 }

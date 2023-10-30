@@ -1,0 +1,151 @@
+
+/* CSS styles for the form */
+body {
+font-family: Arial, sans-serif;
+background: linear-gradient(to right, #ffff, #ffffff, #ff93f8);
+font-size: 16px;
+}
+
+.container {
+display: flex;
+justify-content: space-between; 
+align-items: center; 
+height: 75vh; 
+background-color: none;
+margin-top: 10px;
+}
+.form-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 60%; 
+}
+
+.logo{
+margin-left:90%;
+margin-top:5px;
+width: 25px;
+height: 25px;
+border-radius: 5px;
+}
+.logo img {
+width: 150px;
+height: auto;
+}
+
+/* for the button*/
+.flex-container {
+display: flex;
+justify-content: center;
+align-items: center; 
+}
+
+
+h1 {
+color: #333;
+font-size: 30px;
+text-align: center;
+}
+
+form {
+max-width: 100%;
+margin: 0 auto;
+/* margin-top:-20px; */
+
+}
+
+label {
+margin-bottom: 5px;
+text-align: left;
+
+}
+
+label:hover {
+border-color: #9971FE;
+}
+
+
+input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+font-family: Arial, sans-serif;
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 15px;
+font-size: 16px;
+outline-color:#9971FE;
+}
+
+button[type="submit"] {
+background-color: #9971FE;
+width: 100%;
+color: rgb(255, 255, 255);
+border: none;
+border-radius: 50px;
+padding: 10px 20px;
+margin-top: 10px;
+margin-bottom: 30px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+background-color: #8A5BFF;
+}
+
+input[readonly] {
+background-color: #eee;
+cursor: not-allowed;
+}
+
+
+textarea {
+font-family: Arial, sans-serif;
+width: 93%;
+padding: 10px;
+margin-bottom: 20px;
+border: 1px solid #ccc;
+border-radius: 15px;
+font-size: 16px;
+outline-color:#9971FE;
+}
+
+
+input[type="radio"] {
+margin-right: 5px; 
+}
+
+
+input[type="radio"]:checked {
+border: 2px solid #9971FE; 
+background-color: #9971FE; 
+}
+
+
+.img-container {
+width: 40%;
+background-color: #ffffff;
+border: 1px solid #ccc;
+border-radius: 50px; 
+padding: 10px; 
+text-align: center; 
+}
+
+
+.image-label {
+cursor: pointer; 
+}
+
+
+#pet-image-preview {
+max-width: 100%;
+max-height: 200px; 
+margin-top: 10px; 
+}
+

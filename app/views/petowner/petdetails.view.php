@@ -18,7 +18,7 @@
 
 <div class="container">
 <div class="form-container"> 
-     <?php include 'editpetdetailsform.php'; ?>   
+<?php include '../app/views/components/editpetdetailsform.php'; ?>
 </div>
 
 </div>

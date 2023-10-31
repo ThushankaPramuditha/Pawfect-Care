@@ -115,3 +115,58 @@ tr{
     
 }
 
+/* Style the medicalhistory button */
+.medicalhistory-action-buttons button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #e8deff; /* Background color for Deactivate button */
+    color: 333; /* Text color for Deactivate button */
+    cursor: pointer;
+}
+
+.medicalhistory-button {
+    background: #e8deff; /* Purple background color */
+    border: none; /* Remove button border */
+    border-radius: 50px;
+    color: #333; /*  text color */
+    padding: 10px 40px; /* Adjust padding */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.medicalhistory-action-buttons button:hover {
+    background-color: #9971FE; 
+    
+}
+/* Style the vaccinationhistory button */
+.vaccinationhistory-action-buttons button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #e8deff; /* Background color for Deactivate button */
+    color: 333; /* Text color for Deactivate button */
+    cursor: pointer;
+}
+
+.vaccinationhistory-button {
+    background: #e8deff; /* Purple background color */
+    border: none; /* Remove button border */
+    border-radius: 50px;
+    color: #333; /*  text color */
+    padding: 10px 40px; /* Adjust padding */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.vaccinationhistory-action-buttons button:hover {
+    background-color: #9971FE; 
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

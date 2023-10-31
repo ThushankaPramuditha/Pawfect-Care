@@ -52,8 +52,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="servicesreports">
-                    <span class="menu-title">Services Reports</span>
+                <a class="nav-link" href="services">
+                    <span class="menu-title">Services</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports">
+                    <span class="menu-title">Reports</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -62,8 +67,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="qanda">
-                    <span class="menu-title">Q&A</span>
+                <a class="nav-link" href="faq">
+                    <span class="menu-title">FAQ</span>
                 </a>
             </li>
             <li class="nav-item">

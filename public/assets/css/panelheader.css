@@ -49,3 +49,8 @@ body {
     padding: 10px 40px; /* Adjust padding */
     cursor: pointer; /* Add cursor pointer */
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

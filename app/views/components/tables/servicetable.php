@@ -9,7 +9,7 @@
     <table>
         <thead>
             <tr>
-                <th>Servcie</th>
+                <th>Service</th>
                 <th>Description</th>
                 <th class="edit-action-buttons"></th>
                 <th class="delete-action-buttons"></th>
@@ -21,7 +21,7 @@
                 <td><b>Veterinary Care</b></td>
                 <td>Our experienced veterinarians provide routine check-ups, vaccinations, and medical care to keep your pet in great shape.</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
+                <a href = "editservice"><button class="edit-icon"></button></a>
                 </td>
                 <td class="delete-action-buttons">
                     <button class="delete-icon"></button>

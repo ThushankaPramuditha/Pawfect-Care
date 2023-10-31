@@ -1,6 +1,6 @@
 <?php 
 
-class FAQtable
+class EditProfile_PetOwner
 {
 	use Controller;
 
@@ -9,7 +9,7 @@ class FAQtable
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/faqtable',$data);
+		$this->view('receptionist/editprofile_petowner',$data);
 	}
 
 }

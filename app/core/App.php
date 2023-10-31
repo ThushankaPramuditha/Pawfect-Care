@@ -14,17 +14,18 @@ class App {
     public function loadController(): void {
         $URL = $this->splitURL();
 
+
         $controllerName = ucfirst($URL[0]);
 
         // array of valid user types
         $validUserTypes = [
             'Admin',
             'Veterinarian',
-            'MedicalStaff',
-            'DayCareStaff',
+            'Medicalstaff',
+            'DayCarestaff',
             'Receptionist',
-            'AmbulanceDriver',
-            'PetOwner',
+            'Ambulancedriver',
+            'Petowner',
         ];
 
         // Select controller

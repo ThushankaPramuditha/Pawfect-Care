@@ -18,11 +18,12 @@
                 <div class= "pair"><div class = "key">Address:</div> <div class = "value">Hospital Road, Dodangoda, Kalutara</div></div>
                 <div class= "pair"><div class = "key">Contact No:</div> <div class = "value">077-4441482</div></div>
                 <div class= "pair"><div class = "key">NIC:</div> <div class = "value">20018420398</div></div>
+                <div class= "pair"><div class = "key">Email:</div> <div class = "value">johndoe@gmail.com</div></div>
                 <div class= "pair"><div class = "key">Qualifications:</div> <div class = "value">DVM, PhD</div></div>
 
-                <div class = "flex-container">
-                    <button type="submit" id="edit-button" >edit profile</button>
-                    <button type="submit" id="changepw-button" >change password</button>
+                <div class="flex-container">
+                        <button type="submit" id="edit-button"><a href="editprofile">Edit Profile</a></button>
+                        <button type="submit" id="changepw-button"><a href ="changepassword">Change Password</a></button>
                 </div>
             
     </div>

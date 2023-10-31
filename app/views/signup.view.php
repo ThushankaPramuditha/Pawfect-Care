@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
     <link rel="stylesheet" href="<?=ROOT?>assets/css/signuppage.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    
 </head>  
 <body>
@@ -24,12 +25,28 @@
         <div class="form-container">
             <form method="post">
 
-            <?php if(!empty($errors)):?>
-                <div class="alert alert-danger">
-                    <?= implode("<br>", $errors)?>
-                </div>
-                <?php endif;?>
-               
+        <script>
+        // Check if the PHP variable $errors is set and not empty
+        <?php if (!empty($errors)): ?>
+            // Create a JavaScript array to hold the error messages
+            var errorMessages = [
+            <?php foreach ($errors as $error): ?>
+                "<?= $error ?>",
+            <?php endforeach; ?>
+            ];
+
+            // Create an error message by joining the array elements
+            var errorMessage = errorMessages.join("<br>");
+
+            // Show the SweetAlert with the error message
+            Swal.fire({
+            icon: 'error',
+            title: 'Sign Up Error',
+            html: errorMessage,
+            });
+        <?php endif; ?>
+        </script>
+
                 <h1>Sign Up</h1>
                 
                 <div>

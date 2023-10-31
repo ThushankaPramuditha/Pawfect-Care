@@ -14,8 +14,38 @@ class User
         'contact_no',
         'nic',
         'email',
-        'password', // We'll store the hashed password in the database
+        'password', 
     ];
+    
+    private function hashPassword(string $password): string
+    {
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+    public function registerUser(array $data): mixed
+{
+    if ($this->validate($data)) {
+        $data['password'] = $this->hashPassword($data['password']);
+
+        return $this->insert($data);
+    }
+
+    return false;
+}
+    private function verifyPassword(string $password, string $hashedPassword): bool
+    {
+        return password_verify($password, $hashedPassword);
+    }
+    
+    public function authenticate(string $email, string $password): mixed
+    {
+        $data = $this->first(['email' => $email]);
+         if ($data && $this->verifyPassword($password, $data->password)) {
+             return $data;
+      }
+
+           return false;
+    }
+
 
     public function validate($data)
     {
@@ -72,19 +102,5 @@ class User
 
         return false;
     }
-
-    public function hashPassword($password)
-    {
-        // Generate a secure password hash with a random salt
-        $options = [
-            'cost' => 12, // Adjust the cost according to your security needs
-        ];
-        return password_hash($password, PASSWORD_BCRYPT, $options);
-    }
-
-    public function verifyPassword($password, $hashedPassword)
-    {
-        // Verify a password against its hash
-        return password_verify($password, $hashedPassword);
-    }
 }
+

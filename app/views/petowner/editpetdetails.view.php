@@ -14,11 +14,11 @@
 </div>
 
 <body>
-<h1>Edit Pet Details</h1>
+<!-- <h1>Edit Pet Details</h1> -->
 
 <div class="container">
 <div class="form-container"> 
-<?php include '../app/views/components/editpetdetailsform.php'; ?>
+<?php include '../app/views/components/forms/editpetdetailsform.php'; ?>
 </div>
 
 </div>

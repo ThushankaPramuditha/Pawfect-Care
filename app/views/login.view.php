@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pawfect Care - Login</title>
   <link rel="stylesheet" href="<?php ROOT?>assets/css/loginpage.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -14,11 +15,34 @@
     <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
    </a>
  </div>
-
+     
 <div class="container">
   <div class="img-container">
     <img src="<?php ROOT?>assets/images/login-photo1.jpg" alt="Login Photo">
   </div>
+
+  <script>
+  // Check if the PHP variable $errors is set and not empty
+  <?php if (!empty($errors)): ?>
+    // Create a JavaScript array to hold the error messages
+    var errorMessages = [
+      <?php foreach ($errors as $error): ?>
+        "<?= $error ?>",
+      <?php endforeach; ?>
+    ];
+
+    // Create an error message by joining the array elements
+    var errorMessage = errorMessages.join("<br>");
+
+    // Show the SweetAlert with the error message
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Error',
+      html: errorMessage,
+    });
+  <?php endif; ?>
+</script>
+
 
   <div class="form-container">
     <form method="post">

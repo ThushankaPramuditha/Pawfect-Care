@@ -1,22 +1,18 @@
 <?php
 
-// use App\Middleware\AuthMiddleware;
-
 class Services 
 {      
 	   use Controller;
-    // use AuthMiddleware;
-
+	   
     public function index()
     {
 		$services = new Servicesmodel;
 		// echo $service;
 		$result = $services->getAllServices();
-		
-		show($result);
-
+		// show($result);
         $this->view('admin/services', ['services' => $result]);
     }
+
 
     public function create()
     {

@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
 </head>
 <body>
-<h1>Change Password</h1> 
+ 
     <div class = "form-container"> 
+         
+            <h1>Change Password</h1>
+
             <form id="change-password-form">
             
                 <label for="prev-password">Previous Password:</label>

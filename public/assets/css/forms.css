@@ -9,12 +9,6 @@ body {
 .form-container {
     display: flex;
     flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-    width: 40%; 
-    margin-top: auto;
-
     align-items: left;
     justify-content: flex-start;
     width: 40%; /* Set container width to half of the viewport width */
@@ -95,6 +89,7 @@ input[readonly] {
 textarea {
     font-family: Arial, sans-serif;
     width: 93%;
+    height: 200px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -117,7 +112,7 @@ input[type="radio"]:checked {
 
 /* Style for the image container */
 .img-container {
-    width: 50%;
+    width: 60%;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 50px; 
@@ -135,4 +130,9 @@ input[type="radio"]:checked {
     max-width: 100%;
     max-height: 200px; 
     margin-top: 10px; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }

@@ -9,27 +9,24 @@
     <table>
         <thead>
             <tr>
+                <th>Pet ID</th>
                 <th>Date</th>
                 <th>Medical Condition</th>
                 <th>Treatment</th>
                 <th>Medication</th>
                 <th>Remarks</th>
-               
             </tr>
         </thead>
         <tbody>
          
             <tr>
+                <td>12345</td>
                 <td>24/09/2023</td>
                 <td>Fever and Cold</td>
-                <td>Check temperature and gave medition</td>
-                <td><li>Paracetamol
-                    <li>Antibiotic
-                    <li>Anti Cold
-                </td>
+                <td>Check temperature and gave medication</td>
+                <td>Paracetamol, antibiotic, anti cold</td>
                 <td>Need to check again after 2 days</td>
             </tr>
-        
         </tbody>
     </table>
 </body>

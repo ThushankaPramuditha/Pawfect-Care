@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<?php $_SESSION['addnewpath'] = 'addservice' ?>
 
         <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">

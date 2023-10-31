@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <?php $_SESSION['addnewpath'] = 'addveterinarian' ?>
+    <?php $_SESSION['updatepath'] = 'editprofile_veterinarians' ?>
 
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">

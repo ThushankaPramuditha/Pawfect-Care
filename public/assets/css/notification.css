@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.notificationmenu{
+    position: relative;
+    display:grid;  
+    min-height: 500px;
+    background:#c1c3c4;
+    width: 300px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.cardHeader{
+    font-size: 20px;
+    background: #fff;
+    color: #000;
+    position: relative;
+    padding:100px
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardHeder.h2{
+    font-size: 20px;
+    font-weight: 100;
+    color: #000;
+    margin-left: 10px;
+}
+.message{
+    position:relative;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    align-items: center;
+    border-radius: 12px;
+    border:#000;
+    height: calc(100% / 4 - 40px);
+    width: 10px;
+    padding: 15px 20px;
+    background-color:#d0c4cc;
+    transition: var(--tran-05);
+}
+.message:hover{
+    background: #8167de;
+    color: #fff;
+}
+.message h3{
+    font-size:16px;
+    font-weight:500;
+    line-height: 1.2em;
+}

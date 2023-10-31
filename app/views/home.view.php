@@ -8,8 +8,8 @@
 
 <body>
 
-    <?php include 'navbar.php'; ?>  
-    <?php include 'footer.php'; ?>
+    <?php include '../app/components/dashboard-compo/adminnotification.php'; ?>  
+   
 
 </body>
 </html>

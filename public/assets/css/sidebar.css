@@ -3,7 +3,7 @@
     width: 230px;
     height: 100vh;
     background-color: #e8deff; /* Off-white background color */
-    color: #9971FE; /* Theme color */
+    /* color: #9971FE;  */
     position: fixed;
     left: 0;
     top: 0;
@@ -17,7 +17,7 @@
 }
 
 .nav-item {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .nav-link {
@@ -64,3 +64,5 @@ body {
 .center-image img {
     width: 200px; /* Adjust the size as needed */
 }
+
+

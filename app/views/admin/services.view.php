@@ -9,7 +9,7 @@
 <body>
 <?php $_SESSION['addnewpath'] = 'addservice' ?>
 
-    <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
+        <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
         <?php include '../app/views/components/tables/servicetable.php'; ?> 

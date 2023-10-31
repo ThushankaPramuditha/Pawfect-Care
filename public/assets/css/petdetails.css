@@ -2,7 +2,7 @@
 /* CSS styles for the form */
 body {
 font-family: Arial, sans-serif;
-background: linear-gradient(to right, #ffff, #ffffff, #ff93f8);
+background: linear-gradient(to right, #ffff, #ffffff, #ffffff);
 font-size: 16px;
 }
 
@@ -20,6 +20,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 60%; 
+margin-left:10%;
 }
 
 .logo{
@@ -129,10 +130,10 @@ background-color: #9971FE;
 
 
 .img-container {
-width: 40%;
+width: 60%;
 background-color: #ffffff;
 border: 1px solid #ccc;
-border-radius: 50px; 
+border-radius: 40px; 
 padding: 10px; 
 text-align: center; 
 }

@@ -11,18 +11,34 @@
 </head>
 
 <body>
-    <section class="dashboard">
-        <div class="dash-content">
+    
+       
             <div class="crd">
-                <section>
-                    <div class="crd1">
-                        <span class="text">ROXY</span>
-                            <span class></span>
-                        </div>
+                <span class="txt">ROXY</span>
+                <div class="abc">
+                    <div class="image">
+                        <img src="images/profile.jpg" alt="">
                     </div>
-                </section>
+                    <div class="description">
+                        <span class="text1">Breed:LionShephard</span>   
+                        <span class="text1">Age:4</span>
+                        <span class="text1">Weight:35kg</span>       
+                    </div>
+                </div>
+                <div class="button">
+                    <div class="button1">
+                        <a class="buttonlink" href="medical history.html">
+                            <span class="buttonName1">Medical History</span>
+                        </a>
+                    </div>
+                    <div class="button2">
+                        <a class="buttonlink" href="vaccination history.html">
+                            <span class="buttonName2">Vaccination History</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+     
+    
 </body>
 </html>

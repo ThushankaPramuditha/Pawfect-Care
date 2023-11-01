@@ -11,7 +11,7 @@
     <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
-        <?php include '../app/views/components/tables/ridedetailstable.php'; ?> 
+        <?php include '../app/views/components/tables/ambulancebookingtable.php'; ?> 
     </div>
 
 </body>

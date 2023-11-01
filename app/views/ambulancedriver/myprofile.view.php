@@ -21,9 +21,9 @@
                 <div class= "pair"><div class = "key">Email:</div> <div class = "value">johndoe@gmail.com</div></div>
                 <div class= "pair"><div class = "key">License No:</div> <div class = "value">CD 9692</div></div>
 
-                <div class = "flex-container">
-                    <button type="submit" id="edit-button" >edit profile</button>
-                    <button type="submit" id="changepw-button" >change password</button>
+                <div class="flex-container">
+                        <button type="submit" id="edit-button"><a href="editprofile">Edit Profile</a></button>
+                        <button type="submit" id="changepw-button"><a href ="changepassword">Change Password</a></button>
                 </div>
             
     </div>

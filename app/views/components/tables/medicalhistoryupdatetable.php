@@ -28,8 +28,7 @@
                 <td>Paracetamol, antibiotic, anti cold</td>
                 <td>Need to check again after 2 days</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

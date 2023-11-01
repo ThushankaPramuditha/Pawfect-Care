@@ -29,8 +29,7 @@
                 <td>2020-05-15</td>
                 <td>Male</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
             <tr>
                 <td>67890</td>
@@ -41,8 +40,7 @@
                 <td>2019-11-22</td>
                 <td>Female</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<?php $_SESSION['addnewpath'] = 'addtreatment' ?>
 
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
     <div style = "margin-left: 230px">

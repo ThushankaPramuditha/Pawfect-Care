@@ -30,11 +30,10 @@
 </head>
 
 <body>
-<?php $_SESSION['addnewpath'] = 'addservice' ?>
 
         <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
+        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?> 
         <?php include '../app/views/components/dashboard-compo/card.php'; ?>
         <div style="margin-bottom: 60px;"></div>
         <div class="flex-container">

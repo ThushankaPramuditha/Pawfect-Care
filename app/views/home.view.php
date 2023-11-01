@@ -7,9 +7,8 @@
 </head>
 
 <body>
-    <?php include '../app/components/navbar.php'; ?>
-    <?php include '../app/components/dashboard-compo/adminnotification.php'; ?>  
-    <?php include '../app/components/footer.php'; ?>
+    <?php include 'navbar.php'; ?>
+    <?php include 'footer.php'; ?>
 
 </body>
 </html>

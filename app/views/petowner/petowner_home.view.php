@@ -8,7 +8,7 @@
 
 <body>
     <?php include '../app/views/components/navbar2.php'; ?>
-    <?php include '../app/views/components/footer.php'; ?>
+    <?php include '../app/views//footer.php'; ?>
 
 </body>
 </html>

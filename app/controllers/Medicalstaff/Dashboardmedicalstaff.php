@@ -1,0 +1,18 @@
+<?php 
+
+/**
+ * changepassword class
+ */
+class DashboardMedicalStaff
+{
+	use Controller;
+
+	public function index()
+	{
+
+		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+
+		$this->view('medicalstaff/dashboardmedicalstaff',$data);
+	}
+
+}

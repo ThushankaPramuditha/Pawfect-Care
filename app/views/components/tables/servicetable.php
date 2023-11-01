@@ -32,7 +32,7 @@
                 <td><b>Pet Daycare</b></td>
                 <td>Our safe and fun daycare offers social interaction, exercise, and mental stimulation for your pet while you're away. Experienced staff provide attentive care for a worry-free day.</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
+                <a href = "editservice"><button class="edit-icon"></button></a>
                 </td>
                 <td class="delete-action-buttons">
                     <button class="delete-icon"></button>
@@ -43,7 +43,7 @@
                 <td><b>Pet Ambulance</b></td>
                 <td>  Swift and compassionate transportation for your pet during emergencies. Your pet's well-being is our priority</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
+                <a href = "editservice"><button class="edit-icon"></button></a>
                 </td>
                 <td class="delete-action-buttons">
                     <button class="delete-icon"></button>

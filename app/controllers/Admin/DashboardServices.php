@@ -1,6 +1,9 @@
 <?php 
 
-class AddDayCareStaff
+/**
+ * Dashboard Services Class
+ */
+class DashboardServices
 {
 	use Controller;
 
@@ -9,7 +12,7 @@ class AddDayCareStaff
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/useraccounts/adddaycarestaff',$data);
+		$this->view('admin/dashboardservices',$data);
 	}
 
 }

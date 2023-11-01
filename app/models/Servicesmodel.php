@@ -1,15 +1,15 @@
 <?php
 
-class Servicesmodel
+class ServicesModel
 {
     use Model;
+
     protected $table = 'services';
     protected $allowedColumns = ['service_tittle', 'description'];
 
     public function getAllServices()
     {
-        
-       return $this->findAll();
+        return $this->findAll();
     }
 
     public function getServiceById($id)
@@ -19,18 +19,33 @@ class Servicesmodel
 
     public function createService($data)
     {
-        $this->insert($data);
+        return $this->insert($data);
     }
 
     public function updateService($id, $data)
     {
-        $this->update($id, $data);
+        return $this->update($id, $data);
     }
 
     public function deleteService($id)
     {
-        $this->delete($id);
+        return $this->delete($id);
+    }
+
+    public function validate($data)
+    {
+        $this->errors = [];
+
+        if (empty($data['service_tittle'])) {
+            $this->errors['service_tittle'] = "Service Tittle is required";
+        }
+
+        if (empty($data['description'])) {
+            $this->errors['description'] = "Description is required";
+        }
+
+        return empty($this->errors);
     }
 }
 
-?>
+

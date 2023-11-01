@@ -26,8 +26,7 @@
                 <td><button class="t-button">Send</button></td>
                 <td><button class="t-button">Post</button></td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                    <button class="edit-icon"></button>               </td>
                 <td class="delete-action-buttons">
                     <button class="delete-icon"></button>
                 </td>

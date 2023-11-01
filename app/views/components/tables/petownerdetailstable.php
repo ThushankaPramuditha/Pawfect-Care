@@ -25,8 +25,7 @@
                 <td>123 Elm St</td>
                 <td>123-456-7890</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
             <tr>
                 <td>Jane Smith</td>
@@ -35,8 +34,7 @@
                 <td>456 Oak St</td>
                 <td>987-654-3210</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

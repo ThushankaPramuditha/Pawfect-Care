@@ -30,8 +30,7 @@
                 <td>24/09/2024</td>
                 <td></td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
 
             <tr>
@@ -43,8 +42,7 @@
                 <td>21/09/2024</td>
                 <td></td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

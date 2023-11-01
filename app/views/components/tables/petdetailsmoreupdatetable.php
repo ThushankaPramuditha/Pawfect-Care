@@ -37,14 +37,13 @@
                 <td>John Doe</td>
                 <td>0775367289</td>
                 <td class="medicalhistory-action-buttons">
-                    <button class="medicalhistory-button">Medical History</button>
+                    <button class="medicalhistory-button"><a href = "medicalhistory">Medical History</a></button>
                 </td>
                 <td class="vaccinationhistory-action-buttons">
-                    <button class="vaccinationhistory-button">Vaccination History</button>
+                    <button class="vaccinationhistory-button"><a href = "vaccinationhistory">Vaccination History</a></button>
                 </td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
             <tr>
                 <td>Luna</td>
@@ -58,14 +57,13 @@
                 <td>Jane Smith</td>
                 <td>0783526789</td>
                 <td class="medicalhistory-action-buttons">
-                    <button class="medicalhistory-button">Medical History</button>
+                    <button class="medicalhistory-button"><a href = "medicalhistory">Medical History</a></button>
                 </td>
                 <td class="vaccinationhistory-action-buttons">
-                    <button class="vaccinationhistory-button">Vaccination History</button>
+                    <button class="vaccinationhistory-button"><a href = "vaccinationhistory">Vaccination History</a></button>
                 </td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

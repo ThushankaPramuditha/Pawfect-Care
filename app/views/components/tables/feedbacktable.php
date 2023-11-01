@@ -23,8 +23,7 @@
                 <td>Thank you very much.</td>
                 <td><button class="t-button">Post</button></td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                </td>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
                 <td class="delete-action-buttons">
                     <button class="delete-icon"></button>
                 </td>

@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<?php $_SESSION['updatepath'] = 'editpetdetails' ?>
 
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
     <div style = "margin-left: 230px">

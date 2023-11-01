@@ -30,7 +30,7 @@
                 <td>johndoe@example.com</td>
                 <td>DR123456</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>
                 </td>
                 <td class="deactivate-action-buttons">
                     <button class="deactivate-button">Deactivate</button>
@@ -45,7 +45,7 @@
                 <td>janesmith@example.com</td>
                 <td>DR678901</td>
                 <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
+                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>
                 </td>
                 <td class="deactivate-action-buttons">
                     <button class="deactivate-button">Deactivate</button>

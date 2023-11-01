@@ -1,7 +1,5 @@
 <?php
-/**
- * User class
- */
+
 class User
 {
     use Model;
@@ -14,39 +12,41 @@ class User
         'contact_no',
         'nic',
         'email',
-        'password', 
+        'password',
     ];
-    
+
     private function hashPassword(string $password): string
     {
         return password_hash($password, PASSWORD_BCRYPT);
     }
-    public function registerUser(array $data): mixed
-{
-    if ($this->validate($data)) {
-        $data['password'] = $this->hashPassword($data['password']);
 
-        return $this->insert($data);
+    public function registerUser(array $data): mixed
+    {
+        if ($this->validate($data)) {
+            $data['password'] = $this->hashPassword($data['password']);
+
+            return $this->insert($data);
+        }
+
+        return false;
     }
 
-    return false;
-}
     private function verifyPassword(string $password, string $hashedPassword): bool
     {
         return password_verify($password, $hashedPassword);
     }
-    
+
     public function authenticate(string $email, string $password): mixed
     {
         $data = $this->first(['email' => $email]);
-         if ($data && $this->verifyPassword($password, $data->password)) {
-             return $data;
-      }
+        if ($data && $this->verifyPassword($password, $data->password)) {
+            return $data;
+        }
 
-           return false;
+        return false;
     }
 
-
+    // Rest of your validation and user-related methods...
     public function validate($data)
     {
         $this->errors = [];

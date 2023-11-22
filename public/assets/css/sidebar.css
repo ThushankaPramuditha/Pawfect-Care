@@ -38,7 +38,7 @@
 }
 
 .nav-item:hover {
-    background-color: #322358; /* Theme color on hover */
+    background-color: #4b2756; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
 
@@ -51,13 +51,13 @@ body {
     
 }
 .nav-item a:hover {
-    background-color: #322358; /* Theme color on hover */
+    background-color: #4b2756; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
 
 /* Active menu item */
 .nav-item.active {
-    background-color: #322358; /* Theme color for active item */
+    background-color: #4b2756; /* Theme color for active item */
     color: #fff; /* Text color for active item */
 }
 
@@ -90,13 +90,13 @@ body {
     width: 80%;
     border: none;
     color: #fff;
-    background-color: #9971FE;
+    background-color: #6a3879;
     border-radius: 10px;
     margin-bottom: 40px;
 }
 
 .logout-button:hover {
-    background-color: #8A5BFF; /* Theme color on hover */
+    background-color: #4b2756; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
 

@@ -32,7 +32,7 @@ body {
 }
 
 .search-button {
-    background: #9971FE; /* Blue background color */
+    background: #6a3879; /* Blue background color */
     border: none; /* Remove button border */
     border-radius: 40px;
     margin: 2px;
@@ -42,7 +42,7 @@ body {
 }
 
 .add-new-button {
-    background: #9971FE; /* Purple background color */
+    background: #6a3879; /* Purple background color */
     border: none; /* Remove button border */
     border-radius: 50px;
     color: white; /* White text color */

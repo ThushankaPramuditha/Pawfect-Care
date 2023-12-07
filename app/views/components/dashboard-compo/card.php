@@ -43,7 +43,7 @@
         }
 
         .box {
-            background-color: #d877ff;
+            background-color: #6a3879;
             color: #fff;
             text-align: center;
             padding: 20px;

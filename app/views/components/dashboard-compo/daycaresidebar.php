@@ -38,7 +38,7 @@
             </div>
             <div class="bottom-container">
                 <button class="logout-button">
-                    <a class="nav-link" href="logout">
+                    <a href="logout">
                         <span>Logout</span>
                     </a>
                 </button>

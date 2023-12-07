@@ -3,7 +3,7 @@
 /**
  * home class
  */
-class PetOwnerServices
+class Home
 {
 	use Controller;
 
@@ -12,7 +12,7 @@ class PetOwnerServices
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('petowner/petownerservices',$data);
+		$this->view('petowner/home',$data);
 	}
 
 }

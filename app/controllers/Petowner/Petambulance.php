@@ -1,6 +1,6 @@
 <?php
 
-class Petambulance
+class PetAmbulance
 {
     use Controller;
     

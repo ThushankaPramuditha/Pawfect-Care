@@ -45,7 +45,7 @@ h1 {
     text-decoration: none;
 }
 button[type="submit"] {
-    background-color: #9971FE;
+    background-color: #6a3879;
     width: 20%;
     color: rgb(255, 255, 255) !important;
     border: none;
@@ -59,7 +59,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #8A5BFF;
+    background-color: #4b2756;
 }
 
 /* Style for the image container */

@@ -38,7 +38,7 @@ class AuthMiddleware {
     }
 
     // Get the user's data from the database
-    $user = new User;
+    $user = new UserModel;
 
     $data['session_id'] = $_SESSION['session_id'];
 

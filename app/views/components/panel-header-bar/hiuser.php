@@ -7,7 +7,7 @@
 </head>
 <body>
         <div class="greetuser">
-            <p>Hi, Admin!</p>
+            <p>Hi, User!</p>
         </div>
 </body>
 </html>

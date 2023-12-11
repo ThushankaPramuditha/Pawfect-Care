@@ -3,7 +3,7 @@
 /**
  * login class
  */
-class Login
+class StaffLogin
 {
 	use Controller;
 
@@ -23,7 +23,7 @@ class Login
 				if($row->password === $_POST['password'])
 				{
 					$_SESSION['USER'] = $row;
-					redirect('petowner/petowner_home');
+					redirect('home');
 				}
 			}
 
@@ -32,7 +32,7 @@ class Login
 			$data['errors'] = $user->errors;
 		}
 
-		$this->view('login',$data);
+		$this->view('stafflogin',$data);
 	}
 
 }

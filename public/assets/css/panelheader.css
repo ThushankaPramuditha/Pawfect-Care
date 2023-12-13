@@ -10,44 +10,56 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px ;
+    padding-top: 10px ;
+    padding-bottom: 10px;
 }
 .greetuser {
     display: flex;
     justify-content: flex-end;
     padding: 10px ;
+
+    
 }
 .search-bar {
+    font-size: 16px;
     background: #f1f1f1;
-    border: 1px solid #ddd;
-    border-radius: 40px; /* Make corners more curved */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Make corners more curved */
     display: flex; /* Display button and input in a row */
     overflow: hidden; /* Hide overflowed button */
 }
 
 .search-input {
+    font-size: 16px;
     border: none; /* Remove input border */
     padding: 10px; /* Increase padding */
     flex: 1; /* Input takes remaining space */
 }
 
 .search-button {
+    font-size: 16px;
     background: #6a3879; /* Blue background color */
     border: none; /* Remove button border */
-    border-radius: 40px;
+    border-radius: 5px;
     margin: 2px;
     color: white; /* White text color */
     padding: 10px 15px; /* Adjust padding */
     cursor: pointer; /* Add cursor pointer */
+    width: fit-content;
+
 }
 
 .add-new-button {
-    background: #6a3879; /* Purple background color */
-    border: none; /* Remove button border */
-    border-radius: 50px;
-    color: white; /* White text color */
-    padding: 10px 40px; /* Adjust padding */
-    cursor: pointer; /* Add cursor pointer */
+
+    background-color: #6a3879;
+    width: fit-content;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 a {

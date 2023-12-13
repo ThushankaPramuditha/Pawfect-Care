@@ -17,8 +17,9 @@ body {
 /* for the button*/
 .flex-container {
     display: flex;
-    justify-content: flex-start; /* Center horizontally */
+    width: 40%;
     align-items: center; /* Center vertically */
+    justify-content: space-between;
 }
 
 
@@ -44,19 +45,21 @@ h1 {
     margin-bottom: 20px;
     text-decoration: none;
 }
+
 button[type="submit"] {
     background-color: #6a3879;
-    width: 20%;
-    color: rgb(255, 255, 255) !important;
+    width: fit-content;
+    color: rgb(255, 255, 255);
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
     padding: 10px 20px;
-    margin:60px 100px 30px 0px ;
+    margin-top: 10px;
+    margin-bottom: 30px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-decoration: none;
 }
+
 
 button[type="submit"]:hover {
     background-color: #4b2756;

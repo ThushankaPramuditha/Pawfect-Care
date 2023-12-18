@@ -3,7 +3,7 @@
 /**
  * signup class
  */
-class Signup
+class Staffsignup
 {
 	use Controller;
 
@@ -14,17 +14,17 @@ class Signup
 		if($_SERVER['REQUEST_METHOD'] == "POST")
 		{
 			$user = new UserModel;
-			if($user->validate($_POST))
+			if($user->registerUser($_POST))
 			{
 				$user->insert($_POST);
-				redirect('login');
+				redirect('stafflogin');
 			}
 
 			$data['errors'] = $user->errors;			
 		}
 
 
-		$this->view('signup',$data);
+		$this->view('staffsignup',$data);
 	}
 
 }

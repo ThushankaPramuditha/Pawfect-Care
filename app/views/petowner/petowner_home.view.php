@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <title>Pawfect Care - Home</title>
 </head>
+
 <body>
-        <div class="greetuser">
-            <p>Hi, User!</p>
-        </div>
+    <?php include '../app/views/components/navbar2.php'; ?>
+    <?php include '../app/views//footer.php'; ?>
+
 </body>
 </html>
-
-
-

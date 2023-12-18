@@ -13,7 +13,7 @@ body {
     display:flex;
     justify-content: space-between; /* Display children in a row with space between them */
     align-items: center; /* Center vertically */
-    height: 100vh; /* Set container height to 100% of viewport height */
+    height: 110vh; /* Set container height to 100% of viewport height */
     width: 50%; /* Set container width to 100% of viewport width */
     background-color:#FCFCFE;
     border-radius: 50px;
@@ -47,7 +47,7 @@ body {
 }
 .img-container img {
     width: 100%;
-    height: 100%;
+    height: 80%;
     border-radius: 50px;
 }
 /* Styling for the login form container */
@@ -94,7 +94,7 @@ input[type="password"] {
 
 /* Style for the login button */
 button[type="submit"] {
-    background-color: #6a3879;
+    background-color: #9971FE;
     width: 100%;
     color: #fff;
     border: none;
@@ -105,10 +105,26 @@ button[type="submit"] {
     transition: background-color 0.3s;
 }
 
+
 button[type="submit"]:hover {
-    background-color: #4b2756;
+    background-color: #8A5BFF;
 }
 
+button[type="back"] {
+    background-color: #9971FE;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="back"]:hover {
+    background-color: #8A5BFF;
+}
 /* Style for the "Don't have an account?" link */
 p {
     text-align: center;
@@ -134,7 +150,7 @@ label {
 }
 
 label:hover {
-    border-color: #4b2756;
+    border-color: #9971FE;
 }
 
 
@@ -169,7 +185,7 @@ button[type="submit"] {
 
 select {
     font-family: Arial, sans-serif;
-    width: 93%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -179,7 +195,7 @@ select {
 }
 
 button[type="submit"]:hover {
-    background-color: #4b2756;
+    background-color: #8A5BFF;
 }
 
 input[readonly] {

@@ -49,6 +49,24 @@
                     <button class="delete-icon"></button>
                 </td>
             </tr>
+
+<?php foreach ($services as $service) { ?>
+    <tr>
+        <td><b><?php echo $service->service?></b></td>
+        <td><?php echo $service->description?></td>
+        <td class="edit-action-buttons">
+        <a href = "editservice"><button class="edit-icon"></button></a>
+        </td>
+        <td class="delete-action-buttons">
+            <button class="delete-icon"></button>
+        </td>
+    </tr>
+
+
+    <?php
+    } 
+    ?>
+
            
         </tbody>
     </table>

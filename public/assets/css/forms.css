@@ -52,7 +52,7 @@ input[type="password"],
 input[type="email"],
 input[type="date"]{
     font-family: Arial, sans-serif;
-    width: 93%;
+    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -62,9 +62,10 @@ input[type="date"]{
 }
 
 button[type="submit"] {
+    display: block;
     background-color: #6a3879;
     width: fit-content;
-    color: rgb(255, 255, 255);
+    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -73,10 +74,11 @@ button[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+
 }
 
 button[type="submit"]:hover {
-    background-color: #6a3879;
+    background-color: #4b2756;
 }
 
 input[readonly] {
@@ -86,15 +88,19 @@ input[readonly] {
 
 /*for long text fields*/
 textarea {
+    display: block;
+    width: calc(100% - 20px);
+    color: #fff;
+    background-color: #ECECEC;
     font-family: Arial, sans-serif;
-    width: 93%;
-    height: 200px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 5px;
     font-size: 16px;
     outline-color:#6a3879;
+    resize: vertical; /* Allow vertical resizing */
+
 }
 
 /* Basic style for radio buttons */

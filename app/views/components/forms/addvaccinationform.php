@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Vaccination</title>
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
 </head>
 <body>
 <h1>Add Vaccination</h1>

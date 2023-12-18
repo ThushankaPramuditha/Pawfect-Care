@@ -17,7 +17,7 @@ class ServicesModel
         return $this->first(['id' => $id]);
     }
 
-    public function createService($data)
+    public function addService($data)
     {
         return $this->insert($data);
     }

@@ -90,7 +90,6 @@ input[readonly] {
 textarea {
     display: block;
     width: calc(100% - 20px);
-    color: #fff;
     background-color: #ECECEC;
     font-family: Arial, sans-serif;
     padding: 10px;

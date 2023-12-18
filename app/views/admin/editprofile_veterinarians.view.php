@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - veterinarians</title>
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/basic.css">
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/forms.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
 </head>
 
 <body>

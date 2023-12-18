@@ -5,7 +5,7 @@ class ServicesModel
     use Model;
 
     protected $table = 'services';
-    protected $allowedColumns = ['service_tittle', 'description'];
+    protected $allowedColumns = ['service', 'description'];
 
     public function getAllServices()
     {
@@ -17,7 +17,7 @@ class ServicesModel
         return $this->first(['id' => $id]);
     }
 
-    public function createService($data)
+    public function addService($data)
     {
         return $this->insert($data);
     }

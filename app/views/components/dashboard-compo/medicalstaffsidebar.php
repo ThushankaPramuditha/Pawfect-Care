@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/sidebar.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/sidebar.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
     </div>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="dashboardmedicalstaff">
+            <a class="nav-link" href="index.html">
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>

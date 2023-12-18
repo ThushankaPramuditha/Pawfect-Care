@@ -1,6 +1,9 @@
 <?php 
 
-class AddService
+/**
+ * home class
+ */
+class AboutUs
 {
 	use Controller;
 
@@ -9,7 +12,7 @@ class AddService
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('admin/addservice',$data);
+		$this->view('petowner/aboutus',$data);
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Vetappointment
+class VetAppointment
 {
     use Controller;
     

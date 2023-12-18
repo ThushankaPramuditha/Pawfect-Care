@@ -1,22 +1,27 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
+    border-color: #000000;
+    border-radius: 5px;
 }
 
 th, td {
     padding: 10px;
     text-align: left;
     background-color: white;
+    
 }
 
 th {
-    background-color: #9971FE;
-    color:white;
+    background-color: #ccc;
+    color:rgb(0, 0, 0);
+    font-weight: normal;
+    
 }
 
 tr{
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .action-buttons {
@@ -94,16 +99,16 @@ tr{
     padding: 5px 10px;
     margin-right: 5px;
     border-radius: 5px;
-    border: none;
+    border: 1px;
     cursor: pointer;
-    background-color: #e8deff; /* Background color for Deactivate button */
-    color: 333; /* Text color for Deactivate button */
+    background-color: #ff000041; /* Background color for Deactivate button */
+    color: #ff0000; /* Text color for Deactivate button */
     cursor: pointer;
 }
 
 .deactivate-button {
-    background: #e8deff; /* Purple background color */
-    border: none; /* Remove button border */
+    background: #ffffff; /* Purple background color */
+    border: 1px; /* Remove button border */
     border-radius: 50px;
     color: #333; /*  text color */
     padding: 10px 40px; /* Adjust padding */

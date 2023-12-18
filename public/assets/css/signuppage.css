@@ -94,7 +94,7 @@ input[type="password"] {
 
 /* Style for the login button */
 button[type="submit"] {
-    background-color: #9971FE;
+    background-color: #6a3879;
     width: 100%;
     color: #fff;
     border: none;
@@ -106,7 +106,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #8A5BFF;
+    background-color: #4b2756;
 }
 
 /* Style for the "Don't have an account?" link */
@@ -134,7 +134,7 @@ label {
 }
 
 label:hover {
-    border-color: #9971FE;
+    border-color: #4b2756;
 }
 
 
@@ -179,7 +179,7 @@ select {
 }
 
 button[type="submit"]:hover {
-    background-color: #8A5BFF;
+    background-color: #4b2756;
 }
 
 input[readonly] {

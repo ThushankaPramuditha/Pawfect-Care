@@ -1,8 +1,8 @@
 /* Sidebar styles */
 .sidebar {
     width: 230px;
-    height: 100vh;
-    background-color: #e8deff; /* Off-white background color */
+    height: 100%;
+    background-color: #140e23; /* Off-white background color */
     /* color: #9971FE;  */
     position: fixed;
     left: 0;
@@ -16,12 +16,19 @@
     padding-left: 0;
 }
 
+.nav-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+}
 .nav-item {
     margin-bottom: 10px;
 }
 
 .nav-link {
-    color: #333; /* New text color */
+    color: #ffffff; /* New text color */
     font-size: 20px; /* Increase the font size */
     text-decoration: none;
     display: block;
@@ -31,7 +38,7 @@
 }
 
 .nav-item:hover {
-    background-color: #9971FE; /* Theme color on hover */
+    background-color: #4b2756; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
 
@@ -44,25 +51,56 @@ body {
     
 }
 .nav-item a:hover {
-    background-color: #9971FE; /* Theme color on hover */
+    background-color: #4b2756; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
 
 /* Active menu item */
 .nav-item.active {
-    background-color: #9971FE; /* Theme color for active item */
+    background-color: #4b2756; /* Theme color for active item */
     color: #fff; /* Text color for active item */
 }
 
 .center-image {
     display: flex;
+    width: 90%;
     justify-content: center;
     align-items: center;
     padding: 10px 10px;
 }
 
 .center-image img {
-    width: 200px; /* Adjust the size as needed */
+    width: 100%; /* Adjust the size as needed */
 }
 
+.top-container {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.logout-button {
+    width: 80%;
+    height: 45px;
+    border: none;
+    color: #fff;
+    background-color: #6a3879;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    font-size: 20px; /* Increase the font size */
+    text-decoration: none;
+    
+}
+
+.logout-button:hover {
+    background-color: #4b2756; /* Theme color on hover */
+    color: #fff; /* Text color on hover */
+}
 

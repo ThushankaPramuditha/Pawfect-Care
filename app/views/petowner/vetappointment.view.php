@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Appointment</title>
-    <link rel="stylesheet" href="<?= ROOT ?>assets/css/bookingpages.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bookingpages.css">
 
 </head>
 <body>
 
 <div class="logo">
    <a href="<?=ROOT?>/home">
-    <img src="<?= ROOT ?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    <img src="<?= ROOT ?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
   </a>
 </div>
 
@@ -20,7 +20,7 @@
 <div class="cardcontainer">
 <div class="card">
   <div class="image-container">
-  <img src="<?= ROOT?>assets/images/dr1.jpg" alt="Avatar" style="width:100%">
+  <img src="<?= ROOT?>/assets/images/dr1.jpg" alt="Avatar" style="width:100%">
   </div>  
   <div class="container">
     <h4><b>DR.MIHIRAJ MAGAMAGE</b></h4> 
@@ -34,7 +34,7 @@
 
 <div class="card">
 <div class="image-container">
-  <img src="<?= ROOT?>assets/images/femaledoctor.jpg" alt="Avatar" style="width:100%">
+  <img src="<?= ROOT?>/assets/images/femaledoctor.jpg" alt="Avatar" style="width:100%">
   </div> 
   <div class="container">
     <h4><b>DR.WASANTHI ALWIS</b></h4> 

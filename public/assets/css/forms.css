@@ -18,7 +18,6 @@ body {
 /* for the button*/
 .flex-container {
     display: flex;
-    justify-content: center;
     align-items: center; 
 }
 
@@ -43,7 +42,7 @@ label {
 }
 
 label:hover {
-    border-color: #9971FE;
+    border-color: #4b2756;
 }
 
 
@@ -53,31 +52,33 @@ input[type="password"],
 input[type="email"],
 input[type="date"]{
     font-family: Arial, sans-serif;
-    width: 93%;
+    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 5px;
     font-size: 16px;
-    outline-color:#9971FE;
+    outline-color:#6a3879;
 }
 
 button[type="submit"] {
-    background-color: #9971FE;
-    width: 100%;
-    color: rgb(255, 255, 255);
+    display: block;
+    background-color: #6a3879;
+    width: fit-content;
+    color: #fff;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
     padding: 10px 20px;
     margin-top: 10px;
     margin-bottom: 30px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+
 }
 
 button[type="submit"]:hover {
-    background-color: #8A5BFF;
+    background-color: #4b2756;
 }
 
 input[readonly] {
@@ -87,15 +88,18 @@ input[readonly] {
 
 /*for long text fields*/
 textarea {
+    display: block;
+    width: calc(100% - 20px);
+    background-color: #ECECEC;
     font-family: Arial, sans-serif;
-    width: 93%;
-    height: 200px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 5px;
     font-size: 16px;
-    outline-color:#9971FE;
+    outline-color:#6a3879;
+    resize: vertical; /* Allow vertical resizing */
+
 }
 
 /* Basic style for radio buttons */
@@ -105,8 +109,8 @@ input[type="radio"] {
 
 /* Styling for the radio button when it's checked */
 input[type="radio"]:checked {
-    border: 2px solid #9971FE; 
-    background-color: #9971FE; 
+    border: 2px solid #6a3879; 
+    background-color: #6a3879; 
 }
 
 

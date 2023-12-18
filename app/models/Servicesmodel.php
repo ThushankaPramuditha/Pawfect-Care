@@ -5,7 +5,7 @@ class ServicesModel
     use Model;
 
     protected $table = 'services';
-    protected $allowedColumns = ['service_tittle', 'description'];
+    protected $allowedColumns = ['service', 'description'];
 
     public function getAllServices()
     {

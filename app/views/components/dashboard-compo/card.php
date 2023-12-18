@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <link rel="stylesheet" href="<?php echo ROOT?>assets/css/admindashboard.css"> -->
+    <!-- <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/admindashboard.css"> -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <style>
         body {
@@ -74,7 +74,7 @@
     <section class="dashboard">
         <!-- <div class="top">
             <span class="greeting">HI, MANDY!</span>
-            <img src="assets/images/petowner.png" alt="Admin Logo">
+            <img src="/assets/images/petowner.png" alt="Admin Logo">
         </div> -->
         <div class="dash-content">
             <div class="boxes">

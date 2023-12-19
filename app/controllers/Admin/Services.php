@@ -18,7 +18,7 @@ class Services
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $servicesModel = new ServicesModel();
-        $servicesModel->updateService($_POST);
+        $servicesModel->updateService($a, $_POST);
 
         redirect('admin/services');
     }
@@ -38,4 +38,11 @@ class Services
 
         redirect('admin/services');
     }
+
+    public function viewService(string $a = '', string $b = '', string $c = ''):void {
+        $servicesModel = new ServicesModel();
+        $data['service'] = $servicesModel->getServiceById($a);
+        $this->view('admin/services/update', $data);
+    }
+
 }

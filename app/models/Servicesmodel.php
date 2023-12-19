@@ -22,10 +22,20 @@ class ServicesModel
         return $this->insert($data);
     }
 
-    public function updateService($id, $data)
+    public function updateService($id, array $data)
     {
-        return $this->update($id, $data);
+        // alowed column
+        $data = array_filter($data, function ($key) {
+            return in_array($key, $this->allowedColumns);
+        }, ARRAY_FILTER_USE_KEY);
+    
+        return $this->update($id, $data, 'id');
     }
+
+    // public function updateService($id, $data)
+    // {
+    //     return $this->update($id, $data);
+    // }
 
     public function deleteService($id)
     {

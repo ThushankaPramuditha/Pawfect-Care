@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 
 <body>
 <?php $_SESSION['addnewpath'] = 'addservice' ?>
@@ -47,25 +49,26 @@ Add Service Modal -->
     <div class="modal-form" id="update-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h1>Add Service</h1>
-                <div class="form-container">
-                    <form id="updated-form" action="<?php echo ROOT?>/Admin/Services/add" method="post">
-                        
-                        
-                        <label for="updated-service">Service:</label>
-                        <input type="text" id="updated-service" name="service" required><br>
-
-                        <label for="updated-description">Description:</label>
-                        <textarea id="updated-description" name="description" style="border-radius: 10px;" rows="4" required></textarea>
-
-                        <div class="flex-container">
-                            <button type="submit" >Update Service</button>
-                            <button class="delete-button"><a id="delete-service" href="#">Delete</a></button>
-                        </div>
-                    </form>
+            <h1>Update Service</h1>
+                <div id="updateservice" class="form-container">
+                    
                 </div>
         </div>
     </div>
+
+    <!-- Delete Service Modal -->
+    <div class="modal-form" id="delete-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Delete Service</h1>
+            <p>Are you sure you want to delete this service?</p>
+            <div class="flex-container">
+                <button type="submit">No</button>
+                <button class="delete-button"><a id="delete-service" href="#">Delete</a></button>
+            </div>
+        </div>
+    </div>
+
 
     <script>
            // Get the modal elements
@@ -76,18 +79,33 @@ Add Service Modal -->
             var addButton = document.querySelector('.add-button');
             var updateButtons = document.querySelectorAll('.view-button');
 
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
             // Function to open add form modal
             function openAddModal() {
                 addModal.style.display = "block";
             }
 
-            function openUpdateModal(name, description,id) {
-                // Populate update form fields with existing data
-                document.getElementById("updated-service").value = name;
-                document.getElementById("updated-description").value = email;
-                document.getElementById("service-id").value = id;
-                document.getElementById("delete-service").href = "<?php echo ROOT ?>/Admin/Services//delete/"+id;
+            function openUpdateModal(id) {
+                console.log(id);
                 updateModal.style.display = "block";
+                $.get(`<?php echo ROOT?>/admin/Services/viewService/${id}`, function(data) {
+                        // Update the modal content with the fetched data
+                        $("#updateservice").html(data);
+                    });
+                span.onclick = function() {
+                modal.style.display = "none";
+                }
+                
+            }
+            function opendeleteModal(id) {
+                console.log(id);
+                deleteModal.style.display = "block";
+                span.onclick = function() {
+                modal.style.display = "none";
+                }
+                
             }
 
         // Event listener for add button click
@@ -98,15 +116,20 @@ Add Service Modal -->
         // Event listeners for update buttons click
         document.querySelectorAll('.edit-icon').forEach(function (button) {
             button.addEventListener('click', function () {
-                var name = this.parentElement.parentElement.querySelector('td:first-child').textContent;
-                var description = this.parentElement.parentElement.querySelector('td:nth-child(2)').textContent;
-                var id = this.getAttribute('key');
-                openUpdateModal(name, description, id);
+                var id = this.parentElement.parentElement.getAttribute('key');
+                openUpdateModal(id);
+            });
+        });
+
+        // Event listeners for delete buttons click
+        document.querySelectorAll('.delete-icon').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                openDeleteModal(id);
             });
         });
 
         // Close modals when the close button is clicked
-
         var closeButtons = document.querySelectorAll('.close');
 
         closeButtons.forEach(function(button) {
@@ -125,13 +148,7 @@ Add Service Modal -->
             addModal.style.display = "none";
         });
 
-        document.getElementById("update-service-form").addEventListener('submit', function(event) {
-            // event.preventDefault();
-            // Handle update form submission logic
-            // ...
-            // Close the update modal after submission if successful
-            updateModal.style.display = "none";
-        });
+        
 
     </script>
 </body>

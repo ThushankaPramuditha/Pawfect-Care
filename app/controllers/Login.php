@@ -23,7 +23,7 @@ class Login
 				if($row->password === $_POST['password'])
 				{
 					$_SESSION['USER'] = $row;
-					redirect('petowner/petowner_home');
+					redirect('home');
 				}
 			}
 

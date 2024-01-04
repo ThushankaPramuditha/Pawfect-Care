@@ -39,7 +39,6 @@ class VeterinariansModel
 
     public function deactivateVeterinarian($id)
     {
-        show($id);
         return $this->update($id, ['status' => 'inactive']);
     }
 

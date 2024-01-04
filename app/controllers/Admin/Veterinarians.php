@@ -55,12 +55,12 @@ class Veterinarians
 
         if ($success) {
             echo "Veterinarian deactivated successfully!";
-            redirect('admin/veterinarians');
+            redirect('admin/veterinarians'); //
         } else {
             echo "Failed to deactivate veterinarian!";
             // Implement appropriate error handling here
         }
-        // redirect('admin/veterinarians');
+        redirect('admin/veterinarians');
     }
 
         

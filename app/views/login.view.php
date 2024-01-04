@@ -56,7 +56,7 @@
       <div class="flex-container">
         <button class="button" type="submit" name="login">Login</button>
       </div>
-        <p>Don't have an account? <a href="<?=ROOT?>signup">Sign up</a>.</p>
+        <p>Don't have an account? <a href="<?php echo ROOT?>signup">Sign up</a>.</p>
     </form>
 
   </div>

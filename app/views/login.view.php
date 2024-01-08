@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pawfect Care - Login</title>
-  <link rel="stylesheet" href="<?php ROOT?>/assets/css/loginpage.css">
+  <link rel="stylesheet" href="<?php ROOT?>assets/css/loginpage.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
 
 <div class="logo">
-    <a href="<?=ROOT?>home">
-    <img src="<?php ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    <a href="<?php ROOT?>home">
+    <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
    </a>
  </div>
      
 <div class="container">
   <div class="img-container">
-    <img src="<?php ROOT?>/assets/images/login-photo1.jpg" alt="Login Photo">
+    <img src="<?php ROOT?>assets/images/login-photo1.jpg" alt="Login Photo">
   </div>
 
   <script>

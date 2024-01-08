@@ -8,7 +8,7 @@ body {
 
 .form-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: left;
     justify-content: flex-start;
     width: 40%; /* Set container width to half of the viewport width */

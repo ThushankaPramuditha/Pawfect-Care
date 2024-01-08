@@ -25,8 +25,8 @@
 <body>
 
 <div class="logo">
-    <a href="<?=ROOT?>home">
-    <img src="<?=ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    <a href="<?php ROOT?>home">
+    <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
    </a>
  </div>
      
@@ -80,7 +80,7 @@
       <div class="flex-container">
         <button class="button" type="submit" name="stafflogin">Login</button>
       </div>
-        <p>Don't have an account? <a href="<?=ROOT?>staffsignup">Sign up</a>.</p>
+        <p>Don't have an account? <a href="<?php ROOT?>staffsignup">Sign up</a>.</p>
     </form>
 
   </div>

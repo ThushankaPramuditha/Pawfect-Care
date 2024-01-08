@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/signuppage.css">
+    <link rel="stylesheet" href="<?php ROOT?>assets/css/signuppage.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    
 </head>  
@@ -12,14 +12,14 @@
   
    <div>
    <div class="logo">
-       <a href="<?=ROOT?>home">
-       <img src="<?=ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+       <a href="<?php ROOT?>home">
+       <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
       </a>
     </div>
 
     <div class="container">
         <div class="img-container">
-            <img src="<?=ROOT?>/assets/images/signup-photo2.jpg" alt="Sign Up Photo">
+            <img src="<?php ROOT?>assets/images/signup-photo2.jpg" alt="Sign Up Photo">
         </div>
           
         <div class="form-container">
@@ -91,12 +91,53 @@
                 <div class="flex-container">
                     <button class="button" type="submit" name="signup">Sign up</button>
                 </div>
-                <p>Already have an account? <a href="<?=ROOT?>login">Login</a>.</p>
+                <p>Already have an account? <a href="<?php ROOT?>login">Login</a>.</p>
                 
             </form>
                
         </div>
        
     </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var contact_no = document.getElementById('contact_no').value;
+            var nic = document.getElementById('nic').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+            var terms = document.querySelector('input[name="terms"]:checked');
+
+            var errors = [];
+
+            if (!name) errors.push("Name is required.");
+            if (!address) errors.push("Address is required.");
+            if (!contact_no.match(/^[0-9]{10}$/)) errors.push("Contact number must be 10 digits.");
+            if (!nic.match(/^[0-9]{9}[vVxX]$|^([0-9]{12})$/)) errors.push("NIC format is not valid.");
+            if (!email.match(/^\S+@\S+\.\S+$/)) errors.push("Email format is not valid.");
+            if (password.length < 8) errors.push("Password must be at least 8 characters long.");
+            if (password !== confirm_password) errors.push("Passwords do not match.");
+            if (!terms) errors.push("Please accept the terms and conditions.");
+
+            if (errors.length > 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    html: errors.join("<br>"),
+                });
+                return false;
+            }
+
+            return true;
+        }
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

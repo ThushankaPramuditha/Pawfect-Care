@@ -18,7 +18,8 @@
         <title>
             Home Page
         </title>
-        <link rel="stylesheet" href="landing-pages.css">
+        <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing-pages.css">
+
     </head>
     
     <body>
@@ -183,6 +184,6 @@
                 </td>
             </tr>
         </table>    
-        <?php include '../app/views/components/footer.php'; ?>
+        <?php include '../app/views/footer.php'; ?>
     </body>
 </html>

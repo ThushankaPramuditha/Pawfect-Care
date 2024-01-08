@@ -20,36 +20,40 @@
 
 <!-- Add Veterinarian Modal -->
 <div class="modal-form" id="add-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Add Veterinarian</h1>
-                <div class="form-container">
-                    <form id="add-staff-form" action="<?php echo ROOT?>/Admin/Veterinarians/add" method="post">
-                        <label for="full-name">Full Name:</label>
-                        <input type="text" id="full-name" name="name" required><br>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Add Veterinarian</h1>
+        <div class="form-container">
+            <form id="add-staff-form" action="<?php echo ROOT?>/Admin/Veterinarians/add" method="post">
+                <div class="column">
+                    <label for="full-name">Full Name:</label>
+                    <input type="text" id="full-name" name="name" required><br>
 
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" name="address" required><br>
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required><br>
 
-                        <label for="contact-number">Contact Number:</label>
-                        <input type="tel" id="contact-number" name="contact" required pattern="[0-9]{10}"><br>
-
-                        <label for="nic">NIC:</label>
-                        <input type="text" id="nic" name="nic" required><br>
-
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required><br>
-
-                        <label for="qualifications">Qualifications:</label>
-                        <textarea id="qualifications" name="qualifications" style="border-radius: 10px;" rows="4" required></textarea>
-
-                        <div class="flex-container">
-                            <button type="submit" id="add-staff-button" >Add Veterinarian</button>
-                        </div>
-                    </form>
+                    <label for="contact-number">Contact Number:</label>
+                    <input type="tel" id="contact-number" name="contact" required pattern="[0-9]{10}"><br>
                 </div>
-             
+                <div class="column">
+                    <label for="nic">NIC:</label>
+                    <input type="text" id="nic" name="nic" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="qualifications">Qualifications:</label>
+                    <textarea id="qualifications" name="qualifications" style="border-radius: 10px;" rows="4" required></textarea>
+                </div>
+
+                
+            </form>
         </div>
+        <div class="flex-container">
+            <button type="submit" id="add-staff-button">Add Veterinarian</button>
+        </div>
+
+    </div>
 </div>
 
     <!-- Update Veterinarian Modal -->

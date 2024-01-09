@@ -13,26 +13,18 @@ class Login
             $user = new UserModel;
             $arr['email'] = $_POST['email'];
 
-            $row = $user->first($arr);
-            
-            if($row)
-            {
-                // Use verifyPassword method to check the password
-                if($user->verifyPassword($_POST['password'], $row->password))
-                {
-                    $_SESSION['USER'] = $row;
-                    redirect('petowner/home');
-                }
-                else
-                {
-                    $user->errors['email'] = "Wrong email or password";
-                }
-            }
-            else
-            {
-                $user->errors['email'] = "Wrong email or password";
-            }
 
+			$row = $user->first($arr);
+			
+			if($row)
+			{
+				if($row->password === $_POST['password'])
+				{
+					$_SESSION['USER'] = $row;
+					redirect('home');
+				}
+			}
+          
             $data['errors'] = $user->errors;
         }
 

@@ -17,8 +17,12 @@ class Login
             
             if($row)
             {
+				// Check if the user's account is active
+                if($row->status == 'inactive') {
+                    $user->errors['account'] = "Your account has been deactivated.";
+                }
                 // Use verifyPassword method to check the password
-                if($user->verifyPassword($_POST['password'], $row->password))
+                else if($user->verifyPassword($_POST['password'], $row->password))
                 {
                     $_SESSION['USER'] = $row;
                     redirect('petowner/home');

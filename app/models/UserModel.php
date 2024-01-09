@@ -142,6 +142,21 @@ class UserModel {
         return false;
     }
 
+    //aye balanna
+    public function addUser(array $data){
+        if ($this->validate($data)) {
+            $data['password'] = $this->hashPassword($data['password']);
+            // show($data);
+            return $this->insert($data);
+
+            // show($this->lastInsertedRow());
+
+        }
+        // show($this->errors);
+        // die();
+        return false;
+    }
+
     public function authenticate(string $email,string $password):mixed {
         $data = $this->first(['email' => $email]);
         if ($data && $this->verifyPassword($password, $data->password)) {

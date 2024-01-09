@@ -14,17 +14,29 @@ class Login
             $arr['email'] = $_POST['email'];
 
 
-			$row = $user->first($arr);
-			
-			if($row)
-			{
-				if($row->password === $_POST['password'])
-				{
-					$_SESSION['USER'] = $row;
-					redirect('home');
-				}
-			}
-          
+            $row = $user->first($arr);
+            
+            if($row)
+            {
+				// Check if the user's account is active
+                if($row->status == 'inactive') {
+                    $user->errors['account'] = "Your account has been deactivated.";
+                }
+                // Use verifyPassword method to check the password
+                else if($user->verifyPassword($_POST['password'], $row->password))
+                {
+                    $_SESSION['USER'] = $row;
+                    redirect('petowner/home');
+                }
+                else
+                {
+                    $user->errors['email'] = "Wrong email or password";
+                }
+            }
+            else
+            {
+                $user->errors['email'] = "Wrong email or password";
+            }
             $data['errors'] = $user->errors;
         }
 

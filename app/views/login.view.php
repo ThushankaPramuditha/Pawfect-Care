@@ -24,18 +24,22 @@
   </div>
 
   <script>
-  // Check if the PHP variable $errors is set and not empty
-  <?php if (!empty($errors)): ?>
+  // Check for account deactivation
+  <?php if (!empty($errors['account'])): ?>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Account Deactivated',
+      text: '<?= $errors['account'] ?>',
+    });
+  <?php elseif (!empty($errors)): ?>
     // Create a JavaScript array to hold the error messages
     var errorMessages = [
       <?php foreach ($errors as $error): ?>
         "<?= $error ?>",
       <?php endforeach; ?>
     ];
-
     // Create an error message by joining the array elements
     var errorMessage = errorMessages.join("<br>");
-
     // Show the SweetAlert with the error message
     Swal.fire({
       icon: 'error',

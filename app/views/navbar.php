@@ -9,14 +9,16 @@
 <body>
     <div class="navbar">
         <div class="navlogo">
-            <img src="/assets/images/logocolor.png" alt="Pawfect Care Logo">
+            <img src="assets/images/logocolor.png" alt="">
         </div>
         <ul class="nav-links">
-            <li><a href="<?php ROOT?>/home">Home</a></li>
-            <li><a href="<?php ROOT?>/services">Services</a></li>
-            <li><a href="<?php ROOT?>/about">About Us</a></li>
-            <li><a href="<?php ROOT?>/contact">Contact Us</a></li>
-            <li><a href="<?php ROOT?>/login">Login</a></li>
+
+            <li><a href="<?=ROOT?>/home">Home</a></li>
+            <li><a href="<?=ROOT?>/services">Services</a></li>
+            <li><a href="<?=ROOT?>/about">About Us</a></li>
+            <li><a href="<?=ROOT?>/contact">Contact Us</a></li>
+            
+
         </ul>
     </div>
 </body>

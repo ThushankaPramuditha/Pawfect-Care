@@ -13,6 +13,7 @@ class Login
             $user = new UserModel;
             $arr['email'] = $_POST['email'];
 
+
             $row = $user->first($arr);
             
             if($row)
@@ -36,7 +37,6 @@ class Login
             {
                 $user->errors['email'] = "Wrong email or password";
             }
-
             $data['errors'] = $user->errors;
         }
 

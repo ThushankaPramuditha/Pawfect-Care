@@ -5,19 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Home</title>
     <style>
-        body {
-            font-family: 'Your-Preferred-Font', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: linear-gradient(to right top, #ffffff, #b9b9b9, #777777, #3b3b3b, #000000);
-        }
+       body {
+      font-family: 'Your-Preferred-Font', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(#ffff);
+      background-size: 600% 100%;
+      animation: gradientAnimation 10s infinite;
+    }
+
+    /* @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    } */
+
 
         .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             box-sizing: border-box;
-            color: white;
+            color: black;
             background-color: rgba(255, 255, 255, 0); /* Slightly transparent white */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0);
             border-radius: 8px;
@@ -66,7 +82,7 @@
             overflow: hidden;
             margin: 20px 0;
             transition: transform 0.3s;
-            color:white;
+            color:black;
             text-align: center;
         }
 
@@ -100,7 +116,7 @@
             overflow: hidden;
             margin: 20px 0;
             transition: transform 0.3s;
-            color:white;
+            color:black;
             text-align: center;
           
         }
@@ -117,7 +133,7 @@
             overflow: hidden;
             margin: 20px 0;
             transition: transform 0.3s;
-            color:white;
+            color:black;
             text-align: center;
         }
         .service-card,
@@ -128,7 +144,7 @@
             transition: transform 0.3s;
             display: inline-block; /* Display side by side */
             vertical-align: top; /* Align to the top */
-            color:white;
+            color:black;
             text-align: center;
             margin-right: 30px;
         }
@@ -258,14 +274,15 @@
         </div>
     </div>
 
-
+    
     <div class="container">
         <div class="card" style="align-items:center;">
             <h2>Ready to Get Started?</h2>
             <div class="card-content" >
                 <p class style="display:flex; text-align:center;">Creating an account is quick, easy, and completely free. It's the first step to simplifying your pet care journey. Join Pawfect Care today and experience the future of pet care management.
                 </p>
-                <button type="submit">Create an Account</button>
+                <button type="button" onclick="window.location.href='<?=ROOT?>signup'">Create an Account</button>
+
             </div>
         </div>
 
@@ -273,15 +290,18 @@
         <div class="feedback-section">
             <h2 class style="color:white;">Feedback from Our Pet Owners</h2>
             <div class="feedback-card card">
-                <p>"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands."
+                <p>"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands. :-Himasha Amandi"
                 </p>
             </div>
             <div class="feedback-card card">
-                <p>"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!"
+                <p>"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!
+                   <br>:-Sachini Perera"
                 </p>
             </div>
             <div class="feedback-card card">
-                <p>"The vet appointments through Pawfect Care have been a breeze. No more waiting on hold to schedule. And the veterinarians are always so knowledgeable and caring."
+                <p>"The vet appointments through Pawfect Care have been a breeze. No more waiting on hold to schedule. And the veterinarians are always so knowledgeable and caring.<br>
+                    :-Thusitha Perera
+                    "
               </p>
             </div>
         </div>

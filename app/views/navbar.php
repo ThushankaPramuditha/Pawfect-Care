@@ -16,7 +16,7 @@
             <li><a href="<?=ROOT?>/services">Services</a></li>
             <li><a href="<?=ROOT?>/about">About Us</a></li>
             <li><a href="<?=ROOT?>/contact">Contact Us</a></li>
-            <li><a href="<?=ROOT?>/login">Login</a></li>
+            
         </ul>
     </div>
 </body>

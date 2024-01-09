@@ -32,10 +32,10 @@ class ServicesModel
         return $this->update($id, $data, 'id');
     }
 
-    // public function updateService($id, $data)
-    // {
-    //     return $this->update($id, $data);
-    // }
+    public function deactivateVeterinarian($id)
+    {
+        return $this->update($id, ['status' => 'inactive']);
+    }
 
     public function deleteService($id)
     {
@@ -46,8 +46,8 @@ class ServicesModel
     {
         $this->errors = [];
 
-        if (empty($data['service_tittle'])) {
-            $this->errors['service_tittle'] = "Service Tittle is required";
+        if (empty($data['service'])) {
+            $this->errors['service'] = "Service name is required";
         }
 
         if (empty($data['description'])) {

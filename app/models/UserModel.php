@@ -112,11 +112,15 @@ class UserModel {
 
     protected string $table = 'users';
     protected array $allowedColumns = [
+        'name',
         'email',
+        'address',
+        'contact_no',
+        'NIC',
         'password',
         'user_type',
         'nic',
-        'id',
+        'id'
     ];
 
     // Update the hashing algorithm and salt length as needed
@@ -125,13 +129,16 @@ class UserModel {
 
     public function registerUser(array $data){
         if ($this->validate($data)) {
+            $data['user_type'] = 'petowner';
             $data['password'] = $this->hashPassword($data['password']);
-            
+            // show($data);
             return $this->insert($data);
 
             // show($this->lastInsertedRow());
 
         }
+        // show($this->errors);
+        // die();
         return false;
     }
 
@@ -149,7 +156,7 @@ class UserModel {
         return base64_encode($salt) . ":" . $hashedPassword;
     }
 
-    private function verifyPassword(string $password, string $hashedPassword): bool{
+    public function verifyPassword(string $password, string $hashedPassword): bool{
         list($salt, $hash) = explode(":", $hashedPassword);
         $computedHash = hash_pbkdf2($this->hashAlgorithm, $password, base64_decode($salt), 10000, 64);
         return hash_equals($hash, $computedHash);
@@ -160,7 +167,7 @@ class UserModel {
                 $this->errors = [];
                  
                 if(trim($id) == ""){
-                    if($this->where('email',$data['email']))
+                    if($this->where(['email' => $data['email']]))   //wenas karanna
                     {
                         $this->errors['email'] = "That email is already in use";
                     }
@@ -214,11 +221,11 @@ class UserModel {
                 } elseif ($data['password'] !== $data['confirm_password']) {
                     $this->errors['confirm_password'] = "Password and confirm password do not match";
                 }
-                $user_type = ['receptionist', 'medical-staff', 'daycare-staff', 'pet-ambulance-driver', 'veterinarian'];
-                if(empty($data['user_type']) || !in_array($data['user_type'], $user_type))
-                {
-                    $this->errors['user_type'] = "User Type is not valid";
-                }
+                // $user_type = ['receptionist', 'medical-staff', 'daycare-staff', 'pet-ambulance-driver', 'veterinarian'];
+                // if(empty($data['user_type']) || !in_array($data['user_type'], $user_type))
+                // {
+                //     $this->errors['user_type'] = "User Type is not valid";
+                // }
                
         
                 if (empty($data['terms'])) {

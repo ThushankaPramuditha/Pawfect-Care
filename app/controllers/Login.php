@@ -1,20 +1,18 @@
 <?php 
 
-/**
- * login class
- */
 class Login
 {
-	use Controller;
+    use Controller;
 
-	public function index()
-	{
-		$data = [];
-		
-		if($_SERVER['REQUEST_METHOD'] == "POST")
-		{
-			$user = new UserModel;
-			$arr['email'] = $_POST['email'];
+    public function index()
+    {
+        $data = [];
+        
+        if($_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            $user = new UserModel;
+            $arr['email'] = $_POST['email'];
+
 
 			$row = $user->first($arr);
 			
@@ -26,13 +24,11 @@ class Login
 					redirect('home');
 				}
 			}
+          
+            $data['errors'] = $user->errors;
+        }
 
-			$user->errors['email'] = "Wrong email or password";
-
-			$data['errors'] = $user->errors;
-		}
-
-		$this->view('login',$data);
-	}
-
+        $this->view('login',$data);
+    }
 }
+

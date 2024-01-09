@@ -76,6 +76,7 @@ Trait Model
 		/** remove unwanted data **/
 		if(!empty($this->allowedColumns))
 		{
+
 			foreach ($data as $key => $value) {
 				
 				if(!in_array($key, $this->allowedColumns))
@@ -84,6 +85,7 @@ Trait Model
 				}
 			}
 		}
+		// show($data);
 
 		$keys = array_keys($data);
 		
@@ -91,7 +93,8 @@ Trait Model
 		
 		$this->query($query, $data);
 
-		return false;
+		return $this->lastInsertedId();
+
 	}
 
 	public function update($id, $data, $id_column = 'id')
@@ -122,8 +125,8 @@ Trait Model
 
 		$data[$id_column] = $id;
 
-		$this->query($query, $data);
-		return false;
+		return $this->query($query, $data);
+		// return true;
 
 	}
 
@@ -137,6 +140,15 @@ Trait Model
 		return false;
 
 	}
+
+	public function lastInsertedId(){
+
+        $query = "select * from $this->table order by id desc limit 1";
+        $result = $this->query($query);
+        if($result)
+        // return id of last inserted row
+            return $result[0]->id;
+    }
 
 }
 ?>

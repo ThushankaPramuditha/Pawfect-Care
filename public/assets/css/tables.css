@@ -1,3 +1,9 @@
+.tablecontainer {
+    width: 80%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

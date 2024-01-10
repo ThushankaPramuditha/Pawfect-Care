@@ -11,10 +11,11 @@
 
 <body>
 <?php $_SESSION['addnewpath'] = 'addservice' ?>
-
+       <div style = "margin-left: 230px">
+       <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
+       </div>
+       <div style="display: flex; flex-direction:row; margin-top:0px;">
         <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
         <?php include '../app/views/components/tables/appointmenttable.php'; ?> 
     </div>
 

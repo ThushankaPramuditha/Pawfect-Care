@@ -26,7 +26,27 @@ class Login
                 else if($user->verifyPassword($_POST['password'], $row->password))
                 {
                     $_SESSION['USER'] = $row;
-                    redirect('petowner/home');
+                    if($row->user_type == 'admin'){
+                        redirect('admin/DashboardServices/');
+                    }
+                    else if($row->user_type == 'pet-ambulance-driver'){
+                        redirect('AmbulanceDriver/Dashboard/');
+                    }
+                    else if($row->user_type == 'receptionist'){
+                        redirect('Receptionist/Dashboardreceptionist/');
+                    }
+                    else if($row->user_type == 'medical-staff'){
+                        redirect('Medicalstaff/Dashboardmedicalstaff/');
+                    }
+                    else if($row->user_type == 'veterinarian'){
+                        redirect('Veterinarian/DashboardVeterinarian/');
+                    }
+                    else if($row->user_type == 'daycare-staff'){
+                        redirect('Daycarestaff/Dashboarddaycarestaff/');
+                    }
+                    else{
+                        redirect('Petowner/Home');
+                    }
                 }
                 else
                 {

@@ -1,12 +1,12 @@
 <form id="updated-form" action="<?php echo ROOT?>/Admin/Veterinarians/update/<?php echo $veterinarians->id; ?>" method="post">
-        <label for="full-name">Full Name:</label>
-        <input type="text" id="full-name" name="name" value="<?php echo $veterinarians->name;?>" required><br>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" value="<?php echo $veterinarians->name;?>" required><br>
 
         <label for="address">Address:</label>
         <input type="text" id="address" name="address" value="<?php echo $veterinarians->address;?>" required><br>
 
-        <label for="contact-number">Contact Number:</label>
-        <input type="tel" id="contact-number" name="contact" value="<?php echo $veterinarians->contact;?>" required pattern="[0-9]{10}"><br>
+        <label for="contact_no">Contact Number:</label>
+        <input type="tel" id="contact_no" name="contact" value="<?php echo $veterinarians->contact;?>" required pattern="[0-9]{10}"><br>
 
         <label for="nic">NIC:</label>
         <input type="text" id="nic" name="nic" value="<?php echo $veterinarians->nic;?>" required><br>

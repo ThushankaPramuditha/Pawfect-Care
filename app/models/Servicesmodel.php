@@ -31,12 +31,7 @@ class ServicesModel
     
         return $this->update($id, $data, 'id');
     }
-
-    public function deactivateVeterinarian($id)
-    {
-        return $this->update($id, ['status' => 'inactive']);
-    }
-
+    
     public function deleteService($id)
     {
         return $this->delete($id);

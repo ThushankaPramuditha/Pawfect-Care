@@ -701,8 +701,7 @@ main table tbody tr td:first-child {
 <body>
    
     <div class="container">
-        <!-- Sidebar Section -->
-        <aside>
+      <aside>
             <div class="toggle">
                 <div class="logo">
                 <img src="<?=ROOT?>/assets/images/doglogo.jpg" alt="">
@@ -781,9 +780,7 @@ main table tbody tr td:first-child {
                     <h3>Logout</h3>
                 </a>
             </div>
-        </aside>
-        <!-- End of Sidebar Section -->
-
+         </aside>
         <!-- Main Content -->
         <main>
             <h1>Analytics</h1>
@@ -989,7 +986,8 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 
-    <script>const sideMenu = document.querySelector('aside');
+<script>
+const sideMenu = document.querySelector('aside');
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-btn');
 
@@ -1003,14 +1001,8 @@ closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
 
-darkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode-variables');
-    darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
-    darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
-})
 
-</script>
-    
-</body>
 
+</script>    
+ </body>
 </html>

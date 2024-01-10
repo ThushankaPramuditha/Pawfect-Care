@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
-    <table>
+   <div class="tablecontainer"> 
+     <table>
         <thead>
             <tr>
                 <th>Patient No</th>
@@ -21,7 +22,7 @@
         </thead>
         <tbody>
 
-<?php foreach ($appointments as $appointment) { ?>
+     <?php foreach ($appointments as $appointment) { ?>
     <tr key="<?php echo $appointment->id; ?>">
         <td><?php echo $appointment->patient_no?></td>
         <td><?php echo $appointment->pet_id?></td>
@@ -35,9 +36,11 @@
         </td>
         
     </tr>
-<?php } ?>
+     <?php } ?>
 
         </tbody>
-    </table>
+        </table>
+    </div>
+
 </body>
 </html>

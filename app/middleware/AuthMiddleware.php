@@ -27,7 +27,10 @@ class AuthMiddleware {
 
   private static function check():bool {
     // Start the session
-    session_start();
+    // session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     
     // If the session ID is not set, the user is not authenticated
 

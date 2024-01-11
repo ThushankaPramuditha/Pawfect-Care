@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Daycare Facility</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/booking.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/booking.css">
 
 </head>
 <body>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care-Navbar</title>
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/navbar.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/navbar.css">
 </head>
 <body>
     <div class="navbar">

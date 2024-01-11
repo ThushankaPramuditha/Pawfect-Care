@@ -16,6 +16,7 @@ class Login
 
             $row = $user->first($arr);
             
+            
             if($row)
             {
 				// Check if the user's account is active
@@ -26,6 +27,7 @@ class Login
                 else if($user->verifyPassword($_POST['password'], $row->password))
                 {
                     $_SESSION['USER'] = $row;
+                    
                     if($row->user_type == 'admin'){
                         redirect('admin/DashboardServices/');
                     }
@@ -44,8 +46,8 @@ class Login
                     else if($row->user_type == 'daycare-staff'){
                         redirect('Daycarestaff/Dashboarddaycarestaff/');
                     }
-                    else{
-                        redirect('Petowner/Home');
+                    else {
+                        redirect('Petowner/Home/');
                     }
                 }
                 else
@@ -61,6 +63,7 @@ class Login
         }
 
         $this->view('login',$data);
+
     }
 }
 

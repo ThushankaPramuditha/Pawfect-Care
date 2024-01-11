@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
-    <link rel="stylesheet" href="<?php ROOT?>assets/css/staffsignuppage.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/staffsignuppage.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    
     <style>
@@ -40,21 +40,21 @@
   
    <div>
    <div class="logo">
-       <a href="<?php ROOT?>home">
-       <img src="<?php ROOT?>assets/images/footer-logo.png" alt="Pawfect Care Logo">
+       <a href="<?php echo ROOT?>/home">
+       <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
       </a>
     </div>
 
     <div class="container">
         <div class="img-container">
-            <img src="<?php ROOT?>assets/images/signup-photo2.jpg" alt="Sign Up Photo">
+            <img src="<?php echo ROOT?>/assets/images/signup-photo2.jpg" alt="Sign Up Photo">
             <div class="flex-container">
             <button class="back-button" onclick="goToHomePage()">Back</button>
             </div>
         </div>
                 <script>
                 function goToHomePage() {
-                    window.location.href ='<?php ROOT?>home';
+                    window.location.href ='<?php echo ROOT?>/home';
                 }
                 </script>
    
@@ -141,7 +141,7 @@
                 <div class="flex-container">
                     <button class="button" type="submit" name="signup">Sign up</button>
                 </div>
-                <p>Already have an account? <a href="<?php ROOT?>stafflogin">Login</a>.</p>
+                <p>Already have an account? <a href="<?php echo ROOT?>/stafflogin">Login</a>.</p>
                 
             </form>
                

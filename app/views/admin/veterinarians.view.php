@@ -207,8 +207,6 @@
         // Handle form submissions (you can add your form submission logic here)
         document.getElementById("add-staff-form").addEventListener('submit', function(event) {
             // event.preventDefault();
-            // Handle add form submission logic
-            // ...
             // Close the add modal after submission if successful
             if (!validateForm()) {
                 event.preventDefault();

@@ -110,13 +110,14 @@ b{
 
 aside{
     height: 100vh;
+    width: 230px;
 }
 
 aside .toggle{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: -2.8rem;
+    margin-top: 1rem;
 }
 
 aside .toggle .logo{
@@ -304,7 +305,7 @@ aside .sidebar .message-count{
             </div>
 
             <div class="sidebar">
-                <a href="#">
+            <a href="<?php echo ROOT; ?>receptionist/dashboardreceptionist">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>

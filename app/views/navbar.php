@@ -4,7 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care-Navbar</title>
-    <link rel="stylesheet" href="<?php echo ROOT?>assets/css/navbar.css">
+    <style>
+        /* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:none;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+.navlogo img {
+    width: 150px;
+    height: auto;
+}
+
+.nav-links {
+    margin-left:50%;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Adjust this styling as needed */
+.user-profile span {
+    font-size: 16px;
+}
+
+    </style>   
 </head>
 <body>
     <div class="navbar">

@@ -4,29 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Home</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <style>
+
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
        body {
-      font-family: 'Your-Preferred-Font', sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       height: 100vh;
-      background: linear-gradient(#ffff);
+      background-color: cornflowerblue;
       background-size: 600% 100%;
       animation: gradientAnimation 10s infinite;
+
     }
-
-    /* @keyframes gradientAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    } */
-
 
         .container {
             max-width: 1200px;
@@ -40,6 +32,7 @@
             transition: transform 0.3s;
             text-align: center;
             font-size: 25px;
+            perspective: 1000px;
         }
 
         .container:hover {
@@ -56,10 +49,14 @@
             margin: 0 1%; /* Added margin for separation */
             display: inline-block; /* Display side by side */
             vertical-align: top; /* Align to the top */
+            flex: 1;
         }
 
         .photo {
-            max-width: 40%;
+            width: 100%;
+            padding: 20px;
+            border-radius: 40px;
+            /* max-width: 40%; */
             height: auto;
             border-radius: 8px;
             margin-top: 20px;
@@ -75,28 +72,8 @@
 
         }
          
-        .card {
-            background-color: rgba(255, 255, 255, 0); /* Slightly transparent white */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 20px 0;
-            transition: transform 0.3s;
-            color:black;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: scale(1.02);
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
-        }
-
         .card-content {
+            width:90%;
             padding: 20px;
             color: black;
             text-align: center;
@@ -106,53 +83,69 @@
         .feedback-section {
             clear: both;
             text-align: center; /* Center the content */
-            color:black;
+            color:white;
+            /* font-weight: bold; */
             
         }
-        .card1{
-            background-color: rgba(255, 255, 255, 0); /* Slightly transparent white */
-            box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 20px 0;
-            transition: transform 0.3s;
-            color:black;
-            text-align: center;
-          
-        }
+    .card1 {
+    background-color: purple;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 20px 0;
+    transition: transform 0.3s;
+    color: white;
+    font-style: italic;
+    text-align: center;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
 
-        .card1:hover {
-            transform: scale(1.02);
-            cursor: pointer;
-        }
+.card1:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    transform: rotateY(45deg);
+}
 
-        .card-content{
-            background-color: rgba(255, 255, 255, 0); /* Slightly transparent white */
-            box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 20px 0;
-            transition: transform 0.3s;
-            color:black;
-            text-align: center;
-        }
-        .service-card,
-        .feedback-card {
-            width: calc(30% - 20px); /* Adjusted width */
-            margin: 10px;
-            box-sizing: border-box;
-            transition: transform 0.3s;
-            display: inline-block; /* Display side by side */
-            vertical-align: top; /* Align to the top */
-            color:black;
-            text-align: center;
-            margin-right: 30px;
-        }
 
-        .service-card:hover,
-        .feedback-card:hover {
-            transform: scale(1.02);
-        }
+.card-content {
+    /* background-color: rgba(255, 255, 255, 0.8);  */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 20px 0;
+    transition: transform 0.3s;
+    color: white;
+    /* font-weight: bold; */
+    text-align: center;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+.service-card,
+.feedback-card {
+   
+   background-color: rgba(255, 255, 255, 0.8); 
+    width: calc(30% - 20px); /* Adjusted width */
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1), 0 0px 0px rgba(0, 0, 0, 0);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s;
+    display: inline-block; /* Display side by side */
+    vertical-align: top; /* Align to the top */
+    color:black;
+    text-align: center;
+    margin-right: 30px;
+    height:440px;
+
+}
+
+    .service-card:hover,
+    .feedback-card:hover {
+        transform: scale(1.02);
+    }
 
        
 
@@ -176,6 +169,13 @@
             cursor: pointer;
         }
         
+     .account {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+   
+    
     </style>
 
 
@@ -183,101 +183,88 @@
 
 <body>
     <?php include 'navbar.php'; ?>
+   
         
 
         <div class="container" style="display:flex;">
             <div class="left-section">
-                <p class style="font-weight:bold;">Pawfect Care Center</p>
-                <p class style="font-weight:bold;">Serving Love And Care, The PAWFECT Way! </p>
+                <p class style="color:white; font-size:50px;font-weight:bold;  ">Pawfect Care Center</p>
+                <p class style="color:white; font-weight:bold; font-style: italic;">Serving Love And Care, The PAWFECT Way! </p>
             </div>
             <div class="right-section">
-            <img src="<?php ROOT?>assets/images/login-photo1.jpg" alt="Login Photo" class="photo" style=" width: 100%; padding: 20px; border-radius:40px;">
+            <img src="<?php ROOT?>assets/images/loginphoto2.png" alt="Login Photo" class="photo" style=" width: 100%; padding: 20px; border-radius:40px;">
             </div>
 
         </div>
 
     <div class="container">
          <div class="services-section">
-            <h2 class style="color:white;">Our Services</h2>
-
-            <div class="service-card card">
-                <p>Our team of dedicated veterinarians is committed to providing top-notch care for your beloved pets. From routine check-ups to complex surgeries, we've got your furry friends covered. Your pet's health and well-being are our priorities.
-                </p>
-            </div>
-
-            <div class="service-card card">
-                <p>Our daycare services are designed to keep your pets active and engaged while you're away. Our secure facilities and trained staff ensure a day filled with play, exercise, and socialization. Your pet will love it here!
-                </p>
-            </div>
-
-            <div class="service-card card">
-                <p>Need a safe and convenient way to get your pet to our center? Our pet transport service ensures a comfortable journey. We offer easy booking and caring drivers who treat your pets like their own.
-                </p>
-            </div>
+            <h2 class style="color:white; font-weight:bold">Our Services</h2>
+            <?php include '../app/views/components/dashboard-compo/card1.php'; ?>  
+           
         </div>
-        <button type="submit" >View More</button>
+        <!-- <button type="submit" >View More</button> -->
     </div>
 
     <div class="container">
-        <h2>Why Create an Account?</h2>
+        <h2 style="color:white;">Why Create an Account?</h2>
         <div class="account container" style="display:flex;">
         <div class="left-section">
-        <div class="card1 card">
+        <div class="card1">
             <p>Easy Appointment Booking</p>
         </div>
         </div>
         <div class="right-section">
-        <div class="card1 card">
+        <div class="card1">
             <p>Say goodbye to long phone calls and appointment mix-ups. With an account, you can effortlessly schedule vet visits, daycare, and transportation services online, anytime, anywhere.
             </p>
         </div>  
         </div>
     </div>
 
-        <div class="account container" style="display:flex;">
-        <div class="left-section">
-        <div class="card1 card">
-            <p>Your pet's health history, vaccination records, and important notes—all in one secure place. Accessible whenever you need it, ensuring you're always informed.
-            </p>
-        </div>
-        </div>
-        <div class="right-section">
-        <div class="card1 card">
-            <p>Secure Access to Pet Records</p>
-        </div>  
-        </div>
+    <div class="account container">
+    <div class="left-section">
+      <div class="card1">
+        <p>Your pet's health history, vaccination records, and important notes—all in one secure place. Accessible whenever you need it, ensuring you're always informed.</p>
       </div>
-      <div class="account container" style="display:flex;">
-        <div class="left-section">
-        <div class="card1 card">
-            <p>Quick Check-Out</p>
-        </div>
+    </div>
+    <div class="right-section">
+      <div class="card1">
+        <p>Secure Access to Pet Records</p>
+      </div>  
+    </div>
+  </div>
 
-        </div>
-        <div class="right-section">
-        <div class="card1 card">
-            <p>Booking a service is a breeze when your details are securely stored. No need to enter your information every time—just select, confirm, and you're set!</p>
-        </div>  
-        </div>
+  <div class="account container">
+    <div class="left-section">
+      <div class="card1">
+        <p>Quick Check-Out</p>
+      </div>
     </div>
-       
-    <div class="account container" style="display:flex;">
-        <div class="left-section">
-         <div class="card1 card">
-            <p>Receive tailored recommendations and timely reminders for your pet's needs. We're here to help you provide the best care possible.</p>
-         </div>  
-        </div>
-        <div class="right-section">
-         <div class="card1 card">
-            <p>Get Notified</p>
-         </div>
-        </div>
+    <div class="right-section">
+      <div class="card1">
+        <p>Booking a service is a breeze when your details are securely stored. No need to enter your information every time—just select, confirm, and you're set!</p>
+      </div>  
     </div>
+  </div>
+
+  <div class="account container">
+    <div class="left-section">
+      <div class="card1">
+        <p>Receive tailored recommendations and timely reminders for your pet's needs. We're here to help you provide the best care possible.</p>
+      </div>  
+    </div>
+    <div class="right-section">
+      <div class="card1">
+        <p>Get Notified</p>
+      </div>
+    </div>
+  </div>
 
     
-    <div class="container">
-        <div class="card" style="align-items:center;">
-            <h2>Ready to Get Started?</h2>
+    <div class="container" style="display:flex; flex-direction:column;">
+        <div class="card" style="align-items:center; width:90%; margin-left:50px;">
+            <h2 style="font-size:40px;">Ready to Get Started?</h2>
             <div class="card-content" >
                 <p class style="display:flex; text-align:center;">Creating an account is quick, easy, and completely free. It's the first step to simplifying your pet care journey. Join Pawfect Care today and experience the future of pet care management.
                 </p>
@@ -286,22 +273,33 @@
             </div>
         </div>
 
-        
-        <div class="feedback-section">
-            <h2 class style="color:white;">Feedback from Our Pet Owners</h2>
-            <div class="feedback-card card">
-                <p>"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands. :-Himasha Amandi"
+        <h2 class style="color:white; font-weight:bold;">Feedback from Our Pet Owners</h2>
+        <div class="feedback-section" style="display:flex; flex-direction:row; ">
+        <div class="feedback-card card" style="align-items: center;margin-left:60px; margin-right:60px; ">
+            <div class="card-image" style="width:90px; height:90px; border-radius:50px; align-items: center; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            </div>
+            <br>
+            <p style="font-size:20px; color:black;">"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands." 
+                    <br><b>Himasha Amandi</b>
                 </p>
             </div>
-            <div class="feedback-card card">
-                <p>"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!
-                   <br>:-Sachini Perera"
+            <div class="feedback-card card" style="align-items: center; margin-right:60px; padding-bottom:20px;">
+            <div class="card-image" style="width:90px; height:90px;border-radius:80px; align-items: center; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            </div>
+            <br>
+            <p style="font-size:20px; color:black;">"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!"
+                   <br><b>Sachini Perera</b>
                 </p>
             </div>
-            <div class="feedback-card card">
-                <p>"The vet appointments through Pawfect Care have been a breeze. No more waiting on hold to schedule. And the veterinarians are always so knowledgeable and caring.<br>
-                    :-Thusitha Perera
-                    "
+            <div class="feedback-card card" style="align-items: center; margin-right:60px;margin-bottom:50px;">
+            <div class="card-image" style="width:90px; height:90px;border-radius:80px; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            </div>
+            <br>
+                <p style="font-size:20px; color:black;">"Appointments through Pawfect-Care have been a breeze.No more waiting and the veterinarians are always so knowledgeable and caring."<br>
+                <b>Thusitha Perera</b>
               </p>
             </div>
         </div>
@@ -311,3 +309,4 @@
 </body>
 
 </html>
+

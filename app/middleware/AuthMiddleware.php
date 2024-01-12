@@ -5,7 +5,7 @@ class AuthMiddleware {
 
   public static function run_middleware(string $controller, string $method): void {
     $authRequired = [
-      'Home' => ['index', 'method2'],
+      'PetOwnerhome' => ['index', 'method2'],
       'Controller2' => ['method3'],
     ];
     $unauthRequired = [
@@ -63,7 +63,7 @@ class AuthMiddleware {
 
   public static function not_authenticated():void {
     if (self::check()) {
-      redirect('home');
+      redirect('petownerhome');
     }
   }
 }

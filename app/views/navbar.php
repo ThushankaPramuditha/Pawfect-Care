@@ -11,9 +11,10 @@
     justify-content: space-between;
     align-items: center;
     background:none;
-    color: #333;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
+    font-size:20px;
 }
 
 .navlogo img {
@@ -34,8 +35,15 @@
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: white;
 }
+
+.nav-links a:hover {
+    transition: all 0.3s ease 0s;
+    color: purple;
+
+}
+
 
 .user-profile {
     display: flex;
@@ -64,9 +72,9 @@
         <ul class="nav-links">
 
             <li><a href="<?=ROOT?>/home">Home</a></li>
-            <li><a href="<?=ROOT?>/services">Services</a></li>
-            <li><a href="<?=ROOT?>/about">About Us</a></li>
-            <li><a href="<?=ROOT?>/contact">Contact Us</a></li>
+            <li><a href="<?=ROOT?>/ourservices">Services</a></li>
+            <li><a href="<?=ROOT?>/aboutus">About Us</a></li>
+            <li><a href="<?=ROOT?>/contactus">Contact Us</a></li>
             
 
         </ul>

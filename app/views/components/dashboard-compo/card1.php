@@ -46,7 +46,7 @@ body{ background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4
 
 
 .card>div{
-  box-shadow:0 15px 20px 0 rgba(0,0,0,0.5);
+  /* box-shadow:0 15px 20px 0 rgba(0,0,0,0.5); */
 }
 .card-image{
   width:300px;

@@ -9,13 +9,15 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 
-<body>
+<body style="margin: 0; display: flex;">
+   
+    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
+
+    <div style="flex: 1; display: flex; flex-direction: column; margin-left: 30px; padding: 10px 10px 100px 10px;">
 <?php $_SESSION['addnewpath'] = 'addservice' ?>
-       <div style = "margin-left: 230px">
+       
        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
-       </div>
-       <div style="display: flex; flex-direction:row; margin-top:0px;">
-        <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
+        
         <?php include '../app/views/components/tables/appointmenttable.php'; ?> 
     </div>
 

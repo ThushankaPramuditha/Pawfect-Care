@@ -105,22 +105,25 @@
 .card1:hover {
     transform: scale(1.2);
     cursor: pointer;
-    transform: rotateY(45deg);
+    /* transform: rotateY(30deg); */
+    /* transform: rotateX(30deg); */
+    transform: rotateZ(10deg);
+    transform-style: preserve-3d;
     
 }
 
 
 .card-content {
     /* background-color: rgba(255, 255, 255, 0.8);  */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
-    border-radius: 16px;
-    overflow: hidden;
-    margin: 20px 0;
-    transition: transform 0.3s;
-    color: white;
-    /* font-weight: bold; */
-    text-align: center;
-    backdrop-filter: blur(5px); /* Frosted glass effect */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 20px 0;
+      transition: transform 0.3s;
+      color: white;
+      /* font-weight: bold; */
+      text-align: center;
+      backdrop-filter: blur(5px); /* Frosted glass effect */
 }
 
 .service-card,
@@ -277,8 +280,8 @@
         <h2 class style="color:white; font-weight:bold;">Feedback from Our Pet Owners</h2>
         <div class="feedback-section" style="display:flex; flex-direction:row; ">
         <div class="feedback-card card" style="align-items: center;margin-left:60px; margin-right:60px; ">
-            <div class="card-image" style="width:90px; height:90px; border-radius:50px; align-items: center; margin-top:20px;">
-            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            <div class="card-image" style="width:90px; height:90px;  align-items: center; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/female1.jpg" style="border-radius:50px;">
             </div>
             <br>
             <p style="font-size:20px; color:black;">"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands." 
@@ -286,8 +289,8 @@
                 </p>
             </div>
             <div class="feedback-card card" style="align-items: center; margin-right:60px; padding-bottom:20px;">
-            <div class="card-image" style="width:90px; height:90px;border-radius:80px; align-items: center; margin-top:20px;">
-            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            <div class="card-image" style="width:90px; height:90px; align-items: center; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/female2.jpeg" style="border-radius:50px;">
             </div>
             <br>
             <p style="font-size:20px; color:black;">"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!"
@@ -295,8 +298,8 @@
                 </p>
             </div>
             <div class="feedback-card card" style="align-items: center; margin-right:60px;margin-bottom:50px;">
-            <div class="card-image" style="width:90px; height:90px;border-radius:80px; margin-top:20px;">
-            <img src="<?php ROOT?>assets/images/vetanddog.png">
+            <div class="card-image" style="width:90px; height:90px; margin-top:20px;">
+            <img src="<?php ROOT?>assets/images/male1.jpg" style="border-radius:50px;">
             </div>
             <br>
                 <p style="font-size:20px; color:black;">"Appointments through Pawfect-Care have been a breeze.No more waiting and the veterinarians are always so knowledgeable and caring."<br>

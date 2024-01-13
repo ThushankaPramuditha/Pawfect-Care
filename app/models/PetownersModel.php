@@ -1,67 +1,67 @@
 <?php
 
-class VeterinariansModel
+class PetownersModel
 {
     use Model;
 
-    protected $table = 'veterinarians';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
+    protected $table = 'petowners';
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'user_id'];
 
     //CHECK THIS ADD VET PART
 
-    public function getAllVeterinarians()
+    public function getAllPetowners()
     {
         return $this->where(['status' => 'active']);
     }
 
-    public function getVeterinarianById($id)
+    public function getPetownerById($id)
     {
         return $this->first(['id' => $id]);
     }
 
-    // public function addVeterinarian($data)
+    // public function addPetowner($data)
     // {
     //     return $this->insert($data);
     // }
 
-    public function addVeterinarian($data)
+    public function addPetowner($data)
     {
         $userModel = new UserModel;
         
 
-        // Register the veterinarian as a user and directly assign the user_id to $data array
-        $data['user_id'] = $userModel->addUser([
+        // Register the petowner as a user and directly assign the user_id to $data array
+        $data['user_id'] = $userModel->registerUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'veterinarian', 
+            'user_type' => 'petowner', 
         ]);
 
         if ($data['user_id']) {
-            // Prepare veterinarian-specific data
-            $vetData = [
+            // Prepare petowner-specific data
+            $petownerData = [
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
                 'address' => $data['address'],
                 'contact' => $data['contact'],
                 'nic' => $data['nic'],
-                'qualifications' => $data['qualifications'],
             ];
-
-            return $this->insert($vetData);
+            
+            return $this->insert($petownerData);
             
 
-            // Attempt to insert veterinarian-specific data into the veterinarians table
-            if (!($this->insert($vetData))) {
-                $this->errors[] = 'Failed to insert veterinarian data';
+            // Attempt to insert petowner-specific data into the petowners table
+            if (!($this->insert($petownerData))) {
+                $this->errors[] = 'Failed to insert petowner data';
                 return false;
             }
-        } else {
+        } 
+        else {
             $this->errors[] = 'User registration failed';
             return false; 
         }
     }
 
-    public function updateVeterinarian($id, array $data)
+    public function updatePetowner($id, array $data)
     {
         // alowed column
         $data = array_filter($data, function ($key) {
@@ -71,12 +71,12 @@ class VeterinariansModel
         return $this->update($id, $data, 'id');
     }
 
-    public function deleteVeterinarian($id)
+    public function deletePetowner($id)
     {
         return $this->delete($id);
     }
 
-    public function deactivateVeterinarian($id)
+    public function deactivatePetowner($id)
     {
         return $this->update($id, ['status' => 'inactive']);
     }
@@ -93,10 +93,10 @@ class VeterinariansModel
             $this->errors['address'] = "Address is required";
         }
 
-        if(empty($data['contact_no'])) {
-            $this->errors['contact_no'] = "Contact number is required";
-        } elseif (!preg_match('/^[0-9]{10}$/', $data['contact_no'])) {
-            $this->errors['contact_no'] = "Contact number is not valid";
+        if(empty($data['contact'])) {
+            $this->errors['contact'] = "Contact number is required";
+        } elseif (!preg_match('/^[0-9]{10}$/', $data['contact'])) {
+            $this->errors['contact'] = "Contact number is not valid";
         }
 
        
@@ -108,10 +108,6 @@ class VeterinariansModel
 
         if (empty($data['email'])) {
             $this->errors['email'] = "Email is required";
-        }
-    
-        if (empty($data['qualifications'])) {
-            $this->errors['qualifications'] = "Qualifications are required";
         }
 
         return empty($this->errors);

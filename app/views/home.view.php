@@ -103,9 +103,10 @@
 }
 
 .card1:hover {
-    transform: scale(1.02);
+    transform: scale(1.2);
     cursor: pointer;
     transform: rotateY(45deg);
+    
 }
 
 

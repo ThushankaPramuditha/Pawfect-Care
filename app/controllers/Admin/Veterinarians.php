@@ -28,7 +28,7 @@ class Veterinarians
     {
         $veterinariansModel = new VeterinariansModel();
         $veterinariansModel->addVeterinarian($_POST);
-		
+
         redirect('admin/veterinarians');
     }
 

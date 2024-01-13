@@ -26,14 +26,14 @@
         <div class="form-container">
             <form id="add-staff-form" action="<?php echo ROOT?>/Admin/Veterinarians/add" method="post">
                 <div class="column">
-                    <label for="full-name">Full Name:</label>
-                    <input type="text" id="full-name" name="name" required><br>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required><br>
 
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" required><br>
 
-                    <label for="contact-number">Contact Number:</label>
-                    <input type="tel" id="contact-number" name="contact" required pattern="[0-9]{10}"><br>
+                    <label for="contact_no">Contact Number:</label>
+                    <input type="tel" id="contact_no" name="contact" required pattern="[0-9]{10}"><br>
                 </div>
                 <div class="column">
                     <label for="nic">NIC:</label>
@@ -52,14 +52,13 @@
                     <input type="password" id="confirm_password" name="confirm_password" required><br>
                 
                 </div>
-
+                <div class="flex-container">
+                    <button type="submit" id="add-staff-button">Add Veterinarian</button>
+                </div>
                 
             </form>
         </div>
-        <div class="flex-container">
-            <button type="submit" id="add-staff-button">Add Veterinarian</button>
-        </div>
-
+        
     </div>
 </div>
 
@@ -90,6 +89,7 @@
 
 
     <script>
+
            // Get the modal elements
             var addModal = document.getElementById("add-modal");
             var updateModal = document.getElementById("update-modal");
@@ -169,12 +169,48 @@
             });
         });
 
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var contact_no = document.getElementById('contact_no').value;
+            var nic = document.getElementById('nic').value;
+            var email = document.getElementById('email').value;
+            var qualifications = document.getElementById('qualifications').value;
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+            var terms = document.querySelector('input[name="terms"]:checked');
+
+            var errors = [];
+
+            if (!name) errors.push("Name is required.");
+            if (!address) errors.push("Address is required.");
+            if (!contact_no.match(/^[0-9]{10}$/)) errors.push("Contact number must be 10 digits.");
+            if (!nic.match(/^[0-9]{9}[vVxX]$|^([0-9]{12})$/)) errors.push("NIC format is not valid.");
+            if (!email.match(/^\S+@\S+\.\S+$/)) errors.push("Email format is not valid.");
+            if (!qualifications) errors.push("qualifications are required.");
+            if (!password.match(/^(?=.*[\W]).{6,}$/)) errors.push("Password must be at least 6 characters long and contain at least one symbol.");
+        
+            if (password !== confirm_password) errors.push("Passwords do not match.");
+            
+            if (errors.length > 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    html: errors.join("<br>"),
+                });
+                return false;
+            }
+
+            return true;
+        }
+
         // Handle form submissions (you can add your form submission logic here)
         document.getElementById("add-staff-form").addEventListener('submit', function(event) {
             // event.preventDefault();
-            // Handle add form submission logic
-            // ...
             // Close the add modal after submission if successful
+            if (!validateForm()) {
+                event.preventDefault();
+            }
             addModal.style.display = "none";
         });
 

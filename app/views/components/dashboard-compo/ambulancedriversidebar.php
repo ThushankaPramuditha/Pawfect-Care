@@ -10,14 +10,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
     :root{
-    --color-primary:#6C9BCF;
+        --color-primary:#CF9FFF;
     --color-danger: #FF0060;
     --color-success: #1B9C85;
     --color-warning: #F7D060;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
     --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
+    --color-light: #E6E6FA;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
     --border-radius-1: 0.4rem;

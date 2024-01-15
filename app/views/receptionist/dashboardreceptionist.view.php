@@ -10,14 +10,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         :root{
-    --color-primary: #6C9BCF;
+    --color-primary:#CF9FFF;
     --color-danger: #FF0060;
     --color-success: #1B9C85;
     --color-warning: #F7D060;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
     --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
+    --color-light: #E6E6FA;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
@@ -794,7 +794,7 @@ main table tbody tr td:first-child {
                 <div class="sales">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Daycare Bookings</h3>
+                            <h3 >Daycare Bookings</h3>
                             <h1 style="text-align: center;">16</h1>
                         </div>
                     </div>
@@ -803,7 +803,7 @@ main table tbody tr td:first-child {
                 <div class="visits">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Appointment Bookings</h3>
+                            <h3>Appointment Bookings</h3>
                             <h1 style="text-align: center;">24</h1>
                         </div>
                     </div>
@@ -812,7 +812,7 @@ main table tbody tr td:first-child {
                 <div class="searches">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Transport Bookings</h3>
+                            <h3 >Transport Bookings</h3>
                             <h1 style="text-align: center;">12</h1>
                         </div>
                     </div>
@@ -980,14 +980,14 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-            <div class="notification add-reminder">
-             <div>
+            <!-- <div class="notification add-reminder">
+              <div>
                 <span class="material-icons-sharp">
                     arrow_forward
                 </span>
                 <h3>View More</h3>
-            </div>
-        </div>
+             </div>
+        </div> -->
 
             </div>
 

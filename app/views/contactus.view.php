@@ -150,8 +150,8 @@
 <?php include 'navbar.php'; ?>
 
 <div class="container" style="display:flex; flex-direction:column" > 
- <h2>Contact Us</h2>
- <p>At Pawfect Care, we value your feedback and are here to assist you. Whether you have questions, suggestions, or need assistance, please don't hesitate to get in touch with us. Your satisfaction and your pet's well-being are our top priorities.</p>
+ <h2 style="margin-left:100px;">Contact Us</h2>
+ <p style="margin-left:50px;">At Pawfect Care, we value your feedback and are here to assist you. Whether you have questions, suggestions, or need assistance, please don't hesitate to get in touch with us. Your satisfaction and your pet's well-being are our top priorities.</p>
 
     <div class="contactinfo" style="display:flex; flex-direction:column">
         <span>

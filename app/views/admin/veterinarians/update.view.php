@@ -11,8 +11,8 @@
         <label for="nic">NIC:</label>
         <input type="text" id="nic" name="nic" value="<?php echo $veterinarians->nic;?>" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $veterinarians->email;?>" required><br>
+        <!-- <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<?php echo $veterinarians->email;?>" required><br> -->
 
         <label for="qualifications">Qualifications:</label>
         <textarea id="qualifications" name="qualifications" style="border-radius: 10px;" rows="4" required> <?php echo $veterinarians->qualifications;  ?>  </textarea>

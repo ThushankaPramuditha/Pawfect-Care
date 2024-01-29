@@ -36,9 +36,12 @@ Trait Database
 		$stm = $con->prepare($query);
 
 		$check = $stm->execute($data);
+		
 		if($check)
 		{
 			$result = $stm->fetchAll(PDO::FETCH_OBJ);
+			// show($result);
+        	// die();
 			if(is_array($result) && count($result))
 			{
 				return $result[0];

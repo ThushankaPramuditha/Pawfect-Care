@@ -220,6 +220,14 @@ class UserModel {
         return false;
 
     }
+    public function updateUserStatus($userId, $status)
+    {
+        // Assuming 'status' is a column in the 'users' table
+        $query = "UPDATE $this->table SET status = :status WHERE id = :id";
+        return $this->query($query, ['status' => $status, 'id' => $userId]);
+    }
+
+    
     
 }
 

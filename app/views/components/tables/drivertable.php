@@ -21,37 +21,31 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>12345</td>
-                <td>John Doe</td>
-                <td>123 Elm St</td>
-                <td>123-456-7890</td>
-                <td>AB123456C</td>
-                <td>johndoe@example.com</td>
-                <td>DR123456</td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>
-                </td>
-                <td class="deactivate-action-buttons">
-                    <button class="deactivate-button">Deactivate</button>
-                </td>
-            </tr>
-            <tr>
-                <td>67890</td>
-                <td>Jane Smith</td>
-                <td>456 Oak St</td>
-                <td>987-654-3210</td>
-                <td>XY987654Z</td>
-                <td>janesmith@example.com</td>
-                <td>DR678901</td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>
-                </td>
-                <td class="deactivate-action-buttons">
-                    <button class="deactivate-button">Deactivate</button>
-                </td>
-            </tr>
+            <?php if (is_array($ambulancedriver) && !empty($ambulancedriver)): ?>
+                <?php foreach ($ambulancedriver as $driver): ?>
+                    <tr key = "<?php echo $driver->id; ?>" >
+                        <td><?= htmlspecialchars($driver->id); ?></td>
+                        <td><?= htmlspecialchars($driver->name); ?></td>
+                        <td><?= htmlspecialchars($driver->contact); ?></td>
+                        <td><?= htmlspecialchars($driver->email); ?></td>
+                        <td><?= htmlspecialchars($driver->address); ?></td>
+                        <td><?= htmlspecialchars($driver->nic); ?></td>
+                        <td><?= htmlspecialchars($driver->qualifications); ?></td>
+                        <td class="edit-action-buttons">
+                            <button class="edit-icon"></button>
+                        </td>
+                        <td class="deactivate-action-buttons">
+                            <button class="deactivate-button">Deactivate</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No medical staff found.</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
+        
     </table>
 </body>
 </html>

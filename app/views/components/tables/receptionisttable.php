@@ -25,16 +25,16 @@
 
 
         <tbody>
-            <?php if (is_array($veterinarians) && !empty($veterinarians)): ?>
-                <?php foreach ($veterinarians as $vet): ?>
-                    <tr key = "<?php echo $vet->id; ?>" >
-                        <td><?= htmlspecialchars($vet->id); ?></td>
-                        <td><?= htmlspecialchars($vet->name); ?></td>
-                        <td><?= htmlspecialchars($vet->contact); ?></td>
-                        <td><?= htmlspecialchars($vet->email); ?></td>
-                        <td><?= htmlspecialchars($vet->address); ?></td>
-                        <td><?= htmlspecialchars($vet->nic); ?></td>
-                        <td><?= htmlspecialchars($vet->qualifications); ?></td>
+            <?php if (is_array($receptionists) && !empty($receptionists)): ?>
+                <?php foreach ($receptionists as $rec): ?>
+                    <tr key = "<?php echo $rec->id; ?>" >
+                        <td><?= htmlspecialchars($rec->id); ?></td>
+                        <td><?= htmlspecialchars($rec->name); ?></td>
+                        <td><?= htmlspecialchars($rec->contact); ?></td>
+                        <td><?= htmlspecialchars($rec->email); ?></td>
+                        <td><?= htmlspecialchars($rec->address); ?></td>
+                        <td><?= htmlspecialchars($rec->nic); ?></td>
+                        <td><?= htmlspecialchars($rec->qualifications); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
                         </td>
@@ -45,7 +45,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No veterinarians found.</td>
+                    <td colspan="9">No receptionists found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

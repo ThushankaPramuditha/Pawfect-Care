@@ -1,25 +1,24 @@
 <?php
 
-class VeterinariansModel
+class ReceptionistsModel
 {
     use Model;
 
-    protected $table = 'veterinarians';
+    protected $table = 'receptionists';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
 
-    //CHECK THIS ADD VET PART
 
-    // public function getAllVeterinarians()
+    // public function getAllReceptionists()
     // {
     //     return $this->where(['status' => 'active']);
     // }
-    public function getAllVeterinarians() {
+    public function getAllReceptionists() {
         $query = "SELECT v.*, u.email 
-                  FROM veterinarians AS v
+                  FROM receptionists AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE u.status = 'active'";
         // $query = "SELECT v.*, u.email 
-        //         FROM veterinarians AS v
+        //         FROM receptionists AS v
         //         JOIN users AS u ON v.user_id = u.id";
         
 
@@ -27,14 +26,14 @@ class VeterinariansModel
         
     }
 
-    // public function getVeterinarianById($id)
+    // public function getReceptionistById($id)
     // {
     //     return $this->first(['id' => $id]);
     // }
 
-    public function getVeterinarianById($id) {
+    public function getReceptionistById($id) {
         $query = "SELECT v.*, u.email 
-                  FROM veterinarians AS v
+                  FROM receptionists AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE v.id = :id";
         // show($id);
@@ -42,20 +41,20 @@ class VeterinariansModel
         return $this->get_row($query, ['id' => $id]);
     }
 
-    public function addVeterinarian($data)
+    public function addReceptionist($data)
     {
         $userModel = new UserModel;
         
 
-        // Register the veterinarian as a user and directly assign the user_id to $data array
+        // Register the receptionist as a user and directly assign the user_id to $data array
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'veterinarian', 
+            'user_type' => 'receptionist', 
         ]);
 
         if ($data['user_id']) {
-            // Prepare veterinarian-specific data
+            // Prepare receptionist-specific data
             $staffData = [
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
@@ -68,9 +67,9 @@ class VeterinariansModel
             return $this->insert($staffData);
             
 
-            // Attempt to insert veterinarian-specific data into the veterinarians table
+            // Attempt to insert receptionist-specific data into the receptionists table
             if (!($this->insert($staffData))) {
-                $this->errors[] = 'Failed to insert veterinarian data';
+                $this->errors[] = 'Failed to insert receptionist data';
                 return false;
             }
         } else {
@@ -79,7 +78,7 @@ class VeterinariansModel
         }
     }
 
-    public function updateVeterinarian($id, array $data)
+    public function updateReceptionist($id, array $data)
     {
         // alowed column
         $data = array_filter($data, function ($key) {
@@ -91,19 +90,19 @@ class VeterinariansModel
 
     
 
-    public function deleteVeterinarian($id)
+    public function deleteReceptionist($id)
     {
         return $this->delete($id);
     }
 
-    // public function deactivateVeterinarian($id)
+    // public function deactivateReceptionist($id)
     // {
     //     return $this->update($id, ['status' => 'inactive']);
     // }
-    public function deactivateVeterinarian($id)
+    public function deactivateReceptionist($id)
     {
-        // Get the user_id associated with the veterinarian
-        $staffData = $this->getVeterinarianById($id);
+        // Get the user_id associated with the receptionist
+        $staffData = $this->getReceptionistById($id);
         if ($staffData && isset($staffData->user_id)) {
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status

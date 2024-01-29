@@ -9,9 +9,7 @@ class Veterinarians
 		$veterinariansModel = new VeterinariansModel();
 		// show($veterinariansModel->findAll());
 		$data['veterinarians'] = $veterinariansModel->getAllVeterinarians();
-
-		// You can include any additional logic or data fetching here
-
+        
 		$this->view('admin/veterinarians', $data);
 	}
 
@@ -43,7 +41,7 @@ class Veterinarians
     public function viewVeterinarian(string $a = '', string $b = '', string $c = ''):void {
         $veterinariansModel = new VeterinariansModel();
         $data['veterinarians'] = $veterinariansModel->getVeterinarianById($a);
-        // show($data);
+        // show($a);
         // die();
         $this->view('admin/veterinarians/update', $data);
 

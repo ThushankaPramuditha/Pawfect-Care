@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Care Staff</title>
+    <title>Receptionist</title>
 </head>
 
 <body>
-<?php $_SESSION['addnewpath'] = 'adddaycarestaff' ?>
-<?php $_SESSION['updatepath'] = 'editprofile_daycarestaff' ?>
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
-        <?php include '../app/views/components/tables/daycarestafftable.php'; ?> 
+        <?php include '../app/views/components/tables/receptionisttable.php'; ?> 
     </div>
 
 </body>
 </html>
 
 
-<!-- Add Day Care Staff Modal -->
+<!-- Add Receptionist Modal -->
 <div class="modal-form" id="add-modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h1>Add Daycare Staff</h1>
+        <h1>Add Receptionist</h1>
         <div class="form-container">
-            <form id="add-staff-form" action="<?php echo ROOT?>/Admin/DaycareStaff/add" method="post">
+            <form id="add-staff-form" action="<?php echo ROOT?>/Admin/Receptionists/add" method="post">
                 <div class="column">
                     <label for="name">Full Name:</label>
                     <input type="text" id="name" name="name" required><br>
@@ -54,7 +52,7 @@
                 
                 </div>
                 <div class="flex-container">
-                    <button type="submit" id="add-staff-button">Add Daycare Staff</button>
+                    <button type="submit" id="add-staff-button">Add Receptionist</button>
                 </div>
                 
             </form>
@@ -63,22 +61,22 @@
     </div>
 </div>
 
-    <!-- Update Day Care Staff Modal -->
+    <!-- Update Receptionist Modal -->
     <div class="modal-form" id="update-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h1>Update Daycare Staff</h1>
-                <div id="updateveterinarian" class="form-container">
+            <h1>Update Receptionist</h1>
+                <div id="updatereceptionist" class="form-container">
                     
                 </div>
         </div>
     </div>
 
     <!-- check this -->
-    <!-- Deactivate Day Care Staff Modal -->
+    <!-- Deactivate Receptionist Modal -->
     <div class="modal-form" id="deactivate-modal">
         <div class="modal-content-delete">
-            <h1>Deactivate Daycare Staff</h1>
+            <h1>Deactivate Receptionist</h1>
             <p>The user data will be removed from the view</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
@@ -108,9 +106,9 @@
             function openUpdateModal(id) {
                 console.log(id);
                 updateModal.style.display = "block";
-                $.get(`<?php echo ROOT?>/admin/DaycareStaff/viewDaycareStaff/${id}`, function(data) {
+                $.get(`<?php echo ROOT?>/admin/Receptionists/viewReceptionist/${id}`, function(data) {
                         // Update the modal content with the fetched data
-                        $("#updateveterinarian").html(data);
+                        $("#updatereceptionist").html(data);
                     });
                 span.onclick = function() {
                 modal.style.display = "none";
@@ -120,7 +118,7 @@
             function openDeactivateModal(id) {
                 console.log(id);
                 deactivateModal.style.display = "block";
-                document.getElementById("deactivate-staff").href = `<?php echo ROOT?>/admin/DaycareStaff/deactivate/${id}`;  //hereeee
+                document.getElementById("deactivate-staff").href = `<?php echo ROOT?>/admin/Receptionists/deactivate/${id}`;  //hereeee
                 span.onclick = function() {
                 modal.style.display = "none";
                 }

@@ -5,7 +5,7 @@ class MedicalStaffModel
     use Model;
 
     protected $table = 'medstaff';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
     //CHECK THIS ADD VET PART
 
@@ -14,15 +14,10 @@ class MedicalStaffModel
     //     return $this->where(['status' => 'active']);
     // }
     public function getAllMedicalstaff() {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email ,u.status
                   FROM medstaff AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE u.status = 'active'";
-        // $query = "SELECT v.*, u.email 
-        //         FROM medstaff AS v
-        //         JOIN users AS u ON v.user_id = u.id";
-        
-
+                  JOIN users AS u ON v.user_id = u.id";
+      
         return $this->query($query);
         
     }
@@ -33,7 +28,7 @@ class MedicalStaffModel
     // }
 
     public function getMedicalstaffById($id) {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email ,u.status
                   FROM medstaff AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE v.id = :id";
@@ -108,6 +103,18 @@ class MedicalStaffModel
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
             return $userModel->updateUserStatus($staffData->user_id, 'inactive');
+        }
+
+        return false;
+    }
+    public function activateMedicalstaff($id)
+    {
+        // Get the user_id associated with the medical staff
+        $staffData = $this->getMedicalstaffById($id);
+        if ($staffData && isset($staffData->user_id)) {
+            $userModel = new UserModel();
+            // Call a method in the UserModel to update the status
+            return $userModel->updateUserStatus($staffData->user_id, 'active');
         }
 
         return false;

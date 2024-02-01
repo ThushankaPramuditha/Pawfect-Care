@@ -1,18 +1,22 @@
-/* CSS styles for the form */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 20px;
-    /* background: linear-gradient(to right, #d887fe, #a6d4f2, #ffffff); */
 }
 
 .form-container {
     display: flex;
     flex-direction: row;
-    align-items: left;
-    justify-content: flex-start;
-    width: 40%; /* Set container width to half of the viewport width */
+    flex-wrap: wrap; /* Allows content to wrap into new rows */
+    justify-content: space-between; /* Distributes space between and around content items */
+    max-width: 800px; /* Adjust the max-width as needed */
+    margin: 0 auto;
+}
 
+.column {
+    flex: 1; /* Allows columns to grow and shrink as needed */
+    min-width: 300px; /* Minimum width of each column */
+    padding: 10px;
 }
 
 /* for the button*/
@@ -61,20 +65,31 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 
+/* Styling for error messages */
+.error-message {
+    color: #ff0000;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 0.9em;
+    padding: 5px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    background-color: #ffe5e5;
+    display: inline-block;
+}
+
+/* Adjustments for buttons */
 button[type="submit"] {
-    display: block;
     background-color: #6a3879;
-    width: fit-content;
+    width: 100%;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     margin-top: 10px;
-    margin-bottom: 30px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-
 }
 
 button[type="submit"]:hover {
@@ -139,4 +154,15 @@ input[type="radio"]:checked {
 a {
     text-decoration: none;
     color: inherit;
+}
+.error-message {
+    color: #ff0000; /* Red color for the text */
+    font-weight: bold; /* Make it bold */
+    margin-top: 5px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 5px; /* Padding inside the message */
+    border: 1px solid #ff0000; /* Red border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #ffe5e5; /* Light red background */
+    display: inline-block; /* Align it next to the input field */
 }

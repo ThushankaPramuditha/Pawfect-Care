@@ -28,7 +28,7 @@ body {
     overflow: hidden; /* Hide overflowed button */
 }
 
-.search-input {
+.search-bar input[type="text"]{
     font-size: 16px;
     border: none; /* Remove input border */
     padding: 10px; /* Increase padding */
@@ -87,8 +87,8 @@ a {
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    max-width: 40%;
-    width: 100%;
+    max-width: 50%;
+    width: auto;
 }
 
 .modal-form  .modal-content-delete {

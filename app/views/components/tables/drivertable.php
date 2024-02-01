@@ -16,7 +16,9 @@
                 <th>NIC</th>
                 <th>Email</th>
                 <th>License Number</th>
+                <th>Status</th>
                 <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
             </tr>
         </thead>
@@ -26,13 +28,17 @@
                     <tr key = "<?php echo $driver->id; ?>" >
                         <td><?= htmlspecialchars($driver->id); ?></td>
                         <td><?= htmlspecialchars($driver->name); ?></td>
-                        <td><?= htmlspecialchars($driver->contact); ?></td>
-                        <td><?= htmlspecialchars($driver->email); ?></td>
                         <td><?= htmlspecialchars($driver->address); ?></td>
+                        <td><?= htmlspecialchars($driver->contact); ?></td>
                         <td><?= htmlspecialchars($driver->nic); ?></td>
+                        <td><?= htmlspecialchars($driver->email); ?></td>
                         <td><?= htmlspecialchars($driver->qualifications); ?></td>
+                        <td><?= htmlspecialchars($driver->status); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
                         </td>
                         <td class="deactivate-action-buttons">
                             <button class="deactivate-button">Deactivate</button>
@@ -40,8 +46,7 @@
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr>
-                    <td colspan="9">No medical staff found.</td>
+                <tr>ambulance drivers found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

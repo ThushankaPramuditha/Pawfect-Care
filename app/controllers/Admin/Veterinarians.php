@@ -61,6 +61,21 @@ class Veterinarians
         redirect('admin/veterinarians');
     }
 
+    public function activate(string $id): void
+    {
+        $veterinariansModel = new VeterinariansModel();
+        $success = $veterinariansModel->activateVeterinarian($id);
+
+        if ($success) {
+            echo "Veterinarian activated successfully!";
+            redirect('admin/veterinarians'); //
+        } else {
+            echo "Failed to activate veterinarian!";
+            // Implement appropriate error handling here
+        }
+        redirect('admin/veterinarians');
+    }
+
         
 }
 

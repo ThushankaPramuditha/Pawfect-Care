@@ -18,7 +18,9 @@
                 <th>NIC</th>
                 <th>Email</th>
                 <th>Qualifications</th>
+                <th>Status</th>
                 <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
             </tr>
         </thead>
@@ -30,13 +32,17 @@
                     <tr key = "<?php echo $rec->id; ?>" >
                         <td><?= htmlspecialchars($rec->id); ?></td>
                         <td><?= htmlspecialchars($rec->name); ?></td>
-                        <td><?= htmlspecialchars($rec->contact); ?></td>
-                        <td><?= htmlspecialchars($rec->email); ?></td>
                         <td><?= htmlspecialchars($rec->address); ?></td>
+                        <td><?= htmlspecialchars($rec->contact); ?></td>
                         <td><?= htmlspecialchars($rec->nic); ?></td>
+                        <td><?= htmlspecialchars($rec->email); ?></td>
                         <td><?= htmlspecialchars($rec->qualifications); ?></td>
+                        <td><?= htmlspecialchars($rec->status); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
                         </td>
                         <td class="deactivate-action-buttons">
                             <button class="deactivate-button">Deactivate</button>

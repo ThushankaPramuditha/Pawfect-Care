@@ -5,7 +5,7 @@ class VeterinariansModel
     use Model;
 
     protected $table = 'veterinarians';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status'];
 
     //CHECK THIS ADD VET PART
 
@@ -14,10 +14,9 @@ class VeterinariansModel
     //     return $this->where(['status' => 'active']);
     // }
     public function getAllVeterinarians() {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email ,u.status
                   FROM veterinarians AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE u.status = 'active'";
+                  JOIN users AS u ON v.user_id = u.id";
         // $query = "SELECT v.*, u.email 
         //         FROM veterinarians AS v
         //         JOIN users AS u ON v.user_id = u.id";
@@ -33,7 +32,7 @@ class VeterinariansModel
     // }
 
     public function getVeterinarianById($id) {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email, u.status
                   FROM veterinarians AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE v.id = :id";
@@ -108,6 +107,18 @@ class VeterinariansModel
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
             return $userModel->updateUserStatus($staffData->user_id, 'inactive');
+        }
+
+        return false;
+    }
+    public function activateVeterinarian($id)
+    {
+        // Get the user_id associated with the veterinarian
+        $staffData = $this->getVeterinarianById($id);
+        if ($staffData && isset($staffData->user_id)) {
+            $userModel = new UserModel();
+            // Call a method in the UserModel to update the status
+            return $userModel->updateUserStatus($staffData->user_id, 'active');
         }
 
         return false;

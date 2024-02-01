@@ -18,7 +18,9 @@
                 <th>NIC</th>
                 <th>Email</th>
                 <th>Qualifications</th>
+                <th>Status</th>
                 <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
             </tr>
         </thead>
@@ -30,13 +32,17 @@
                     <tr key = "<?php echo $vet->id; ?>" >
                         <td><?= htmlspecialchars($vet->id); ?></td>
                         <td><?= htmlspecialchars($vet->name); ?></td>
-                        <td><?= htmlspecialchars($vet->contact); ?></td>
-                        <td><?= htmlspecialchars($vet->email); ?></td>
                         <td><?= htmlspecialchars($vet->address); ?></td>
+                        <td><?= htmlspecialchars($vet->contact); ?></td>
                         <td><?= htmlspecialchars($vet->nic); ?></td>
+                        <td><?= htmlspecialchars($vet->email); ?></td>
                         <td><?= htmlspecialchars($vet->qualifications); ?></td>
+                        <td><?= htmlspecialchars($vet->status); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
                         </td>
                         <td class="deactivate-action-buttons">
                             <button class="deactivate-button">Deactivate</button>

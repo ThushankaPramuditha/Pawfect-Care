@@ -61,6 +61,21 @@ class MedicalStaff
         redirect('admin/medicalstaff');
     }
 
+    public function activate(string $id): void
+    {
+        $medicalstaffModel = new MedicalStaffModel();
+        $success = $medicalstaffModel->activateMedicalStaff($id);
+
+        if ($success) {
+            echo "Medical Staff activated successfully!";
+            redirect('admin/medicalstaff'); //
+        } else {
+            echo "Failed to activate medical staff!";
+            // Implement appropriate error handling here
+        }
+        redirect('admin/medicalstaff');
+    }
+
         
 }
 

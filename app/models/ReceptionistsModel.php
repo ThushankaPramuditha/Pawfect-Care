@@ -5,7 +5,7 @@ class ReceptionistsModel
     use Model;
 
     protected $table = 'receptionists';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
 
     // public function getAllReceptionists()
@@ -13,10 +13,9 @@ class ReceptionistsModel
     //     return $this->where(['status' => 'active']);
     // }
     public function getAllReceptionists() {
-        $query = "SELECT v.*, u.email 
-                  FROM receptionists AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE u.status = 'active'";
+        $query = "SELECT r.*, u.email , u.status
+                  FROM receptionists AS r
+                  JOIN users AS u ON r.user_id = u.id";
         // $query = "SELECT v.*, u.email 
         //         FROM receptionists AS v
         //         JOIN users AS u ON v.user_id = u.id";
@@ -32,10 +31,10 @@ class ReceptionistsModel
     // }
 
     public function getReceptionistById($id) {
-        $query = "SELECT v.*, u.email 
-                  FROM receptionists AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE v.id = :id";
+        $query = "SELECT r.*, u.email , u.status
+                  FROM receptionists AS r
+                  JOIN users AS u ON r.user_id = u.id
+                  WHERE r.id = :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
@@ -107,6 +106,18 @@ class ReceptionistsModel
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
             return $userModel->updateUserStatus($staffData->user_id, 'inactive');
+        }
+
+        return false;
+    }
+    public function activateReceptionist($id)
+    {
+        // Get the user_id associated with the receptionist
+        $staffData = $this->getReceptionistById($id);
+        if ($staffData && isset($staffData->user_id)) {
+            $userModel = new UserModel();
+            // Call a method in the UserModel to update the status
+            return $userModel->updateUserStatus($staffData->user_id, 'active');
         }
 
         return false;

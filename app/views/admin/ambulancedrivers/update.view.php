@@ -1,4 +1,4 @@
-<form id="updated-form" action="<?php echo ROOT?>/Admin/MedicalStaff/update/<?php echo $medstaff->id; ?>" method="post">
+<form id="updated-form" action="<?php echo ROOT?>/Admin/AmbulanceDriver/update/<?php echo $medstaff->id; ?>" method="post">
     <div class="column">
         <label for="update-name">Full Name:</label>
         <input type="text" id="update-name" name="name" value="<?php echo $medstaff->name;?>">

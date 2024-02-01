@@ -61,6 +61,22 @@ class Receptionists
         redirect('admin/receptionists');
     }
 
+    public function activate(string $id): void
+    {
+        $receptionistsModel = new ReceptionistsModel();
+        $success = $receptionistsModel->activateReceptionist($id);
+
+        if ($success) {
+            echo "Receptionist activated successfully!";
+            redirect('admin/receptionists'); //
+        } else {
+            echo "Failed to activate Receptionist!";
+            // Implement appropriate error handling here
+        }
+        redirect('admin/receptionists');
+    }
+    
+
         
 }
 

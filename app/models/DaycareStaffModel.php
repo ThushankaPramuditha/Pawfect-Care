@@ -5,7 +5,7 @@ class DaycareStaffModel
     use Model;
 
     protected $table = 'daycarestaff';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
    
 
@@ -14,7 +14,7 @@ class DaycareStaffModel
     //     return $this->where(['status' => 'active']);
     // }
     public function getAllDaycareStaff() {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email ,u.status
                   FROM daycarestaff AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE u.status = 'active'";
@@ -33,7 +33,7 @@ class DaycareStaffModel
     // }
 
     public function getDaycareStaffById($id) {
-        $query = "SELECT v.*, u.email 
+        $query = "SELECT v.*, u.email ,u.status
                   FROM daycarestaff AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE v.id = :id";
@@ -108,6 +108,18 @@ class DaycareStaffModel
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
             return $userModel->updateUserStatus($staffData->user_id, 'inactive');
+        }
+
+        return false;
+    }
+    public function activateDaycareStaff($id)
+    {
+        // Get the user_id associated with the daycare staff
+        $staffData = $this->getDaycareStaffById($id);
+        if ($staffData && isset($staffData->user_id)) {
+            $userModel = new UserModel();
+            // Call a method in the UserModel to update the status
+            return $userModel->updateUserStatus($staffData->user_id, 'active');
         }
 
         return false;

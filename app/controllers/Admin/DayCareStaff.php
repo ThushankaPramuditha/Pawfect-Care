@@ -61,6 +61,21 @@ class DaycareStaff
         redirect('admin/daycarestaff');
     }
 
+    public function activate(string $id): void
+    {
+        $daycarestaffModel = new DaycareStaffModel();
+        $success = $daycarestaffModel->activateDaycareStaff($id);
+
+        if ($success) {
+            echo "DaycareStaff activated successfully!";
+            redirect('admin/daycarestaff'); //
+        } else {
+            echo "Failed to activate daycarestaff!";
+            // Implement appropriate error handling here
+        }
+        redirect('admin/daycarestaff');
+    }
+
         
 }
 

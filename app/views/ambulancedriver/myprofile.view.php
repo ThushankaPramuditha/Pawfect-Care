@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
 </head>
 
-<body>
-    <div>
-        <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
-        <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
+
+<body style="margin: 0; display: flex;">
+   
+    <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>
+
+    <div style="flex: 1; display: flex; flex-direction: column; margin-left: 250px; padding: 10px 10px 100px 100px;">
             <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+
                     <h1>My Profile</h1> 
                     <div class= "pair"><div class = "key">Staff ID:</div>  <div class = "value">12345</div></div>
                     <div class= "pair"><div class = "key">Full Name:</div> <div class = "value">John Doe</div></div>

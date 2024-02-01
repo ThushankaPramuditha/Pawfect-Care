@@ -6,12 +6,14 @@
     <title>Ride Details</title>
 </head>
 
-<body>
+<body style="margin: 0; display: flex;">
 
     <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
-    <div style = "margin-left: 230px">
+    <div style="flex: 1; display: flex; flex-direction: column; margin-left: 20px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
+      <div style="margin-top: 20px; margin-bottom: 20px;">
         <?php include '../app/views/components/tables/ambulancebookingtable.php'; ?> 
+      </div>
     </div>
 
 </body>

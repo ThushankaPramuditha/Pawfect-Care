@@ -1,9 +1,10 @@
+
 /* tables */
+
 .tablecontainer {
-    width: 80%;
-    overflow-x: auto;
+    width: 100%;
+    overflow-x: scroll;
     margin-top: 20px;
-    
 }
 
 table {
@@ -23,72 +24,36 @@ th, td {
     padding-top: 10px;
     text-align: left;
     background-color: white;
-    
-    
+
 }
 
 th {
-    background-color: #ccc;
-    color:rgb(0, 0, 0);
-    font-weight: normal;
-    
-}
-
-tr{
-    border: 1px solid #ccc;
-}
-
-.action-buttons {
-    display: flex;
-    justify-content: space-between; 
-    
-}
-.add-button {
-    background-color: #4CAF50;
+    background-color: #6a3879; /* Gradient background for headers */
     color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
-.remove-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+tr {
+    border-bottom: 1px solid #ddd;
 }
-.t-button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    cursor: pointer;
-    background-color: white;
+
+tbody tr:hover {
+    background-color: rgba(132, 139, 200, 0.18) /* Light background color on hover */
 }
 
 .edit-action-buttons button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 5px;
+    background-color:#cc75e6;
+    color: white;
     border: none;
-    cursor: pointer;
-    
-}
-.delete-action-buttons button {
-    padding: 5px 10px;
-    margin-right: 5px;
+    padding: 4px 9px;
     border-radius: 5px;
-    border: none;
     cursor: pointer;
-  
+    transition: background-color 0.3s;
 }
 
 .edit-action-buttons button:hover {
     background-color: #6a3879; /* Theme color on hover */
     color: #fff; /* Text color on hover */
+
     
 }
 
@@ -178,43 +143,15 @@ tr{
     cursor: pointer;
 }
 
-.medicalhistory-button {
-    background: #e8deff; /* Purple background color */
-    border: none; /* Remove button border */
-    border-radius: 50px;
-    color: #333; /*  text color */
-    padding: 10px 40px; /* Adjust padding */
-    cursor: pointer; /* Add cursor pointer */
+/* Optional: Style links for better visibility */
+a {
+    color: #faecfe;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-.medicalhistory-action-buttons button:hover {
-    background-color: #9971FE; 
-    
-}
-/* Style the vaccinationhistory button */
-.vaccinationhistory-action-buttons button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    background-color: #e8deff; /* Background color for Deactivate button */
-    color: 333; /* Text color for Deactivate button */
-    cursor: pointer;
-}
-
-.vaccinationhistory-button {
-    background: #e8deff; /* Purple background color */
-    border: none; /* Remove button border */
-    border-radius: 50px;
-    color: #333; /*  text color */
-    padding: 10px 40px; /* Adjust padding */
-    cursor: pointer; /* Add cursor pointer */
-}
-
-.vaccinationhistory-action-buttons button:hover {
-    background-color: #9971FE; 
-    
+a:hover {
+    color:#9e4db7; /* Darker shade on hover */
 }
 
 a {
@@ -399,3 +336,4 @@ a {
     pointer-events: none;
     opacity: 0.3;
 }
+

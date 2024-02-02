@@ -10,14 +10,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         :root{
-    --color-primary: #6C9BCF;
+    --color-primary:#CF9FFF;
     --color-danger: #FF0060;
     --color-success: #1B9C85;
     --color-warning: #F7D060;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
     --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
+    --color-light: #E6E6FA;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
@@ -158,6 +158,7 @@ aside .sidebar{
     position: relative;
     top: 1.5rem;
     transition: all 0.3s ease;
+    width: 230px;
 }
 
 aside .sidebar:hover{
@@ -223,6 +224,7 @@ aside .sidebar .message-count{
 
 main{
     margin-top: 1.4rem;
+    margin-left: 100px;
 }
 
 main .analyse{
@@ -356,11 +358,13 @@ main .recent-orders table{
     box-shadow: var(--box-shadow);
     border-radius: var(--card-border-radius);
     transition: all 0.3s ease;
-}
+}    
 
 main .recent-orders table:hover{
     box-shadow: none;
 }
+
+main .recent-orders table
 
 main table tbody td{
     height: 2.8rem;
@@ -782,6 +786,7 @@ main table tbody tr td:first-child {
             </div>
          </aside>
         <!-- Main Content -->
+
         <main>
             <h1>Analytics</h1>
             <!-- Analyses -->
@@ -789,7 +794,7 @@ main table tbody tr td:first-child {
                 <div class="sales">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Daycare Bookings</h3>
+                            <h3 >Daycare Bookings</h3>
                             <h1 style="text-align: center;">16</h1>
                         </div>
                     </div>
@@ -798,7 +803,7 @@ main table tbody tr td:first-child {
                 <div class="visits">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Appointment Bookings</h3>
+                            <h3>Appointment Bookings</h3>
                             <h1 style="text-align: center;">24</h1>
                         </div>
                     </div>
@@ -807,7 +812,7 @@ main table tbody tr td:first-child {
                 <div class="searches">
                     <div class="status">
                         <div class="info">
-                            <h3 class="text-align: center;">Transport Bookings</h3>
+                            <h3 >Transport Bookings</h3>
                             <h1 style="text-align: center;">12</h1>
                         </div>
                     </div>
@@ -846,8 +851,7 @@ main table tbody tr td:first-child {
 </div>
 
             <!-- End of New Users Section -->
-
-<?php
+            <?php
 // Assuming you have a database connection established
 $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
 
@@ -862,34 +866,38 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="recent-orders">
     <h2>Recent Appointments</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Patient No</th>
-                <th>Pet ID</th>
-                <th>Pet Name</th>
-                <th>Pet Owner</th>
-                <th>Contact Number</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($appointments as $appointment) {
-                echo "<tr>";
-                echo "<td>".$appointment['patient_no']."</td>";
-                echo "<td>".$appointment['pet_id']."</td>";
-                echo "<td>".$appointment['pet_name']."</td>";
-                echo "<td>".$appointment['pet_owner_name']."</td>";
-                echo "<td>".$appointment['contact_no']."</td>";
-                echo "<td>".$appointment['date']."</td>";
-                echo "<td><a href='".ROOT."receptionist/appointments/".$appointment['id']."'>View</a></td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient No</th>
+                    <th>Pet ID</th>
+                    <th>Pet Name</th>
+                    <th>Pet Owner</th>
+                    <th>Contact Number</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+            
+                foreach ($appointments as $appointment) {
+                        echo "<tr>";
+                        echo "<td>".$appointment['patient_no']."</td>";
+                        echo "<td>".$appointment['pet_id']."</td>";
+                        echo "<td>".$appointment['pet_name']."</td>";
+                        echo "<td>".$appointment['pet_owner_name']."</td>";
+                        echo "<td>".$appointment['contact_no']."</td>";
+                        echo "<td>".$appointment['date']."</td>";
+                        echo "<td><a href='".ROOT."receptionist/appointments/".$appointment['id']."'>View</a></td>";
+                        echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+
             <!-- End of Recent Orders -->
 
         </main>
@@ -911,7 +919,9 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <small class="text-muted">Receptionist</small>
                     </div>
                     <div class="profile-photo">
+                    <!-- <a href="<?php echo ROOT; ?>receptionist/myprofile"> -->
                     <img src="<?=ROOT?>/assets/images/petowner.png">
+                    
                     </div>
                 </div>
 
@@ -970,14 +980,14 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-            <div class="notification add-reminder">
-             <div>
+            <!-- <div class="notification add-reminder">
+              <div>
                 <span class="material-icons-sharp">
                     arrow_forward
                 </span>
                 <h3>View More</h3>
-            </div>
-        </div>
+             </div>
+        </div> -->
 
             </div>
 

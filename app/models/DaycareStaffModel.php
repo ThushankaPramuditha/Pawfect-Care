@@ -7,36 +7,21 @@ class DaycareStaffModel
     protected $table = 'daycarestaff';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
-   
-
-    // public function getAllDaycareStaff()
-    // {
-    //     return $this->where(['status' => 'active']);
-    // }
     public function getAllDaycareStaff() {
-        $query = "SELECT v.*, u.email ,u.status
-                  FROM daycarestaff AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE u.status = 'active'";
-        // $query = "SELECT v.*, u.email 
-        //         FROM daycarestaff AS v
-        //         JOIN users AS u ON v.user_id = u.id";
+        $query = "SELECT d.*, u.email ,u.status
+                  FROM daycarestaff AS d
+                  JOIN users AS u ON d.user_id = u.id";
         
 
         return $this->query($query);
         
     }
 
-    // public function getDaycareStaffById($id)
-    // {
-    //     return $this->first(['id' => $id]);
-    // }
-
     public function getDaycareStaffById($id) {
-        $query = "SELECT v.*, u.email ,u.status
-                  FROM daycarestaff AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE v.id = :id";
+        $query = "SELECT d.*, u.email ,u.status
+                  FROM daycarestaff AS d
+                  JOIN users AS u ON d.user_id = u.id
+                  WHERE d.id = :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);

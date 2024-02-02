@@ -87,7 +87,7 @@
     <div class="modal-form" id="deactivate-modal">
         <div class="modal-content-delete">
             <h1>Deactivate Medical Staff</h1>
-            <p>The user data will be removed from the view</p>
+            <p>The user will be deactivated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="deactivate-staff" href=""><button class="d-button">Deactivate</button></a>
@@ -99,7 +99,7 @@
     <div class="modal-form" id="activate-modal">
         <div class="modal-content-delete">
             <h1>Activate Medical Staff</h1>
-            <p>The user data will be activated</p>
+            <p>The user will be activated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="activate-staff" href=""><button class="d-button">Activate</button></a>

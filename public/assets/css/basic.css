@@ -47,10 +47,10 @@ h1 {
 }
 
 button[type="submit"] {
-    background-color: #6a3879;
+    background-color: #6a387944;
+    border:none;
     width: fit-content;
-    color: rgb(255, 255, 255);
-    border: none;
+    color:#6a3879;
     border-radius: 5px;
     padding: 10px 20px;
     margin-top: 10px;
@@ -62,7 +62,9 @@ button[type="submit"] {
 
 
 button[type="submit"]:hover {
-    background-color: #4b2756;
+    
+    background-color: #6a3879;
+    color: #fff;
 }
 
 /* Style for the image container */

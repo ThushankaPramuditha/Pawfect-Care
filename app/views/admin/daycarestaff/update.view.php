@@ -9,7 +9,7 @@
         <div id="error-update-address" class="error-message"></div>
 
         <label for="update-contact_no">Contact Number:</label>
-        <input type="tel" id="update-contact_no" name="contact" value="<?php echo $daycarestaff->contact;?>" pattern="[0-9]{10}">
+        <input type="tel" id="update-contact_no" name="contact" value="<?php echo $daycarestaff->contact;?>">
         <div id="error-update-contact" class="error-message"></div>
 
     </div>

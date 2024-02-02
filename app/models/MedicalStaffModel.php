@@ -7,31 +7,20 @@ class MedicalStaffModel
     protected $table = 'medstaff';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
-    //CHECK THIS ADD VET PART
-
-    // public function getAllMedicalstaff()
-    // {
-    //     return $this->where(['status' => 'active']);
-    // }
     public function getAllMedicalstaff() {
-        $query = "SELECT v.*, u.email ,u.status
-                  FROM medstaff AS v
-                  JOIN users AS u ON v.user_id = u.id";
+        $query = "SELECT m.*, u.email ,u.status
+                  FROM medstaff AS m
+                  JOIN users AS u ON m.user_id = u.id";
       
         return $this->query($query);
         
     }
 
-    // public function getMedicalstaffById($id)
-    // {
-    //     return $this->first(['id' => $id]);
-    // }
-
     public function getMedicalstaffById($id) {
-        $query = "SELECT v.*, u.email ,u.status
-                  FROM medstaff AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE v.id = :id";
+        $query = "SELECT m.*, u.email ,u.status
+                  FROM medstaff AS m
+                  JOIN users AS u ON m.user_id = u.id
+                  WHERE m.id = :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);

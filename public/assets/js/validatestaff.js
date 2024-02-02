@@ -64,6 +64,17 @@ function validateQualifications() {
     }
 }
 
+function validateLicense() {
+    var license = document.getElementById('license').value;
+    if (!license) {
+        document.getElementById('error-license').textContent = "* License Number is required.";
+        return false;
+    } else {
+        document.getElementById('error-license').textContent = "";
+        return true;
+    }
+}
+
 function validatePassword() {
     var password = document.getElementById('password').value;
     if (!password.match(/^(?=.*[\W]).{6,}$/)) {
@@ -135,3 +146,13 @@ function validateUpdateQualifications() {
     }
 }
 
+function validateUpdateLicense() {
+    var license = document.getElementById('update-license').value;
+    if (!license) {
+        document.getElementById('error-update-license').textContent = "* License Number is required.";
+        return false;
+    } else {
+        document.getElementById('error-update-license').textContent = "";
+        return true;
+    }
+}

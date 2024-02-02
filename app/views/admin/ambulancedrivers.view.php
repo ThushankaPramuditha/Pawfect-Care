@@ -36,7 +36,7 @@
                         <div id="error-address" class="error-message"></div>
 
                         <label for="contact_no">Contact Number:</label>
-                        <input type="tel" id="contact_no" name="contact" pattern="[0-9]{10}">
+                        <input type="tel" id="contact_no" name="contact" >
                         <div id="error-contact" class="error-message"></div>
                     
                         <label for="nic">NIC:</label>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="column">
                         <label for="nic">License Number:</label>
-                        <input type="text" id="license" name="license" required><br>
+                        <input type="text" id="license" name="license" ><br>
                         <div id="error-license" class="error-message"></div>
 
                         <label for="password">Password:</label>
@@ -87,7 +87,7 @@
     <div class="modal-form" id="deactivate-modal">
         <div class="modal-content-delete">
             <h1>Deactivate Ambulance Driver</h1>
-            <p>The user data will be removed from the view</p>
+            <p>The user will be deactivated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="deactivate-staff" href=""><button class="d-button">Deactivate</button></a>
@@ -99,7 +99,7 @@
     <div class="modal-form" id="activate-modal">
         <div class="modal-content-delete">
             <h1>Activate Ambulance Driver</h1>
-            <p>The user data will be activated</p>
+            <p>The user will be activated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="activate-staff" href=""><button class="d-button">Activate</button></a>
@@ -130,7 +130,7 @@
             function openUpdateModal(id) {
                 console.log(id);
                 updateModal.style.display = "block";
-                $.get(`<?php echo ROOT?>/admin/AmbulanceDrivers/viewAmbulanceDrivers/${id}`, function(data) {
+                $.get(`<?php echo ROOT?>/admin/AmbulanceDrivers/viewAmbulanceDriver/${id}`, function(data) {
                         // Update the modal content with the fetched data
                         $("#updateambulancedriver").html(data);
                     });
@@ -224,8 +224,8 @@
         document.getElementById('contact_no').addEventListener('focus', validateAddress);
         document.getElementById('nic').addEventListener('focus', validateContactNumber);
         document.getElementById('email').addEventListener('focus', validateNIC);
-        document.getElementById('qualifications').addEventListener('focus', validateEmail);
-        document.getElementById('password').addEventListener('focus', validateQualifications);
+        document.getElementById('license').addEventListener('focus', validateEmail);
+        document.getElementById('password').addEventListener('focus', validateLicense);
         document.getElementById("confirm_password").addEventListener('focus', validatePassword);
         document.getElementById("confirm_password").addEventListener('input', validateConfirmPassword);
 
@@ -265,7 +265,7 @@
             document.getElementById('update-name').addEventListener('input', validateUpdateName);
             document.getElementById('update-address').addEventListener('input', validateUpdateAddress);
             document.getElementById('update-contact_no').addEventListener('input', validateUpdateContactNumber);
-            document.getElementById('update-qualifications').addEventListener('input', validateUpdateQualifications);
+            document.getElementById('update-license').addEventListener('input', validateUpdateLicense);
             
             document.getElementById("updated-form").addEventListener('submit', function(event) {
                 console.log("insideee");
@@ -284,7 +284,7 @@
             isValid = validateUpdateName() && isValid;
             isValid = validateUpdateAddress() && isValid;
             isValid = validateUpdateContactNumber() && isValid;
-            isValid = validateUpdateQualifications() && isValid;
+            isValid = validateUpdateLicense() && isValid;
 
             if (!isValid) {
                 Swal.fire({

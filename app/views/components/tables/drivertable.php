@@ -23,8 +23,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php if (is_array($ambulancedriver) && !empty($ambulancedriver)): ?>
-                <?php foreach ($ambulancedriver as $driver): ?>
+            <?php if (is_array($ambulancedrivers) && !empty($ambulancedrivers)): ?>
+                <?php foreach ($ambulancedrivers as $driver): ?>
                     <tr key = "<?php echo $driver->id; ?>" >
                         <td><?= htmlspecialchars($driver->id); ?></td>
                         <td><?= htmlspecialchars($driver->name); ?></td>
@@ -32,7 +32,7 @@
                         <td><?= htmlspecialchars($driver->contact); ?></td>
                         <td><?= htmlspecialchars($driver->nic); ?></td>
                         <td><?= htmlspecialchars($driver->email); ?></td>
-                        <td><?= htmlspecialchars($driver->qualifications); ?></td>
+                        <td><?= htmlspecialchars($driver->license); ?></td>
                         <td><?= htmlspecialchars($driver->status); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
@@ -46,7 +46,8 @@
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr>ambulance drivers found.</td>
+                <tr>
+                    <td colspan="9">No ambulance drivers found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

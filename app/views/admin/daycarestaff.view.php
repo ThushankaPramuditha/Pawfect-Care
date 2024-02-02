@@ -36,7 +36,7 @@
                     <div id="error-address" class="error-message"></div>
 
                     <label for="contact_no">Contact Number:</label>
-                    <input type="tel" id="contact_no" name="contact" pattern="[0-9]{10}">
+                    <input type="tel" id="contact_no" name="contact" >
                     <div id="error-contact" class="error-message"></div>
                 
                     <label for="nic">NIC:</label>
@@ -74,7 +74,7 @@
     <div class="modal-form" id="update-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h1>Update Daycare Staff</h1>
+            <h1>Update Staff</h1>
                 <div id="updateveterinarian" class="form-container">
                     
                 </div>
@@ -86,7 +86,7 @@
     <div class="modal-form" id="deactivate-modal">
         <div class="modal-content-delete">
             <h1>Deactivate Daycare Staff</h1>
-            <p>The user data will be removed from the view</p>
+            <p>The user will be deactivated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="deactivate-staff" href=""><button class="d-button">Deactivate</button></a>

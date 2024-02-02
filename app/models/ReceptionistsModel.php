@@ -7,28 +7,15 @@ class ReceptionistsModel
     protected $table = 'receptionists';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id','status'];
 
-
-    // public function getAllReceptionists()
-    // {
-    //     return $this->where(['status' => 'active']);
-    // }
     public function getAllReceptionists() {
         $query = "SELECT r.*, u.email , u.status
                   FROM receptionists AS r
                   JOIN users AS u ON r.user_id = u.id";
-        // $query = "SELECT v.*, u.email 
-        //         FROM receptionists AS v
-        //         JOIN users AS u ON v.user_id = u.id";
         
 
         return $this->query($query);
         
     }
-
-    // public function getReceptionistById($id)
-    // {
-    //     return $this->first(['id' => $id]);
-    // }
 
     public function getReceptionistById($id) {
         $query = "SELECT r.*, u.email , u.status

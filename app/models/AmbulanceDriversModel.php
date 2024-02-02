@@ -1,60 +1,60 @@
 <?php
 
-class VeterinariansModel
+class AmbulanceDriversModel
 {
     use Model;
 
-    protected $table = 'veterinarians';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status'];
+    protected $table = 'ambulancedrivers';
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'license', 'user_id','status'];
 
-    public function getAllVeterinarians() {
-        $query = "SELECT v.*, u.email ,u.status
-                  FROM veterinarians AS v
-                  JOIN users AS u ON v.user_id = u.id";
-  
+
+    public function getAllAmbulanceDrivers() {
+        $query = "SELECT a.*, u.email ,u.status
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id";
+
         return $this->query($query);
         
     }
 
-    public function getVeterinarianById($id) {
-        $query = "SELECT v.*, u.email, u.status
-                  FROM veterinarians AS v
-                  JOIN users AS u ON v.user_id = u.id
-                  WHERE v.id = :id";
+    public function getAmbulanceDriverById($id) {
+        $query = "SELECT a.*, u.email ,u.status
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id
+                  WHERE a.id = :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
     }
 
-    public function addVeterinarian($data)
+    public function addAmbulanceDriver($data)
     {
         $userModel = new UserModel;
         
 
-        // Register the veterinarian as a user and directly assign the user_id to $data array
+        // Register the daycare staff as a user and directly assign the user_id to $data array
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'veterinarian', 
+            'user_type' => 'ambulance-driver', 
         ]);
 
         if ($data['user_id']) {
-            // Prepare veterinarian-specific data
+            // Prepare daycare staff-specific data
             $staffData = [
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
                 'address' => $data['address'],
                 'contact' => $data['contact'],
                 'nic' => $data['nic'],
-                'qualifications' => $data['qualifications'],
+                'license' => $data['license'],
             ];
 
             return $this->insert($staffData);
             
 
-            // Attempt to insert veterinarian-specific data into the veterinarians table
             if (!($this->insert($staffData))) {
-                $this->errors[] = 'Failed to insert veterinarian data';
+                $this->errors[] = 'Failed to insert driver data';
                 return false;
             }
         } else {
@@ -63,7 +63,7 @@ class VeterinariansModel
         }
     }
 
-    public function updateVeterinarian($id, array $data)
+    public function updateAmbulanceDriver($id, array $data)
     {
         // alowed column
         $data = array_filter($data, function ($key) {
@@ -75,19 +75,19 @@ class VeterinariansModel
 
     
 
-    public function deleteVeterinarian($id)
+    public function deleteAmbulanceDriver($id)
     {
         return $this->delete($id);
     }
 
-    // public function deactivateVeterinarian($id)
+    // public function deactivateAmbulanceDriver($id)
     // {
     //     return $this->update($id, ['status' => 'inactive']);
     // }
-    public function deactivateVeterinarian($id)
+    public function deactivateAmbulanceDriver($id)
     {
-        // Get the user_id associated with the veterinarian
-        $staffData = $this->getVeterinarianById($id);
+        // Get the user_id associated with the daycare staff
+        $staffData = $this->getAmbulanceDriverById($id);
         if ($staffData && isset($staffData->user_id)) {
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
@@ -96,10 +96,10 @@ class VeterinariansModel
 
         return false;
     }
-    public function activateVeterinarian($id)
+    public function activateAmbulanceDriver($id)
     {
-        // Get the user_id associated with the veterinarian
-        $staffData = $this->getVeterinarianById($id);
+        // Get the user_id associated with the daycare staff
+        $staffData = $this->getAmbulanceDriverById($id);
         if ($staffData && isset($staffData->user_id)) {
             $userModel = new UserModel();
             // Call a method in the UserModel to update the status
@@ -139,8 +139,8 @@ class VeterinariansModel
             $this->errors['email'] = "Email is required";
         }
     
-        if (empty($data['qualifications'])) {
-            $this->errors['qualifications'] = "Qualifications are required";
+        if (empty($data['license'])) {
+            $this->errors['license'] = "License number is required";
         }
 
         return empty($this->errors);

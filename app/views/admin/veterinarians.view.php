@@ -81,6 +81,8 @@
         </div>
     </div>
 
+   
+
     <!-- check this -->
     <!-- Deactivate veterinarian Modal -->
     <div class="modal-form" id="deactivate-modal">
@@ -99,7 +101,7 @@
     <div class="modal-form" id="activate-modal">
         <div class="modal-content-delete">
             <h1>Activate Veterinarian</h1>
-            <p>The user data will be activated</p>
+            <p>The user will be activated</p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
                 <a id="activate-staff" href=""><button class="d-button">Activate</button></a>

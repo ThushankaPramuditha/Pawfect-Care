@@ -19,6 +19,8 @@ body {
     padding: 10px ;
     
 }
+
+/*search bar*/
 .search-bar {
     font-size: 16px;
     background: #f1f1f1;
@@ -47,18 +49,24 @@ body {
     width: fit-content;
 
 }
-
+/*buttons*/
 .add-new-button {
 
-    background-color: #6a3879;
+    background-color: #6a387944;
+    border:none;
     width: fit-content;
-    color: rgb(255, 255, 255);
-    border: none;
+    color:#6a3879;
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: #6a3879;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+}
+.add-new-button:hover {
+    background-color: #6a3879;
+    color: #fff;
 }
 
 a {
@@ -66,6 +74,7 @@ a {
     color: inherit;
 }
 
+/*-------------------modal form-------------------*/
 .modal-form {
     display: flex;
     height: 100vh; /* 100% of the viewport height */
@@ -145,16 +154,17 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 
+/* buttons */
 .modal-form .modal-content button {
     margin: 5px;
 }
 
 .modal-form .modal-content button[type="submit"] {
     display: block;
-    background-color: #6a3879;
+    background-color: #6a387944;
+    border:none;
     width: fit-content;
-    color: #fff;
-    border: none;
+    color:#6a3879;
     border-radius: 5px;
     padding: 10px 20px;
     margin-top: 10px;
@@ -162,11 +172,13 @@ input[type="date"]{
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 
 }
 
 .modal-form .modal-content button[type="submit"]:hover {
-    background-color: #4b2756;
+    background-color: #6a3879;
+    color: #fff;
 }
 
 .modal-form .modal-content input[readonly] {
@@ -213,6 +225,7 @@ input[type="date"]{
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
     
 }
 
@@ -221,23 +234,8 @@ input[type="date"]{
     color: #fafbf6;
 }
 
-.reject {
-    display: block;
-    background-color: #6a3879;
-    width: fit-content;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 
-}
 
-.reject:hover {
-    background-color: #4b2756;
-}
 .modal-form a {
     text-decoration: none;
     color: inherit;
@@ -288,4 +286,46 @@ input[type="date"]{
     width: 60%;
     align-items: center; /* Center vertically */
     justify-content: space-between;
+}
+.reject {
+    display: block;
+    background-color: #6a387944;
+    border:none;
+    width: fit-content;
+    color:#6a3879;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+
+}
+
+.reject:hover {
+    background-color: #6a3879;
+    color: #fff;
+}
+
+/*deactivate and activate buttons*/
+
+.d-button {
+    display: block;
+    background-color: #6a387944;
+    border:none;
+    width: fit-content;
+    color:#6a3879;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+
+
+}
+
+.d-button:hover {
+    background-color: #6a3879;
+    color: #fff;
 }

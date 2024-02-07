@@ -10,8 +10,6 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #000000;
-    border-color: #000000;
     overflow-x: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 
@@ -41,8 +39,8 @@ tbody tr:hover {
 }
 
 .edit-action-buttons button {
-    background-color:#cc75e6;
-    color: white;
+    background-color:#6a387935;
+    color: #6a3879; /* Text color */
     border: none;
     padding: 4px 9px;
     border-radius: 5px;
@@ -57,8 +55,18 @@ tbody tr:hover {
     
 }
 
+.delete-action-buttons button { 
+    background-color: #ff000023; /* Background color for Deactivate button */
+    color: #ff0000; /* Text color for Deactivate button */
+    border: none;
+    padding: 4px 9px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .delete-action-buttons button:hover {
-    background-color: #6a3879; /* Theme color on hover */
+    background-color: #ff0000; 
     color: #fff; /* Text color on hover */
 }
 

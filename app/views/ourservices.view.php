@@ -14,7 +14,9 @@
         box-sizing:border-box;
         font-family:'Poppins', sans-serif;
         }
-        body{ background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        body{
+        background-color: #f4f4f4; 
+        /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); */
         background-size:cover;
         background-position:right;
         background-attachment:fixed;
@@ -148,7 +150,7 @@ https://img.freepik.com/premium-photo/beautiful-young-veterinarian-with-dog-whit
 
 <body>
     <?php include 'navbar.php'; ?>
-      <h2 style="text-align:center; color:white; padding-top:20px; font-size:60px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
+      <h2 style="text-align:center; color:black; padding-top:20px; font-size:60px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
     <div class="container">
           <div class="card">
                 <div class="card-image">

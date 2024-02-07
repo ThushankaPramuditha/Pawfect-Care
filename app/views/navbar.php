@@ -35,7 +35,7 @@
 
 .nav-links a {
     text-decoration: none;
-    color: white;
+    color: blueviolet;
 }
 
 .nav-links a:hover {

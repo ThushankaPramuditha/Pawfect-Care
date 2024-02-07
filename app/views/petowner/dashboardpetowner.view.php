@@ -366,7 +366,7 @@
      
 
     </style>
-
+  <?php include '../views/navbar.php'; ?>
    
 </head>
    

@@ -41,6 +41,10 @@
     color: #fff; /* Text color on hover */
 }
 
+.nav-item:active {
+    background-color: #4b2756; /* Theme color for active item */
+    color: #fff; /* Text color for active item */
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;

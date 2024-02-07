@@ -15,7 +15,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background-color: #f4f4f4;
+      background-color: gradient;
       background-size: 600% 100%;
       animation: gradientAnimation 10s infinite;
       /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
@@ -362,7 +362,7 @@
           display: flex;
           margin-bottom: 20px;
         }
-
+       
        
     </style>
 
@@ -387,6 +387,8 @@
             <img src="<?php ROOT?>assets/images/loginphoto2.png" alt="Login Photo" class="photo" style=" width: 80%; padding: 20px; border-radius:20px; margin-top:-5px; margin-left:50px;">
             </div>
         </div>
+     
+
 
     <div class="container">
          <div class="services-section">
@@ -490,6 +492,9 @@
   <div class="card4">
   <div class="card4-descript">
     <p class="text-body" style="font-weight:bold">Easy Appointment Booking</p>
+     <div>
+       
+     </div>
   </div>
     <div class="card4-description">
       <p class="text-body">Say goodbye to long phone calls and appointment mix-ups. With an account, you can effortlessly schedule vet visits, daycare, and transportation services online, anytime, anywhere.</p>

@@ -13,8 +13,11 @@
         padding:0;
         box-sizing:border-box;
         font-family:'Poppins', sans-serif;
+
         }
-        body{ background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+         body{
+        background-color: #f4f4f4; 
+        /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
         background-size:cover;
         background-position:right;
         background-attachment:fixed;
@@ -37,7 +40,7 @@
         overflow: hidden;
         margin: 20px 0;
         transition: transform 0.3s;
-        color:white;
+        color:black;
         text-align: center;
         }
 
@@ -61,7 +64,7 @@
         height:150px;
         width:500px;
         background-color:purple;
-        color:#fff;
+        color:white;
         padding:20px,40px,0,20px;
     
         }
@@ -83,12 +86,12 @@
 
         <h2 style="font-family: 'Poppins',sans-serif; font-size:50px; color:purple; font-weight:bolder;">About Us</h2>
         <div class="Aboutus"  >
-        <p style="font-family:'Poppins',sans-serif;  font-size:30px; color:white;">Welcome to Pawfect Care, your trusted partner in pet wellness. Our mission is to provide the highest standard of pet care and to foster a community of pet lovers dedicated to their furry companions' well-being.</p>
+        <p style="font-family:'Poppins',sans-serif;  font-size:30px; color:black;">Welcome to Pawfect Care, your trusted partner in pet wellness. Our mission is to provide the highest standard of pet care and to foster a community of pet lovers dedicated to their furry companions' well-being.</p>
         </div>
 
         <h2 style="font-family: 'Poppins',sans-serif;font-size:50px; color:purple; font-weight:bolder;">Our commitment</h2>
         <div class="Ourcommitment">
-        <p style="font-family: 'Poppins', sans-serif; font-size:30px; color:white;">At Pawfect Care, we're not just a pet care center; we're a family of pet enthusiasts dedicated to your pets' health. Our team of passionate veterinarians and pet care experts work tirelessly to ensure every pet receives personalized care, and we're committed to making pet care more accessible and convenient.</p>
+        <p style="font-family: 'Poppins', sans-serif; font-size:30px; color:black;">At Pawfect Care, we're not just a pet care center; we're a family of pet enthusiasts dedicated to your pets' health. Our team of passionate veterinarians and pet care experts work tirelessly to ensure every pet receives personalized care, and we're committed to making pet care more accessible and convenient.</p>
         </div>
 
     <div class="Vetinfo"style="display:flex; flex-direction:row; margin-top:200px;">

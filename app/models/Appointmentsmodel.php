@@ -4,8 +4,8 @@ class AppointmentsModel
 {
     use Model;
 
-    protected $table = 'Appointments';
-    protected $allowedColumns = ['id','patient_no','pet_id','pet_name','pet_owner_name','contact_no','date'];
+    protected $table = 'appointments';
+    protected $allowedColumns = ['patient_no','pet_id','pet_name','pet_owner_name','contact_no','date'];
 
     public function getAllAppointments()
     {
@@ -32,23 +32,10 @@ class AppointmentsModel
         return $this->update($id, $data, 'id');
     }
 
-    // public function updateService($id, $data)
-    // {
-    //     return $this->update($id, $data);
-    // }
-
-    // public function deleteAppointment($id)
-    // {
-    //     return $this->delete($id);
-    // }
 
     public function validate($data)
     {
         $this->errors = [];
-
-        if (empty($data['id'])) {
-            $this->errors['id'] = "Appointment ID is required";
-        }
 
         if (empty($data['patient_no'])) {
             $this->errors['patient_no'] = "Patient No. is required";
@@ -72,10 +59,6 @@ class AppointmentsModel
 
         if (empty($data['date'])) {
             $this->errors['date'] = "Date is required";
-        }
-
-        if (empty($data['time'])) {
-            $this->errors['time'] = "Time is required";
         }
 
 

@@ -822,7 +822,7 @@ main table tbody tr td:first-child {
             <!-- End of Analyses -->
 
             <!-- New Users Section -->
-            <div class="new-users">
+    <div class="new-users">
     <h2>Veterinarians</h2>
     <div class="user-list">
         <?php

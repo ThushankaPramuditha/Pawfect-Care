@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
 </head>
 <body>
-<h1>Edit Pet Details</h1>
+<!-- <h1>Edit Pet Details</h1> -->
     <div class="form-container">
         <form id="edit-pet-details-form">
 
-            <label for="pet-name">Name:</label>
-            <input type="text" id="pet-name" name="pet-name" required><br>
+            <label for="pet_name">Name:</label>
+            <input type="text" id="pet_name" name="pet_name" required><br>
 
-            <label for="date-of-birth">Date of Birth:</label>
-            <input type="date" id="date-of-birth" name="date-of-birth" required><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br>
 
-            <label for="pet-type">Type:</label>
-            <input type="text" id="pet-type" name="pet-type" placeholder="ex: Dog, Cat, Parrot" required><br>
+            <label for="pet_type">Type:</label>
+            <input type="text" id="pet_type" name="pet_type" placeholder="ex: Dog, Cat, Parrot" required><br>
 
             <label for="breed">Breed:</label>
             <input type="text" id="breed" name="breed" required><br>
@@ -30,7 +30,7 @@
             <label for="female">Female</label><br>
             <br>
 
-            <label for="pet-image">Image of Your Pet:</label>
+            <label for="petimage">Image of Your Pet:</label>
             <div class="img-container" id="image-container">
                 <label for="add-image" id="add-image-label" class="image-label">
                     <span>+</span> Add Image

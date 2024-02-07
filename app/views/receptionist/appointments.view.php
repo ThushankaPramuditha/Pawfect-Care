@@ -14,7 +14,7 @@
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
 
     <div style="flex: 1; display: flex; flex-direction: column; margin-left: 30px; padding: 10px 10px 100px 10px;">
-<?php $_SESSION['addnewpath'] = 'addservice' ?>
+<?php $_SESSION['addnewpath'] = 'addappointments' ?>
        
        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
         

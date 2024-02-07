@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 </div>
 
 <body>
-<!-- <h1>Edit Pet Details</h1> -->
+ <h1>Edit Pet Details</h1> 
 
 <div class="container">
 <div class="form-container"> 
@@ -25,5 +25,5 @@
 
 
 </body>
-</html>
+</html> 
 

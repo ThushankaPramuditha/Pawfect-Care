@@ -836,12 +836,9 @@ main table tbody tr td:first-child {
 
         foreach ($veterinarians as $veterinarian) {
             ?>
-            <div class="user" id="vet_<?php echo $veterinarian['vetid']; ?>">
-                <img src="<?=ROOT?>/assets/images/<?php echo $veterinarian['profile_picture']; ?>">
-                <h2><?php echo $veterinarian['veterinarian_name']; ?></h2>
-                <button onclick="toggleAvailability(<?php echo $veterinarian['vetid']; ?>)">
-                    <?php echo ($veterinarian['availability'] == 'available') ? 'Available' : 'Unavailable'; ?>
-                </button>
+            <div class="user" id="vet_<?php echo $veterinarian['id']; ?>">
+                <img src="<?=ROOT?>/assets/images/<?php echo $veterinarian['pfp']; ?>">
+                <h2><?php echo $veterinarian['name']; ?></h2>
             </div>
             <?php
         }

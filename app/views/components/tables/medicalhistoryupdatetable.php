@@ -27,8 +27,6 @@
                 <td>Check temperature and gave medication</td>
                 <td>Paracetamol, antibiotic, anti cold</td>
                 <td>Need to check again after 2 days</td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
             </tr>
         </tbody>
     </table>

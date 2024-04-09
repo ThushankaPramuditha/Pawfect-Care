@@ -1,6 +1,6 @@
 <?php
 
-class VetAppointment
+class SelectVeterinarian
 {
     use Controller;
     
@@ -8,6 +8,6 @@ class VetAppointment
     {
         $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-        $this->view('petowner/vetappointment', $data);
+        $this->view('petowner/selectveterinarian', $data);
     }
 }

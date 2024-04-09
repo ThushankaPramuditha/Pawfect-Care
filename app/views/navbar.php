@@ -6,68 +6,65 @@
     <title>Pawfect Care-Navbar</title>
     <style>
         /* Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background:none;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    font-size:20px;
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px; /* Increased margin */
+            align-items: center;
+            background-color: #fff; /* White background */
+            padding: 20px 50px; /* Increased padding */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added box shadow */
+        }
 
-.navlogo img {
-    width: 150px;
-    height: auto;
-}
+        .navlogo img {
+            width:175px; /* Reduced logo size */
+            height: auto;
+        }
 
-.nav-links {
-    margin-left:50%;
-    list-style: none;
-    padding: 0;
-    display: flex;
-}
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
 
-.nav-links li {
-    margin-right: 20px;
-}
+        .nav-links li {
+            margin-right: 20px;
+        }
 
-.nav-links a {
-    text-decoration: none;
-    color: blueviolet;
-}
+        .nav-links a {
+            text-decoration: none;
+            color: #333; /* Dark grey color */
+            font-size: 18px; /* Increased font size */
+        }
 
-.nav-links a:hover {
-    transition: all 0.3s ease 0s;
-    color: purple;
+        .nav-links a:hover {
+            color: #8A2BE2; /* Purple color on hover */
+        }
 
-}
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
 
+        .user-profile img {
+            width: 40px; /* Increased image size */
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
 
-.user-profile {
-    display: flex;
-    align-items: center;
-}
+        .user-profile span {
+            font-size: 18px; /* Increased font size */
+            color: #333; /* Dark grey color */
+        }
 
-.user-profile img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-/* Adjust this styling as needed */
-.user-profile span {
-    font-size: 16px;
-}
 
     </style>   
 </head>
 <body>
     <div class="navbar">
         <div class="navlogo">
-            <img src="assets/images/logocolor.png" alt="">
+            <img src="<?php echo ROOT?>/assets/images/logocolor.png" alt="">
         </div>
         <ul class="nav-links">
 

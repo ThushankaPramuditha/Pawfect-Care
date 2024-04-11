@@ -1,88 +1,130 @@
 <?php
 
-class PetDetailsModel
+
+class PetdetailsModel
 {
     use Model;
 
-    protected $table = 'petdetails';
-    protected $allowedColumns = ['id', 'pet_id', 'pet_name', 'pet_type', 'breed', 'age', 'weight', 'gender'];
+    protected $table = 'pets';
+    protected $allowedColumns = ['id', 'name','age','breed','species','gender','petowner_id'];
 
-    // Get all pet details
+   /* public function calculateAge($birthday) {
+        // Calculate the difference between the birthday and the current date
+        $diff = date_diff(date_create($birthday), date_create());
+
+        // Return the age
+        return $diff->y . ' years, ' . $diff->m . ' months, ' . $diff->d . ' days';
+    }*/
+
     public function getAllPetDetails()
     {
-        return $this->findall();
+        //$age = $this->calculateAge('birthday');
+        //return $this->findAll();
+        $query = "SELECT
+        p.id,
+        p.name,
+        p.age,
+        p.breed,
+        p.species,
+        p.gender,
+        p.petowner_id,
+        po.name AS owner_name,
+        po.contact
+    
+        FROM
+            pets p
+        JOIN
+            petowners po ON p.petowner_id = po.id";
+
+        return $this->query($query);
     }
 
-    // Get pet details by ID
     public function getPetDetailsById($id)
     {
-        return $this->first(['id' => $id]);
+        //$age = $this->calculateAge('birthday');
+        //return $this->first(['id' => $id]);
+        $query = "SELECT
+        p.id,
+        p.name,
+        p.age,
+        p.breed,
+        p.species,
+        p.gender,
+        p.petowner_id,
+        po.name AS owner_name,
+        po.contact,
+    
+        FROM
+            pets p
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        WHERE p.id= :id";
+
+        return $this->get_row($query, ['id' => $id]);
     }
 
-    // Add pet details
     public function addPetDetails($data)
     {
-        // Validate the data before proceeding
-        if (!$this->validate($data)) {
-            return false;
-        }
-
-        // Insert pet details into the petdetails table
         return $this->insert($data);
     }
 
-    // Update pet details by ID
     public function updatePetDetails($id, array $data)
     {
-        // Validate the data before proceeding
-        if (!$this->validate($data)) {
-            return false;
-        }
-
-        // Allow only the specified columns
+        // alowed column
         $data = array_filter($data, function ($key) {
             return in_array($key, $this->allowedColumns);
         }, ARRAY_FILTER_USE_KEY);
-
-        // Update pet details in the petdetails table
+    
         return $this->update($id, $data, 'id');
     }
 
-    // Delete pet details by ID
-    public function deletePetDetails($id)
+    
+
+    public function deleteVaccinationHistory($id)
+
     {
         return $this->delete($id);
     }
 
-    // Validate pet details data
+
     public function validate($data)
     {
         $this->errors = [];
 
-        if (empty($data['pet_name'])) {
-            $this->errors['pet_name'] = "Pet Name is required";
-        }
 
-        if (empty($data['pet_type'])) {
-            $this->errors['pet_type'] = "Pet Type is required";
+        if (empty($data['id'])) {
+            $this->errors['id'] = "PetID is required";
         }
-
+    
+        if (empty($data['name'])) {
+            $this->errors['name'] = "Name is required";
+        }
+    
+        if (empty($data['age'])) {
+            $this->errors['age'] = "Age is required";
+        }
+    
         if (empty($data['breed'])) {
             $this->errors['breed'] = "Breed is required";
         }
-
-        if (empty($data['dob'])) {
-            $this->errors['dob'] = "Date of Birth is required";
+    
+        if (empty($data['species'])) {
+            $this->errors['species'] = "Species is required";
         }
-
-        if (empty($data['weight'])) {
-            $this->errors['weight'] = "Weight is required";
+    
+        if (empty($data['gender'])) {
+            $this->errors['gender'] = "Gender is required";
         }
-
-        if (empty($data['gender'])){
-             $this->errors['gender']= "Gender is required";
+    
+        if (empty($data['owner_name'])) {
+            $this->errors['owner_name'] = "Owner Name is required";
         }
-
+    
+        if (empty($data['contact'])) {
+            $this->errors['contact'] = "Contact No is required";
+        }
+    
         return empty($this->errors);
     }
+    
 }

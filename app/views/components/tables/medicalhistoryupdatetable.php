@@ -9,26 +9,52 @@
     <table>
         <thead>
             <tr>
-                <th>Pet ID</th>
-                <th>Date</th>
+                <!--th>Pet ID</th-->
+                <th>Date Time</th>
+                <th>Appointment ID</th>
+                <th>Weight</th>
+                <th>Temperature</th>
                 <th>Medical Condition</th>
                 <th>Treatment</th>
-                <th>Medication</th>
+                <th>Prescription</th>
+                <th>Treated By</th>
                 <th>Remarks</th>
                 <th class="edit-action-buttons"></th>
             </tr>
         </thead>
+        
         <tbody>
-         
+
+        <?php if (is_array($medicalhistory) && !empty($medicalhistory)): ?>
+            <?php foreach ($medicalhistory as $history): ?>
+                <tr key = "<?php echo $history->id; ?>">
+                    <td><?= htmlspecialchars($history->date_time); ?></td>
+                    <td><?= htmlspecialchars($history->appointment_id); ?></td>
+                    <td><?= htmlspecialchars($history->weight); ?></td>
+                    <td><?= htmlspecialchars($history->temperature); ?></td>
+                    <td><?= htmlspecialchars($history->med_condition); ?></td>
+                    <td><?= htmlspecialchars($history->treatment); ?></td>
+                    <td><?= htmlspecialchars($history->prescription); ?></td>
+                    <td><?= htmlspecialchars($history->treated_by); ?></td>
+                    <td><?= htmlspecialchars($history->remarks); ?></td>
+                    <td class="edit-action-buttons">
+                        <button class="edit-icon"></button>
+                    </td>
+                </tr>
+                
+            <?php endforeach; ?>
+        <?php else: ?>
             <tr>
-                <td>12345</td>
-                <td>24/09/2023</td>
-                <td>Fever and Cold</td>
-                <td>Check temperature and gave medication</td>
-                <td>Paracetamol, antibiotic, anti cold</td>
-                <td>Need to check again after 2 days</td>
+
+                <td colspan="9">No history found.</td>
+
+
             </tr>
+        <?php endif; ?>
+        
         </tbody>
-    </table>
+         
+            
+     </table>
 </body>
 </html>

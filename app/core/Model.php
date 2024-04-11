@@ -70,6 +70,34 @@ Trait Model
 		return false;
 	}
 
+	/*public function first($data, $data_not = [])
+	{
+		$keys = array_keys($data);
+		$keys_not = array_keys($data_not);
+		$query = "select * from $this->table where ";
+
+		foreach ($keys as $key) {
+			$query .= "$key = :$key AND ";
+		}
+
+		foreach ($keys_not as $key) {
+			$query .= "$key != :$key AND ";
+		}
+
+		$query = rtrim($query, ' AND '); // Remove the trailing "AND"
+
+		$query .= " limit $this->limit offset $this->offset";
+		$data = array_merge($data, $data_not);
+
+		$result = $this->query($query, $data);
+
+		if ($result && count($result) > 0) {
+			return $result[0];
+		}
+
+		return false;
+	}*/
+
 	public function insert($data)
 	{
 		

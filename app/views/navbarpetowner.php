@@ -25,6 +25,7 @@
             list-style: none;
             padding: 0;
             display: flex;
+            align-items: center;
         }
 
         .nav-links li {
@@ -57,6 +58,23 @@
             font-size: 18px; /* Increased font size */
             color: #333; /* Dark grey color */
         }
+        .logout-button {
+            background-color: #6a387944;
+            border:none;
+            width: fit-content;
+            color:#6a3879;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #6a3879;
+            color: #fff;
+        }
+
 
 
     </style>   
@@ -68,10 +86,16 @@
         </div>
         <ul class="nav-links">
 
-            <li><a href="<?=ROOT?>/home">Home</a></li>
+        <li><a href="<?=ROOT?>/home">Home</a></li>
             <li><a href="<?=ROOT?>/ourservices">Services</a></li>
             <li><a href="<?=ROOT?>/aboutus">About Us</a></li>
             <li><a href="<?=ROOT?>/contactus">Contact Us</a></li>
+            <li><a href="<?=ROOT?>/dashboardpetowner">My Profile</a></li>
+            <li>
+                <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
+                    <button type="submit" class="logout-button" name="logout"> Logout</button>
+                </form>
+            </li>
             
 
         </ul>

@@ -44,6 +44,33 @@ h1 {
 
 }
 
+.select-container {
+    text-align: center;
+    margin-top: 30px; /* Adjust margin as needed */
+}
+
+#pet-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px; /* Adjust width as needed */
+    background-color: #f9f9f9; /* Light gray background */
+    color: #333; /* Dark text color */
+}
+
+/* Style the label */
+label {
+    display: block; /* Display as block to ensure label appears above the select */
+    margin-bottom: 10px; /* Add some space between label and select */
+    font-size: 18px;
+}
+
+/* Style the options */
+#pet-select option {
+    font-size: 16px;
+}
+
 .card {
     width: 25%;
     background-color: #fff;

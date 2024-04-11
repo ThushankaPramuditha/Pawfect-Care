@@ -34,22 +34,28 @@ class AuthMiddleware {
     
     // If the session ID is not set, the user is not authenticated
 
-    if (!isset($_SESSION['session_id'])) {
+    if (!isset($_SESSION['USER'])) {
       // Destroy the session
-      session_destroy();
+      // show($_SESSION['USER']);
+      // die();
+      // session_destroy();
 
       return false;
     }
 
     // Get the user's data from the database
     $user = new UserModel;
+    
+   
 
-    $data['session_id'] = $_SESSION['session_id'];
+   
+    $data = (array)$_SESSION['USER'];
+    
 
     // If the user's data is not found, the user is not authenticated
     if (!$user->first($data)) {
       // Destroy the session
-      session_destroy();
+      // session_destroy();
 
       return false;
     }
@@ -66,7 +72,7 @@ class AuthMiddleware {
 
   public static function not_authenticated():void {
     if (self::check()) {
-      redirect('petownerhome');
+      redirect('home');
     }
   }
 }

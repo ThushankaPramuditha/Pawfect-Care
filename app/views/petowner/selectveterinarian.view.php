@@ -16,7 +16,19 @@
   </a>
 </div>
 
-<h1>Book your preferred vet</h1>
+
+<h1>Book your preferred Veterinarian</h1>
+<!-- Inside your HTML structure where the dropdown should appear -->
+<div class="select-container">
+    <label for="pet-select">Choose a pet:</label>
+    <select name="pets" id="pet-select">
+        <?php if (!empty($data['pets'])): ?>
+            <?php foreach ($data['pets'] as $pet): ?>
+              <option value="<?= htmlspecialchars($pet->id) ?>"><?= htmlspecialchars($pet->name) ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </select>
+</div>
 
 <div class="cardcontainer">
   <div class="card">
@@ -56,11 +68,12 @@
 
 <script>
 
+
 function paymentgateway() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      alert(xhttp.responseText);
+      console.log(xhttp.responseText);
       var obj = JSON.parse(xhttp.responseText);
 
        // Payment completed. It can be a successful failure.

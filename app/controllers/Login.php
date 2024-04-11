@@ -27,6 +27,7 @@ class Login
                 else if($user->verifyPassword($_POST['password'], $row->password))
                 {
                     $_SESSION['USER'] = $row;
+                   
                     
                     if($row->user_type == 'admin'){
                         redirect('admin/DashboardServices/');

@@ -4,16 +4,16 @@ class VaccinationHistory
 {
     use Controller;
 
-    /*public function index(string $a = '', string $b = '', string $c = ''): void
+    public function index(string $a = '', string $b = '', string $c = ''): void
     {
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistory();
         $this->view('medicalstaff/vaccinationhistory', $data);
-    }*/
+    }
 
    
-    public function index(string $a = '', string $b = '', string $c = ''): void
+    public function getVaccinationHistoryForPetId(string $a = '', string $b = '', string $c = ''): void
     {
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         $data['vaccinationhistory']  = $vaccinationhistoryModel->getVaccinationHistoryForPetId($a);

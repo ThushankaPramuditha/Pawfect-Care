@@ -18,7 +18,7 @@
                 <th>Pet Owner</th>
                 <th>Contact Number</th>
                 <th>Vet Name</th>
-                <th class="edit-action-buttons"></th>
+                
 
             </tr>
         </thead>
@@ -33,9 +33,7 @@
                         <td><?= htmlspecialchars($appointment->petowner); ?></td>
                         <td><?= htmlspecialchars($appointment->contact); ?></td>
                         <td><?= htmlspecialchars($appointment->vet_name); ?></td>
-                        <td class="edit-action-buttons">
-                            <!button class="edit-icon"></button>
-                        </td>
+                        
                     </tr>
                     
                 <?php endforeach; ?>

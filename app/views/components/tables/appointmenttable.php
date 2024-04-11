@@ -10,33 +10,43 @@
      <table>
         <thead>
             <tr>
-                <th>Patient No</th>
+
+                <th>Date Time</th>
+                <th>Patient No.</th>
                 <th>Pet ID</th>
                 <th>Pet Name</th>
                 <th>Pet Owner</th>
                 <th>Contact Number</th>
-                <th>Date</th>
+                <th>Vet Name</th>
                 <th class="edit-action-buttons"></th>
-    
+
             </tr>
         </thead>
         <tbody>
+            <?php if (is_array($appointments) && !empty($appointments)): ?>
+                <?php foreach ($appointments as $appointment): ?>
+                    <tr key = "<?php echo $appointment->id; ?>">
+                        <td><?= htmlspecialchars($appointment->date_time); ?></td>
+                        <td><?= htmlspecialchars($appointment->patient_no); ?></td>
+                        <td><?= htmlspecialchars($appointment->pet_id); ?></td>
+                        <td><?= htmlspecialchars($appointment->pet_name); ?></td>
+                        <td><?= htmlspecialchars($appointment->petowner); ?></td>
+                        <td><?= htmlspecialchars($appointment->contact); ?></td>
+                        <td><?= htmlspecialchars($appointment->vet_name); ?></td>
+                        <td class="edit-action-buttons">
+                            <!button class="edit-icon"></button>
+                        </td>
+                    </tr>
+                    
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No appointments found.</td>
+                </tr>
+            <?php endif; ?>
+         
 
-     <?php foreach ($appointments as $appointment) { ?>
-    <tr key="<?php echo $appointment->id; ?>">
-        <td><?php echo $appointment->patient_no?></td>
-        <td><?php echo $appointment->pet_id?></td>
-        <td><?php echo $appointment->pet_name?></td>
-        <td><?php echo $appointment->pet_owner_name?></td>
-        <td><?php echo $appointment->contact_no?></td>
-        <td><?php echo $appointment->date?></td>
 
-        <td class="edit-action-buttons">
-            <button class="edit-icon"></button>
-        </td>
-        
-    </tr>
-     <?php } ?>
 
         </tbody>
         </table>

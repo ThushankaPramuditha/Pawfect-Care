@@ -1,6 +1,9 @@
 <?php 
 
-class AddTreatment
+/**
+ * home class
+ */
+class Daycarebookingform
 {
 	use Controller;
 
@@ -9,7 +12,7 @@ class AddTreatment
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('medicalstaff/addtreatment',$data);
+		$this->view('daycarebookingform',$data);
 	}
 
 }

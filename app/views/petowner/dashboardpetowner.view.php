@@ -3,6 +3,7 @@
 
 <head>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 
 
     <style>
@@ -140,14 +141,15 @@
         flex-wrap: wrap;
         gap: 1.4rem;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.6s ease;
         width:450px;
         font-size: 1.2rem;
            
     }
 
     .pet:hover {
-      transform: scale(1.05);
+      transform: scale(1.01);
+      transition: all 0.6s ease;
     }
 
 
@@ -202,7 +204,7 @@
             color: white;
             text-decoration: none;
         }
-
+/* 
         .vaccination-list {
             display: flex;
             flex-direction: column;
@@ -283,7 +285,6 @@
             max-height: 200px;
             overflow-y: auto;
             margin-bottom: 20px;
-
         }
 
         .vaccination-list h2,
@@ -328,15 +329,13 @@
             color: #555;
         }
 
-        
-      
         .vaccination:hover,
         .appointment:hover,
         .daycare:hover {
             transform: scale(1.02);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+         */
 
         .booking {
             background-color: black;
@@ -354,27 +353,63 @@
 
         }
 
-        .announcement {
+       
+
+
+    .notification{
+        background-color: var(--color-white);
         display: flex;
-        flex-direction: column;
-        margin-left: 400px;
-       }
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.7rem;
+        padding: 1.4rem var(--card-padding);
+        border-radius: var(--border-radius-2);
+        box-shadow: var(--box-shadow);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width:350px;
+    }
 
+    .notification:hover{
+        box-shadow: none;
+    }
 
+    .notification .content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+    }
 
-        
+    .notification .icon{
+        padding: 0.6rem;
+        color: var(--color-white);
+        background-color:plum;
+        border-radius: 20%;
+        display: flex;
+    }
+
+    .notification.deactive .icon{
+        background-color: var(--color-danger);
+    }
+            
      
 
     </style>
-  <?php include '../views/navbar.php'; ?>
+
    
 </head>
    
 <body>
+   <div style="padding-top:20px;">
+   <?php include '../app/views/navbar.php';?>
+   </div> 
+
    
     <div class="container" style="display:flex; flex-direction:row;">
-        <div class="new-users" style="display:flex; width:70%; margin-left:100px; margin-top:50px;">
-            <div class="user-list" style="display:flex; flex-direction:column; ">
+        <div class="new-users" style="display:flex; width:70%; margin-left:100px; margin-top:80px;">
+            <div class="user-list" style="display:flex; flex-direction:row; gap:3rem;">
                 <?php
                 // Assume you have a database connection established
                 $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
@@ -420,49 +455,66 @@
       
 
 
-        <div class="announcement" style="display:flex; flex-direction:column;  margin-left:600px;">
+        <div class="announcement" style="display:flex; flex-direction:column; margin-top:100px;">
             
-            <div class="vaccination-list">
-              <h2>Upcoming Vaccinations</h2>
-                <div class="vaccination">
-                    <p>Vaccination 1</p>
-                    <p>Date: 2021-10-10</p>
-                </div>
-                <div class="vaccination">
-                    <p>Vaccination 2</p>
-                    <p>Date: 2021-11-10</p>
-                </div>
-               <button style="width:250px; margin-left:35px;">View More</a></button>
-            </div>
+
+            <div class="notification" >
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            volume_up
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <p style="font-size:15px;font-weight:bold;">Appointment at 16.00 pm </p>
+                            <small class="text_muted">
+                            </small>
+                        </div>
+                        <span class="material-icons-sharp">
+                            more_vert
+                        </span>
+                    </div>
+              </div>
+
+              <div class="notification" >
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            volume_up
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                        <p style="font-size:15px;font-weight:bold;">vaccination date 23/02/2024</p>
+                            <small class="text_muted">
+                            </small>
+                        </div>
+                        <span class="material-icons-sharp">
+                            more_vert
+                        </span>
+                    </div>
+              </div>
+
+
+            <div class="notification" >
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            volume_up
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                        <p style="font-size:15px;font-weight:bold;">daycare appointment at 22/02/2024 at 15.00pm</p>
+                            <small class="text_muted">
+                            </small>
+                        </div>
+                        <span class="material-icons-sharp">
+                            more_vert
+                        </span>
+                    </div>
  
-
-            <div class="appointment-list" >
-                <h2>Upcoming Appointments</h2>
-                    <div class="appointment">
-                        <p>Appointment 1</p>
-                        <p>Date: 2021-10-10</p>
-                    </div>
-                    <div class="appointment">
-                        <p>Appointment 2</p>
-                        <p>Date: 2021-11-10</p>
-                    </div>
-                        <button style="width:250px; margin-left:35px;"><a href="<?php echo ROOT ?>/petowner/appointment">Book an Appointment</a></button>   
             </div>
 
-            <div class="daycare-list">
-                 <h2>Upcoming Daycare</h2>
-                    <div class="daycare">
-                        <p>Daycare 1</p>
-                        <p>Date: 2021-10-10</p>
-                    </div>
-                    <div class="daycare">
-                        <p>Daycare 2</p>
-                        <p>Date: 2021-11-10</p>
-                    </div>
-                    <button  style="width:250px; margin-left:35px;"><a href="<?php echo ROOT ?>/petowner/daycare">Book a Slot</a></button>
-             </div>
-
-            </div>
+          
        
         </div>
     </div>

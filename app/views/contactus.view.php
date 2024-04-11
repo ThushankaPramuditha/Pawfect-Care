@@ -40,7 +40,7 @@
         overflow: hidden;
         margin: 20px 0;
         transition: transform 0.3s;
-        color:white;
+        color:black;
         text-align: center;
         margin-left: -50px;
         }
@@ -65,7 +65,7 @@
         height:400px;
         width:300px;
         background-color:#910A67;
-        color:#fff;
+        color:black;
         padding:20px,40px,0,20px;
         border-radius: 15px;
     
@@ -86,7 +86,7 @@
         .container p{
         text-align:center;
         font-size:2rem;
-        color: white;
+        color: black;
         font-family: 'Popins', sans-serif;
         }
 

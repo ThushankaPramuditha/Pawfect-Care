@@ -9,63 +9,50 @@
     <table>
         <thead>
             <tr>
+                <th>Pet ID</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Breed</th>
-                <th>Weight</th>
-                <th>Temperature</th>
-                <th>Pet ID</th>
                 <th>Species</th>
                 <th>Gender</th>
+                <th>Owner ID</th>
                 <th>Owner Name</th>
                 <th>Contact Number</th>
                 <th class="medicalhistory-action-buttons"></th>
                 <th class="vaccinationhistory-action-buttons"></th>
-                <th class="edit-action-buttons"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Buddy</td>
-                <td>2</td>
-                <td>Labrador Retriever</td>
-                <td>25 kg</td>
-                <td>38.5°C</td>
-                <td>12345</td>
-                <td>Dog</td>
-                <td>Male</td>
-                <td>John Doe</td>
-                <td>0775367289</td>
-                <td class="medicalhistory-action-buttons">
-                    <button class="medicalhistory-button"><a href = "medicalhistory">Medical History</a></button>
-                </td>
-                <td class="vaccinationhistory-action-buttons">
-                    <button class="vaccinationhistory-button"><a href = "vaccinationhistory">Vaccination History</a></button>
-                </td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
-            </tr>
-            <tr>
-                <td>Luna</td>
-                <td>3</td>
-                <td>Golden Retriever</td>
-                <td>28 kg</td>
-                <td>37.2°C</td>
-                <td>67890</td>
-                <td>Dog</td>
-                <td>Female</td>
-                <td>Jane Smith</td>
-                <td>0783526789</td>
-                <td class="medicalhistory-action-buttons">
-                    <button class="medicalhistory-button"><a href = "medicalhistory">Medical History</a></button>
-                </td>
-                <td class="vaccinationhistory-action-buttons">
-                    <button class="vaccinationhistory-button"><a href = "vaccinationhistory">Vaccination History</a></button>
-                </td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
-            </tr>
+
+            <?php if (is_array($petdetails) && !empty($petdetails)): ?>
+                <?php foreach ($petdetails as $petdetail): ?>
+                    <tr key="<?php echo $petdetail->id; ?>">
+                        <td><?= htmlspecialchars($petdetail->id); ?></td>
+                        <td><?= htmlspecialchars($petdetail->name); ?></td>
+                        <td><?= htmlspecialchars($petdetail->age); ?></td>
+                        <td><?= htmlspecialchars($petdetail->breed); ?></td>
+                        <td><?= htmlspecialchars($petdetail->species); ?></td>
+                        <td><?= htmlspecialchars($petdetail->gender); ?></td>
+                        <td><?= htmlspecialchars($petdetail->petowner_id); ?></td>
+                        <td><?= htmlspecialchars($petdetail->owner_name); ?></td>
+                        <td><?= htmlspecialchars($petdetail->contact); ?></td>
+                        <td class="medicalhistory-action-buttons">
+                            <button class="medicalhistory-button"><a href="<?php echo ROOT ?>/medicalstaff/medicalhistory/getMedicalHistoryForPetId/<?php echo $petdetail->id ?>">Medical History</a></button>
+                        </td>
+                        <td class="vaccinationhistory-action-buttons">
+                            <button class="vaccinationhistory-button"><a href="<?php echo ROOT ?>/medicalstaff/vaccinationhistory/getVaccinationHistoryForPetId/<?php echo $petdetail->id ?>">Vaccination History</a></button>
+                        </td>
+                    </tr>
+                    
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No petdetail found.</td>
+                </tr>
+            <?php endif; ?>
+
         </tbody>
+       
     </table>
 </body>
 </html>

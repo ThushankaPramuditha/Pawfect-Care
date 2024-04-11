@@ -7,14 +7,16 @@ class VeterinariansModel
     protected $table = 'veterinarians';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status'];
 
+
     public function getAllVeterinarians() {
         $query = "SELECT v.*, u.email ,u.status
                   FROM veterinarians AS v
                   JOIN users AS u ON v.user_id = u.id";
-  
+
         return $this->query($query);
         
     }
+
 
     public function getVeterinarianById($id) {
         $query = "SELECT v.*, u.email, u.status
@@ -24,7 +26,42 @@ class VeterinariansModel
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
+
+
     }
+  
+    /*public function getVetIdByName($vetName)
+    {
+        $conditions = ['name' => $vetName];
+    
+        $result = $this->first($conditions);
+    
+        // Check if a veterinarian with the given name exists
+        if ($result && property_exists($result, 'id')) {
+            return $result->id;
+        } else {
+            return false; 
+        }
+    }*/
+    public function getVetIdByName($vetName)
+    {
+        $query = "SELECT id FROM $this->table WHERE name = :vet_name";
+        
+        $bindings = [
+            'vet_name' => $vetName,
+        ];
+
+        $result = $this->query($query, $bindings);
+
+        if ($result && count($result) > 0) {
+            return $result[0]->id;
+        } else {
+            return false; 
+        }
+
+    }
+
+    
 
     public function addVeterinarian($data)
     {

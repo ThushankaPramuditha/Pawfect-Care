@@ -11,7 +11,7 @@
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
-        <?php include '../app/views/components/tables/appointmenttable.php'; ?> 
+        <?php include '../app/views/components/tables/appointmentviewonlytable.php'; ?> 
     </div>
 
 </body>

@@ -11,12 +11,30 @@ class PetownersModel
 
     public function getAllPetowners()
     {
-        return $this->where(['status' => 'active']);
+        $query = "SELECT p.*, u.email ,u.status
+        FROM petowners AS p
+        JOIN users AS u ON p.user_id = u.id";
+
+        return $this->query($query);    
     }
 
     public function getPetownerById($id)
     {
-        return $this->first(['id' => $id]);
+        $query = "SELECT p.*, u.email ,u.status
+        FROM petowners AS p
+        JOIN users AS u ON p.user_id = u.id
+        WHERE p.id = :id";
+        
+        return $this->get_row($query, ['id' => $id]);
+    }
+    public function getPetownerByUserId($id) {
+        $query = "SELECT po.id
+        FROM petowners AS po
+        JOIN users AS u ON po.user_id = u.id
+        WHERE u.id = :id";
+  
+        return $this->query($query, ['id' => $id]);
+        
     }
 
     // public function addPetowner($data)

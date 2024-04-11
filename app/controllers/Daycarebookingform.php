@@ -3,7 +3,7 @@
 /**
  * home class
  */
-class Daycareslots
+class Daycarebookingform
 {
 	use Controller;
 
@@ -12,7 +12,7 @@ class Daycareslots
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('daycareslots',$data);
+		$this->view('daycarebookingform',$data);
 	}
 
 }

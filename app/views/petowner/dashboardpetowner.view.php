@@ -515,34 +515,6 @@
             </div>
 
           
-
-            <!-- <div class="appointment-list" >
-                <h2>Upcoming Appointments</h2>
-                    <div class="appointment">
-                        <p>Appointment 1</p>
-                        <p>Date: 2021-10-10</p>
-                    </div>
-                    <div class="appointment">
-                        <p>Appointment 2</p>
-                        <p>Date: 2021-11-10</p>
-                    </div>
-                        <button style="width:250px; margin-left:35px;"><a href="<?php echo ROOT ?>/petowner/appointment">Book an Appointment</a></button>   
-            </div> -->
-
-            <!-- <div class="daycare-list">
-                 <h2>Upcoming Daycare</h2>
-                    <div class="daycare">
-                        <p>Daycare 1</p>
-                        <p>Date: 2021-10-10</p>
-                    </div>
-                    <div class="daycare">
-                        <p>Daycare 2</p>
-                        <p>Date: 2021-11-10</p>
-                    </div>
-                    <button  style="width:250px; margin-left:35px;"><a href="<?php echo ROOT ?>/petowner/daycare">Book a Slot</a></button>
-             </div> -->
-
-            <!-- </div> -->
        
         </div>
     </div>

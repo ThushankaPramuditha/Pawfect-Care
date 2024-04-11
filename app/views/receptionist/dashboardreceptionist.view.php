@@ -849,7 +849,7 @@ main table tbody tr td:first-child {
 
             <!-- End of New Users Section -->
             <?php
-// Assuming you have a database connection established
+
 $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
 
 // Prepare and execute a query to get appointment data

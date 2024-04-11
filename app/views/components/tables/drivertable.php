@@ -34,6 +34,7 @@
                         <td><?= htmlspecialchars($driver->email); ?></td>
                         <td><?= htmlspecialchars($driver->license); ?></td>
                         <td><?= htmlspecialchars($driver->status); ?></td>
+                        
                         <td class="edit-action-buttons">
                             <button class="edit-icon"></button>
                         </td>

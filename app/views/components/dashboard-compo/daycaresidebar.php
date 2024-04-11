@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/sidebar.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
 </head>
 
 <body>
@@ -21,7 +20,7 @@
                 <div style="width: 100%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="dashboardservices">
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
@@ -30,17 +29,39 @@
                                 <span class="menu-title">My Profile</span>
                             </a>
                         </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link" href="ridedetails">
-                                <span class="menu-title">Ride Details</span>
+                            <a class="nav-link" href="daycarestaff">
+                                <span class="menu-title">Daycare Staff</span>
                             </a>
                         </li>
+                        
+
+                         <li class="nav-item">
+                        <a class="nav-link" href="reports">
+
+                            <span class="menu-title">Reports</span>
+
+                        </a>
+                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="feedbacks">
+                        <span class="menu-title">Feedbacks</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="faq">
+                        <span class="menu-title">FAQ</span>
+
+                    </a>
+                </li>
                     </ul>
                 </div>
             </div>
             <div class="bottom-container">
                 <button class="logout-button">
-                    <a href="logout">
+                    <a  href="logout">
                         <span>Logout</span>
                     </a>
                 </button>

@@ -50,8 +50,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="receptionist">
-                        <span class="menu-title">Receptionist</span>
+                    <a class="nav-link" href="receptionists">
+                        <span class="menu-title">Receptionists</span>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -4,36 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pawfect Care - Login</title>
-  <link rel="stylesheet" href="<?=ROOT?>/assets/css/loginpage.css">
+
+
+  <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/loginpage.css">
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
 
 <div class="logo">
-    <a href="<?=ROOT?>home">
-    <img src="<?=ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+
+    <a href="<?php echo ROOT?>/home">
+    <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+
    </a>
  </div>
      
 <div class="container">
   <div class="img-container">
-    <img src="<?php ROOT?>/assets/images/login-photo1.jpg" alt="Login Photo">
+    <img src="<?php echo ROOT?>/assets/images/login-photo1.jpg" alt="Login Photo">
   </div>
 
   <script>
-  // Check if the PHP variable $errors is set and not empty
-  <?php if (!empty($errors)): ?>
+  // Check for account deactivation
+  <?php if (!empty($errors['account'])): ?>
+    Swal.fire({
+      icon: 'warning',
+      title: 'Account Deactivated',
+      text: '<?= $errors['account'] ?>',
+    });
+  <?php elseif (!empty($errors)): ?>
     // Create a JavaScript array to hold the error messages
     var errorMessages = [
       <?php foreach ($errors as $error): ?>
         "<?= $error ?>",
       <?php endforeach; ?>
     ];
-
     // Create an error message by joining the array elements
     var errorMessage = errorMessages.join("<br>");
-
     // Show the SweetAlert with the error message
     Swal.fire({
       icon: 'error',
@@ -45,7 +54,7 @@
 
 
   <div class="form-container">
-    <form method="post">
+    <form method="post" action="<?php echo ROOT?>/login">
       <h1>Log In</h1>
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required><br>
@@ -56,7 +65,7 @@
       <div class="flex-container">
         <button class="button" type="submit" name="login">Login</button>
       </div>
-        <p>Don't have an account? <a href="<?php echo ROOT?>signup">Sign up</a>.</p>
+        <p>Don't have an account? <a href="<?php echo ROOT?>/signup">Sign up</a>.</p>
     </form>
 
   </div>

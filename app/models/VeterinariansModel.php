@@ -7,29 +7,16 @@ class VeterinariansModel
     protected $table = 'veterinarians';
     protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status'];
 
-    //CHECK THIS ADD VET PART
 
-    // public function getAllVeterinarians()
-    // {
-    //     return $this->where(['status' => 'active']);
-    // }
     public function getAllVeterinarians() {
         $query = "SELECT v.*, u.email ,u.status
                   FROM veterinarians AS v
                   JOIN users AS u ON v.user_id = u.id";
-        // $query = "SELECT v.*, u.email 
-        //         FROM veterinarians AS v
-        //         JOIN users AS u ON v.user_id = u.id";
-        
 
         return $this->query($query);
         
     }
 
-    // public function getVeterinarianById($id)
-    // {
-    //     return $this->first(['id' => $id]);
-    // }
 
     public function getVeterinarianById($id) {
         $query = "SELECT v.*, u.email, u.status
@@ -40,7 +27,9 @@ class VeterinariansModel
         // die();
         return $this->get_row($query, ['id' => $id]);
 
+
     }
+  
     /*public function getVetIdByName($vetName)
     {
         $conditions = ['name' => $vetName];
@@ -69,6 +58,7 @@ class VeterinariansModel
         } else {
             return false; 
         }
+
     }
 
     

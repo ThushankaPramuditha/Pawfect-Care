@@ -1,23 +1,32 @@
 <form id="updated-form" action="<?php echo ROOT?>/Admin/Veterinarians/update/<?php echo $veterinarians->id; ?>" method="post">
-        <label for="full-name">Full Name:</label>
-        <input type="text" id="full-name" name="name" value="<?php echo $veterinarians->name;?>" required><br>
+    <div class="column">
+        <label for="update-name">Full Name:</label>
+        <input type="text" id="update-name" name="name" value="<?php echo $veterinarians->name;?>">
+        <div id="error-update-name" class="error-message"></div>
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" value="<?php echo $veterinarians->address;?>" required><br>
+        <label for="update-address">Address:</label>
+        <input type="text" id="update-address" name="address" value="<?php echo $veterinarians->address;?>">
+        <div id="error-update-address" class="error-message"></div>
 
-        <label for="contact-number">Contact Number:</label>
-        <input type="tel" id="contact-number" name="contact" value="<?php echo $veterinarians->contact;?>" required pattern="[0-9]{10}"><br>
+        <label for="update-contact_no">Contact Number:</label>
+        <input type="tel" id="update-contact_no" name="contact" value="<?php echo $veterinarians->contact;?>" pattern="[0-9]{10}">
+        <div id="error-update-contact" class="error-message"></div>
 
-        <label for="nic">NIC:</label>
-        <input type="text" id="nic" name="nic" value="<?php echo $veterinarians->nic;?>" required><br>
+    </div>
+    <div class="column">
+
+        <label for="update-nic">NIC:</label>
+        <input type="text" class="disabled-field" id="update-nic" name="nic" value="<?php echo $veterinarians->nic;?>">
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $veterinarians->email;?>" required><br>
+        <input type="email" class="disabled-field" id="update-email" name="email" value="<?php echo $veterinarians->email;?>" ><br>
 
-        <label for="qualifications">Qualifications:</label>
-        <textarea id="qualifications" name="qualifications" style="border-radius: 10px;" rows="4" required> <?php echo $veterinarians->qualifications;  ?>  </textarea>
+        <label for="update-qualifications">Qualifications:</label>
+        <textarea id="update-qualifications" name="qualifications" style="border-radius: 10px;" rows="4"><?php echo $veterinarians->qualifications; ?></textarea>
+        <div id="error-update-qualifications" class="error-message"></div>
 
-        <div class="flex-container">
-        <button type="submit" >Update Veterinarian</button>
+    </div>
+    <div class="flex-container">
+            <button type="submit" >Update Veterinarian</button>
     </div>
 </form>

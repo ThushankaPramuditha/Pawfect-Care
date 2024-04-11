@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
-    <table>
+   <div class="tablecontainer"> 
+     <table>
         <thead>
             <tr>
+
                 <th>Date Time</th>
                 <th>Patient No.</th>
                 <th>Pet ID</th>
                 <th>Pet Name</th>
                 <th>Pet Owner</th>
                 <th>Contact Number</th>
+
                 <th>Vet Name</th>
                 <th class="edit-action-buttons"></th>
 
@@ -44,7 +47,12 @@
                 </tr>
             <?php endif; ?>
          
+
+
+
         </tbody>
-    </table>
+        </table>
+    </div>
+
 </body>
 </html>

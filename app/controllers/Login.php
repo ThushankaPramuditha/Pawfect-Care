@@ -1,38 +1,69 @@
 <?php 
 
-/**
- * login class
- */
 class Login
 {
-	use Controller;
+    use Controller;
 
-	public function index()
-	{
-		$data = [];
-		
-		if($_SERVER['REQUEST_METHOD'] == "POST")
-		{
-			$user = new UserModel;
-			$arr['email'] = $_POST['email'];
+    public function index()
+    {
+        $data = [];
+        
+        if($_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            $user = new UserModel;
+            $arr['email'] = $_POST['email'];
 
-			$row = $user->first($arr);
-			
-			if($row)
-			{
-				if($row->password === $_POST['password'])
-				{
-					$_SESSION['USER'] = $row;
-					redirect('petowner/petowner_home');
-				}
-			}
 
-			$user->errors['email'] = "Wrong email or password";
+            $row = $user->first($arr);
+            
+            
+            if($row)
+            {
+				// Check if the user's account is active
+                if($row->status == 'inactive') {
+                    $user->errors['account'] = "Your account has been deactivated.";
+                }
+                // Use verifyPassword method to check the password
+                else if($user->verifyPassword($_POST['password'], $row->password))
+                {
+                    $_SESSION['USER'] = $row;
+                    
+                    if($row->user_type == 'admin'){
+                        redirect('admin/DashboardServices/');
+                    }
+                    else if($row->user_type == 'pet-ambulance-driver'){
+                        redirect('AmbulanceDriver/Dashboard/');
+                    }
+                    else if($row->user_type == 'receptionist'){
+                        redirect('Receptionist/Dashboardreceptionist/');
+                    }
+                    else if($row->user_type == 'medical-staff'){
+                        redirect('Medicalstaff/Dashboardmedicalstaff/');
+                    }
+                    else if($row->user_type == 'veterinarian'){
+                        redirect('Veterinarian/DashboardVeterinarian/');
+                    }
+                    else if($row->user_type == 'daycare-staff'){
+                        redirect('Daycarestaff/Dashboarddaycarestaff/');
+                    }
+                    else {
+                        redirect('home');
+                    }
+                }
+                else
+                {
+                    $user->errors['email'] = "Wrong email or password";
+                }
+            }
+            else
+            {
+                $user->errors['email'] = "Wrong email or password";
+            }
+            $data['errors'] = $user->errors;
+        }
 
-			$data['errors'] = $user->errors;
-		}
+        $this->view('login',$data);
 
-		$this->view('login',$data);
-	}
-
+    }
 }
+

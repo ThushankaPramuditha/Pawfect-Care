@@ -45,7 +45,10 @@
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
+
                 <td colspan="9">No history found.</td>
+
+
             </tr>
         <?php endif; ?>
         

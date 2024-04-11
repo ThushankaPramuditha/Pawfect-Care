@@ -7,6 +7,8 @@
 </head>
 <body>
     <table>
+        
+
         <thead>
             <tr>
                 <th>Staff ID</th>
@@ -16,35 +18,44 @@
                 <th>NIC</th>
                 <th>Email</th>
                 <th>Qualifications</th>
+                <th>Status</th>
                 <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
             </tr>
         </thead>
 
+
         <tbody>
-
-            <?php foreach ($veterinarians as $veterinarian) { ?>
-                <tr key = "<?php echo $veterinarian->id; ?>" >
-                    <td><?php echo $veterinarian->id?></td>
-                    <td><?php echo $veterinarian->name?></td>
-                    <td><?php echo $veterinarian->address?></td>
-                    <td><?php echo $veterinarian->contact?></td>
-                    <td><?php echo $veterinarian->nic?></td>
-                    <td><?php echo $veterinarian->email?></td>
-                    <td><?php echo $veterinarian->qualifications?></td>
-                    <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                    </td>
-                    <td class="deactivate-action-buttons">
-                    <button class="deactivate-button">Deactivate</button>
-                </td>
+            <?php if (is_array($veterinarians) && !empty($veterinarians)): ?>
+                <?php foreach ($veterinarians as $vet): ?>
+                    <tr key = "<?php echo $vet->id; ?>" >
+                        <td><?= htmlspecialchars($vet->id); ?></td>
+                        <td><?= htmlspecialchars($vet->name); ?></td>
+                        <td><?= htmlspecialchars($vet->address); ?></td>
+                        <td><?= htmlspecialchars($vet->contact); ?></td>
+                        <td><?= htmlspecialchars($vet->nic); ?></td>
+                        <td><?= htmlspecialchars($vet->email); ?></td>
+                        <td><?= htmlspecialchars($vet->qualifications); ?></td>
+                        <td><?= htmlspecialchars($vet->status); ?></td>
+                        <td class="edit-action-buttons">
+                            <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
+                        </td>
+                        <td class="deactivate-action-buttons">
+                            <button class="deactivate-button">Deactivate</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No veterinarians found.</td>
                 </tr>
-
-                <?php
-                } 
-                ?>
-                    
+            <?php endif; ?>
         </tbody>
+        
        
     </table>
 </body>

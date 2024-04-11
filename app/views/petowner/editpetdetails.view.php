@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Details</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/petdetails.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/petdetails.css">
 </head>
 
 <div class="logo">
-   <a href="<?=ROOT?>home">
-    <img src="<?= ROOT ?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+   <a href="<?php echo ROOT?>/home">
+    <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
   </a>
 </div>
 
 <body>
-<!-- <h1>Edit Pet Details</h1> -->
+ <h1>Edit Pet Details</h1> 
 
 <div class="container">
 <div class="form-container"> 
@@ -25,5 +25,5 @@
 
 
 </body>
-</html>
+</html> 
 

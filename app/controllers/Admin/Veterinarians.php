@@ -9,9 +9,7 @@ class Veterinarians
 		$veterinariansModel = new VeterinariansModel();
 		// show($veterinariansModel->findAll());
 		$data['veterinarians'] = $veterinariansModel->getAllVeterinarians();
-
-		// You can include any additional logic or data fetching here
-
+        
 		$this->view('admin/veterinarians', $data);
 	}
 
@@ -28,7 +26,7 @@ class Veterinarians
     {
         $veterinariansModel = new VeterinariansModel();
         $veterinariansModel->addVeterinarian($_POST);
-		
+
         redirect('admin/veterinarians');
     }
 
@@ -43,7 +41,7 @@ class Veterinarians
     public function viewVeterinarian(string $a = '', string $b = '', string $c = ''):void {
         $veterinariansModel = new VeterinariansModel();
         $data['veterinarians'] = $veterinariansModel->getVeterinarianById($a);
-        // show($data);
+        // show($a);
         // die();
         $this->view('admin/veterinarians/update', $data);
 
@@ -58,6 +56,21 @@ class Veterinarians
             redirect('admin/veterinarians'); //
         } else {
             echo "Failed to deactivate veterinarian!";
+            // Implement appropriate error handling here
+        }
+        redirect('admin/veterinarians');
+    }
+
+    public function activate(string $id): void
+    {
+        $veterinariansModel = new VeterinariansModel();
+        $success = $veterinariansModel->activateVeterinarian($id);
+
+        if ($success) {
+            echo "Veterinarian activated successfully!";
+            redirect('admin/veterinarians'); //
+        } else {
+            echo "Failed to activate veterinarian!";
             // Implement appropriate error handling here
         }
         redirect('admin/veterinarians');

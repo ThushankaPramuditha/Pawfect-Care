@@ -1,5 +1,6 @@
 <?php
 
+
 class PetdetailsModel
 {
     use Model;
@@ -80,14 +81,16 @@ class PetdetailsModel
     
 
     public function deleteVaccinationHistory($id)
+
     {
         return $this->delete($id);
     }
 
-        
+
     public function validate($data)
     {
         $this->errors = [];
+
 
         if (empty($data['id'])) {
             $this->errors['id'] = "PetID is required";
@@ -125,5 +128,3 @@ class PetdetailsModel
     }
     
 }
-
-

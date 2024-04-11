@@ -5,7 +5,7 @@ class AuthMiddleware {
 
   public static function run_middleware(string $controller, string $method): void {
     $authRequired = [
-      'PetOwnerHome' => ['index', 'method2'],
+      'PetOwnerhome' => ['index', 'method2'],
       'Controller2' => ['method3'],
     ];
     $unauthRequired = [
@@ -28,8 +28,12 @@ class AuthMiddleware {
   private static function check():bool {
     // Start the session
     // session_start();
-
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     // If the session ID is not set, the user is not authenticated
+
     if (!isset($_SESSION['session_id'])) {
       // Destroy the session
       session_destroy();
@@ -62,7 +66,7 @@ class AuthMiddleware {
 
   public static function not_authenticated():void {
     if (self::check()) {
-      redirect('petowner_home');
+      redirect('petownerhome');
     }
   }
 }

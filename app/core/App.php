@@ -24,9 +24,7 @@ class App {
             'Medicalstaff',
             'DayCarestaff',
             'Receptionist',
-
             'Ambulancedriver',
-
             'Petowner',
         ];
 

@@ -16,6 +16,7 @@ Trait Database
 
 		$con = $this->connect();
 		$stm = $con->prepare($query);
+		//var_dump($query, $data); // Add this line for debugging
 
 		$check = $stm->execute($data);
 		if($check)

@@ -18,15 +18,25 @@
             </tr>
         </thead>
         <tbody>
-         
-            <tr>
-                <td>12345</td>
-                <td>24/09/2023</td>
-                <td>Fever and Cold</td>
-                <td>Check temperature and gave medication</td>
-                <td>Paracetamol, antibiotic, anti cold</td>
-                <td>Need to check again after 2 days</td>
-            </tr>
+
+        <?php foreach ($medicalhistory as $medicalhistory) { ?>
+                <tr key = "<?php echo $medicalhistory->id; ?>" >
+                    <td><?php echo $medicalhistory->id?></td>
+                    <td><?php echo $medicalhistory->date?></td>
+                    <td><?php echo $medicalhistory->medical_condition?></td>
+                    <td><?php echo $medicalhistory->treatment?></td>
+                    <td><?php echo $medicalhistory->medication?></td>
+                    <td><?php echo $medicalhistory->remarks?></td>
+                    <td class="edit-action-buttons">
+                    <button class="edit-icon"></button>
+                    </td>
+                    
+                </tr>
+
+                <?php
+                } 
+                ?>
+                    
         </tbody>
     </table>
 </body>

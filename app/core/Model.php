@@ -70,12 +70,41 @@ Trait Model
 		return false;
 	}
 
+	/*public function first($data, $data_not = [])
+	{
+		$keys = array_keys($data);
+		$keys_not = array_keys($data_not);
+		$query = "select * from $this->table where ";
+
+		foreach ($keys as $key) {
+			$query .= "$key = :$key AND ";
+		}
+
+		foreach ($keys_not as $key) {
+			$query .= "$key != :$key AND ";
+		}
+
+		$query = rtrim($query, ' AND '); // Remove the trailing "AND"
+
+		$query .= " limit $this->limit offset $this->offset";
+		$data = array_merge($data, $data_not);
+
+		$result = $this->query($query, $data);
+
+		if ($result && count($result) > 0) {
+			return $result[0];
+		}
+
+		return false;
+	}*/
+
 	public function insert($data)
 	{
 		
 		/** remove unwanted data **/
 		if(!empty($this->allowedColumns))
 		{
+
 			foreach ($data as $key => $value) {
 				
 				if(!in_array($key, $this->allowedColumns))
@@ -88,10 +117,11 @@ Trait Model
 		$keys = array_keys($data);
 		
 		$query = "insert into $this->table (".implode(",", $keys).") values (:".implode(",:", $keys).")";
-		
+
 		$this->query($query, $data);
 
-		return false;
+		return $this->lastInsertedId();
+
 	}
 
 	public function update($id, $data, $id_column = 'id')
@@ -137,6 +167,15 @@ Trait Model
 		return false;
 
 	}
+
+	public function lastInsertedId(){
+
+        $query = "select * from $this->table order by id desc limit 1";
+        $result = $this->query($query);
+        if($result)
+        // return id of last inserted row
+            return $result[0]->id;
+    }
 
 }
 ?>

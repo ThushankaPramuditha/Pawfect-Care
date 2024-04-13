@@ -6,6 +6,8 @@
     <title>Book an Appointment</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bookingpages.css">
     <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body>
@@ -30,55 +32,73 @@
     </select>
 </div>
 
-<div class="cardcontainer">
-  <div class="card">
-    <div class="image-container">
-      <img src="<?= ROOT?>/assets/images/dr1.jpg" alt="Avatar">
-    </div>  
-    <div class="container">
-      <h4><b>DR.MIHIRAJ MAGAMAGE</b></h4> 
-      <p class="availability available">Available</p>
-      <p class="app-number">Current No. 15</p>
-      <div class="button">
-          <button class="btn" onclick="paymentgateway();" >Book now</button>
-      </div>
-      
-    </div>
-  </div>  
 
-  <div class="card">
-    <div class="image-container">
-      <img src="<?= ROOT?>/assets/images/femaledoctor.jpg" alt="Avatar">
-    </div> 
-    <div class="container">
-      <h4><b>DR.WASANTHI ALWIS</b></h4> 
-      <p class="availability not-available">Not Available</p> 
-      <p class="app-number" style="visibility:hidden">Current No. 15</p>
-      <div class="button disabled">
-          <button class="btn" onclick="paymentgateway();" >Book now</button>
-      </div>
-      
-    </div>
-  </div>
+<!-- Cards for veterinarians -->
+<div class="cardcontainer">
+    <?php if (!empty($data['veterinarians'])): ?>
+        <?php foreach ($data['veterinarians'] as $vet): ?>
+            <div class="card">
+                <div class="container">
+                    <h4><b><?= htmlspecialchars($vet->name) ?></b></h4>
+                    <p class="availability <?= $vet->availability == 'available' ? 'available' : 'not-available' ?>">
+                        <?= $vet->availability == 'available' ? 'Available' : 'Unavailable' ?>
+                    </p>
+                    
+                    <div class="button <?= $vet->availability == 'available' ? '' : 'disabled' ?>">
+                        <button class="btn" <?= $vet->availability == 'available' ? '' : 'disabled' ?> onclick="paymentgateway(<?= $vet->id ?>);" value="<?= $vet->id ?>">Book now</button>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
+
 
 </body>
 </html>
 
 
 <script>
+ 
+ function paymentgateway(vetId) {
+    const petId = document.getElementById('pet-select').value;
+    if (!petId) {
+        Swal.fire('Error', 'Please select a pet first!', 'error');
+        return;
+    }
+
+    // Check appointment availability before proceeding
+    var checkXhttp = new XMLHttpRequest();
+    checkXhttp.onreadystatechange = function() {
+        if (checkXhttp.readyState == 4 && checkXhttp.status == 200) {
+            var response = JSON.parse(checkXhttp.responseText);
+            if (response.status === 'full') {
+                Swal.fire('Sorry', 'No more bookings are accepted today.', 'info');
+            } else {
+                proceedPayment(vetId, petId);
+            }
+        }
+    };
+    checkXhttp.open("GET", "<?= ROOT ?>/Petowner/Appointments/checkAvailability", true);
+    checkXhttp.send();
+}
 
 
-function paymentgateway() {
+function proceedPayment(vetId, petId) {
+  
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       console.log(xhttp.responseText);
       var obj = JSON.parse(xhttp.responseText);
+      obj.pet_id = petId;  // Include the pet ID in the payment info
+      obj.vet_id = vetId;  // Include the vet ID in the payment info
+      
 
        // Payment completed. It can be a successful failure.
         payhere.onCompleted = function onCompleted(orderId) {
-            console.log("Payment completed. OrderID:" + orderId);
+          console.log("Payment completed. OrderID:" + orderId);
+          saveAppointment(obj.pet_id, obj.vet_id);  // Save the appointment
             // Note: validate the payment and show success or failure page to the customer
         };
 
@@ -124,7 +144,21 @@ function paymentgateway() {
         
     }
   };
+  
   xhttp.open("POST", "<?= ROOT ?>/PayHere", true);
   xhttp.send();
+}
+
+function saveAppointment(petId, vetId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Appointment saved: " + this.responseText);
+        }
+    };
+
+    xhttp.open("POST", "<?= ROOT ?>/Petowner/Appointments/saveAppointment", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(`pet_id=${petId}&vet_id=${vetId}&date_time=${new Date().toISOString()}`);
 }
 </script>

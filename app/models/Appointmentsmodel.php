@@ -133,8 +133,40 @@ class AppointmentsModel
 
     public function addAppointment(array $data)
     {
-        return $this->insert($data);
+        // Check how many appointments already exist for today
+        $appointmentsToday = $this->countTodayAppointments();
+
+        if ($appointmentsToday >= 3) {
+            return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
+        }
+
+        else {
+            // If less than 3, proceed to add a new appointment
+            $patientNo = $appointmentsToday + 1; // Assign the next patient number
+            $data['patient_no'] = $patientNo;
+            $data['date_time'] = date('Y-m-d H:i:s'); // Ensure MySQL compatible datetime format
+
+        }
+
+        // Insert the new appointment
+        $inserted = $this->insert($data);
+        if ($inserted) {
+            return "Appointment successfully saved with patient number {$patientNo}.";
+        } else {
+            return "Failed to save appointment.";
+        }
     }
+
+    public function countTodayAppointments() {
+        $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE DATE(date_time) = :today
+        AND status = 'active'";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+    
 
     public function updateAppointment($id, array $data)
     {
@@ -156,6 +188,7 @@ class AppointmentsModel
     //     return $this->delete($id);
     // }
 
+    
     public function validate($data)
     {
         $this->errors = [];

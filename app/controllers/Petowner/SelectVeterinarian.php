@@ -6,10 +6,13 @@ class SelectVeterinarian
     
     public function index() {
         $petsModel = new PetsModel();
-        // Assuming you have the user's ID in session or passed somehow
-        $id = $_SESSION['USER']->id; 
-        $data['pets'] = $petsModel->getAllPetsByUserId($id);
-        // $data['username'] = !empty($_SESSION['USER']) ? $_SESSION['USER']->email : 'User';
+        $vetsModel = new VeterinariansModel(); // Assuming you have a VeterinariansModel
+        
+        // Fetch pets and veterinarians
+        $user_id = $_SESSION['USER']->id;
+        $data['pets'] = $petsModel->getAllPetsByUserId($user_id);
+        $data['veterinarians'] = $vetsModel->getAllVeterinarians(); // Fetch all vets
+        
 
         $this->view('petowner/selectveterinarian', $data);
 

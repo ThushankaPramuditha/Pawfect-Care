@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 
+
+
 <body>
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="nav-container">
@@ -84,11 +86,9 @@
                 </div>
             </div>
             <div class="bottom-container">
-                <button class="logout-button">
-                    <a  href="logout">
-                        <span>Logout</span>
-                    </a>
-                </button>
+                <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
+                    <button type="submit" class="logout-button" name="logout"> Logout</button>
+                </form>
             </div>
         </div>
     </nav>

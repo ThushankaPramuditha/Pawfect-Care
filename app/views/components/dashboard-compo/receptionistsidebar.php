@@ -311,7 +311,7 @@ aside .sidebar .message-count{
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="<?php echo ROOT; ?>veterinarian/myprofile">
+                <a href="<?php echo ROOT; ?>/veterinarian/myprofile">
                     <span class="material-icons-sharp">
                             medical_services
                     </span>
@@ -319,7 +319,7 @@ aside .sidebar .message-count{
                 </a>
 
 
-                <a href="<?php echo ROOT; ?>ambulancedriver/myprofile">
+                <a href="<?php echo ROOT; ?>/ambulancedriver/myprofile">
                     <span class="material-icons-sharp">
                         local_hospital
                     </span>
@@ -348,7 +348,7 @@ aside .sidebar .message-count{
                     <h3>Pet Owner Details</h3>
                 </a>    
 
-                <a href="<?php echo ROOT; ?>receptionist/appointments">
+                <a href="<?php echo ROOT; ?>/receptionist/appointments">
                     <span class="material-icons-sharp">
                         calendar_today
                     </span>

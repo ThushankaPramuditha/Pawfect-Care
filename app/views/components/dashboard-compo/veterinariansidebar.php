@@ -21,27 +21,27 @@
                 <div style="width: 100%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboardveterinarian">
+                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/dashboardveterinarian">
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="myprofile">
+                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/myprofile">
                                 <span class="menu-title">My Profile</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="petdetails">
+                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/petdetails">
                                 <span class="menu-title">Pet Details</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="appointments">
+                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/appointments">
                                 <span class="menu-title">Appointments</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="faq">
+                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/faq">
                                 <span class="menu-title">FAQ</span>
                             </a>
                         </li>
@@ -50,11 +50,9 @@
                 </div>
             </div>
             <div class="bottom-container">
-                <button class="logout-button">
-                    <a href="logout">
-                        <span>Logout</span>
-                    </a>
-                </button>
+                <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
+                    <button type="submit" class="logout-button" name="logout"> Logout</button>
+                </form>
             </div>
         </div>
     </nav>

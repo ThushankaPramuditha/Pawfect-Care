@@ -30,22 +30,22 @@ class Login
                    
                     
                     if($row->user_type == 'admin'){
-                        redirect('admin/DashboardServices/');
+                        redirect('admin/dashboardservices/');
                     }
                     else if($row->user_type == 'pet-ambulance-driver'){
-                        redirect('AmbulanceDriver/Dashboard/');
+                        redirect('ambulanceDriver/dashboard/');
                     }
                     else if($row->user_type == 'receptionist'){
-                        redirect('Receptionist/Dashboardreceptionist/');
+                        redirect('receptionist/dashboardreceptionist/');
                     }
                     else if($row->user_type == 'medical-staff'){
-                        redirect('Medicalstaff/Dashboardmedicalstaff/');
+                        redirect('medicalstaff/dashboardmedicalstaff/');
                     }
                     else if($row->user_type == 'veterinarian'){
-                        redirect('Veterinarian/DashboardVeterinarian/');
+                        redirect('veterinarian/dashboardveterinarian/');
                     }
                     else if($row->user_type == 'daycare-staff'){
-                        redirect('Daycarestaff/Dashboarddaycarestaff/');
+                        redirect('daycarestaff/dashboarddaycarestaff/');
                     }
                     else {
                         redirect('home');

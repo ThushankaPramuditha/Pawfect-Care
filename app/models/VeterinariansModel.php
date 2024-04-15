@@ -29,6 +29,18 @@ class VeterinariansModel
 
 
     }
+
+    public function getVetRoleDataById($id) {
+        $query = "SELECT v.*, u.email, u.status
+                  FROM veterinarians AS v
+                  JOIN users AS u ON v.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
   
     /*public function getVetIdByName($vetName)
     {

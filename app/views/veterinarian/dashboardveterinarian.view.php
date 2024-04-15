@@ -30,9 +30,7 @@
 </head>
 
 <body>
-<?php $_SESSION['addnewpath'] = 'addservice' ?>
-
-        <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
+    <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?> 
         <?php include '../app/views/components/dashboard-compo/card.php'; ?>

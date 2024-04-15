@@ -306,7 +306,7 @@ aside .sidebar .message-count{
             </div>
 
             <div class="sidebar">
-            <a href="<?php echo ROOT; ?>ambulacedriver/dashboard">
+            <a href="<?php echo ROOT; ?>/ambulacedriver/dashboard">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -314,7 +314,7 @@ aside .sidebar .message-count{
                 </a>
 
 
-                <a href="<?php echo ROOT; ?>ambulancedriver/ridedetails">
+                <a href="<?php echo ROOT; ?>/ambulancedriver/ridedetails">
                     <span class="material-icons-sharp">
                         local_taxi
                     </span>

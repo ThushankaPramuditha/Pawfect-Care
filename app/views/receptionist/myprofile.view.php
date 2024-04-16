@@ -16,14 +16,14 @@
 
     <div style="flex: 1; display: flex; flex-direction: column; margin-left: 250px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-        <h1>My Profile</h1>
-                <div class= "pair"><div class = "key">Staff ID:</div>  <div class = "value">12345</div></div>
-                <div class= "pair"><div class = "key">Full Name:</div> <div class = "value">John Doe</div></div>
-                <div class= "pair"><div class = "key">Address:</div> <div class = "value">Hospital Road, Dodangoda, Kalutara</div></div>
-                <div class= "pair"><div class = "key">Contact No:</div> <div class = "value">077-4441482</div></div>
-                <div class= "pair"><div class = "key">NIC:</div> <div class = "value">20018420398</div></div>
-                <div class= "pair"><div class = "key">Email:</div> <div class = "value">johndoe@gmail.com</div></div>
-                <div class= "pair"><div class = "key">Qualifications:</div> <div class = "value">DVM, PhD</div></div>
+        <<h1>My Profile</h1> 
+                <div class= "pair"><div class = "key">Staff ID:</div>  <div class = "value"><?= htmlspecialchars($data['userdata']->id)?></div></div>
+                <div class= "pair"><div class = "key">Full Name:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->name)?></div></div>
+                <div class= "pair"><div class = "key">Address:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->address)?></div></div>
+                <div class= "pair"><div class = "key">Contact No:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->contact)?></div></div>
+                <div class= "pair"><div class = "key">NIC:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->nic)?></div></div>
+                <div class= "pair"><div class = "key">Email:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->email)?></div></div>
+                <div class= "pair"><div class = "key">Qualifications:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->qualifications)?></div></div>
 
 
         <div class="flex-container">

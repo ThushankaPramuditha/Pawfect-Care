@@ -26,6 +26,17 @@ class ReceptionistsModel
         // die();
         return $this->get_row($query, ['id' => $id]);
     }
+    public function getReceptionistRoleDataById($id) {
+        $query = "SELECT r.*, u.email , u.status ,u.user_type
+                  FROM receptionists AS r
+                  JOIN users AS u ON r.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
 
     public function addReceptionist($data)
     {
@@ -36,7 +47,7 @@ class ReceptionistsModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'receptionist', 
+            'user_type' => 'Receptionist', 
         ]);
 
         if ($data['user_id']) {

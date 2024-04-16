@@ -26,6 +26,18 @@ class MedicalStaffModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function getMedstaffRoleDataById($id) {
+        $query = "SELECT m.*, u.email ,u.status ,u.user_type
+                  FROM medstaff AS m
+                  JOIN users AS u ON m.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
+
     public function addMedicalstaff($data)
     {
         $userModel = new UserModel;
@@ -35,7 +47,7 @@ class MedicalStaffModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'medical-staff', 
+            'user_type' => 'Medical Staff', 
         ]);
 
         if ($data['user_id']) {

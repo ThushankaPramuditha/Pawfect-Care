@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
-   <div class="tablecontainer"> 
      <table>
         <thead>
             <tr>
@@ -48,7 +47,6 @@
 
         </tbody>
         </table>
-    </div>
 
 </body>
 </html>

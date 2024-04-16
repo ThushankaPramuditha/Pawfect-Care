@@ -6,6 +6,8 @@ class Petdetails
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $petdetailsModel = new PetdetailsModel();
         //$data['petdetails'] = $petdetailsModel->findAll();
         $data['petdetails'] = $petdetailsModel->getAllPetdetails();

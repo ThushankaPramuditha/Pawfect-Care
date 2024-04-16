@@ -29,22 +29,22 @@ class Login
                     $_SESSION['USER'] = $row;
                    
                     
-                    if($row->user_type == 'admin'){
+                    if($row->user_type == 'Admin'){
                         redirect('admin/dashboardservices/');
                     }
-                    else if($row->user_type == 'pet-ambulance-driver'){
-                        redirect('ambulanceDriver/dashboard/');
+                    else if($row->user_type == 'Ambulance Driver'){
+                        redirect('ambulancedriver/dashboard/');
                     }
-                    else if($row->user_type == 'receptionist'){
+                    else if($row->user_type == 'Receptionist'){
                         redirect('receptionist/dashboardreceptionist/');
                     }
-                    else if($row->user_type == 'medical-staff'){
+                    else if($row->user_type == 'Medical Staff'){
                         redirect('medicalstaff/dashboardmedicalstaff/');
                     }
-                    else if($row->user_type == 'veterinarian'){
+                    else if($row->user_type == 'Veterinarian'){
                         redirect('veterinarian/dashboardveterinarian/');
                     }
-                    else if($row->user_type == 'daycare-staff'){
+                    else if($row->user_type == 'Daycare Staff'){
                         redirect('daycarestaff/dashboarddaycarestaff/');
                     }
                     else {

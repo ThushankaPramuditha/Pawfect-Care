@@ -6,6 +6,8 @@ class MedicalHistory
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $medicalhistoryModel = new MedicalhistoryModel();
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
         $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistory();

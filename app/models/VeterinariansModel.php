@@ -31,7 +31,7 @@ class VeterinariansModel
     }
 
     public function getVetRoleDataById($id) {
-        $query = "SELECT v.*, u.email, u.status
+        $query = "SELECT v.*, u.email, u.status ,u.user_type
                   FROM veterinarians AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE u.id = :id";
@@ -84,7 +84,7 @@ class VeterinariansModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'veterinarian', 
+            'user_type' => 'Veterinarian', 
         ]);
 
         if ($data['user_id']) {

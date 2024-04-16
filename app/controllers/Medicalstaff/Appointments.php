@@ -6,6 +6,8 @@ class Appointments
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $appointmentsModel = new AppointmentsModel();
         //$data['appointments'] = $appointmentsModel->findAll();
         $data['appointments'] = $appointmentsModel->getAppointmentsForCurrentDate();

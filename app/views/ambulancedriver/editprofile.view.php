@@ -13,7 +13,36 @@
     <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-        <?php include '../app/views/components/forms/editprofileformdriver.php'; ?>
+        <div class = "form-container"> 
+            <form id="edit-profile-form">
+            
+            <?php
+            // You should replace these placeholders with the actual PHP code
+            // to retrieve and populate the form data.
+            $full_name = "John Doe"; // Replace with actual full name
+            $address = "123 Elm St"; // Replace with actual address
+            $contact_number = "1234567890"; // Replace with actual contact number
+            $license_number = "CD 9692"; // Replace with actual license number
+            ?>
+
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" required value="<?php echo $full_name; ?>"><br>
+
+                <label for="address">Address:</label>
+                <input type= "text" id="address" name="address" required value="<?php echo $address; ?>"><br>
+
+                <label for="contact-number">Contact Number:</label>
+                <input type="tel" id="contact-number" name="contact-number" required pattern="[0-9]{10}" value="<?php echo $contact_number; ?>"><br>
+
+                <label for="contact-number">License Number:</label>
+                <input type="tel" id="license-number" name="license-number" required pattern="[0-9]{10}" value="<?php echo $license_number; ?>"><br>
+
+                <div class = "flex-container">
+                    <button type="submit" id="update-button" onclick="updateProfile()">Update Profile</button>
+                </div>
+            </form>   
+        
+    </div>
                 
     </div>
 

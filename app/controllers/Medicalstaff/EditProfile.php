@@ -17,4 +17,12 @@ class EditProfile
 		$this->view('medicalstaff/editprofile',$data);
 	}
 
+	public function update(string $a = '', string $b = '', string $c = ''): void
+    {
+        $medicalstaffModel = new MedicalStaffModel();
+        $medicalstaffModel->updateMedicalStaff($a, $_POST);
+
+        redirect('medicalstaff/myprofile');
+    }
+
 }

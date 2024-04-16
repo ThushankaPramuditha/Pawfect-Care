@@ -150,7 +150,7 @@ a {
     color: #333;
 }
 
-.modal-form .modal-content label {
+.modal-form .modal-content label, label {
     display: block;
     margin-bottom: 10px;
     color: #333;
@@ -352,4 +352,50 @@ input[type="date"]{
 .d-button:hover {
     background-color: #6a3879;
     color: #fff;
+}
+
+.form-container {
+    width: 60%;
+
+}
+
+
+.form-container input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    display: block;  
+    background-color: #ffffff;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+}
+/*for long text fields*/
+.form-container textarea {
+    display: block;
+    width: calc(100% - 20px);
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+    resize: vertical; /* Allow vertical resizing */
+
+}
+.error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
 }

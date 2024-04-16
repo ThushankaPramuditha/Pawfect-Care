@@ -136,7 +136,8 @@ tbody tr:hover {
     
 }
 /* Style the medicalhistory button */
-.medicalhistory-action-buttons button {
+.medicalhistory-action-buttons button, 
+.vaccinationhistory-action-buttons button{
     padding: 5px 10px;
     margin-right: 5px;
     border-radius: 5px;

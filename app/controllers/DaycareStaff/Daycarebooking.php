@@ -6,6 +6,8 @@ class Daycarebooking
 
     public function index()
     {
+        $userdataModel = new DaycareStaffModel();
+		$data['userdata'] = $userdataModel->getDaycarestaffRoleDataById($_SESSION['USER']->id);
         $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
         $this->view('daycarestaff/daycarebooking',$data);
     }

@@ -27,6 +27,18 @@ class DaycareStaffModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function getDaycareRoleDataById($id) {
+        $query = "SELECT d.*, u.email ,u.status ,u.user_type
+                  FROM daycarestaff AS d
+                  JOIN users AS u ON d.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
+
     public function addDaycareStaff($data)
     {
         $userModel = new UserModel;
@@ -36,7 +48,7 @@ class DaycareStaffModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'daycare-staff', 
+            'user_type' => 'Daycare Staff', 
         ]);
 
         if ($data['user_id']) {

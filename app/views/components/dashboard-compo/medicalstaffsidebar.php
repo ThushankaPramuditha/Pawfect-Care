@@ -16,7 +16,7 @@
     <div class="nav-container">
         <div class="top-container">
             <div class="center-image">
-                <img src="<?php echo ROOT?>assets/images/logocolor.png" alt="Logo">
+                <img src="<?php echo ROOT?>/assets/images/logocolor.png" alt="Logo">
             </div>
             <div style="width: 100%">
                 <ul class="nav">

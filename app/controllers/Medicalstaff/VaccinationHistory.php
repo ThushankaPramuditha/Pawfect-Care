@@ -5,7 +5,8 @@ class VaccinationHistory
     use Controller;
 
     public function index(string $a = '', string $b = '', string $c = ''): void
-    {
+    {$userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistory();

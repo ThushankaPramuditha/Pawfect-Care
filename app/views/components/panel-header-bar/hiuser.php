@@ -9,9 +9,12 @@
 
 </head>
 <body>
-        <div class="greetuser">
-            <p>Hi, User!</p>
+    <header class="right-header">
+        <div class="greet-user">
+            <span class="user-name">Hi, <?= htmlspecialchars($data['userdata']->name) ?></span>
+            <span class="user-type"><?= htmlspecialchars($data['userdata']->user_type) ?></span>
         </div>
+    </header>
 </body>
 </html>
 

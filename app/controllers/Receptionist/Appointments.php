@@ -6,6 +6,8 @@ class Appointments
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new ReceptionistsModel();
+		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
         $appointmentsModel = new AppointmentsModel();
         // show($servicesModel->findAll());
         $data['appointments'] = $appointmentsModel->findAll();

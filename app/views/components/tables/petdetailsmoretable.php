@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <table>
+    <table >
         <thead>
             <tr>
                 <th>Name</th>

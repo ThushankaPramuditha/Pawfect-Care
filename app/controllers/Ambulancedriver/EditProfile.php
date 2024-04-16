@@ -17,4 +17,12 @@ class EditProfile
 		$this->view('ambulancedriver/editprofile',$data);
 	}
 
+	public function update(string $a = '', string $b = '', string $c = ''): void
+    {
+        $ambulancedriversModel = new AmbulanceDriversModel();
+        $ambulancedriversModel->updateAmbulanceDriver($a, $_POST);
+
+        redirect('ambulancedriver/myprofile');
+    }
+
 }

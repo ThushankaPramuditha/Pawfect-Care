@@ -136,8 +136,7 @@ function validateUpdateContactNumber() {
 
 function validateUpdateQualifications() {
     var qualifications = document.getElementById('update-qualifications').value;
-    // if (!qualifications) {
-    if(!qualifications.match(/^\w+$/)) {
+    if(!qualifications) {
         document.getElementById('error-update-qualifications').textContent = "* Qualifications are required.";
         return false;
     } else {

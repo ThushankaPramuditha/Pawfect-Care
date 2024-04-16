@@ -17,4 +17,12 @@ class EditProfile
 		$this->view('receptionist/editprofile',$data);
 	}
 
+	public function update(string $a = '', string $b = '', string $c = ''): void
+    {
+        $receptionistsModel = new ReceptionistsModel();
+        $receptionistsModel->updateReceptionist($a, $_POST);
+
+        redirect('receptionist/myprofile');
+    }
+
 }

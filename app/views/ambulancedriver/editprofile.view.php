@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,39 +9,38 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
+    <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 
 <body>
 
-    <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
+<?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-        <div class = "form-container"> 
-            <form id="edit-profile-form">
+        <h1>Edit Profile</h1> 
+        <div class = "form-container" id="updateveterianrian"> 
+            <form id="edit-profile-form" action="<?php echo ROOT?>/Receptionist/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
-            <?php
-            // You should replace these placeholders with the actual PHP code
-            // to retrieve and populate the form data.
-            $full_name = "John Doe"; // Replace with actual full name
-            $address = "123 Elm St"; // Replace with actual address
-            $contact_number = "1234567890"; // Replace with actual contact number
-            $license_number = "CD 9692"; // Replace with actual license number
-            ?>
+                <label for="update-name">Full Name:</label>
+                <input type="text" id="update-name" name="name" value="<?php echo $userdata->name;?>">
+                <div id="error-update-name" class="error-message"></div>
 
-                <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="full-name" required value="<?php echo $full_name; ?>"><br>
+                <label for="update-address">Address:</label>
+                <input type="text" id="update-address" name="address" value="<?php echo $userdata->address;?>">
+                <div id="error-update-address" class="error-message"></div>
 
-                <label for="address">Address:</label>
-                <input type= "text" id="address" name="address" required value="<?php echo $address; ?>"><br>
+                <label for="update-contact_no">Contact Number:</label>
+                <input type="tel" id="update-contact_no" name="contact" value="<?php echo $userdata->contact;?>" >
+                <div id="error-update-contact" class="error-message"></div>
 
-                <label for="contact-number">Contact Number:</label>
-                <input type="tel" id="contact-number" name="contact-number" required pattern="[0-9]{10}" value="<?php echo $contact_number; ?>"><br>
+                <label for="update-license">License number:</label>
+        <input type="text" id="update-license" name="license" value="<?php echo $userdata->license;?>">
+        <div id="error-update-license" class="error-message"></div>
 
-                <label for="contact-number">License Number:</label>
-                <input type="tel" id="license-number" name="license-number" required pattern="[0-9]{10}" value="<?php echo $license_number; ?>"><br>
-
-                <div class = "flex-container">
-                    <button type="submit" id="update-button" onclick="updateProfile()">Update Profile</button>
+                <div class="flex-container">
+                    <button type="submit" >Update Profile</button>
                 </div>
             </form>   
         
@@ -47,4 +49,28 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('update-name').addEventListener('input', validateUpdateName);
+    document.getElementById('update-address').addEventListener('input', validateUpdateAddress);
+    document.getElementById('update-contact_no').addEventListener('input', validateUpdateContactNumber);
+    document.getElementById('update-license').addEventListener('input', validateUpdateLicense);
+    
+    document.getElementById("edit-profile-form").addEventListener('submit', function(event) {
+        var isValid = true;
+
+        isValid = validateUpdateName() && isValid;
+        isValid = validateUpdateAddress() && isValid;
+        isValid = validateUpdateContactNumber() && isValid;
+        isValid = validateUpdateLicense() && isValid;
+
+        if (!isValid) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: "Please correct the errors before submitting.",
+            });
+        }
+    });
+</script>
 </html>

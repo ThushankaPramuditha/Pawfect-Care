@@ -37,7 +37,7 @@
                 <div id="error-update-qualifications" class="error-message"></div>
 
                 <div class="flex-container">
-                    <button type="submit" >Update Medical Staff</button>
+                    <button type="submit" >Update Profile</button>
                 </div>
             </form>   
         

@@ -10,7 +10,7 @@
 
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
+        <?php include '../app/views/components/panel-header-bar/adminwithoutbutton.php'; ?> 
         <?php include '../app/views/components/tables/feedbacktable.php'; ?> 
     </div>
 

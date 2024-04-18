@@ -61,6 +61,14 @@ class UserModel {
         $computedHash = hash_pbkdf2($this->hashAlgorithm, $password, base64_decode($salt), 10000, 64);
         return hash_equals($hash, $computedHash);
     }
+    
+    public function updateUserPassword($userId, $newPassword) {
+        $newHashedPassword = $this->hashPassword($newPassword);
+        $query = "UPDATE $this->table SET password = :newPassword WHERE id = :id";
+        return $this->query($query, ['newPassword' => $newHashedPassword, 'id' => $userId]);
+    }
+
+    
    
     public function validate($data, $id = null)
     {

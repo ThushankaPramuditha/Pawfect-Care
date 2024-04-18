@@ -98,6 +98,41 @@ function validateConfirmPassword() {
     }
 }
 
+//validations for change password
+
+function validatePrevPassword() {
+    var password = document.getElementById('prev-password').value;
+    if (!password.match(/^(?=.*[\W]).{6,}$/)) {
+        document.getElementById('error-prev-password').textContent = "* Password must be at least 6 characters long and contain at least one symbol.";
+        return false;
+    } else {
+        document.getElementById('error-prev-password').textContent = "";
+        return true;
+    }
+}
+function validateNewPassword() {
+    var password = document.getElementById('new-password').value;
+    if (!password.match(/^(?=.*[\W]).{6,}$/)) {
+        document.getElementById('error-new-password').textContent = "* Password must be at least 6 characters long and contain at least one symbol.";
+        return false;
+    } else {
+        document.getElementById('error-new-password').textContent = "";
+        return true;
+    }
+}
+
+function validateConfirmNewPassword() {
+    var newpassword = document.getElementById('new-password').value;
+    var confirmPassword = document.getElementById('confirm-password').value;
+    if (newpassword !== confirmPassword) {
+        document.getElementById('error-confirm-password').textContent = "* Passwords do not match.";
+        return false;
+    } else {
+        document.getElementById('error-confirm-password').textContent = "";
+        return true;
+    }
+}
+
 
 //validate update form
 

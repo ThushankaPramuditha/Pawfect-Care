@@ -16,3 +16,10 @@
 
 </body>
 </html>
+
+<script>
+     var span = document.getElementsByClassName("close")[0];
+
+</script>
+</body>
+</html> 

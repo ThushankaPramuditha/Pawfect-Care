@@ -1,6 +1,6 @@
 <?php
 
-class QuestionssModel
+class QuestionsModel
 {
     use Model;
 

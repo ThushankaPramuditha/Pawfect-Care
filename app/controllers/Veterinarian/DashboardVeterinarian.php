@@ -16,5 +16,4 @@ class DashboardVeterinarian
 
 		$this->view('veterinarian/dashboardveterinarian',$data);
 	}
-
 }

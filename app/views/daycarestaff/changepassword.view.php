@@ -10,14 +10,14 @@
 
 <body>
 
-    <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
+    <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <div class = "form-container"> 
          
             <h1>Change Password</h1>
 
-            <form id="change-password-form" action="<?php echo ROOT?>/veterinarian/changepassword/update" method="post">
+            <form id="change-password-form" action="<?php echo ROOT?>/daycarestaff/changepassword/update" method="post">
             
                 <label for="prev-password">Previous Password:</label>
                 <input type="password" id="prev-password" name="prev-password" required>

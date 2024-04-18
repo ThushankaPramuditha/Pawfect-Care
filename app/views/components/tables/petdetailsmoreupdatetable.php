@@ -23,7 +23,6 @@
             </tr>
         </thead>
         <tbody>
-
             <?php if (is_array($petdetails) && !empty($petdetails)): ?>
                 <?php foreach ($petdetails as $petdetail): ?>
                     <tr key="<?php echo $petdetail->id; ?>">

@@ -100,7 +100,7 @@
     </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php include 'navbarpetowner.php'; ?>
     <h2 style="text-align:center; color:black; padding-top:20px; font-size:60px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
     <div class="container">
         <!-- Static cards with three columns per row -->

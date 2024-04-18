@@ -6,6 +6,8 @@ class Appointments
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new ReceptionistsModel();
+		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
         $appointmentsModel = new AppointmentsModel();
         // show($servicesModel->findAll());
         $data['appointments'] = $appointmentsModel->findAll();
@@ -17,6 +19,9 @@ class Appointments
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new ReceptionistsModel();
+		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
+
         $appointmentsModel = new AppointmentsModel();
         $appointmentsModel->updateAppointment($a, $_POST);
 
@@ -25,6 +30,9 @@ class Appointments
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new ReceptionistsModel();
+		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
+
         $appointmentsModel = new AppointmentsModel();
         $appointmentsModel->addAppointment($_POST);
 
@@ -40,6 +48,9 @@ class Appointments
     // }
 
     public function viewAppointments(string $a = '', string $b = '', string $c = ''):void {
+        $userdataModel = new ReceptionistsModel();
+		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
+        
         $appointmentsModel = new AppointmentsModel();
         $data['appointments'] = $appointmentsModel->getAppointmentById($a);
         $this->view('receptionist/appointments/update', $data);

@@ -372,9 +372,8 @@
 <body>
 
 
-    <?php include 'navbar.php'; ?>
-   
-    
+
+    <?php include 'navbarpetowner.php'; ?>
 
         <div class="home-container" style="display:flex;">
             <div class="left-section" style="display:flex; flex-direction:column;">

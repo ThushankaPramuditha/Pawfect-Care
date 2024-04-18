@@ -20,17 +20,7 @@ class PetdetailsModel
     {
         //$age = $this->calculateAge('birthday');
         //return $this->findAll();
-        $query = "SELECT
-        p.id,
-        p.name,
-        p.age,
-        p.breed,
-        p.species,
-        p.gender,
-        p.petowner_id,
-        po.name AS owner_name,
-        po.contact
-    
+        $query = "SELECT p.*, po.name AS owner_name, po.contact
         FROM
             pets p
         JOIN
@@ -43,17 +33,7 @@ class PetdetailsModel
     {
         //$age = $this->calculateAge('birthday');
         //return $this->first(['id' => $id]);
-        $query = "SELECT
-        p.id,
-        p.name,
-        p.age,
-        p.breed,
-        p.species,
-        p.gender,
-        p.petowner_id,
-        po.name AS owner_name,
-        po.contact,
-    
+        $query = "SELECT p.*, po.name AS owner_name, po.contact
         FROM
             pets p
         JOIN

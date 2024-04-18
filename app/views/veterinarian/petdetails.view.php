@@ -11,7 +11,8 @@
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
-        <?php include '../app/views/components/tables/petdetailsmoretable.php'; ?> 
+            <?php include '../app/views/components/tables/petdetailsmoretable.php'; ?> 
+       
     </div>
 
 </body>

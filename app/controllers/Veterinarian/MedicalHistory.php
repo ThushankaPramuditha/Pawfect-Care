@@ -4,13 +4,24 @@ class MedicalHistory
 {
     use Controller;
 
-    public function index(string $a = '', string $b = '', string $c = ''): void
+    public function index()
+    {
+
+      $userdataModel = new VeterinariansModel();
+      $data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
+      $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+
+      $this->view('veterinarian/medicalhistory',$data);
+    }
+
+  
+  /*public function index(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalhistoryModel = new MedicalhistoryModel();
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
         $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistory();
         $this->view('veterinarian/medicalhistory', $data);
-    }
+    }*/
 
     public function getMedicalHistoryForPetId(string $a = '', string $b = '', string $c = ''): void
     {
@@ -38,11 +49,13 @@ class MedicalHistory
         // Fetch the medical history by ID
         $data['medicalhistory'] = $medicalhistoryModel->getMedicalHistoryById($id);
 
+
         // Check if the history data is available
         if (!$data['medicalhistory']) {
             // Redirect or handle the case where data is not found
             redirect('veterinarian/medicalhistory');
         }
+
 
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

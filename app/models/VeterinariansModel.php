@@ -5,7 +5,7 @@ class VeterinariansModel
     use Model;
 
     protected $table = 'veterinarians';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status', 'availability'];
 
 
     public function getAllVeterinarians() {
@@ -23,6 +23,18 @@ class VeterinariansModel
                   FROM veterinarians AS v
                   JOIN users AS u ON v.user_id = u.id
                   WHERE v.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
+
+    public function getVetRoleDataById($id) {
+        $query = "SELECT v.*, u.email, u.status ,u.user_type
+                  FROM veterinarians AS v
+                  JOIN users AS u ON v.user_id = u.id
+                  WHERE u.id = :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
@@ -72,7 +84,7 @@ class VeterinariansModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'veterinarian', 
+            'user_type' => 'Veterinarian', 
         ]);
 
         if ($data['user_id']) {

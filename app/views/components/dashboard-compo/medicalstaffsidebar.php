@@ -13,42 +13,48 @@
 
 <body>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="center-image">
-        <img src="<?php echo ROOT?>assets/images/logocolor.png" alt="Logo">
-    </div>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="myprofile">
-                <span class="menu-title">My Profile</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="petdetails">
-                <span class="menu-title">Pet Details</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="appointments">
-                <span class="menu-title">Appointments</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="faq">
-                <span class="menu-title">FAQ</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="logout">
-                <span class="menu-title">Logout</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+    <div class="nav-container">
+        <div class="top-container">
+            <div class="center-image">
+                <img src="<?php echo ROOT?>/assets/images/logocolor.png" alt="Logo">
+            </div>
+            <div style="width: 100%">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/dashboardmedicalstaff">
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/myprofile">
+                            <span class="menu-title">My Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/petdetails">
+                            <span class="menu-title">Pet Details</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/appointments">
+                            <span class="menu-title">Appointments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/faq">
+                            <span class="menu-title">FAQ</span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+                    <div class="bottom-container">
+                            <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
+                                <button type="submit" class="logout-button" name="logout"> Logout</button>
+                            </form>
+                    </div>
+        </div>
+    </nav>
 </body>
 
 </html>

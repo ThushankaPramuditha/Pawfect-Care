@@ -13,7 +13,7 @@
 
         <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
+        <?php include '../app/views/components/panel-header-bar/adminwithbutton.php'; ?> 
         <?php include '../app/views/components/tables/servicetable.php'; ?> 
     </div>
 

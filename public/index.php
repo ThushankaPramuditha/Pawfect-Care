@@ -2,13 +2,14 @@
 
 session_start();
 
+
 require "../app/core/init.php";
 
 DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
 $app = new App;
 $app->loadController();
 
-// Path: app/core/init.php
+//Path: app/core/init.php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;

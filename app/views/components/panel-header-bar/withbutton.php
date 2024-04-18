@@ -9,13 +9,17 @@
 
 </head>
 <body>
-        <div class="header">
+        <div class="panel-header">
             <button class="add-new-button">Add New</button>
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
                 <button class="search-button">Search</button>
             </div>
-            <p>Hi, Admin!</p>
+            <div class="greet-user">
+                <span class="user-name">Hi, <?= htmlspecialchars($data['userdata']->name) ?></span>
+                <span class="user-type"><?= htmlspecialchars($data['userdata']->user_type) ?></span>
+            </div>
+    </header>
         </div>
 </body>
 </html>

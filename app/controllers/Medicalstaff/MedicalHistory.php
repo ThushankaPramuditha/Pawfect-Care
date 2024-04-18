@@ -6,6 +6,9 @@ class MedicalHistory
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $medicalhistoryModel = new MedicalhistoryModel();
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
         $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistory();
@@ -14,6 +17,8 @@ class MedicalHistory
 
     public function getMedicalHistoryForPetId(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $medicalhistoryModel = new MedicalhistoryModel();
         $data['medicalhistory']  = $medicalhistoryModel->getMedicalHistoryForPetId($a);
         // Load the view with the medical history data
@@ -23,6 +28,9 @@ class MedicalHistory
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        
         $medicalhistoryModel = new MedicalhistoryModel();
         $medicalhistoryModel->updateMedicalHistory($a, $_POST);
 
@@ -59,6 +67,9 @@ class MedicalHistory
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $medicalhistoryModel = new MedicalhistoryModel();
         $medicalhistoryModel->addTreatment($_POST);
         redirect('medicalstaff/medicalhistory');
@@ -66,6 +77,9 @@ class MedicalHistory
 
     public function viewMedicalHistory(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $medicalhistoryModel = new MedicalhistoryModel();
         $data['medicalhistory'] = $medicalhistoryModel-> getMedicalHistoryById($a);
          // show($a);

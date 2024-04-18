@@ -80,7 +80,7 @@
 </head>
 
 <body>
-<?php include 'navbar.php'; ?>
+<?php include 'navbarpetowner.php'; ?>
 
 <div class="container">
 

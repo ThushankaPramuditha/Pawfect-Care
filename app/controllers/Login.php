@@ -27,24 +27,25 @@ class Login
                 else if($user->verifyPassword($_POST['password'], $row->password))
                 {
                     $_SESSION['USER'] = $row;
+                   
                     
-                    if($row->user_type == 'admin'){
-                        redirect('admin/DashboardServices/');
+                    if($row->user_type == 'Admin'){
+                        redirect('admin/dashboardservices/');
                     }
-                    else if($row->user_type == 'pet-ambulance-driver'){
-                        redirect('AmbulanceDriver/Dashboard/');
+                    else if($row->user_type == 'Ambulance Driver'){
+                        redirect('ambulancedriver/dashboard/');
                     }
-                    else if($row->user_type == 'receptionist'){
-                        redirect('Receptionist/Dashboardreceptionist/');
+                    else if($row->user_type == 'Receptionist'){
+                        redirect('receptionist/dashboardreceptionist/');
                     }
-                    else if($row->user_type == 'medical-staff'){
-                        redirect('Medicalstaff/Dashboardmedicalstaff/');
+                    else if($row->user_type == 'Medical Staff'){
+                        redirect('medicalstaff/dashboardmedicalstaff/');
                     }
-                    else if($row->user_type == 'veterinarian'){
-                        redirect('Veterinarian/DashboardVeterinarian/');
+                    else if($row->user_type == 'Veterinarian'){
+                        redirect('veterinarian/dashboardveterinarian/');
                     }
-                    else if($row->user_type == 'daycare-staff'){
-                        redirect('Daycarestaff/Dashboarddaycarestaff/');
+                    else if($row->user_type == 'Daycare Staff'){
+                        redirect('daycarestaff/dashboarddaycarestaff/');
                     }
                     else {
                         redirect('home');

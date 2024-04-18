@@ -27,6 +27,18 @@ class AmbulanceDriversModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function getDriverRoleDataById($id) {
+        $query = "SELECT a.*, u.email ,u.status ,u.user_type
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
+
     public function addAmbulanceDriver($data)
     {
         $userModel = new UserModel;
@@ -36,7 +48,7 @@ class AmbulanceDriversModel
         $data['user_id'] = $userModel->addUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'ambulance-driver', 
+            'user_type' => 'Ambulance Driver', 
         ]);
 
         if ($data['user_id']) {

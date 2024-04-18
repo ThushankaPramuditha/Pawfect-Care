@@ -4,17 +4,20 @@ class Petdetails
 {
     use Controller;
 
-    public function index(string $a = '', string $b = '', string $c = ''): void
-    {
-        $petdetailsModel = new PetdetailsModel();
-        //$data['petdetails'] = $petdetailsModel->findAll();
-        $data['petdetails'] = $petdetailsModel->getAllPetdetails();
-        $this->view('veterinarian/petdetails', $data);
-    }
+    public function index()
+	  {
+
+		$userdataModel = new VeterinariansModel();
+		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
+		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+
+		$this->view('veterinarian/petdetails',$data);
+	  }
 
     /*public function petDetails($pet_id) 
     {
         $petdetailsModel = new PetdetailsModel();
+
 
         // Get pet details
         $petdetails = $petdetailsModel->getPetDetailsById($pet_id);

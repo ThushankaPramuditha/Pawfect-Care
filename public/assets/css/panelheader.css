@@ -6,18 +6,42 @@ body {
     color: #333;
     
 }
-.header {
+
+.greetuser {
+    background-color: #EEE; /* Subtle background color */
+    padding: 8px 16px;
+    border-radius: 20px; /* Rounded corners for the background */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    display: inline-block;
+    
+}
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* A richer color for the name for emphasis */
+}
+
+.user-type {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+.right-header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 10px 20px;
+}
+.panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px ;
-    padding-bottom: 10px;
-}
-.greetuser {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px ;
-    
+    margin-top: 2%;
+    padding: 10px 20px;
+    width: 78%;                 /* Ensures the header takes full width */
+    position: fixed;             /* Keeps the header fixed at the top of the viewport */
+    top: 0;                      /* Aligns the header at the top edge of the viewport */
+    z-index: 500;  
 }
 
 /*search bar*/
@@ -80,7 +104,7 @@ a {
     height: 100vh; /* 100% of the viewport height */
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
@@ -126,7 +150,7 @@ a {
     color: #333;
 }
 
-.modal-form .modal-content label {
+.modal-form .modal-content label, label {
     display: block;
     margin-bottom: 10px;
     color: #333;
@@ -328,4 +352,50 @@ input[type="date"]{
 .d-button:hover {
     background-color: #6a3879;
     color: #fff;
+}
+
+.form-container {
+    width: 60%;
+
+}
+
+
+.form-container input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    display: block;  
+    background-color: #ffffff;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+}
+/*for long text fields*/
+.form-container textarea {
+    display: block;
+    width: calc(100% - 20px);
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+    resize: vertical; /* Allow vertical resizing */
+
+}
+.error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
-    <table>
+    <table >
         <thead>
             <tr>
                 <th>Pet ID</th>

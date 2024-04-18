@@ -6,6 +6,8 @@ class VaccinationHistory
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistory();
@@ -15,6 +17,9 @@ class VaccinationHistory
    
     public function getVaccinationHistoryForPetId(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         $data['vaccinationhistory']  = $vaccinationhistoryModel->getVaccinationHistoryForPetId($a);
         // Load the view with the vaccination history data
@@ -24,6 +29,9 @@ class VaccinationHistory
     
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         $vaccinationhistoryModel->updateVaccinationHistory($a, $_POST);
 
@@ -58,6 +66,9 @@ class VaccinationHistory
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         $vaccinationhistoryModel->addVaccination($_POST);
         redirect('medicalstaff/vaccinationhistory');
@@ -65,6 +76,9 @@ class VaccinationHistory
 
     public function viewVaccinationHistory(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         $data['vaccinationhistory'] = $vaccinationhistoryModel-> getVaccinationHistoryById($a);
          // show($a);

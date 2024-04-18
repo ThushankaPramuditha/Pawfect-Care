@@ -20,38 +20,38 @@
                 <div style="width: 100%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboardservices">
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/dashboardservices">
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="myprofile">
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/myprofile">
                                 <span class="menu-title">My Profile</span>
                             </a>
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="daycarestaff">
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarestaff">
                                 <span class="menu-title">Daycare Staff</span>
                             </a>
                         </li>
                         
 
                          <li class="nav-item">
-                        <a class="nav-link" href="reports">
+                        <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/reports">
 
                             <span class="menu-title">Reports</span>
 
                         </a>
                         </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="feedbacks">
+                    <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/feedbacks">
                         <span class="menu-title">Feedbacks</span>
                     </a>
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="faq">
+                    <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/faq">
                         <span class="menu-title">FAQ</span>
 
                     </a>

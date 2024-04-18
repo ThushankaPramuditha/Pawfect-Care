@@ -1,14 +1,10 @@
 
 /* tables */
 
-.tablecontainer {
-    width: 100%;
-    overflow-x: scroll;
-    margin-top: 20px;
-}
 
 table {
     width: 100%;
+    margin-top: 100px;
     border-collapse: collapse;
     overflow-x: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
@@ -140,7 +136,8 @@ tbody tr:hover {
     
 }
 /* Style the medicalhistory button */
-.medicalhistory-action-buttons button {
+.medicalhistory-action-buttons button, 
+.vaccinationhistory-action-buttons button{
     padding: 5px 10px;
     margin-right: 5px;
     border-radius: 5px;

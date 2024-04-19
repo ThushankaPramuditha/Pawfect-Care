@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 <div class="footer">
 <div class="footer-logo">
         <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Footer Logo">

@@ -82,7 +82,7 @@
 </div>
 
 <body>
-
+<?php include 'navbar.php'; ?>
 
 <div class="container">
 <div class="sidebar-menu">

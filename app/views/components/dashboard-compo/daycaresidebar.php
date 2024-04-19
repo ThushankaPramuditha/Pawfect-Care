@@ -49,13 +49,7 @@
                         <span class="menu-title">Feedbacks</span>
                     </a>
                 </li>
-                <li class="nav-item">
-
-                    <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/faq">
-                        <span class="menu-title">FAQ</span>
-
-                    </a>
-                </li>
+                
                     </ul>
                 </div>
             </div>

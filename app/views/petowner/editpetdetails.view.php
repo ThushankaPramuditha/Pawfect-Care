@@ -14,6 +14,8 @@
 </div>
 
 <body>
+<?php include 'navbar.php'; ?>
+
  <h1>Edit Pet Details</h1> 
 
 <div class="container">

@@ -58,36 +58,6 @@ class AppointmentsModel
         return $this->query($query, $data);
     }
 
-    public function getAppointmentsForVetId($vetId)
-    {
-        // Get the current date in YYYY-MM-DD format
-        $currentDate = date('Y-m-d');
-        $query = "SELECT
-            a.date_time,
-            a.patient_no,
-            a.pet_id,
-            p.name AS pet_name,
-            po.name AS petowner,
-            po.contact,
-            v.name AS vet_name
-        FROM
-            appointments a
-        JOIN
-            pets p ON a.pet_id = p.id
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        WHERE
-            DATE(a.date_time) = :current_date
-            AND
-            v.id = :vet_id";
-
-        // Bind the current date and vet_id parameters to the query
-        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
-
-        return $this->query($query, $data);
-    }
 
     public function getAppointmentById($id)
     {

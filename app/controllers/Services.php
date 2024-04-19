@@ -13,7 +13,7 @@ class Services
 		$data['services'] = $servicesModel->getAllServices(); 
 		
 
-		$this->view('petowner/services',$data);
+		$this->view('services',$data);
 	}
 
 }

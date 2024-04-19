@@ -80,7 +80,7 @@
 </head>
 
 <body>
-<?php include 'navbarpetowner.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container">
 
@@ -97,7 +97,7 @@
     <div class="Vetinfo"style="display:flex; flex-direction:row; margin-top:200px;">
         <div class="card" style="margin-right:100px;">
             <div class="card-image">
-                <img src="<?php ROOT?>assets/images/maledoctor1.jpg" alt="">
+                <img src="<?php echo ROOT?>/assets/images/maledoctor1.jpg" alt="">
                 
             </div>
             <div class="card-text">
@@ -108,7 +108,7 @@
 
         <div class="card">
             <div class="card-image">
-                <img src="<?php ROOT?>assets/images/femaledoctor1.jpg" alt="">
+                <img src="<?php echo ROOT?>/assets/images/femaledoctor1.jpg" alt="">
             </div>
             <div class="card-text">
                 <h2>Dr. Wasanthi Alwis</h2>

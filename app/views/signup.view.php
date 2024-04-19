@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Sign Up</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/signuppage.css">
+    <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    
 </head>  
@@ -49,44 +50,33 @@
 
                 <h1>Sign Up</h1>
                 
-                <div>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br>
-                </div>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name">
+                <div id="error-name" class="error-message"></div>
 
-                <div>
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required><br>
-                </div>
-                
-                <div>
+                <input type="text" id="address" name="address">
+                <div id="error-address" class="error-message"></div>
+
                 <label for="contact_no">Contact Number:</label>
-                <input type="tel" id="contact_no" name="contact" required ><br>
-                </div>
-                
-                <div>
+                <input type="tel" id="contact_no" name="contact" pattern="[0-9]{10}">
+                <div id="error-contact" class="error-message"></div>
+            
                 <label for="nic">NIC:</label>
-                <input type="text" id="nic" name="nic" required><br>
-                </div>
-                
-                <div>
+                <input type="text" id="nic" name="nic">
+                <div id="error-nic" class="error-message"></div>
+
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                </div>
-                
-                <div>
+                <input type="email" id="email" name="email">
+                <div id="error-email" class="error-message"></div>
+
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br>
-                </div>
-                
-                <div>
+                <input type="password" id="password" name="password">
+                <div id="error-password" class="error-message"></div>
+
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required><br>
-                </div>
-                
-                <!-- <div>
-                <input type="checkbox" name="terms" required> I agree to the terms and conditions.
-                </div> -->
+                <input type="password" id="confirm_password" name="confirm_password">
+                <div id="error-confirm-password" class="error-message"></div>
 
                 <div class="flex-container">
                     <button class="button" type="submit" name="signup">Sign up</button>
@@ -100,39 +90,40 @@
     </div>
 
     <script>
+    
+        document.getElementById('name').addEventListener('input', validateName);
+        document.getElementById('address').addEventListener('focus', validateName);
+        document.getElementById('contact_no').addEventListener('focus', validateAddress);
+        document.getElementById('nic').addEventListener('focus', validateContactNumber);
+        document.getElementById('email').addEventListener('focus', validateNIC);
+        document.getElementById('password').addEventListener('focus', validateEmail);
+        document.getElementById("confirm_password").addEventListener('focus', validatePassword);
+        document.getElementById("confirm_password").addEventListener('input', validateConfirmPassword);
+
+
         function validateForm() {
-            var name = document.getElementById('name').value;
-            var address = document.getElementById('address').value;
-            var contact_no = document.getElementById('contact_no').value;
-            var nic = document.getElementById('nic').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var confirm_password = document.getElementById('confirm_password').value;
-            // var terms = document.querySelector('input[name="terms"]:checked');
+            var isValid = true;
 
-            var errors = [];
+            isValid = validateName() && isValid;
+            isValid = validateAddress() && isValid;
+            isValid = validateContactNumber() && isValid;
+            isValid = validateNIC() && isValid;
+            isValid = validateEmail() && isValid;
+            isValid = validatePassword() && isValid;
+            isValid = validateConfirmPassword() && isValid;
 
-            if (!name) errors.push("Name is required.");
-            if (!address) errors.push("Address is required.");
-            if (!contact_no.match(/^[0-9]{10}$/)) errors.push("Contact number must be 10 digits.");
-            if (!nic.match(/^[0-9]{9}[vVxX]$|^([0-9]{12})$/)) errors.push("NIC format is not valid.");
-            if (!email.match(/^\S+@\S+\.\S+$/)) errors.push("Email format is not valid.");
-            if (!password.match(/^(?=.*[\W]).{6,}$/)) errors.push("Password must be at least 6 characters long and contain at least one symbol.");
-        
-            if (password !== confirm_password) errors.push("Passwords do not match.");
-            // if (!terms) errors.push("Please accept the terms and conditions.");
 
-            if (errors.length > 0) {
+            if (!isValid) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    html: errors.join("<br>"),
+                    html: "Please correct the errors before submitting.",
                 });
                 return false;
             }
-
             return true;
         }
+            
 
         document.querySelector('form').addEventListener('submit', function(event) {
             if (!validateForm()) {

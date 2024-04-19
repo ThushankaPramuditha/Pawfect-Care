@@ -20,7 +20,7 @@
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <h1>Edit Profile</h1> 
-        <div class = "form-container" id="updateveterianrian"> 
+        <div class = "formcontainer" id="updateveterianrian"> 
             <form id="edit-profile-form" action="<?php echo ROOT?>/Receptionist/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
                 <label for="update-name">Full Name:</label>

@@ -373,7 +373,7 @@
 
 
 
-    <?php include 'navbarpetowner.php'; ?>
+    <?php include 'navbar.php'; ?>
 
         <div class="home-container" style="display:flex;">
             <div class="left-section" style="display:flex; flex-direction:column;">
@@ -383,7 +383,7 @@
             </div>
         
             <div class="right-section" style="margin-top:-60px;">
-            <img src="<?php ROOT?>assets/images/loginphoto2.png" alt="Login Photo" class="photo" style=" width: 80%; padding: 20px; border-radius:20px; margin-top:-5px; margin-left:50px;">
+            <img src="<?php echo ROOT?>/assets/images/loginphoto2.png" alt="Login Photo" class="photo" style=" width: 80%; padding: 20px; border-radius:20px; margin-top:-5px; margin-left:50px;">
             </div>
         </div>
      
@@ -395,7 +395,7 @@
             <div style="display:flex; dlex-direction:row; justify-content:space-between; margin-top:50px; margin-bottom:0px; ">
              <div class="card3">
                 <div class="card3-image">
-                <img src="<?php ROOT?>assets/images/vetanddog.png">
+                <img src="<?php echo ROOT?>/assets/images/vetanddog.png">
                 </div>
                 <div class="card3-text">
                     <p class="card3-body" style="padding-bottom:15px;">Our team of dedicated veterinarians is committed to providing top-notch care for your beloved pets. From routine check-ups to complex surgeries, we've got your furry friends covered. Your pet's health and well-being are our priorities.</p>
@@ -407,7 +407,7 @@
 
             <div class="card3">
                 <div class="card3-image">
-                <img src="<?php ROOT?>assets/images/daycaredog.png">
+                <img src="<?php echo ROOT?>/assets/images/daycaredog.png">
                 </div>
                 <div class="card3-text">
                     <p class="card3-body" style="padding-bottom:15px;">Our daycare services are designed to keep your pets active and engaged while you're away. Our secure facilities and trained staff ensure a day filled with play, exercise, and socialization. Your pet will love it here!</p>  
@@ -420,7 +420,7 @@
 
             <div class="card3">
                 <div class="card3-image" style="height:300px;padding-bottom:20px;">
-                <img src="<?php ROOT?>assets/images/pettransport.png">
+                <img src="<?php echo ROOT?>/assets/images/pettransport.png">
                 </div>
                 <div class="card3-text" style="padding-bottom:20px;">
                     <p class="card3-body"style="padding-bottom:37px;">Need a safe and convenient way to get your pet to our center? Our pet transport service ensures a comfortable journey. We offer easy booking and caring drivers who treat your pets like their own.</p>
@@ -437,7 +437,7 @@
         <div class="top row" style="display:flex; flex-direction:row; margin-top:100px;">
             <div class="card2" style="margin-right:200px;  width:320px;  height:280px;">
                 <div class="card2-image" style="width:320px; height:210px;">
-                    <img src="<?php ROOT?>assets/images/dentalcare.jpg">
+                    <img src="<?php echo ROOT?>/assets/images/dentalcare.jpg">
                 </div>
                 <div class="card2-text">
                     <p style="font-size:25px; font-weight:bold;">Dental Care</p>
@@ -447,7 +447,7 @@
             
             <div class="card2" style=" width:320px;  height:280px;">
                 <div class="card2-image" style="width:320px;  height:210px;">
-                    <img src="<?php ROOT?>assets/images/laboratory.jpg">
+                    <img src="<?php echo ROOT?>/assets/images/laboratory.jpg">
                 </div>
                 <div class="card2-text">
                     <p style="font-size:25px; font-weight:bold;">Laboratory Services</p>
@@ -460,7 +460,7 @@
             
          <div class="card2" style="margin-right:200px;  width:320px;  height:280px; border-radius:20px;">
                 <div class="card2-image"  style="width:320px; height:210px; ">
-                    <img src="<?php ROOT?>assets/images/xray.jpg">
+                    <img src="<?php echo ROOT?>/assets/images/xray.jpg">
                 </div>
                 <div class="card2-text">
                     <p style="font-size:25px; font-weight:bold; ">Pet X Rays and Imaging</p>
@@ -471,7 +471,7 @@
     
           <div class="card2" style="  width:320px;  height:280px;">
                 <div class="card2-image"style="width:320px;  height:210px;">
-                    <img src="<?php ROOT?>assets/images/petfood.jpg">
+                    <img src="<?php echo ROOT?>/assets/images/petfood.jpg">
                 </div>
                 <div class="card2-text">
                     <p style="font-size:25px; font-weight:bold; ">Nutritional Counseling</p>
@@ -537,7 +537,10 @@
             <div class="card-content" >
                 <p class style="display:flex; text-align:center;">Creating an account is quick, easy, and completely free. It's the first step to simplifying your pet care journey. Join Pawfect Care today and experience the future of pet care management.
                 </p>
-                <button type="button" onclick="window.location.href='<?=ROOT?>signup'">Create an Account</button>
+                <!-- <button type="button" onclick="window.location.href='<?=ROOT?>/signup'">Create an Account</button> -->
+                <form action="<?=ROOT?>/signup" style="margin: 0; padding: 0;">
+                    <button type="submit">Create an Account</button>
+                </form>
 
             </div>
         </div style="margin-bottom:100px;">
@@ -546,7 +549,7 @@
         <div class="feedback-section" style="display:flex; flex-direction:row; margin-top:50px; ">
         <div class="feedback-card card" style="align-items: center;margin-left:60px; margin-right:60px;">
             <div class="card3-image" style="width:90px; height:90px; margin-left:95px; margin-top:20px;">
-            <img src="<?php ROOT?>assets/images/female1.jpg" style="border-radius:50px;">
+            <img src="<?php echo ROOT?>/assets/images/female1.jpg" style="border-radius:50px;">
             </div>
             <br>
             <p style="font-size:20px; color:black;">"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands." 
@@ -555,7 +558,7 @@
             </div>
             <div class="feedback-card card" style="align-items: center; margin-right:60px; padding-bottom:20px;">
             <div class="card3-image" style="width:90px; height:90px; margin-left:95px; margin-top:20px;">
-            <img src="<?php ROOT?>assets/images/female2.jpeg" style="border-radius:50px;">
+            <img src="<?php echo ROOT?>/assets/images/female2.jpeg" style="border-radius:50px;">
             </div>
             <br>
             <p style="font-size:20px; color:black;">"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!"
@@ -564,7 +567,7 @@
             </div>
             <div class="feedback-card card" style="align-items: center; margin-right:60px;margin-bottom:50px;">
             <div class="card3-image" style="width:90px; height:90px; margin-top:20px; margin-left:95px;">
-            <img src="<?php ROOT?>assets/images/male1.jpg" style="border-radius:50px;">
+            <img src="<?php echo ROOT?>/assets/images/male1.jpg" style="border-radius:50px;">
             </div>
             <br>
                 <p style="font-size:20px; color:black;">"Appointments through Pawfect-Care have been a breeze.No more waiting and the veterinarians are always so knowledgeable and caring."<br>

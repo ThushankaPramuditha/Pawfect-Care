@@ -124,6 +124,7 @@ a {
     width: auto;
 }
 
+
 .modal-form  .modal-content-delete {
     background-color: #ffffff;
     margin: 5% auto;
@@ -144,6 +145,7 @@ a {
     margin-bottom: 40px;
 }
 
+
 .modal-form .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -157,6 +159,7 @@ a {
     text-align: left;
     font-size: 20px;
 }
+
 
 
 .modal-form .modal-content input[type="text"],
@@ -177,6 +180,8 @@ input[type="date"]{
     font-size: 16px;
     outline-color:#6a3879;
 }
+
+
 
 /* buttons */
 .modal-form .modal-content button {
@@ -280,6 +285,52 @@ input[type="date"]{
     color: #4b2756;
 }
 
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.modal-content h1 {
+    color: #333;
+    font-size: 40px;
+    text-align:left;
+    /* text-align: center; */
+    margin-bottom: 40px;
+}
+.modal-content label, label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left;
+    font-size: 20px;
+}
+.modal-content .form-container {
+        max-width: 100%;
+        margin: 0 auto;
+    
+}
+.modal-content input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    display: block;  
+    background-color: #ECECEC;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+}
 
 
 /* Style for the image container */

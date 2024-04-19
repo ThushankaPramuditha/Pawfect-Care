@@ -150,7 +150,7 @@
 </head>
 
 <body>
-<?php include 'navbarpetowner.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container" style="display:flex; flex-direction:column" > 
  <h2 style="margin-left:100px;">Contact Us</h2>

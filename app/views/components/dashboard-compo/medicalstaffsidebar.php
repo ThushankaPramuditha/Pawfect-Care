@@ -40,11 +40,7 @@
                             <span class="menu-title">Appointments</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo ROOT?>/medicalstaff/faq">
-                            <span class="menu-title">FAQ</span>
-                        </a>
-                    </li>
+                    
                     </ul>
                 </div>
             </div>

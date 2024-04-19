@@ -76,6 +76,8 @@ body {
 </head>
 
 <body>
+<?php include 'navbar.php'; ?>
+
 
     <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">

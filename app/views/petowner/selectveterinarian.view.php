@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<?php include 'navbar.php'; ?>
+
 
 <div class="logo">
    <a href="<?=ROOT?>/home">

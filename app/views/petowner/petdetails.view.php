@@ -7,6 +7,7 @@
     <title>Pet Details</title>
 </head>
 <body>
+<?php include 'navbar.php'; ?>
 
 <?php $_SESSION['addnewpath'] = 'addpets' ?>
   

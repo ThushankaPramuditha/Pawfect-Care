@@ -373,7 +373,7 @@
 
 
 
-    <?php include 'navbarpetowner.php'; ?>
+    <?php include 'navbar.php'; ?>
 
         <div class="home-container" style="display:flex;">
             <div class="left-section" style="display:flex; flex-direction:column;">

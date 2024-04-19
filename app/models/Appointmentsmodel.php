@@ -209,15 +209,36 @@ class AppointmentsModel
         return $this->update($id, $data, 'id');
     }
 
-    // public function updateService($id, $data)
-    // {
-    //     return $this->update($id, $data);
-    // }
-
-    // public function deleteAppointment($id)
-    // {
-    //     return $this->delete($id);
-    // }
+    public function countAllAppointments($startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE date_time >= :start_date 
+                  AND date_time < :end_date";
+                  
+        $params = [
+            ':start_date' => $startDate,
+            ':end_date' => $endDate
+        ];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  // Default to 0 if no results found
+    }
+    public function incomeFromAppointments($startDate, $endDate) {
+        $count = $this->countAllAppointments($startDate, $endDate); // Use $this-> to refer to the other method in the same class
+        $income = $count * 400;
+        return $income; // Return the calculated income
+    }
+    public function countAppointmentsByStatus($status, $startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE status = :status
+                  AND date_time >= :start_date 
+                  AND date_time < :end_date";
+        $params = [':status' => $status,
+        ':start_date' => $startDate,
+        ':end_date' => $endDate];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  // Default to 0 if no results found
+    }
 
     
     public function validate($data)

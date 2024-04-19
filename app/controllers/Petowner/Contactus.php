@@ -3,7 +3,7 @@
 /**
  * home class
  */
-class Ourservices
+class Contactus
 {
 	use Controller;
 
@@ -12,7 +12,7 @@ class Ourservices
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-		$this->view('ourservices',$data);
+		$this->view('petowner/contactus',$data);
 	}
 
 }

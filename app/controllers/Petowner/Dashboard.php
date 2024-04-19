@@ -1,6 +1,6 @@
 <?php 
 
-class DashboardPetowner
+class Dashboard
 {
     use Controller;
 
@@ -9,7 +9,7 @@ class DashboardPetowner
 
         $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
-        $this->view('petowner/dashboardpetowner',$data);
+        $this->view('petowner/dashboard',$data);
     }
 
 }

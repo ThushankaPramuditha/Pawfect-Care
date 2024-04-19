@@ -88,11 +88,11 @@
         </div>
         <ul class="nav-links">
 
-        <li><a href="<?=ROOT?>/home">Home</a></li>
-            <li><a href="<?=ROOT?>/ourservices">Services</a></li>
-            <li><a href="<?=ROOT?>/aboutus">About Us</a></li>
-            <li><a href="<?=ROOT?>/contactus">Contact Us</a></li>
-            <li><a href="<?=ROOT?>/dashboardpetowner">My Profile</a></li>
+        <li><a href="<?=ROOT?>/petowner/home">Home</a></li>
+            <li><a href="<?=ROOT?>/petowner/services">Services</a></li>
+            <li><a href="<?=ROOT?>/petowner/aboutus">About Us</a></li>
+            <li><a href="<?=ROOT?>/petowner/contactus">Contact Us</a></li>
+            <li><a href="<?=ROOT?>/petowner/dashboard">My Profile</a></li>
             <li>
                 <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
                     <button type="submit" class="logout-button" name="logout"> Logout</button>

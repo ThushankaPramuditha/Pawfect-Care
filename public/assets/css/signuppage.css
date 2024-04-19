@@ -209,3 +209,10 @@ input[type="radio"]:checked {
     border: 2px solid #9971FE; /* Change the border color when the radio button is checked */
     background-color: #9971FE; /* Change the background color when the radio button is checked */
 }
+
+.error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
+}

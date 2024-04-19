@@ -3,7 +3,7 @@
 /**
  * home class
  */
-class AboutUs
+class Aboutus
 {
 	use Controller;
 

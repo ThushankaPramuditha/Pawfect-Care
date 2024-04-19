@@ -25,7 +25,6 @@
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
         }
 
         .card {
@@ -100,7 +99,7 @@
     </style>
 </head>
 <body>
-    <?php include 'navbarpetowner.php'; ?>
+    <?php include 'navbar.php'; ?>
     <h2 style="text-align:center; color:black; padding-top:20px; font-size:60px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
     <div class="container">
         <!-- Static cards with three columns per row -->
@@ -112,7 +111,7 @@
                 <h3 class="card-title">Appointment Services</h3>
                 <p class="card-description">Our team of dedicated veterinarians is committed to providing top-notch care for your beloved pets. From routine check-ups to complex surgeries, we've got your furry friends covered. Your pet's health and well-being are our priorities.</p>
                 <div class="button">
-                    <a href="<?php echo ROOT?>/petowner/selectveterinarian" class="btn">Book an Appointment</a>
+                    <a href="<?php echo ROOT?>/login" class="btn">Book an Appointment</a>
                 </div>
             </div>
         </div>
@@ -124,7 +123,7 @@
                 <h3 class="card-title">Daycare Services</h3>
                 <p class="card-description">Our daycare services are designed to keep your pets active and engaged while you're away. Our secure facilities and trained staff ensure a day filled with play, exercise, and socialization. Your pet will love it here!</p>  
                 <div class="button">
-                    <a href="<?php echo ROOT?>/services.php" class="btn">Book a Slot</a>
+                    <a href="<?php echo ROOT?>/login" class="btn">Book a Slot</a>
                 </div>
             </div>
         </div>
@@ -136,7 +135,7 @@
                 <h3 class="card-title">Pet Ambulance Services</h3>
                 <p class="card-description"> Need a safe and convenient way to get your pet to our center? Our pet transport service ensures a comfortable journey. We offer easy booking and caring drivers who treat your pets like their own.</p>           
                 <div class="button">
-                    <a href="<?php echo ROOT?>/services.php" class="btn">Book an Ambulance</a>
+                    <a href="<?php echo ROOT?>/login" class="btn">Book an Ambulance</a>
                 </div>
             </div>
         </div>
@@ -175,6 +174,26 @@
                 <h3 class="card-title">Nutritional Counselling </h3>
                 <p class="card-description">Expert guidance on selecting the right pet food and creating a balanced diet tailored to a pet's specific needs</p>
             </div>
+        </div>
+
+            <?php if (!empty($data['services'])): ?>
+                <?php 
+                    $images = ['bg1.jpeg', 'bg2.jpeg', 'bg3.jpeg', 'bg4.jpeg', 'bg5.jpeg'];
+                    $index = 0;
+                    foreach ($data['services'] as $service):
+                        $image = $images[$index];
+                        $index = ($index + 1) % count($images); ?>
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="<?php echo ROOT?>/assets/images/<?= $image ?>">
+                            </div>
+                            <div class="card-text">
+                                <h3 class="card-title"><?= htmlspecialchars($service->service) ?></h3>
+                                <p class="card-description"><?= htmlspecialchars($service->description) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </body>

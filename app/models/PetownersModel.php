@@ -51,8 +51,9 @@ class PetownersModel
         $data['user_id'] = $userModel->registerUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'petowner', 
+            'user_type' => 'Pet Owner', 
         ]);
+
 
         if ($data['user_id']) {
             // Prepare petowner-specific data

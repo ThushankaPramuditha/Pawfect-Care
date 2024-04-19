@@ -354,13 +354,13 @@ input[type="date"]{
     color: #fff;
 }
 
-.form-container {
+.formcontainer {
     width: 60%;
 
 }
 
 
-.form-container input[type="text"],
+.formcontainer input[type="text"],
 input[type="tel"], 
 input[type="password"], 
 input[type="email"],
@@ -379,7 +379,7 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 /*for long text fields*/
-.form-container textarea {
+.formcontainer textarea {
     display: block;
     width: calc(100% - 20px);
     background-color: #ffffff;

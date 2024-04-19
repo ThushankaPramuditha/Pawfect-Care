@@ -93,7 +93,38 @@ class AppointmentsModel
         return $this->get_row($query, ['id' => $id]);
     }
 
-    
+    public function getAppointmentsForVetId($vetId)
+    {
+        // Get the current date in YYYY-MM-DD format
+        $currentDate = date('Y-m-d');
+        $query = "SELECT
+            a.date_time,
+            a.patient_no,
+            a.pet_id,
+            p.name AS pet_name,
+            po.name AS petowner,
+            po.contact,
+            v.name AS vet_name,
+            a.status
+        FROM
+            appointments a
+        JOIN
+            pets p ON a.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        WHERE
+            DATE(a.date_time) = :current_date
+            AND
+            v.id = :vet_id";
+
+        // Bind the current date and vet_id parameters to the query
+        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
+
+        return $this->query($query, $data);
+    }
+
 
     /*public function getAppointmentId($patientNo, $date, $vetId)
     {
@@ -133,8 +164,40 @@ class AppointmentsModel
 
     public function addAppointment(array $data)
     {
-        return $this->insert($data);
+        // Check how many appointments already exist for today
+        $appointmentsToday = $this->countTodayAppointments();
+
+        if ($appointmentsToday >= 3) {
+            return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
+        }
+
+        else {
+            // If less than 3, proceed to add a new appointment
+            $patientNo = $appointmentsToday + 1; // Assign the next patient number
+            $data['patient_no'] = $patientNo;
+            $data['date_time'] = date('Y-m-d H:i:s'); // Ensure MySQL compatible datetime format
+
+        }
+
+        // Insert the new appointment
+        $inserted = $this->insert($data);
+        if ($inserted) {
+            return "Appointment successfully saved with patient number {$patientNo}.";
+        } else {
+            return "Failed to save appointment.";
+        }
     }
+
+    public function countTodayAppointments() {
+        $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE DATE(date_time) = :today
+        AND status != 'cancelled'";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+    
 
     public function updateAppointment($id, array $data)
     {
@@ -156,6 +219,7 @@ class AppointmentsModel
     //     return $this->delete($id);
     // }
 
+    
     public function validate($data)
     {
         $this->errors = [];
@@ -196,5 +260,3 @@ class AppointmentsModel
         return empty($this->errors);
     }
 }
-
-

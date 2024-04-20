@@ -362,6 +362,46 @@
           display: flex;
           margin-bottom: 20px;
         }
+
+        .feedback-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+
+        .feedback-container .card {
+            flex-basis: calc(33.33% - 20px);
+            margin: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+        }
+
+        .feedback-container .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-container .card-title {
+
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feedback-container .card-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
        
        
     </style>
@@ -487,14 +527,14 @@
 
     <div class="container" style="margin-top:100px;">
         <h2 style="color:darkblue; margin-bottom:80px;">Why Create an Account?</h2>
- <div style="display:flex; flex-direction:row; gap:60px; margin-bottom:200px;">
-  <div class="card4">
-  <div class="card4-descript">
-    <p class="text-body" style="font-weight:bold">Easy Appointment Booking</p>
-     <div>
+      <div style="display:flex; flex-direction:row; gap:60px; margin-bottom:200px;">
+        <div class="card4">
+          <div class="card4-descript">
+              <p class="text-body" style="font-weight:bold">Easy Appointment Booking</p>
+          <div>
        
-     </div>
-  </div>
+        </div>
+      </div>
     <div class="card4-description">
       <p class="text-body">Say goodbye to long phone calls and appointment mix-ups. With an account, you can effortlessly schedule vet visits, daycare, and transportation services online, anytime, anywhere.</p>
     </div>
@@ -530,42 +570,24 @@
 
 
 
-    
-    <div class="container" style="display:flex; flex-direction:column;">
-        
-        <h2 class style="color:darkblue; font-weight:bold;">Feedback from Our Pet Owners</h2>
-        <div class="feedback-section" style="display:flex; flex-direction:row; margin-top:50px; ">
-        <div class="feedback-card card" style="align-items: center;margin-left:60px; margin-right:60px;">
-            <div class="card3-image" style="width:90px; height:90px; margin-left:95px; margin-top:20px;">
-            <img src="<?php echo ROOT?>/assets/images/female1.jpg" style="border-radius:50px;">
-            </div>
-            <br>
-            <p style="font-size:20px; color:black;">"The daycare staff is fantastic! My dog loves spending time there, and I love the peace of mind knowing he's in good hands." 
-                    <br><b>Himasha Amandi</b>
-                </p>
-            </div>
-            <div class="feedback-card card" style="align-items: center; margin-right:60px; padding-bottom:20px;">
-            <div class="card3-image" style="width:90px; height:90px; margin-left:95px; margin-top:20px;">
-            <img src="<?php echo ROOT?>/assets/images/female2.jpeg" style="border-radius:50px;">
-            </div>
-            <br>
-            <p style="font-size:20px; color:black;">"The pet transport service saved the day when I needed to get my pet to the clinic in a hurry. Fast and reliable!"
-                   <br><b>Sachini Perera</b>
-                </p>
-            </div>
-            <div class="feedback-card card" style="align-items: center; margin-right:60px;margin-bottom:50px;">
-            <div class="card3-image" style="width:90px; height:90px; margin-top:20px; margin-left:95px;">
-            <img src="<?php echo ROOT?>/assets/images/male1.jpg" style="border-radius:50px;">
-            </div>
-            <br>
-                <p style="font-size:20px; color:black;">"Appointments through Pawfect-Care have been a breeze.No more waiting and the veterinarians are always so knowledgeable and caring."<br>
-                <b>Thusitha Perera</b>
-              </p>
-            </div>
-        </div>
-        
-    </div>
+ <div class="container" style="margin-top:100px;">
+        <h2 style="color:darkblue; margin-bottom:80px;">Feedbacks From Our Petowners</h2>  
+ <div class="feedback-container">
+        <!-- Static cards with three columns per row -->
 
+            <?php if (!empty($data['feedbacks'])): ?>
+                <?php foreach ($data['feedbacks'] as $feedback): ?>
+                        <div class="card">
+                            <div class="card-text">
+                                <h3 class="card-title"><?= htmlspecialchars($feedback->owner_name) ?></h3>
+                                <p class="card-description"><?= htmlspecialchars($feedback->feedback) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

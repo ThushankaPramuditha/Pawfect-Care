@@ -368,13 +368,14 @@
             margin: 0 auto;
             padding: 20px;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
             
         }
 
         .feedback-container .card {
             flex-basis: calc(33.33% - 20px);
             margin: 10px;
+            padding: 2%;
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s;

@@ -25,8 +25,8 @@
         <div class="form-container">
             <form id="add-petdetails-form" action="<?php echo ROOT?>/Petowner/petdetails/add" method="post">
                
-            <label for="pet_name">Name:</label>
-            <input type="text" id="pet_name" name="pet_name" required><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="pet_name" required><br>
 
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" required><br>

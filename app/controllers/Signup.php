@@ -34,6 +34,8 @@ class Signup
     use Controller;
 
     public function index()
+
+    
     {
         $data = [];
 

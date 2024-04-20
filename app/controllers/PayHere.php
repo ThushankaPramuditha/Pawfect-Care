@@ -41,5 +41,5 @@ class PayHere
 
         echo $jsonObj;
 	}
-
+ 
 }

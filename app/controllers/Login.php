@@ -45,7 +45,7 @@ class Login
                         redirect('Veterinarian/DashboardVeterinarian/');
                     }
                     else if($row->user_type == 'daycare-staff'){
-                        redirect('Daycarestaff/Dashboarddaycarestaff/');
+                        redirect('Daycarestaff/Daycarestaffdashboard/');
                     }
                     else {
                         redirect('home');

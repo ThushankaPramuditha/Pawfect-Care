@@ -537,7 +537,10 @@
             <div class="card-content" >
                 <p class style="display:flex; text-align:center;">Creating an account is quick, easy, and completely free. It's the first step to simplifying your pet care journey. Join Pawfect Care today and experience the future of pet care management.
                 </p>
-                <button type="button" onclick="window.location.href='<?=ROOT?>signup'">Create an Account</button>
+                <form action="'<?=ROOT?>signup'" method="POST" style="margin: 0; padding: 0;">
+                    <button type="submit" class="signup-button" name="signup">Create an Account</button>
+                </form>
+                <!-- <button type="button" onclick="window.location.href='<?=ROOT?>signup'">Create an Account</button> -->
 
             </div>
         </div style="margin-bottom:100px;">

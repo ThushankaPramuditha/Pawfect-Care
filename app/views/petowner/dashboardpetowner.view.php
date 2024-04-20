@@ -119,18 +119,7 @@
 
 
     .pet {
-        /* background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        margin: 20px 0;
-        transition: transform 0.3s;
-        color: white;
-        font-style: italic;
-        text-align: center;
-        backdrop-filter: blur(5px); 
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-        width: 400px; */
+      
         background-color: var(--color-white);
         padding: var(--card-padding);
         border-radius: var(--card-border-radius);
@@ -204,138 +193,7 @@
             color: white;
             text-decoration: none;
         }
-/* 
-        .vaccination-list {
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            padding-top: 20px;
-            padding-right:20px;
-            width:300px;
-        }
 
-        .appointment-list {
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            padding-top: 20px;
-            width:300px;
-
-        }
-
-        .daycare-list {
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            padding-top: 20px;
-            padding-right:20px;
-            width:300px;
-           
-        }
-
-        .vaccination-list h2 {
-            text-align: center;
-        }
-
-        .appointment-list h2 {
-            text-align: center;
-        }
-
-        .daycare-list h2 {
-            text-align: center;
-        }
-        .vaccination-list,
-        .appointment-list,
-        .daycare-list {
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            margin-right:10px;
-            background-color: #ffff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            padding-top: 20px;
-            padding-right: 20px;
-            width: 300px;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .vaccination-list h2,
-        .appointment-list h2,
-        .daycare-list h2 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .vaccination,
-        .appointment,
-        .daycare {
-            padding: 15px;
-            background-color: #f6f6f9;
-            margin-bottom: 10px;
-            margin-left:10px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .vaccination::before,
-        .appointment::before,
-        .daycare::before {
-            content: '\f48a'; 
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 24px;
-            color: #555;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-        }
-
-        .vaccination p,
-        .appointment p,
-        .daycare p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        .vaccination:hover,
-        .appointment:hover,
-        .daycare:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-         */
 
         .booking {
             background-color: black;
@@ -414,25 +272,26 @@
                 // Assume you have a database connection established
                 $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
 
-                $query = "SELECT * FROM petdetails";
+                $query = "SELECT * FROM pets";
                 $statement = $pdo->prepare($query);
                 $statement->execute();
-                $petdetails = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $pets = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($petdetails as $pet) {
+                foreach ($pets as $pet) {
                 ?>   
                      
-                 <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet['id']; ?>">
+                 <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="<?php echo $pet['id']; ?>">
                      <div style="display:flex; flex-direction:row; justify-content:space-between; ">
-                        <h2><?php echo $pet['pet_name']; ?></h2>
+                        <h2><?php echo $pet['name']; ?></h2>
                         <button><a href="<?php echo ROOT ?>/petowner/editpetdetails/<?php echo $pet['id']; ?>">Edit Details</a></button>
                       </div>
                     <div style="display:flex; flex-direction:row;">    
                        <div class="pet-image">
-                        <img src="<?= ROOT ?>/assets/images/<?php echo $pet['petimage']; ?>" alt="<?php echo $pet['pet_name']; ?> Image">
+                       <?php echo $pet['name']; ?> 
                         </div> 
                         <div class="pet-content" style="text-align:left;">
-                            <p>Id: <?php echo $pet['pet_id']; ?></p>
+                            <p>Id: <?php echo $pet['id']; ?></p>
+                            <p>Type: <?php echo $pet['species']; ?></p>
                             <p>Breed: <?php echo $pet['breed']; ?></p>
                             <p>Date of Birth: <?php echo $pet['dob']; ?></p>
                             <p>Gender: <?php echo $pet['gender']; ?></p>
@@ -440,8 +299,8 @@
                         </div>
                     </div>
                       <div style="display:flex; flex-direction:row; justify-content:space-between; margin-left:10px;">
-                        <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet['pet_id']; ?>">Medical History</a></button>
-                        <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet['pet_id']; ?>">Vaccination History</a></button>
+                        <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet['id']; ?>">Medical History</a></button>
+                        <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet['id']; ?>">Vaccination History</a></button>
                         </div>
                  </div>
                 <?php
@@ -455,7 +314,7 @@
       
 
 
-        <div class="announcement" style="display:flex; flex-direction:column; margin-top:100px;">
+        <!-- <div class="announcement" style="display:flex; flex-direction:column; margin-top:100px;">
             
 
             <div class="notification" >
@@ -512,7 +371,7 @@
                         </span>
                     </div>
  
-            </div>
+            </div> -->
 
           
        

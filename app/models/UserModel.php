@@ -1,5 +1,6 @@
 <?php
 
+$_SESSION['user_email'] = $userEmail;
 
 class UserModel {
     
@@ -29,7 +30,15 @@ class UserModel {
         // die();
         return false;
     }
-
+    // Method to get the email address of the logged-in user
+    public function getUserEmailFromSession() {
+        // Check if the user's email address is set in the session
+        if (isset($_SESSION['user_email'])) {
+            return $_SESSION['user_email'];
+        } else {
+            return null; // Return null if the email address is not set in the session
+        }
+    }
     public function addUser(array $data){
         
         if ($this->validate($data)) {

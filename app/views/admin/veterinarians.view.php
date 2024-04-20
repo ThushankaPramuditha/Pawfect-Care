@@ -6,6 +6,8 @@
     <title>Veterinarians</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+
 
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 
@@ -14,7 +16,58 @@
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/adminwithbutton.php'; ?> 
-        <?php include '../app/views/components/tables/vettable.php'; ?> 
+        <table>
+        
+
+        <thead>
+            <tr>
+                <th>Staff ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact No.</th>
+                <th>NIC</th>
+                <th>Email</th>
+                <th>Qualifications</th>
+                <th>Status</th>
+                <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
+                <th class="deactivate-action-buttons"></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            <?php if (is_array($veterinarians) && !empty($veterinarians)): ?>
+                <?php foreach ($veterinarians as $vet): ?>
+                    <tr key = "<?php echo $vet->id; ?>" >
+                        <td><?= htmlspecialchars($vet->id); ?></td>
+                        <td><?= htmlspecialchars($vet->name); ?></td>
+                        <td><?= htmlspecialchars($vet->address); ?></td>
+                        <td><?= htmlspecialchars($vet->contact); ?></td>
+                        <td><?= htmlspecialchars($vet->nic); ?></td>
+                        <td><?= htmlspecialchars($vet->email); ?></td>
+                        <td><?= htmlspecialchars($vet->qualifications); ?></td>
+                        <td><?= htmlspecialchars($vet->status); ?></td>
+                        <td class="edit-action-buttons">
+                            <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
+                        </td>
+                        <td class="deactivate-action-buttons">
+                            <button class="deactivate-button">Deactivate</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No veterinarians found.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+        
+       
+    </table> 
     </div>
 
 </body>

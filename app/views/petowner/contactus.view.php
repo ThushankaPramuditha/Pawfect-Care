@@ -145,6 +145,20 @@
             background-color: darkmagenta;
         }
 
+        /* Add to your existing styles */
+        .feedback-section {
+            background-color: #ffffff; /* White background */
+            padding: 50px; /* Add some padding around the section */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+            border-radius: 8px; /* Slightly rounded corners */
+            margin-bottom: 100px; /* Space after the section */
+        }
+
+        .feedback-form-container form button:hover {
+            background-color: darkmagenta; /* Slightly darker purple on hover */
+        }
+
+
         </style>
 
 </head>
@@ -173,6 +187,23 @@
         </span>
     </div>
 
+    <!-- Feedback Section -->
+    <div class="feedback-section" style="margin-top: 100px; display: flex; flex-direction: column; align-items: center;">
+        <h2 style="font-size: 30px; color: purple; padding-bottom: 20px;">We Value Your Feedback</h2>
+        <p style="font-size: 1rem; color: black; text-align: center; margin-bottom: 40px;">
+            Your feedback helps us improve our services. Please take a moment to share your thoughts, suggestions, or experiences with us through our online feedback form. Your insights are invaluable in our mission to provide the best care for your beloved pets.
+        </p>
+        
+        <div class="feedback-form-container" style="width: 100%; max-width: 800px;">
+            <form id = "feedback-form" action="<?=ROOT?>/petowner/feedbacks/add" method="post">
+                <textarea name="feedback" placeholder="Enter Your Feedback..." style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; height: 150px;"></textarea>
+                <button type="submit" style="background-color: purple; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- End Feedback Section -->
+
+
 
   
      <h2 style="margin-left:100px;">FAQs</h2>
@@ -200,7 +231,7 @@
         </div>
 
         <div class="textbox" >
-            <form action="<?php echo ROOT?>/petowner/contactus.php" method="post">
+            <form action="<?php echo ROOT?>/petowner/contactus" method="post">
                 <input type="text" name="name" placeholder="Enter your name">
                 <input type="text" name="email" placeholder="Enter your email">
                 <textarea name="message" placeholder="Got more Questions? let us know..."></textarea>
@@ -216,5 +247,7 @@
 
         
 </div>
+
+
 </body>
 </html>

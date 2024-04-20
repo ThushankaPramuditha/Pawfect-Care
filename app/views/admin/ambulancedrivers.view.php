@@ -7,12 +7,61 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+
 
 <body>
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px">
         <?php include '../app/views/components/panel-header-bar/adminwithbutton.php'; ?> 
-        <?php include '../app/views/components/tables/drivertable.php'; ?> 
+        <table>
+        <thead>
+            <tr>
+                <th>Staff ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact No.</th>
+                <th>NIC</th>
+                <th>Email</th>
+                <th>License Number</th>
+                <th>Status</th>
+                <th class="edit-action-buttons"></th>
+                <th class="activate-action-buttons"></th>
+                <th class="deactivate-action-buttons"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (is_array($ambulancedrivers) && !empty($ambulancedrivers)): ?>
+                <?php foreach ($ambulancedrivers as $driver): ?>
+                    <tr key = "<?php echo $driver->id; ?>" >
+                        <td><?= htmlspecialchars($driver->id); ?></td>
+                        <td><?= htmlspecialchars($driver->name); ?></td>
+                        <td><?= htmlspecialchars($driver->address); ?></td>
+                        <td><?= htmlspecialchars($driver->contact); ?></td>
+                        <td><?= htmlspecialchars($driver->nic); ?></td>
+                        <td><?= htmlspecialchars($driver->email); ?></td>
+                        <td><?= htmlspecialchars($driver->license); ?></td>
+                        <td><?= htmlspecialchars($driver->status); ?></td>
+                        
+                        <td class="edit-action-buttons">
+                            <button class="edit-icon"></button>
+                        </td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Activate</button>
+                        </td>
+                        <td class="deactivate-action-buttons">
+                            <button class="deactivate-button">Deactivate</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No ambulance drivers found.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+        
+    </table> 
     </div>
 
 </body>

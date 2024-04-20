@@ -190,12 +190,12 @@
     </div>
     <script>
     
-    //success message
+    
     <?php if (isset($_GET['success'])): ?>
         Swal.fire({
             icon: 'success',
             title: 'Booking Successful',
-            text: 'Your daycare booking has been successfully added. Wait for the confirmation Email.',
+            text: 'Daycare booking successfully added.Wait for the confirmation Email. ',
         });
 
     <?php endif; ?>

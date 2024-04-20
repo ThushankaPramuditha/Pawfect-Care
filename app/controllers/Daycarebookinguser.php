@@ -52,8 +52,10 @@ class Daycarebookinguser
     // Check the result and provide feedback
     if ($result === true) {
         // Successful insertion
+        echo "Daycare booking successfully added.";
+
         //success parameter indicating a successful booking
-        redirect('daycarebookinguser?success=true');
+        redirect('daycarebookinguser/addDaycarebookinguser?success=true');
 
         // echo "Daycare booking successfully added.";
        

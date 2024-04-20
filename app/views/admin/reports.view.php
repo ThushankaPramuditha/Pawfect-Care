@@ -13,9 +13,9 @@
     <div style = "margin-left: 230px;  padding: 10px 10px 100px 100px;">
         <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
             <div class="modal-content">
-                <h1>Appointments</h1> 
+                <h1>Appointment Booking</h1> 
                 <div class="form-container">
-                    <form action="<?php echo ROOT?>/admin/reports/generate" method="post">
+                    <form action="<?php echo ROOT?>/admin/reports/generateAppointmentReport" method="post">
                         <label for="from">From:</label>
                         <input type="date" id="from" name="from" required>
                         <label for="to">To:</label>

@@ -126,22 +126,6 @@ class AppointmentsModel
     }
 
 
-    /*public function getAppointmentId($patientNo, $date, $vetId)
-    {
-        $conditions = [
-            'patient_no' => $patientNo,
-            'DATE(date_time)' => $date,
-            'vet_id' => $vetId,
-        ];
-
-        $result = $this->first($conditions);
-
-        if ($result && property_exists($result, 'id')) {
-            return $result->id;
-        } else {
-            return false; 
-        }
-    }*/
     public function getAppointmentId($patientNo, $date, $vetId)
     {
         $query = "SELECT id FROM $this->table WHERE patient_no = :patient_no AND DATE(date_time) = :date AND vet_id = :vet_id";
@@ -165,7 +149,7 @@ class AppointmentsModel
     public function addAppointment(array $data)
     {
         // Check how many appointments already exist for today
-        $appointmentsToday = $this->countTodayAppointments();
+        $appointmentsToday = $this->countTodayAppointments($vetId);
 
         if ($appointmentsToday >= 3) {
             return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
@@ -188,13 +172,15 @@ class AppointmentsModel
         }
     }
 
-    public function countTodayAppointments() {
+    //get the active appointment count for current date for particular vet
+    public function countTodayAppointments($vetId) {
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE DATE(date_time) = :today
+        AND vet_id = :vet_id
         AND status != 'cancelled'";
-        $result = $this->query($query, [':today' => $today]);
+        $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
     
@@ -207,37 +193,6 @@ class AppointmentsModel
         }, ARRAY_FILTER_USE_KEY);
     
         return $this->update($id, $data, 'id');
-    }
-
-    public function countAllAppointments($startDate, $endDate) {
-        $query = "SELECT COUNT(*) AS total 
-                  FROM {$this->table} 
-                  WHERE date_time >= :start_date 
-                  AND date_time < :end_date";
-                  
-        $params = [
-            ':start_date' => $startDate,
-            ':end_date' => $endDate
-        ];
-        $result = $this->query($query, $params);
-        return $result[0]->total ?? 0;  // Default to 0 if no results found
-    }
-    public function incomeFromAppointments($startDate, $endDate) {
-        $count = $this->countAllAppointments($startDate, $endDate); // Use $this-> to refer to the other method in the same class
-        $income = $count * 400;
-        return $income; // Return the calculated income
-    }
-    public function countAppointmentsByStatus($status, $startDate, $endDate) {
-        $query = "SELECT COUNT(*) AS total 
-                  FROM {$this->table} 
-                  WHERE status = :status
-                  AND date_time >= :start_date 
-                  AND date_time < :end_date";
-        $params = [':status' => $status,
-        ':start_date' => $startDate,
-        ':end_date' => $endDate];
-        $result = $this->query($query, $params);
-        return $result[0]->total ?? 0;  // Default to 0 if no results found
     }
 
     
@@ -279,5 +234,75 @@ class AppointmentsModel
 
 
         return empty($this->errors);
+    }
+
+/////////////////////////////////////////////////////////////// reports   /////////////////////////////////////////////////
+
+    //get the appointment count for given period for all vets
+    public function countAllAppointments($startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE date_time >= :start_date 
+                  AND date_time < :end_date";
+                  
+        $params = [
+            ':start_date' => $startDate,
+            ':end_date' => $endDate
+        ];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  
+    }
+
+    //get the total income from appointments for given period for all vets
+    public function incomeFromAppointments($startDate, $endDate) {
+        $count = $this->countAllAppointments($startDate, $endDate); 
+        $income = $count * 400;
+        return $income; 
+    }
+
+    //get the appointment count for given period per vet
+    public function getAppointmentsDetailsPerVet($from, $to) {
+        $query = "SELECT v.name AS vet_name, a.vet_id AS vet_id,
+        COUNT(a.id) AS total_appointments
+        FROM {$this->table} a
+        JOIN veterinarians v ON a.vet_id = v.id
+        WHERE a.date_time >= :from 
+        AND a.date_time <= :to
+        GROUP BY a.vet_id
+        ";
+        $params = [':from' => $from, ':to' => $to];
+        $result = $this->query($query, $params);
+    
+        // Since this is expected to fetch multiple rows, return the full result set
+        return $result ? $result : [];
+    }
+
+    //get the total income from appointments for given period for all vets
+    public function incomeFromAppointmentsPerVet($startDate, $endDate) {
+        $appointmentDetails = $this->getAppointmentsDetailsPerVet($startDate, $endDate);
+        $incomeDetails = [];
+    
+        foreach ($appointmentDetails as $detail) {
+            $incomeDetails[] = [
+                'vet_id' => $detail->vet_id,
+                'vet_name' => $detail->vet_name,
+                'income' => $detail->total_appointments * 400,
+                'total_appointments' => $detail->total_appointments
+            ];
+        }
+        return $incomeDetails;
+    }
+
+    public function countAppointmentsByStatus($status, $startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE status = :status
+                  AND date_time >= :start_date 
+                  AND date_time < :end_date";
+        $params = [':status' => $status,
+        ':start_date' => $startDate,
+        ':end_date' => $endDate];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  // Default to 0 if no results found
     }
 }

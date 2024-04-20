@@ -188,7 +188,6 @@ class AppointmentsModel
     //     return $this->delete($id);
     // }
 
-    
     public function validate($data)
     {
         $this->errors = [];

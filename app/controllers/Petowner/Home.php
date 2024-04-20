@@ -11,6 +11,8 @@ class Home
 	{
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+		$feedbacksModel = new FeedbacksModel();
+		$data['feedbacks'] = $feedbacksModel->getAllFeedbacks();
 
 		$this->view('petowner/home',$data);
 	}

@@ -116,7 +116,7 @@
             <h1>Daycare Booking</h1>
         </div>
         <div class="form-container">
-        <form id="daycarebooking-form" action="<?php echo ROOT?>daycarebookinguser/addDaycarebooking" method="post">
+        <form id="daycarebooking-form" action="<?php echo ROOT?>/daycarebookinguser/addDaycarebooking" method="post">
             <div style="display: flex; justify-content: space-between; margin-top:10px;">
                  <div class="column" style="margin-right:90px;">
 

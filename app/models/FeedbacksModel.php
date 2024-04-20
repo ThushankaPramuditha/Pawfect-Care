@@ -18,6 +18,18 @@ class FeedbacksModel
         return $this->findAll();
     }
 
+    public function getPostedFeedbacks()
+    {
+        $query = "SELECT f.*, po.name AS owner_name
+        FROM feedbacks f
+        JOIN petowners po 
+        ON f.petowner_id = po.id
+        WHERE f.status = 'posted'";
+
+        return $this->query($query);
+        return $this->findAll();
+    }
+
     public function getFeedbackById($id)
     {
         $query = "SELECT f.*, po.name AS owner_name

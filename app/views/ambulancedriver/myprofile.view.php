@@ -11,11 +11,11 @@
 
 
 <body style="margin: 0; display: flex;">
-   
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>
 
     <div style="flex: 1; display: flex; flex-direction: column; margin-left: 250px; padding: 10px 10px 100px 100px;">
-            <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
                 <h1>My Profile</h1> 
                     <div class= "pair"><div class = "key">Staff ID:</div>  <div class = "value"><?= htmlspecialchars($data['userdata']->id)?></div></div>
                     <div class= "pair"><div class = "key">Full Name:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->name)?></div></div>
@@ -32,6 +32,6 @@
                 
         </div>
     </div>
-
+</div>
 </body>
 </html>

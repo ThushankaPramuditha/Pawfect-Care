@@ -75,6 +75,40 @@ class DaycareStaff
         }
         redirect('admin/daycarestaff');
     }
+    public function search(): void
+    {
+        $daycarestaffModel = new DaycareStaffModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $daycarestaff = $daycarestaffModel->search($searchTerm);
+        if(empty($daycarestaff)){
+            echo "<tr><td colspan='20'>No daycare staff found</td></tr>";
+        }
+        else{
+            foreach ($daycarestaff as $daycarestaff) {
+                echo "<tr key='{$daycarestaff->id}'>";
+                echo "<td>{$daycarestaff->id}</td>";
+                echo "<td>{$daycarestaff->name}</td>";
+                echo "<td>{$daycarestaff->address}</td>";
+                echo "<td>{$daycarestaff->contact}</td>";
+                echo "<td>{$daycarestaff->nic}</td>";
+                echo "<td>{$daycarestaff->email}</td>";
+                echo "<td>{$daycarestaff->qualifications}</td>";
+                echo "<td>{$daycarestaff->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
 
         
 }

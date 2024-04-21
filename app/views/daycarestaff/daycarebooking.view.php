@@ -6,6 +6,8 @@
     <title>Day Care Staff</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 
 <body>

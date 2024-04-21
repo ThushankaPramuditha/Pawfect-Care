@@ -75,6 +75,40 @@ class MedicalStaff
         }
         redirect('admin/medicalstaff');
     }
+    public function search(): void
+    {
+        $medicalstaffModel = new MedicalStaffModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $medicalstaff = $medicalstaffModel->search($searchTerm);
+        if(empty($medicalstaff)){
+            echo "<tr><td colspan='20'>No medical staff found</td></tr>";
+        }
+        else{
+            foreach ($medicalstaff as $medstaff) {
+                echo "<tr key='{$medstaff->id}'>";
+                echo "<td>{$medstaff->id}</td>";
+                echo "<td>{$medstaff->name}</td>";
+                echo "<td>{$medstaff->address}</td>";
+                echo "<td>{$medstaff->contact}</td>";
+                echo "<td>{$medstaff->nic}</td>";
+                echo "<td>{$medstaff->email}</td>";
+                echo "<td>{$medstaff->qualifications}</td>";
+                echo "<td>{$medstaff->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
 
         
 }

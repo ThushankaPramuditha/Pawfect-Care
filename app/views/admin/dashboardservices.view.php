@@ -30,7 +30,8 @@
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+<div style = "margin-top: 80px; ">
        
     <div style = "margin-left: 230px">
        
@@ -45,7 +46,7 @@
         </div> 
        
    </div>
-
+</div>
 </body>
 </html>
 

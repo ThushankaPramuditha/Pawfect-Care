@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 

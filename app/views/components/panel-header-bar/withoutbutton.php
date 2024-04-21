@@ -14,10 +14,7 @@
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-button">Search</button>
             </div>
-            <div class="greet-user">
-                <span class="user-name">Hi, <?= htmlspecialchars($data['userdata']->name) ?></span>
-                <span class="user-type"><?= htmlspecialchars($data['userdata']->user_type) ?></span>
-            </div>
+            
         </div>
 </body>
 </html>

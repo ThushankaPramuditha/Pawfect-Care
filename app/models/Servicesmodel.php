@@ -37,6 +37,17 @@ class ServicesModel
         return $this->delete($id);
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT * FROM {$this->table} 
+                WHERE service LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
+
+
     public function validate($data)
     {
         $this->errors = [];

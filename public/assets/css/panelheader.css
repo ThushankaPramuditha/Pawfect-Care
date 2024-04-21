@@ -36,12 +36,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2%;
+    margin-top: 80px;
     padding: 10px 20px;
-    width: 78%;                 /* Ensures the header takes full width */
+    width: 80%;                 /* Ensures the header takes full width */
     position: fixed;             /* Keeps the header fixed at the top of the viewport */
     top: 0;                      /* Aligns the header at the top edge of the viewport */
-    z-index: 500;  
+    z-index: 500; 
 }
 
 /*search bar*/
@@ -55,6 +55,7 @@ body {
 }
 
 .search-bar input[type="text"]{
+    width:auto; 
     font-size: 16px;
     border: none; /* Remove input border */
     padding: 10px; /* Increase padding */

@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 
     <title>Feedbacks</title>
 </head>
 <body>
+<?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>
-    <div style="margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/adminwithoutbutton.php'; ?>
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header" style="display:flex; justify-content:flex-end">
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search feedback...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -46,13 +57,14 @@
                 <?php endforeach; ?>
                 <?php else: ?>
                 <tr>
-                    <td colspan="9">No feedbacks found.</td>
+                    <td colspan="10">No feedbacks found.</td>
                 </tr>
             <?php endif; ?>
                 
             </tbody>
         </table>
     </div>
+</div>
 
   
 
@@ -97,6 +109,35 @@
 
 
     <script>
+         $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/Admin/Feedbacks/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
+
+            // to update when filtered by search
+            $('body').on('click', '.delete-icon', function(){
+                var id = $(this).closest('tr').attr('key');
+                openDeleteModal(id);
+            });
+
+            
+            $('body').on('click', '.deactivate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openDeactivateModal(id);
+            });
+            $('body').on('click', '.activate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openActivateModal(id);
+            });
+        });
            // Get the modal elements
             var deleteModal = document.getElementById("delete-modal");
             //check

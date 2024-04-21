@@ -75,6 +75,41 @@ class AmbulanceDrivers
         redirect('admin/ambulancedrivers');
     }
 
+    public function search(): void
+    {
+        $ambulancedriversModel = new AmbulanceDriversModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $ambulancedrivers = $ambulancedriversModel->search($searchTerm);
+        if(empty($ambulancedrivers)){
+            echo "<tr><td colspan='20'>No ambulance drivers found</td></tr>";
+        }
+        else{
+            foreach ($ambulancedrivers as $ambulancedriver) {
+                echo "<tr key='{$ambulancedriver->id}'>";
+                echo "<td>{$ambulancedriver->id}</td>";
+                echo "<td>{$ambulancedriver->name}</td>";
+                echo "<td>{$ambulancedriver->address}</td>";
+                echo "<td>{$ambulancedriver->contact}</td>";
+                echo "<td>{$ambulancedriver->nic}</td>";
+                echo "<td>{$ambulancedriver->email}</td>";
+                echo "<td>{$ambulancedriver->license}</td>";
+                echo "<td>{$ambulancedriver->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
+
         
 }
 

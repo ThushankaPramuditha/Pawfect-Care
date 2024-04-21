@@ -8,12 +8,24 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 
 
 <body>
+<?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/adminwithbutton.php'; ?> 
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search daycare staff...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <table>
         <thead>
             <tr>
@@ -57,7 +69,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No daycare staff found.</td>
+                    <td colspan="10">No daycare staff found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -65,9 +77,7 @@
        
     </table>
     </div>
-
-</body>
-</html>
+            </div>
 
 
 <!-- Add Day Care Staff Modal -->
@@ -160,6 +170,35 @@
 
 
     <script>
+         $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/Admin/DaycareStaff/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
+
+            // to update when filtered by search
+            $('body').on('click', '.edit-icon', function(){
+                var id = $(this).closest('tr').attr('key');
+                openUpdateModal(id);
+            });
+
+            
+            $('body').on('click', '.deactivate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openDeactivateModal(id);
+            });
+            $('body').on('click', '.activate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openActivateModal(id);
+            });
+        });
 
            // Get the modal elements
             var addModal = document.getElementById("add-modal");

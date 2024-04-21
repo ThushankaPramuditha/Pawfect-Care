@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 </head>
 

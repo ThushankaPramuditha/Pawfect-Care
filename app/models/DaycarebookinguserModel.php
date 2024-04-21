@@ -5,7 +5,7 @@ class DaycarebookinguserModel
     use Model;
 
     protected $table = 'daycarebookinguser'; 
-    protected $allowedColumns = ['id','drop_off_time','pick_up_time','drop_off_date','list_of_items','allergies','pet_behaviour','medications','pet_id','created_at']; 
+    protected $allowedColumns = ['id','drop_off_time','pick_up_time','drop_off_date','list_of_items','allergies','pet_behaviour','medications','pet_id','created_at', 'status']; 
 
     public function getAllDaycarebookings()
     {
@@ -154,6 +154,35 @@ public function getBookingsForDate($date)
     
             return empty($this->errors);
         }
+         /////////////////////////////////////////////////////////////// reports   /////////////////////////////////////////////////
+
+    //get the appointment count for given period for all vets
+    public function countAllDaycareBookings($startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE created_at >= :start_date 
+                  AND created_at < :end_date";
+                  
+        $params = [
+            ':start_date' => $startDate,
+            ':end_date' => $endDate
+        ];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  
+    }
+
+    public function countDaycareBookingsByStatus($status, $startDate, $endDate) {
+        $query = "SELECT COUNT(*) AS total 
+                  FROM {$this->table} 
+                  WHERE status = :status
+                  AND created_at >= :start_date 
+                  AND created_at < :end_date";
+        $params = [':status' => $status,
+        ':start_date' => $startDate,
+        ':end_date' => $endDate];
+        $result = $this->query($query, $params);
+        return $result[0]->total ?? 0;  // Default to 0 if no results found
+    }
     
 }
 

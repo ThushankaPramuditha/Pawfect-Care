@@ -73,7 +73,58 @@ class DaycarebookinguserModel
             return false;
         }
     }
+    
+    //function to search date and load the booking for that day
+   // In DaycarebookinguserModel class
 
+public function getBookingsForDate($date)
+{
+    $query = "SELECT
+                d.drop_off_time,
+                d.pick_up_time,
+                d.drop_off_date,
+                d.pet_id,
+                p.name AS pet_name,
+                po.name AS pet_owner_name,
+                po.contact AS pet_owner_contact
+            FROM
+                daycarebookinguser d
+            JOIN
+                pets p ON d.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            WHERE
+                d.drop_off_date = :drop_off_date";
+
+    $bindings = [':drop_off_date' => $date];
+
+    return $this->query($query, $bindings);
+}
+
+
+ public function search(array $data)
+    {
+        // Prepare the query
+        $query = "SELECT
+                    d.drop_off_time,
+                    d.pick_up_time,
+                    d.drop_off_date,
+                    d.pet_id,
+                    p.name AS pet_name,
+                    po.name AS pet_owner_name,
+                    po.contact AS pet_owner_contact
+                FROM
+                    daycarebookinguser d
+                JOIN
+                    pets p ON d.pet_id = p.id
+                JOIN
+                    petowners po ON p.petowner_id = po.id
+                WHERE
+                    d.drop_off_date = :drop_off_date";
+                    
+        // Execute the query
+        return $this->query($query, $data);
+    }
   
     public function updateDaycarebooking($id, array $data)
         {

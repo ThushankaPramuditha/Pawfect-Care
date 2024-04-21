@@ -143,7 +143,7 @@
                         </select>
                     </div>
 
-                    <input type="hidden" id="pet-id" name="pet_id" value="">
+                    <input type="hidden" id="pet-id" name="pet_id" value="<?php echo $pet->id ?>">
                     <div id="error-pet-id" class="error-message"></div>
 
                     <input type="hidden" id="petowner_id" name="petowner_id" value="<?php echo $_SESSION['USER']->id; ?>"> 

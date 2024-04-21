@@ -910,23 +910,39 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </span>
                 </div>
 
-                <div class="notification">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3></h3>
-                            <small class="text_muted">
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
+
+<div>
+    <?php 
+    $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+    $query = "SELECT * FROM daycarebookinguser";
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $daycarebookinguser = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    ?>
+    <div style="display:flex; flex-direction:column;">
+        <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
+         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+            <!-- <div class="icon">
+                <span class="material-icons-sharp">
+                    volume_up
+                </span>
+            </div> -->
+            <div class="notification-item">
+                <div class="info">
+                    <h3>Daycare Booking</h3>
+                    <small class="text-muted">New Booking</small>
+                    <p>
+                        <?php echo $daycarebookingnotification['id']; ?> has been booked for daycare on <?php echo $daycarebookingnotification['drop_off_date'];?> at <?php echo $daycarebookingnotification['drop_off_time'] ;?> to <?php echo $daycarebookingnotification['pick_up_time'] ;?> 
+                    </p>
                 </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+
+
 
                 <!-- <div class="notification deactive">
                     <div class="icon">

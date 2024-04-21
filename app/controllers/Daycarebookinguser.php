@@ -9,7 +9,7 @@ class Daycarebookinguser
         $petsModel = new PetsModel();
         $user_id = $_SESSION['USER']->id;
         $data['pets'] = $petsModel->getAllPetsByUserId($user_id);
-        $data['daycarebookinguser'] = $daycarebookinguserModel->findAll();
+        $data['daycarebookinguser'] = $daycarebookinguserModel->getAllDaycarebookings();
          
     // Retrieve pet owner details from session
     $data['pet_owner_id'] = $user_id;
@@ -45,19 +45,19 @@ class Daycarebookinguser
         'medications' => $medications,
         'pet_owner_id' => $petOwnerId,
     ];
-
+    
+    
     // Call the model method to add the daycare booking
     $result = $model->addDaycarebooking($data);
+
 
     // Check the result and provide feedback
     if ($result === true) {
         // Successful insertion
-        echo "Daycare booking successfully added.";
+        // echo "Daycare booking successfully added.";
 
         //success parameter indicating a successful booking
         redirect('daycarebookinguser/addDaycarebookinguser?success=true');
-
-        // echo "Daycare booking successfully added.";
        
     } else {
         // Failed insertion

@@ -13,10 +13,10 @@
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
 <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <h1>Edit Profile</h1> 
         <div class = "form-container" id="updateveterianrian"> 
             <form id="edit-profile-form" action="<?php echo ROOT?>/Receptionist/EditProfile/update/<?php echo $userdata->id; ?>" method="post">

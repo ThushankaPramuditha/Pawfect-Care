@@ -10,12 +10,20 @@
 
 <body>
 <?php $_SESSION['updatepath'] = 'editpetdetails' ?>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header" style="display:flex; justify-content:flex-end">
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search pets...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <?php include '../app/views/components/tables/petdetailstable.php'; ?> 
     </div>
-
+</div>
 </body>
 </html>

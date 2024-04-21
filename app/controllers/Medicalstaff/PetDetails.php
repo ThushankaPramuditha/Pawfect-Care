@@ -104,6 +104,7 @@ class Petdetails
         // die();
         $this->view('medicalstaff/petdetails/update', $data);
     }
+    
 }
 
 

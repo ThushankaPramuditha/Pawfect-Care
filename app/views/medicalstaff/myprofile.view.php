@@ -6,13 +6,11 @@
     <title>My Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
-    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-
-
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <h1>My Profile</h1> 
@@ -30,6 +28,6 @@
                 </div>
             
     </div>
-
+</div>
 </body>
 </html>

@@ -12,10 +12,10 @@
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <div class = "formcontainer"> 
          
             <h1>Change Password</h1>
@@ -46,7 +46,7 @@
             </form>   
      
         </div>
-                
+     </div>           
     </div>
     <script>
 

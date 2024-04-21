@@ -12,17 +12,26 @@
 
 
 <body style="margin: 0; display: flex;">
-   
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
 
     <div style="flex: 1; display: flex; flex-direction: column; margin-left: 30px; padding: 10px 10px 100px 10px;">
 <?php $_SESSION['addnewpath'] = 'addappointments' ?>
        
-       <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
-        
+<div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search appointments...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>        
         <?php include '../app/views/components/tables/appointmenttable.php'; ?> 
     </div>
-
+</div>
 <!-- </body>
 </html>
 

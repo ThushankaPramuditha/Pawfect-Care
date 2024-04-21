@@ -11,12 +11,22 @@
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 
 <body>
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search booking...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <?php include '../app/views/components/tables/daycarebooking.php'; ?> 
     </div>
-
+</div>
 </body>
 </html>
 

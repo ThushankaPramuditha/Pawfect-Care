@@ -42,7 +42,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No history found.</td>
+                    <td colspan="20">No history found.</td>
                 </tr>
             <?php endif; ?>
 

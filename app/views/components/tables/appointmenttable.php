@@ -40,7 +40,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No appointments found.</td>
+                    <td colspan="20">No appointments found.</td>
                 </tr>
             <?php endif; ?>
          

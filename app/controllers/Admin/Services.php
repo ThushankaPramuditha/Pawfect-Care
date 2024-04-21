@@ -45,4 +45,32 @@ class Services
         $this->view('admin/services/update', $data);
     }
 
+    public function search(): void
+    {
+        $servicesModel = new ServicesModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $services = $servicesModel->search($searchTerm);
+        if(empty($services)){
+            echo "<tr><td colspan='20'>No services found</td></tr>";
+        }
+        else{
+            foreach ($services as $service) {
+                echo "<tr key='{$service->id}'>";
+                echo "<td><b>{$service->service}</b></td>";
+                echo "<td>{$service->description}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='delete-action-buttons'>";
+                echo "<button class='delete-icon'></button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
+    
+
+
 }

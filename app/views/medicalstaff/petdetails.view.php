@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+
+
     <title>Pet Details</title>
 </head>
 

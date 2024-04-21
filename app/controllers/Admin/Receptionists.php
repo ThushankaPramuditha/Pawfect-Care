@@ -75,6 +75,40 @@ class Receptionists
         }
         redirect('admin/receptionists');
     }
+    public function search(): void
+    {
+        $receptionistsModel = new ReceptionistsModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $receptionists = $receptionistsModel->search($searchTerm);
+        if(empty($receptionists)){
+            echo "<tr><td colspan='20'>No receptionists found</td></tr>";
+        }
+        else{
+            foreach ($receptionists as $receptionist) {
+                echo "<tr key='{$receptionist->id}'>";
+                echo "<td>{$receptionist->id}</td>";
+                echo "<td>{$receptionist->name}</td>";
+                echo "<td>{$receptionist->address}</td>";
+                echo "<td>{$receptionist->contact}</td>";
+                echo "<td>{$receptionist->nic}</td>";
+                echo "<td>{$receptionist->email}</td>";
+                echo "<td>{$receptionist->qualifications}</td>";
+                echo "<td>{$receptionist->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
     
 
         

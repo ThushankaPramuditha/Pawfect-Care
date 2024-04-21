@@ -16,6 +16,16 @@ class VeterinariansModel
         return $this->query($query);
         
     }
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT v.*, u.email ,u.status
+                FROM {$this->table} AS v
+                JOIN users AS u ON v.user_id = u.id 
+                WHERE name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
 
 
     public function getVeterinarianById($id) {

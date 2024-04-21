@@ -65,5 +65,35 @@ class Feedbacks
         }
         redirect('admin/feedbacks');
     }
+    public function search(): void
+    {
+        $feedbacksModel = new FeedbacksModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $feedbacks = $feedbacksModel->search($searchTerm);
+        if(empty($feedbacks)){
+            echo "<tr><td colspan='20'>No feedbacks found</td></tr>";
+        }
+        else{
+            foreach ($feedbacks as $feedback) {
+                echo "<tr key='{$feedback->id}'>";
+                echo "<td>{$feedback->petowner_id}</td>";
+                echo "<td>{$feedback->owner_name}</td>";
+                echo "<td>{$feedback->feedback}</td>";
+                echo "<td>{$feedback->status}</td>";
+                echo "<td class='delete-action-buttons'>";
+                echo "<button class='delete-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
 
 }

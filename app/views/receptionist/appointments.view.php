@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
     <title>Appointments</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

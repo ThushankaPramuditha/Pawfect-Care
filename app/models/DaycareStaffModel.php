@@ -27,6 +27,17 @@ class DaycareStaffModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT d.*, u.email ,u.status
+                FROM {$this->table} AS d
+                JOIN users AS u ON d.user_id = u.id 
+                WHERE name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
     public function getDaycareRoleDataById($id) {
         $query = "SELECT d.*, u.email ,u.status ,u.user_type
                   FROM daycarestaff AS d

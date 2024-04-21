@@ -30,6 +30,18 @@ class FeedbacksModel
         return $this->findAll();
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT f.*, po.name AS owner_name
+                FROM {$this->table} AS f
+                JOIN petowners AS po ON f.petowner_id = po.id 
+                WHERE f.feedback LIKE :term
+                OR po.name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
     public function getFeedbackById($id)
     {
         $query = "SELECT f.*, po.name AS owner_name

@@ -75,10 +75,41 @@ class Veterinarians
         }
         redirect('admin/veterinarians');
     }
+    public function search(): void
+    {
+        $veterinariansModel = new VeterinariansModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $veterinarians = $veterinariansModel->search($searchTerm);
+        if(empty($veterinarians)){
+            echo "<tr><td colspan='20'>No veterinarians found</td></tr>";
+        }
+        else{
+            foreach ($veterinarians as $vet) {
+                echo "<tr key='{$vet->id}'>";
+                echo "<td>{$vet->id}</td>";
+                echo "<td>{$vet->name}</td>";
+                echo "<td>{$vet->address}</td>";
+                echo "<td>{$vet->contact}</td>";
+                echo "<td>{$vet->nic}</td>";
+                echo "<td>{$vet->email}</td>";
+                echo "<td>{$vet->qualifications}</td>";
+                echo "<td>{$vet->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
 
-        
+    }
 }
-
 
 
     

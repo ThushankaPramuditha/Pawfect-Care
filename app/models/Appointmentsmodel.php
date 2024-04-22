@@ -5,7 +5,7 @@ class AppointmentsModel
     use Model;
 
     protected $table = 'appointments';
-    protected $allowedColumns = ['id','patient_no','date_time','pet_id','vet_id'];
+    protected $allowedColumns = ['id','patient_no','date_time','pet_id','vet_id','status'];
 
     public function getAllAppointments()
     {
@@ -16,7 +16,8 @@ class AppointmentsModel
         p.name AS pet_name,
         po.name AS petowner,
         po.contact,
-        v.name AS vet_name
+        v.name AS vet_name,
+        a.status
         FROM
             appointments a
         JOIN
@@ -31,7 +32,7 @@ class AppointmentsModel
 
     public function getAppointmentsForCurrentDate()
     {
-        // Get the current date in YYYY-MM-DD format
+        // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
         a.date_time,
@@ -40,7 +41,8 @@ class AppointmentsModel
         p.name AS pet_name,
         po.name AS petowner,
         po.contact,
-        v.name AS vet_name
+        v.name AS vet_name,
+        a.status
         FROM
             appointments a
         JOIN
@@ -58,44 +60,9 @@ class AppointmentsModel
         return $this->query($query, $data);
     }
 
-
-    public function getAppointmentById($id)
-    {
-        return $this->first(['id' => $id]);
-    }
-
-    public function getAppointmentsForCurrentDateById($id)
-    {
-        $currentDate = date('Y-m-d');
-        $query = "SELECT
-        a.date_time,
-        a.patient_no,
-        a.pet_id,
-        p.name AS pet_name,
-        po.name AS petowner,
-        po.contact,
-        v.name AS vet_name
-        FROM
-            appointments a
-        JOIN
-            pets p ON a.pet_id = p.id
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        WHERE
-            DATE(a.date_time) = :current_date";
-
-        // Bind the current date parameter to the query
-        $data = array(':current_date' => $currentDate);
-        // show($id);
-        // die();
-        return $this->get_row($query, ['id' => $id]);
-    }
-
     public function getAppointmentsForVetId($vetId)
     {
-        // Get the current date in YYYY-MM-DD format
+        // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
             a.date_time,
@@ -126,6 +93,42 @@ class AppointmentsModel
     }
 
 
+    public function getAppointmentById($id)
+    {
+        return $this->first(['id' => $id]);
+    }
+
+    public function getAppointmentsForCurrentDateById($id)
+    {
+        $currentDate = date('Y-m-d');
+        $query = "SELECT
+        a.date_time,
+        a.patient_no,
+        a.pet_id,
+        p.name AS pet_name,
+        po.name AS petowner,
+        po.contact,
+        v.name AS vet_name,
+        a.status
+        FROM
+            appointments a
+        JOIN
+            pets p ON a.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        WHERE
+            DATE(a.date_time) = :current_date";
+
+        // Bind the current date parameter to the query
+        $data = array(':current_date' => $currentDate);
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+    }
+
+   
     public function getAppointmentId($patientNo, $date, $vetId)
     {
         $query = "SELECT id FROM $this->table WHERE patient_no = :patient_no AND DATE(date_time) = :date AND vet_id = :vet_id";
@@ -149,6 +152,7 @@ class AppointmentsModel
     public function addAppointment(array $data)
     {
         // Check how many appointments already exist for today
+
         $appointmentsToday = $this->countTodayAppointments($vetId);
 
         if ($appointmentsToday >= 3) {
@@ -170,14 +174,17 @@ class AppointmentsModel
         } else {
             return "Failed to save appointment.";
         }
+
     }
 
     //get the active appointment count for current date for particular vet
     public function countTodayAppointments($vetId) {
+
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE DATE(date_time) = :today
+
         AND vet_id = :vet_id
         AND status != 'cancelled'";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
@@ -195,7 +202,7 @@ class AppointmentsModel
         return $this->update($id, $data, 'id');
     }
 
-    
+
     public function validate($data)
     {
         $this->errors = [];
@@ -208,14 +215,14 @@ class AppointmentsModel
             $this->errors['patient_no'] = "Patient No. is required";
         }
 
-        if (empty($data['payment_status'])) {
-            $this->errors['pet_owner_name'] = "Pet Owner Name is required";
+        if (empty($data['petowner_name'])) {
+            $this->errors['petowner_name'] = "Pet Owner Name is required";
         }
 
         if (empty($data['contact_no'])) {
             $this->errors['contact_no'] = "Contact Number is required";
         }
-        if (empty($data['type'])) {
+        if (empty($data['pet_name'])) {
             $this->errors['pet_name'] = "Pet Name is required";
         }
 

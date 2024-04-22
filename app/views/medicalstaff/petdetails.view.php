@@ -93,7 +93,16 @@
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
+    function getMedicalHistory(petId) {
+        window.location.href = "<?php echo ROOT ?>/medicalstaff/medicalhistory/" + petId;
+    }
 
+
+    function getVaccinationHistory(petId) {
+        window.location.href = "<?php echo ROOT ?>/medicalstaff/vaccinationhistory/" + petId;
+    }
+
+    
     /*function openUpdateModal(id) {
         console.log(id);
         updateModal.style.display = "block";
@@ -109,17 +118,6 @@
         }
 
     }*/
-
-    /*function setInitialDate() {
-        // Get the current date in the format YYYY-MM-DD
-        var currentDate = new Date().toISOString().split('T')[0];
-
-        // Set the value of the date input field
-        document.getElementById('date').value = currentDate;
-    }
-
-    // Call setInitialDate() when the form is loaded
-    window.addEventListener('DOMContentLoaded', setInitialDate);*/
 
     // Event listener for add button click
     /*document.querySelector('.add-new-button').addEventListener('click', function() {
@@ -163,44 +161,8 @@
         });
     });***/
 
-    /*function updateFormInit() {
-
-        document.getElementById('update-vaccine_name').addEventListener('input', validateUpdateVaccineName);
-        document.getElementById('update-serial_no').addEventListener('input', validateUpdateSerialNo);
-        //document.getElementById('update-administered_by').addEventListener('input', validateUpdateAdministeredBy);
-        document.getElementById('update-due_date').addEventListener('input', validateUpdateDueDate);
-        //document.getElementById('update-remarks').addEventListener('input', validateUpdateRemarks);
-
-        document.getElementById("updated-form").addEventListener('submit', function(event) {
-            console.log("insideee");
-            if (!validateUpdateForm()) {
-                event.preventDefault();
-            } else {
-                addModal.style.display = "none";
-            }
-
-        });
-    }
-
-    function validateUpdateForm() {
-        var isValid = true;
-
-        isValid = validateUpdateVaccineName() && isValid;
-        isValid = validateUpdateSerialNo() && isValid;
-        //isValid = validateUpdateAdministeredBy() && isValid;
-        isValid = validateUpdateDueDate() && isValid;
-        //isValid = validateUpdateRemarks() && isValid;
-
-        if (!isValid) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Validation Error',
-                html: "Please correct the errors before submitting.",
-            });
-            return false;
-        }
-        return true;
-    }*/
+    
+    
 </script>
 </body>
 </html> 

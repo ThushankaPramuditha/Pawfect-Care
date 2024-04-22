@@ -36,10 +36,12 @@
                         <td><?= htmlspecialchars($petdetail->owner_name); ?></td>
                         <td><?= htmlspecialchars($petdetail->contact); ?></td>
                         <td class="medicalhistory-action-buttons">
-                            <button class="medicalhistory-button"><a href="<?php echo ROOT ?>/medicalstaff/medicalhistory/getMedicalHistoryForPetId/<?php echo $petdetail->id ?>">Medical History</a></button>
+                            <!--button class="medicalhistory-button"><a href="<!?php echo ROOT ?>/medicalstaff/medicalhistory/<!?php echo $petdetail->id ?>">Medical History</a></button-->
+                            <button class="medicalhistory-button" onclick="getMedicalHistory(<?php echo $petdetail->id ?>)">Medical History</button>
                         </td>
                         <td class="vaccinationhistory-action-buttons">
-                            <button class="vaccinationhistory-button"><a href="<?php echo ROOT ?>/medicalstaff/vaccinationhistory/getVaccinationHistoryForPetId/<?php echo $petdetail->id ?>">Vaccination History</a></button>
+                            <!--button class="vaccinationhistory-button"><a href="<!?php echo ROOT ?>/medicalstaff/vaccinationhistory/<!?php echo $petdetail->id ?>">Vaccination History</a></button-->
+                            <button class="vaccinationhistory-button" onclick="getVaccinationHistory(<?php echo $petdetail->id ?>)">Vaccination History</button>
                         </td>
                     </tr>
                     

@@ -9,9 +9,11 @@
     <table>
         <thead>
             <tr>
-                <!--th>Pet ID</th-->
+                <th>Pet ID</th>
                 <th>Date</th>
                 <th>Appointment ID</th>
+                <th>Weight</th>
+                <th>Temperature</th>
                 <th>Vaccine Name</th>
                 <th>Serial No</th>
                 <th>Administered By</th>
@@ -26,16 +28,18 @@
             <?php if (is_array($vaccinationhistory) && !empty($vaccinationhistory)): ?>
                 <?php foreach ($vaccinationhistory as $history): ?>
                     <tr key = "<?php echo $history->id; ?>">
-                        <!--td-><!?= htmlspecialchars($history->pet_ID); ?></td-->
+                        <td><?= htmlspecialchars($history->pet_id); ?></td>
                         <td><?= htmlspecialchars($history->date); ?></td>
                         <td><?= htmlspecialchars($history->appointment_id); ?></td>
+                        <td><?= htmlspecialchars($history->weight); ?></td>
+                        <td><?= htmlspecialchars($history->temperature); ?></td>
                         <td><?= htmlspecialchars($history->vaccine_name); ?></td>
                         <td><?= htmlspecialchars($history->serial_no); ?></td>
                         <td><?= htmlspecialchars($history->administered_by); ?></td>
                         <td><?= htmlspecialchars($history->due_date); ?></td>
                         <td><?= htmlspecialchars($history->remarks); ?></td>
                         <td class="edit-action-buttons">
-                            <button class="edit-icon"></button>
+                            <button class="edit-icon" id="<?= $history->id ?>"pet-id="<?= $history->pet_id ?>"></button>
                         </td>
                     </tr>
                     

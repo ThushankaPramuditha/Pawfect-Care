@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
 
-<body onload="setInitialDateTime()">
+<body onload="setInitialDate()">
 
 <!--?php $_SESSION['addnewpath'] = 'addtreatment' ?-->
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
@@ -42,8 +42,9 @@
                     <div class="form-container">
                         <form id="add-treatment-form" action="<?php echo ROOT?>/Medicalstaff/MedicalHistory/add" method="post">
                         <div class ="column">
-                            <label for="date_time">Date Time:</label>
-                            <input type="date_time" id="date_time" name="date_time" required><br>
+                             <!--input type="hidden" name="pet_id" value="<!?php echo htmlspecialchars($medicalhistory->pet_id); ?>"-->
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date" required><br>
 
                             <label for="patient no">Patient No:</label>
                             <input type="text" id="patient_no" name="patient_no" required><br>
@@ -94,7 +95,7 @@
             <span class="close">&times;</span>
             <h1>Update Medical History</h1>
                 <div id="updatemedicalhistory" class="form-container">
-                    
+                
                 </div>
         </div>
     </div>
@@ -126,43 +127,46 @@
                 addModal.style.display = "block";
             }
 
-            function openUpdateModal(id) {
-                console.log(id);
+            function openUpdateModal(Id, petId) {
+                console.log(Id); 
+                console.log(petId); 
+
                 updateModal.style.display = "block";
-                $.get(`<?php echo ROOT?>/Medicalstaff/MedicalHistory/viewMedicalHistory/${id}`, function(data) {
-                    // Update the modal content with the fetched data
-                        $("#updatemedicalhistory").html(data);
+
+                // Fetch data and update the modal content
+                $.get(`<?php echo ROOT?>/Medicalstaff/MedicalHistory/viewMedicalHistory/${Id}/${petId}`, function(data) {
+                    // Update the content with the fetched data
+                    $("#updatemedicalhistory").html(data);
                 });
-                // set time out and updateforminit
+
                 setTimeout(updateFormInit, 1000);
 
+            // to close the modal
                 span.onclick = function() {
-                modal.style.display = "none";
+                    updateModal.style.display = "none";
                 }
-                    
             }
 
-            /*function setInitialDate() {
-                // Get the current date in the format YYYY-MM-DD
+
+            function setInitialDate() {
+                // format YYYY-MM-DD
                 var currentDate = new Date().toISOString().split('T')[0];
 
-                // Set the value of the date input field
+                // Set the value of the date field
                 document.getElementById('date').value = currentDate;
             }
 
             // Call setInitialDate() when the form is loaded
-            window.addEventListener('DOMContentLoaded', setInitialDate);*/
+            window.addEventListener('DOMContentLoaded', setInitialDate);
 
-            function setInitialDateTime() {
-            // Get the current date and time
-            var currentDateTime = new Date().toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
+            /*function setInitialDateTime()
+            {
+                var currentDateTime = new Date().toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
 
-            // Set the value of the date_time input field
-            document.getElementById('date_time').value = currentDateTime;
+                document.getElementById('date_time').value = currentDateTime;
             }
 
-            // Call setInitialDateTime() when the form is loaded
-            window.addEventListener('DOMContentLoaded', setInitialDateTime);
+            window.addEventListener('DOMContentLoaded', setInitialDateTime);*/
 
 
             // Event listener for add button click
@@ -170,13 +174,14 @@
             openAddModal();
             });
 
-            // Event listeners for update buttons click
             document.querySelectorAll('.edit-icon').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var id = this.parentElement.parentElement.getAttribute('key');
-                    openUpdateModal(id);
+                    var Id = this.getAttribute('id');
+                    var petId = this.getAttribute('pet-id');
+                    openUpdateModal(Id, petId);
                 });
             });
+
 
             // Event listeners for delete buttons click
             /**document.querySelectorAll('.delete-icon').forEach(function (button) {
@@ -216,7 +221,7 @@
             document.getElementById('treatment').addEventListener('focus', validateMedCondition);
             document.getElementById('prescription').addEventListener('focus', validateTreatment);
             document.getElementById('treated_by').addEventListener('focus', validatePrescription);
-            document.getElementById('treated_by').addEventListener('input', validateTreatedBy);
+            document.getElementById('remarks').addEventListener('focus', validateTreatedBy);
             
             
             function validateAddForm() {
@@ -254,9 +259,9 @@
             
                 document.getElementById('update-weight').addEventListener('input', validateUpdateWeight);
                 document.getElementById('update-temperature').addEventListener('input', validateUpdateTemperature);
-                document.getElementById('update-med_condition').addEventListener('input', validateUpdateMedCondition);
-                document.getElementById('update-treatment').addEventListener('input', validateUpdateTreatment);
-                document.getElementById('update-prescription').addEventListener('input', validateUpdatePrescription);
+                //document.getElementById('update-med_condition').addEventListener('input', validateUpdateMedCondition);
+                //document.getElementById('update-treatment').addEventListener('input', validateUpdateTreatment);
+                //document.getElementById('update-prescription').addEventListener('input', validateUpdatePrescription);
 
                 document.getElementById("updated-form").addEventListener('submit', function(event) {
                     //console.log("insideee");
@@ -274,9 +279,9 @@
 
                 isValid = validateUpdateWeight() && isValid;
                 isValid = validateUpdateTemperature() && isValid;
-                isValid = validateUpdateMedCondition() && isValid;
-                isValid = validateUpdateTreatment() && isValid;
-                isValid = validateUpdatePrescription() && isValid;
+                //isValid = validateUpdateMedCondition() && isValid;
+                //isValid = validateUpdateTreatment() && isValid;
+                //isValid = validateUpdatePrescription() && isValid;
 
                 if (!isValid) {
                     Swal.fire({

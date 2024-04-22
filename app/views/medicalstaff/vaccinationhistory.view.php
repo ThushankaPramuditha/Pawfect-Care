@@ -44,6 +44,7 @@
         <div class="form-container">
             <form id="add-vaccination-form" action="<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/add" method="post">
                 <div class="column">
+                <!--input type="hidden" name="pet_id" value="<!?php echo htmlspecialchars($vaccinationhistory->pet_id); ?>"-->
                     <label for="date">Date:</label>
                     <input type="date" id="date" name="date" required><br>
 
@@ -51,15 +52,24 @@
                     <input type="text" id="patient_no" name="patient_no" required><br>
                     <div id="error-patient_no" class="error-message"></div>
 
+                    <label for="weight">Weight:</label>
+                    <input type="text" id="weight" name="weight" required><br>
+                    <div id="error-weight" class="error-message"></div>
+
+                    <label for="temperature">Temperature:</label>
+                    <input type="text" id="temperature" name="temperature" required><br>
+                    <div id="error-temperature" class="error-message"></div>
+
                     <label for="vaccine name">Vaccine Name:</label>
                     <input type="text" id="vaccine_name" name="vaccine_name" required><br>
                     <div id="error-vaccine_name" class="error-message"></div>
 
+                </div>
+                <div class="column">
+
                     <label for="serial no">Serial No:</label>
                     <input type="text" id="serial_no" name="serial_no" required><br>
                     <div id="error-serial_no" class="error-message"></div>
-                </div>
-                <div class="column">
 
                     <label for="administered by">Administered By:</label>
                     <input type="text" id="administered_by" name="vet_name" required><br>
@@ -120,21 +130,25 @@
         addModal.style.display = "block";
     }
 
-    function openUpdateModal(id) {
-        console.log(id);
-        updateModal.style.display = "block";
-        $.get(`<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/viewVaccinationHistory/${id}`, function(data) {
-            // Update the modal content with the fetched data
-            $("#updatevaccinationhistory").html(data);
-        });
-        // set time out and updateforminit
-        setTimeout(updateFormInit, 1000);
+    function openUpdateModal(Id, petId) {
+                console.log(Id); 
+                console.log(petId); 
 
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+                updateModal.style.display = "block";
 
-    }
+                // Fetch data and update the modal content
+                $.get(`<?php echo ROOT?>/Medicalstaff/VaccinationHistory/viewVaccinationHistory/${Id}/${petId}`, function(data) {
+                    // Update the content with the fetched data
+                    $("#updatevaccinationhistory").html(data);
+                });
+
+                setTimeout(updateFormInit, 1000);
+
+            // to close the modal
+                span.onclick = function() {
+                    updateModal.style.display = "none";
+                }
+            }
 
     function setInitialDate() {
         // Get the current date in the format YYYY-MM-DD
@@ -153,13 +167,14 @@
     });
 
     // Event listeners for update buttons click
-    document.querySelectorAll('.edit-icon').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var id = this.parentElement.parentElement.getAttribute('key');
-            openUpdateModal(id);
+    document.querySelectorAll('.edit-icon').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var Id = this.getAttribute('id');
+            var petId = this.getAttribute('pet-id');
+            openUpdateModal(Id, petId);
         });
     });
-
+    
     // Event listeners for delete buttons click
     /**document.querySelectorAll('.delete-icon').forEach(function (button) {
         button.addEventListener('click', function () {
@@ -192,16 +207,20 @@
     // Attach event listeners for validation on input for add form
 
     document.getElementById('patient_no').addEventListener('input', validatePatientNo);
-    document.getElementById('vaccine_name').addEventListener('focus', validatePatientNo);
+    document.getElementById('weight').addEventListener('focus', validatePatientNo);
+    document.getElementById('temperature').addEventListener('focus', validateWeight);
+    document.getElementById('vaccine_name').addEventListener('focus', validateTemperature);
     document.getElementById('serial_no').addEventListener('focus', validateVaccineName);
     document.getElementById('administered_by').addEventListener('focus', validateSerialNo);
     document.getElementById('due_date').addEventListener('focus', validateAdministeredBy);
-    document.getElementById('due_date').addEventListener('input', validateDueDate);
+    document.getElementById('remarks').addEventListener('focus', validateDueDate);
 
     function validateAddForm() {
         var isValid = true;
 
         isValid = validatePatientNo() && isValid;
+        isValid = validateWeight() && isValid;
+        isValid = validateTemperature() && isValid;
         isValid = validateVaccineName() && isValid;
         isValid = validateSerialNo() && isValid;
         isValid = validateAdministeredBy() && isValid;
@@ -229,14 +248,14 @@
 
     function updateFormInit() {
 
-        document.getElementById('update-vaccine_name').addEventListener('input', validateUpdateVaccineName);
-        document.getElementById('update-serial_no').addEventListener('input', validateUpdateSerialNo);
-        //document.getElementById('update-administered_by').addEventListener('input', validateUpdateAdministeredBy);
+        //document.getElementById('update-vaccine_name').addEventListener('input', validateUpdateVaccineName);
+        //document.getElementById('update-serial_no').addEventListener('input', validateUpdateSerialNo);
+        document.getElementById('update-weight').addEventListener('input', validateUpdateWeight);
+        document.getElementById('update-temperature').addEventListener('input', validateUpdateTemperature);
         document.getElementById('update-due_date').addEventListener('input', validateUpdateDueDate);
-        //document.getElementById('update-remarks').addEventListener('input', validateUpdateRemarks);
 
         document.getElementById("updated-form").addEventListener('submit', function(event) {
-            console.log("insideee");
+            //console.log("insideee");
             if (!validateUpdateForm()) {
                 event.preventDefault();
             } else {
@@ -249,11 +268,12 @@
     function validateUpdateForm() {
         var isValid = true;
 
-        isValid = validateUpdateVaccineName() && isValid;
-        isValid = validateUpdateSerialNo() && isValid;
-        //isValid = validateUpdateAdministeredBy() && isValid;
+        //isValid = validateUpdateVaccineName() && isValid;
+        //isValid = validateUpdateSerialNo() && isValid;
+        isValid = validateUpdateWeight() && isValid;
+        isValid = validateUpdateTemperature() && isValid;
         isValid = validateUpdateDueDate() && isValid;
-        //isValid = validateUpdateRemarks() && isValid;
+        
 
         if (!isValid) {
             Swal.fire({

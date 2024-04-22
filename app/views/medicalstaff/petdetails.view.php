@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+
+
     <title>Pet Details</title>
 </head>
 
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withoutbutton.php'; ?> 
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header" style="display:flex; justify-content:flex-end">
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search pets...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <?php include '../app/views/components/tables/petdetailsmoreupdatetable.php'; ?> 
     </div>
-
+</div>
 </body>
 </html>
 
@@ -46,6 +58,32 @@
 
 
 <script>
+    $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/medicalstaff/petdetails/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
+
+            
+            $('body').on('click', '.medicalhistory-button', function() {
+                var id = $(this).closest('tr').attr('key');
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/medicalhistory/getMedicalHistoryForPetId/'; // Replace with your actual base URL for deactivation
+                window.location.href = baseUrl + id;
+            });
+            $('body').on('click', '.vaccinationhistory-button', function() {
+                var id = $(this).closest('tr').attr('key');
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/vaccinationhistory/getVaccinationHistoryForPetId/'; // Replace with your actual base URL for deactivation
+                window.location.href = baseUrl + id;
+            });
+        });
+
 
     // Get the modal elements
     //var addModal = document.getElementById("add-modal");

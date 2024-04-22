@@ -164,7 +164,7 @@ Trait Model
 		$query = "delete from $this->table where $id_column = :$id_column ";
 		$this->query($query, $data);
 
-		return false;
+		return true;
 
 	}
 

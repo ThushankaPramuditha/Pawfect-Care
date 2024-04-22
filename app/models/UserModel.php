@@ -19,9 +19,9 @@ class UserModel {
 
     public function registerUser(array $data){
         if ($this->validate($data)) {
-            $data['user_type'] = 'petowner';
+            $data['user_type'] = 'Pet Owner';
             $data['password'] = $this->hashPassword($data['password']);
-            // show($data);
+            
             return $this->insert($data);
 
         }

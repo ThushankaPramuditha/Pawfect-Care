@@ -51,7 +51,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No daycare staff found.</td>
+                    <td colspan="20">No daycare staff found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

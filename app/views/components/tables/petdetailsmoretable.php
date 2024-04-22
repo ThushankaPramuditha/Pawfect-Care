@@ -47,7 +47,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No petdetail found.</td>
+                    <td colspan="20">No petdetail found.</td>
                 </tr>
             <?php endif; ?>
 

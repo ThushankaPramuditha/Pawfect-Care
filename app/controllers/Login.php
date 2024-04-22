@@ -48,7 +48,7 @@ class Login
                         redirect('daycarestaff/dashboarddaycarestaff/');
                     }
                     else {
-                        redirect('home');
+                        redirect('petowner/home');
                     }
                 }
                 else

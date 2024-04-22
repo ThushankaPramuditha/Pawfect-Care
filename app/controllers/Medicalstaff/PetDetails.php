@@ -27,6 +27,17 @@ class Petdetails
         return $dateOfBirth->diff($today)->y;
     }
 
+
+    public function viewPetdetails(string $a = '', string $b = '', string $c = ''): void
+    {
+        $userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        $petdetailsModel = new PetdetailsModel();
+        $data['petdetails'] = $petdetailsModel-> getPetdetailsById($a);
+         // show($a);
+        // die();
+        $this->view('medicalstaff/petdetails/update', $data);
+    }
     
 }
 

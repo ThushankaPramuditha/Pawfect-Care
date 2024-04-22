@@ -8,17 +8,19 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
 <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>   
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <h1>Edit Profile</h1> 
-        <div class = "form-container" id="updatedaycarestaff"> 
+        <div class = "formcontainer" id="updatedaycarestaff"> 
             <form id="edit-profile-form" action="<?php echo ROOT?>/Daycarestaff/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
                 <label for="update-name">Full Name:</label>
@@ -43,7 +45,7 @@
             </form>   
         
     </div>
-                
+      </div>          
     </div>
 
 </body>

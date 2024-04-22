@@ -51,7 +51,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No receptionists found.</td>
+                    <td colspan="20">No receptionists found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

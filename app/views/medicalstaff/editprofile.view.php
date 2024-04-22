@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/forms.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
         <h1>Edit Profile</h1> 
-        <div class = "form-container" id="updatemedicalstaff"> 
+        <div class = "formcontainer" id="updatemedicalstaff"> 
             <form id="edit-profile-form" action="<?php echo ROOT?>/Medicalstaff/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
                 <label for="update-name">Full Name:</label>
@@ -42,7 +42,7 @@
             </form>   
         
     </div>
-                
+</div>           
     </div>
 
 </body>

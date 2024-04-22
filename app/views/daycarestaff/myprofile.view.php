@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 </head>
 
 <body>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
                 <h1>My Profile</h1> 
                 <div class= "pair"><div class = "key">Staff ID:</div>  <div class = "value"><?= htmlspecialchars($data['userdata']->id)?></div></div>
                 <div class= "pair"><div class = "key">Full Name:</div> <div class = "value"><?= htmlspecialchars($data['userdata']->name)?></div></div>
@@ -27,6 +29,6 @@
                 </div>
             
     </div>
-
+</div>
 </body>
 </html>

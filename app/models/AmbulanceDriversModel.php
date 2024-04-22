@@ -27,6 +27,17 @@ class AmbulanceDriversModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT a.*, u.email ,u.status
+                FROM {$this->table} AS a
+                JOIN users AS u ON a.user_id = u.id 
+                WHERE name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
     public function getDriverRoleDataById($id) {
         $query = "SELECT a.*, u.email ,u.status ,u.user_type
                   FROM ambulancedrivers AS a

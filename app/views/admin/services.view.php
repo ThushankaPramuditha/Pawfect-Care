@@ -6,17 +6,57 @@
     <title>Services</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
+
 
 
 <body>
-<?php $_SESSION['addnewpath'] = 'addservice' ?>
-
+<?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+<div style = "margin-top: 80px; ">
         <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/adminwithbutton.php'; ?> 
-        <?php include '../app/views/components/tables/servicetable.php'; ?> 
-    </div>
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search services...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
+            
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th class="edit-action-buttons"></th>
+                        <th class="delete-action-buttons"></th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                <?php foreach ($services as $service) { ?>
+                <tr key = "<?php echo $service->id; ?>" >
+                    <td><b><?php echo $service->service?></b></td>
+                    <td><?php echo $service->description?></td>
+                    <td class="edit-action-buttons">
+                    <button class="edit-icon"></button>
+                    </td>
+                    <td class="delete-action-buttons">
+                        <button class="delete-icon"></button>
+                    </td>
+                </tr>
+            <?php
+            } 
+            ?>    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <!-- </body>
 </html>
 
@@ -71,6 +111,32 @@ Add Service Modal -->
 
 
     <script>
+        $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/Admin/Services/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
+
+            // to update when filtered bu search
+            $('body').on('click', '.edit-icon', function(){
+                var id = $(this).closest('tr').attr('key');
+                openUpdateModal(id);
+            });
+
+            // to delete when filtered bu search
+            $('body').on('click', '.delete-icon', function(){
+                var id = $(this).closest('tr').attr('key');
+                openDeleteModal(id);
+            });
+        });
+
            // Get the modal elements
             var addModal = document.getElementById("add-modal");
             var updateModal = document.getElementById("update-modal");
@@ -157,6 +223,19 @@ Add Service Modal -->
             // Close the add modal after submission if successful
             addModal.style.display = "none";
         });
+
+        //sweeetalert for validation SUCCESS and ERROR
+        window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+                if (flash.success) {
+                    Swal.fire('Success', flash.success, 'success');
+                } else if (flash.error) {
+                    Swal.fire('Error', flash.error, 'error');
+                }
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
 
         
 

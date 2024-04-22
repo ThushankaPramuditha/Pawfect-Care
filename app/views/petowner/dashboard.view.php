@@ -403,7 +403,7 @@
    
 <body>
    <div style="padding-top:20px;">
-   <?php include '../app/views/navbar.php';?>
+   <?php include 'navbar.php'; ?>
    </div> 
 
    

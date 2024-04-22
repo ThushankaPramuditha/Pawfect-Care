@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Services</title>
    <style>
 
@@ -31,10 +32,10 @@
 
 <body>
 <?php $_SESSION['addnewpath'] = 'addservice' ?>
-
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
         <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
     <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?> 
         <?php include '../app/views/components/dashboard-compo/card.php'; ?>
         <div style="margin-bottom: 60px;"></div>
         <div class="flex-container">

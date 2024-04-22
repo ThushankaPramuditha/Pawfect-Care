@@ -16,6 +16,16 @@ class ReceptionistsModel
         return $this->query($query);
         
     }
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT r.*, u.email ,u.status
+                FROM {$this->table} AS r
+                JOIN users AS u ON r.user_id = u.id 
+                WHERE name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
 
     public function getReceptionistById($id) {
         $query = "SELECT r.*, u.email , u.status

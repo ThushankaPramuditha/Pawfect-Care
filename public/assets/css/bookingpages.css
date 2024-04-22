@@ -161,3 +161,9 @@ a {
         align-items: center;
     }
 }
+.error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
+}

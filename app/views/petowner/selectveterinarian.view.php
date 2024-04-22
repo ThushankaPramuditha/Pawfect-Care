@@ -11,14 +11,12 @@
 
 </head>
 <body>
-
-<div class="logo">
-   <a href="<?=ROOT?>/home">
-    <img src="<?= ROOT ?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
-  </a>
-</div>
+<?php include 'navbar.php'; ?>
 
 
+
+
+<br><br><br>
 <h1>Book your preferred Veterinarian</h1>
 <!-- Inside your HTML structure where the dropdown should appear -->
 <div class="select-container">
@@ -45,7 +43,7 @@
                     </p>
                     
                     <div class="button <?= $vet->availability == 'available' ? '' : 'disabled' ?>">
-                        <button class="btn" <?= $vet->availability == 'available' ? '' : 'disabled' ?> onclick="paymentgateway(<?= $vet->id ?>);" value="<?= $vet->id ?>">Book now</button>
+                        <button class="btn" <?= $vet->availability == 'available' ? '' : 'disabled' ?> onclick="paymentgateway(<?= $vet->id?>, '<?= addslashes($vet->name) ?>');" value="<?= $vet->id ?>">Book now</button>
                     </div>
                 </div>
             </div>
@@ -59,8 +57,10 @@
 
 
 <script>
+
+
  
- function paymentgateway(vetId) {
+ function paymentgateway(vetId,vetName) {
     const petId = document.getElementById('pet-select').value;
     if (!petId) {
         Swal.fire('Error', 'Please select a pet first!', 'error');
@@ -72,15 +72,17 @@
     checkXhttp.onreadystatechange = function() {
         if (checkXhttp.readyState == 4 && checkXhttp.status == 200) {
             var response = JSON.parse(checkXhttp.responseText);
+            console.log(response.count);
             if (response.status === 'full') {
-                Swal.fire('Sorry', 'No more bookings are accepted today.', 'info');
+                Swal.fire('Sorry', `No more bookings are accepted for ${vetName} today.`, 'info');
             } else {
                 proceedPayment(vetId, petId);
             }
         }
     };
-    checkXhttp.open("GET", "<?= ROOT ?>/Petowner/Appointments/checkAvailability", true);
-    checkXhttp.send();
+    checkXhttp.open("POST", "<?= ROOT ?>/Petowner/Appointments/checkAvailability", true);
+    checkXhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    checkXhttp.send(`vet_id=${vetId}`);
 }
 
 
@@ -98,20 +100,23 @@ function proceedPayment(vetId, petId) {
        // Payment completed. It can be a successful failure.
         payhere.onCompleted = function onCompleted(orderId) {
           console.log("Payment completed. OrderID:" + orderId);
-          saveAppointment(obj.pet_id, obj.vet_id);  // Save the appointment
-            // Note: validate the payment and show success or failure page to the customer
+          saveAppointment(obj.pet_id, obj.vet_id) ;
         };
 
         // Payment window closed
         payhere.onDismissed = function onDismissed() {
             // Note: Prompt user to pay again or show an error page
             console.log("Payment dismissed");
+            Swal.fire('Payment Incomplete', 'You closed the payment window before completing the payment.', 'info');
+
         };
 
         // Error occurred
         payhere.onError = function onError(error) {
             // Note: show an error page
             console.log("Error:"  + error);
+            Swal.fire('Error', 'An error occurred while processing your payment: ' + error, 'error');
+
         };
 
         // Put the payment variables here
@@ -149,16 +154,19 @@ function proceedPayment(vetId, petId) {
   xhttp.send();
 }
 
+
 function saveAppointment(petId, vetId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("Appointment saved: " + this.responseText);
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("Response from save appointment: " + this.responseText);
+            
         }
     };
-
     xhttp.open("POST", "<?= ROOT ?>/Petowner/Appointments/saveAppointment", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`pet_id=${petId}&vet_id=${vetId}&date_time=${new Date().toISOString()}`);
 }
+
+
 </script>

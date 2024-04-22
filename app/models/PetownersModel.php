@@ -37,6 +37,18 @@ class PetownersModel
         
     }
 
+    public function getPetownerRoleDataById($id) {
+        $query = "SELECT p.*, u.email ,u.status ,u.user_type
+                  FROM petowners AS p
+                  JOIN users AS u ON p.user_id = u.id
+                  WHERE u.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+
+
+    }
+
     // public function addPetowner($data)
     // {
     //     return $this->insert($data);
@@ -51,8 +63,9 @@ class PetownersModel
         $data['user_id'] = $userModel->registerUser([
             'email' => $data['email'],
             'password' => $data['password'],
-            'user_type' => 'petowner', 
+            'user_type' => 'Pet Owner', 
         ]);
+
 
         if ($data['user_id']) {
             // Prepare petowner-specific data

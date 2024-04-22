@@ -7,6 +7,8 @@
 </head>
 
 <body>
+<?php include 'navbar.php'; ?>
+
 <?php $_SESSION['addnewpath'] = 'addtreatment' ?>
 
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>  

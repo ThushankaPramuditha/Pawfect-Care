@@ -48,7 +48,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No ambulance drivers found.</td>
+                    <td colspan="20">No ambulance drivers found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

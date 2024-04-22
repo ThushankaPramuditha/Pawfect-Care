@@ -26,6 +26,17 @@ class MedicalStaffModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT m.*, u.email ,u.status
+                FROM {$this->table} AS m
+                JOIN users AS u ON m.user_id = u.id 
+                WHERE name LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
     public function getMedstaffRoleDataById($id) {
         $query = "SELECT m.*, u.email ,u.status ,u.user_type
                   FROM medstaff AS m

@@ -38,6 +38,8 @@
 </div>
 
 <body>
+<?php include 'navbar.php'; ?>
+
 
 <div class="sidebar-menu">
 <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?>

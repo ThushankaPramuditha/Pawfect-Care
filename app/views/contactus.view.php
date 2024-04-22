@@ -150,7 +150,7 @@
 </head>
 
 <body>
-<?php include 'navbarpetowner.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container" style="display:flex; flex-direction:column" > 
  <h2 style="margin-left:100px;">Contact Us</h2>
@@ -200,7 +200,7 @@
         </div>
 
         <div class="textbox" >
-            <form action="contactus.php" method="post">
+            <form action="<?php echo ROOT?>/petowner/contactus.php" method="post">
                 <input type="text" name="name" placeholder="Enter your name">
                 <input type="text" name="email" placeholder="Enter your email">
                 <textarea name="message" placeholder="Got more Questions? let us know..."></textarea>

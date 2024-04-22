@@ -7,17 +7,28 @@
 </head>
 
 <script src="<?php echo ROOT?>/assets/js/validatemedicalhistory.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 
 <body onload="setInitialDateTime()">
 
     <!--?php $_SESSION['addnewpath'] = 'addtreatment' ?-->
-
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
-    <div style = "margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?> 
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search treatment...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <?php include '../app/views/components/tables/medicalhistoryupdatetable.php'; ?> 
     </div>
-
+</div>
 
 </body>
 </html>

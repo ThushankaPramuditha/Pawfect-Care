@@ -36,12 +36,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2%;
+    margin-top: 80px;
     padding: 10px 20px;
-    width: 78%;                 /* Ensures the header takes full width */
+    width: 80%;                 /* Ensures the header takes full width */
     position: fixed;             /* Keeps the header fixed at the top of the viewport */
     top: 0;                      /* Aligns the header at the top edge of the viewport */
-    z-index: 500;  
+    z-index: 500; 
 }
 
 /*search bar*/
@@ -55,6 +55,7 @@ body {
 }
 
 .search-bar input[type="text"]{
+    width:auto; 
     font-size: 16px;
     border: none; /* Remove input border */
     padding: 10px; /* Increase padding */
@@ -124,6 +125,7 @@ a {
     width: auto;
 }
 
+
 .modal-form  .modal-content-delete {
     background-color: #ffffff;
     margin: 5% auto;
@@ -144,6 +146,7 @@ a {
     margin-bottom: 40px;
 }
 
+
 .modal-form .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -157,6 +160,7 @@ a {
     text-align: left;
     font-size: 20px;
 }
+
 
 
 .modal-form .modal-content input[type="text"],
@@ -177,6 +181,8 @@ input[type="date"]{
     font-size: 16px;
     outline-color:#6a3879;
 }
+
+
 
 /* buttons */
 .modal-form .modal-content button {
@@ -280,6 +286,52 @@ input[type="date"]{
     color: #4b2756;
 }
 
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.modal-content h1 {
+    color: #333;
+    font-size: 40px;
+    text-align:left;
+    /* text-align: center; */
+    margin-bottom: 40px;
+}
+.modal-content label, label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left;
+    font-size: 20px;
+}
+.modal-content .form-container {
+        max-width: 100%;
+        margin: 0 auto;
+    
+}
+.modal-content input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    display: block;  
+    background-color: #ECECEC;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+}
 
 
 /* Style for the image container */
@@ -354,13 +406,13 @@ input[type="date"]{
     color: #fff;
 }
 
-.form-container {
+.formcontainer {
     width: 60%;
 
 }
 
 
-.form-container input[type="text"],
+.formcontainer input[type="text"],
 input[type="tel"], 
 input[type="password"], 
 input[type="email"],
@@ -379,7 +431,7 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 /*for long text fields*/
-.form-container textarea {
+.formcontainer textarea {
     display: block;
     width: calc(100% - 20px);
     background-color: #ffffff;

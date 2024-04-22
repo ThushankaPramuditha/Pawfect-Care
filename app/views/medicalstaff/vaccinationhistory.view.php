@@ -8,17 +8,28 @@
 </head>
 
 <script src="<?php echo ROOT ?>/assets/js/validatehistory.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
 
 <body onload="setInitialDate()">
 
     <!--?php $_SESSION['addnewpath'] = 'addvaccination' ?>-->
-
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>
-    <div style="margin-left: 230px">
-        <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?>
+    <div style = "margin-left: 230px; margin-top:130px">
+    <div class="panel-header">
+            <button class="add-new-button">Add New</button>
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search by vaccination...">
+                    <button class="search-button">Search</button>
+                </div>
+            
+    </header>
+        </div>
         <?php include '../app/views/components/tables/vaccinationhistoryupdatetable.php'; ?>
     </div>
-
+</div>
 </body>
 
 </html>

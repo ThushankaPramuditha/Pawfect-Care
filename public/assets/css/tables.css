@@ -4,7 +4,7 @@
 
 table {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 10px;
     border-collapse: collapse;
     overflow-x: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
@@ -246,6 +246,8 @@ input[type="date"]{
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
+    background-color: #ECECEC;
+
     border-radius: 5px;
     font-size: 16px;
     outline-color:#6a3879;

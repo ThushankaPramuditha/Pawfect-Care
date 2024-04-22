@@ -17,25 +17,33 @@ class MedicalStaff
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->updateMedicalStaff($a, $_POST);
-
-        redirect('admin/medicalstaff');
+        $success = $medicalstaffModel->updateMedicalStaff($a, $_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member updated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->addMedicalStaff($_POST);
-
-        redirect('admin/medicalstaff');
-    }
-
-    public function delete(string $id): void
-    {
-        $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->delete($id, 'id');
-
-        redirect('admin/medicalstaff');
+        $success = $medicalstaffModel->addMedicalStaff($_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member added successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function viewMedicalStaff(string $a = '', string $b = '', string $c = ''):void {
@@ -50,15 +58,16 @@ class MedicalStaff
     {
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->deactivateMedicalStaff($id);
-
-        if ($success) {
-            echo "Medical Staff deactivated successfully!";
-            redirect('admin/medicalstaff'); //
-        } else {
-            echo "Failed to deactivate medical staff!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member deactivated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
         }
-        redirect('admin/medicalstaff');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to deactivate the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function activate(string $id): void
@@ -66,14 +75,50 @@ class MedicalStaff
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->activateMedicalStaff($id);
 
-        if ($success) {
-            echo "Medical Staff activated successfully!";
-            redirect('admin/medicalstaff'); //
-        } else {
-            echo "Failed to activate medical staff!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member activated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
         }
-        redirect('admin/medicalstaff');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to activate the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
+    }
+    public function search(): void
+    {
+        $medicalstaffModel = new MedicalStaffModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $medicalstaff = $medicalstaffModel->search($searchTerm);
+        if(empty($medicalstaff)){
+            echo "<tr><td colspan='20'>No medical staff found</td></tr>";
+        }
+        else{
+            foreach ($medicalstaff as $medstaff) {
+                echo "<tr key='{$medstaff->id}'>";
+                echo "<td>{$medstaff->id}</td>";
+                echo "<td>{$medstaff->name}</td>";
+                echo "<td>{$medstaff->address}</td>";
+                echo "<td>{$medstaff->contact}</td>";
+                echo "<td>{$medstaff->nic}</td>";
+                echo "<td>{$medstaff->email}</td>";
+                echo "<td>{$medstaff->qualifications}</td>";
+                echo "<td>{$medstaff->status}</td>";
+                echo "<td class='edit-action-buttons'>";
+                echo "<button class='edit-icon'></button>";
+                echo "</td>";
+                echo "<td class='activate-action-buttons'>";
+                echo "<button class='activate-button'>Activate</button>";
+                echo "</td>";
+                echo "<td class='deactivate-action-buttons'>";
+                echo "<button class='deactivate-button'>Deactivate</button>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
     }
 
         

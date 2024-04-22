@@ -9,8 +9,9 @@ class Services
 
 	public function index()
 	{
-
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+		$servicesModel = new ServicesModel();
+		$data['services'] = $servicesModel->getAllServices(); 
+		
 
 		$this->view('petowner/services',$data);
 	}

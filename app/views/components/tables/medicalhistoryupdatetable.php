@@ -9,8 +9,9 @@
     <table>
         <thead>
             <tr>
-                <!--th>Pet ID</th-->
-                <th>Date Time</th>
+                
+                <th>Pet ID</th>
+                <th>Date</th>
                 <th>Appointment ID</th>
                 <th>Weight</th>
                 <th>Temperature</th>
@@ -28,7 +29,8 @@
         <?php if (is_array($medicalhistory) && !empty($medicalhistory)): ?>
             <?php foreach ($medicalhistory as $history): ?>
                 <tr key = "<?php echo $history->id; ?>">
-                    <td><?= htmlspecialchars($history->date_time); ?></td>
+                    <td><?= htmlspecialchars($history->pet_id); ?></td>
+                    <td><?= htmlspecialchars($history->date); ?></td>
                     <td><?= htmlspecialchars($history->appointment_id); ?></td>
                     <td><?= htmlspecialchars($history->weight); ?></td>
                     <td><?= htmlspecialchars($history->temperature); ?></td>
@@ -37,8 +39,12 @@
                     <td><?= htmlspecialchars($history->prescription); ?></td>
                     <td><?= htmlspecialchars($history->treated_by); ?></td>
                     <td><?= htmlspecialchars($history->remarks); ?></td>
+                    <!--td class="edit-action-buttons">
+                        <button class="edit-icon" onclick="openUpdateModal(<!?php echo $history->id; ?>, <!?php echo $history->pet_id; ?>)"></button>
+                    </td-->
+
                     <td class="edit-action-buttons">
-                        <button class="edit-icon"></button>
+                        <button class="edit-icon" id="<?= $history->id ?>"pet-id="<?= $history->pet_id ?>"></button>
                     </td>
                 </tr>
                 
@@ -47,7 +53,6 @@
             <tr>
 
                 <td colspan="9">No history found.</td>
-
 
             </tr>
         <?php endif; ?>

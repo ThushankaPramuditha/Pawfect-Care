@@ -12,6 +12,7 @@ class Appointments
         //$data['appointments'] = $appointmentsModel->findAll();
         $data['appointments'] = $appointmentsModel->getAppointmentsForCurrentDate();
         $this->view('medicalstaff/appointments', $data);
+        
     }
 
    /* public function update(string $a = '', string $b = '', string $c = ''): void

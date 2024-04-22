@@ -6,10 +6,9 @@ class PetdetailsModel
     use Model;
 
     protected $table = 'pets';
-    protected $allowedColumns = ['id', 'name','age','breed','species','gender','petowner_id'];
+    protected $allowedColumns = ['id', 'name','birthday','breed','species','gender','petowner_id'];
 
    /* public function calculateAge($birthday) {
-        // Calculate the difference between the birthday and the current date
         $diff = date_diff(date_create($birthday), date_create());
 
         // Return the age
@@ -57,8 +56,6 @@ class PetdetailsModel
     
         return $this->update($id, $data, 'id');
     }
-
-    
 
     public function deleteVaccinationHistory($id)
 

@@ -102,7 +102,7 @@ function validateUpdateTemperature() {
     }
 }
 
-function validateUpdateMedCondition() {
+/*function validateUpdateMedCondition() {
     var MedCondition = document.getElementById('update-med_condition').value;
     if (!MedCondition) {
         document.getElementById('error-update-med_condition').textContent = "* Medical Condition is required.";
@@ -135,7 +135,7 @@ function validateUpdatePrescription() {
         return true;
     }
     
-}
+}*/
 
 
 

@@ -5,7 +5,7 @@ class MedicalhistoryModel
     use Model;
 
     protected $table = 'treatments';
-    protected $allowedColumns = ['date_time','appointment_id','weight' ,'temperature','med_condition','treatment','prescription','remarks'];
+    protected $allowedColumns = ['id','appointment_id','weight','temperature','med_condition','treatment','prescription','remarks'];
 
     /*public function getAllMedicalHistory()
     {
@@ -15,7 +15,9 @@ class MedicalhistoryModel
     public function getAllMedicalHistory()
     {
         $query = "SELECT
-        t.date_time,
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
         t.appointment_id,
         t.weight,
         t.temperature,
@@ -29,7 +31,10 @@ class MedicalhistoryModel
         JOIN
             appointments a ON t.appointment_id = a.id
         JOIN
-            veterinarians v ON a.vet_id = v.id";
+            veterinarians v ON a.vet_id = v.id
+        JOIN
+            pets p ON a.pet_id = p.id
+        ORDER BY a.id ASC";
 
         return $this->query($query);
     }
@@ -42,7 +47,9 @@ class MedicalhistoryModel
     public function getMedicalHistoryById($id)
     {
         $query = "SELECT
-        t.date_time,
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
         t.appointment_id,
         t.weight,
         t.temperature,
@@ -57,16 +64,20 @@ class MedicalhistoryModel
             appointments a ON t.appointment_id = a.id
         JOIN
             veterinarians v ON a.vet_id = v.id
+        JOIN
+            pets p ON a.pet_id = p.id
         WHERE t.id= :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
     }
 
-    public function getMedicalHistoryForPetId($pet_id)
+    public function getAllMedicalHistoryForPetId($pet_id)
     {
         $query = "SELECT
-        t.date_time,
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
         t.appointment_id,
         t.weight,
         t.temperature,
@@ -81,11 +92,40 @@ class MedicalhistoryModel
             appointments a ON t.appointment_id = a.id
         JOIN
             veterinarians v ON a.vet_id = v.id
-        WHERE a.pet_id = :pet_id";
+        JOIN
+            pets p ON a.pet_id = p.id
+        WHERE a.pet_id = :pet_id
+        ORDER BY a.id ASC";
 
         return $this->query($query, ['pet_id' => $pet_id]);
     }
-        
+    
+    public function getMedicalHistoryForPetIdById($id,$pet_id)
+    {
+        $query = "SELECT
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
+        t.appointment_id,
+        t.weight,
+        t.temperature,
+        t.med_condition,
+        t.treatment,
+        t.prescription,
+        v.name AS treated_by,
+        t.remarks
+        FROM
+            treatments t
+        JOIN
+            appointments a ON t.appointment_id = a.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        JOIN
+            pets p ON a.pet_id = p.id
+        WHERE a.pet_id = :pet_id AND t.id = :id";
+
+        return $this->get_row($query, ['pet_id' => $pet_id, 'id' => $id]);
+    }
 
     /*public function addTreatment($data)
     {
@@ -94,22 +134,22 @@ class MedicalhistoryModel
 
     public function addTreatment($data)
     {
-        $data['date_time'] = date('Y-m-d H:i:s');
+        $data['date'] = date('Y-m-d');
 
-        // Get vet_id from VeterinariansModel
+        // Get vet_id 
         $vetModel = new VeterinariansModel();
         $vetId = $vetModel->getVetIdByName($data['vet_name']);
 
         if ($vetId !== false) {
-            // Get appointment_id from AppointmentModel
+            // Get appointment_id 
             $appointmentsModel = new AppointmentsModel();
-            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'], date('Y-m-d', strtotime($data['date_time'])), $vetId);
+            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'],$data['date'], $vetId);
+            //date('Y-m-d', strtotime($data['date_time']))
 
             if ($appointmentId !== false) {
-                // Prepare treatment-specific data
+    
                 $treatmentData = [
                     'appointment_id' => $appointmentId,
-                    'date_time' => $data['date_time'],
                     'weight' => $data['weight'],
                     'temperature' => $data['temperature'],
                     'med_condition' => $data['med_condition'],
@@ -118,7 +158,7 @@ class MedicalhistoryModel
                     'remarks' => $data['remarks'],
                 ];
 
-                // Insert treatment data into the treatments table
+                
                 return $this->insert($treatmentData);
 
             } else {
@@ -133,30 +173,6 @@ class MedicalhistoryModel
         }
     }
 
-    /*public function updateMedicalHistory($id, array $data)
-    {
-        // Filter data to only include allowed columns
-        $allowedColumns = ['date_time', 'weight', 'temperature', 'med_condition', 'treatment', 'prescription', 'remarks'];
-        $filteredData = array_intersect_key($data, array_flip($allowedColumns));
-        
-        // Perform validation if necessary
-        
-        // Update the medical history record
-        $query = "UPDATE medical_history SET ";
-        foreach ($filteredData as $key => $value) {
-            $query .= "$key = :$key, ";
-        }
-        $query = rtrim($query, ', ');
-        $query .= " WHERE id = :id";
-        
-        // Add the ID to the data array
-        $filteredData['id'] = $id;
-        
-        // Execute the update query
-        $this->query($query, $filteredData);
-    }*/
-
-
     public function updateMedicalHistory($id, array $data)
     {
         // alowed column
@@ -166,8 +182,6 @@ class MedicalhistoryModel
     
         return $this->update($id, $data, 'id');
     }
-
-    
 
    /*public function deleteMedicalHistory($id)
     {
@@ -179,11 +193,8 @@ class MedicalhistoryModel
     {
         $this->errors = [];
 
-        if (empty($data['date_time'])) {
-            $this->errors['date_time'] = "Date Time is required";
-        }
-
-        if (empty($data['patient_no'])) {
+        
+         if (empty($data['patient_no'])) {
             $this->errors['patient_no'] = "Patient No is required";
         }
 

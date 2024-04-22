@@ -6,7 +6,7 @@ class VaccinationhistoryModel
     use Model;
 
     protected $table = 'vaccinations';
-    protected $allowedColumns = ['appointment_id','date', 'vaccine_name','serial_no','due_date','remarks'];
+    protected $allowedColumns = ['id','appointment_id','weight','temperature','vaccine_name','serial_no','due_date','remarks'];
 
      //CHECK THIS ADD VACCHISTORY PART
 
@@ -18,9 +18,13 @@ class VaccinationhistoryModel
     public function getAllVaccinationHistory()
     {
 
-        $query = "SELECT
-                vc.date,
+        $query ="SELECT
+                DATE(a.date_time) AS date,
+                p.id AS pet_id,
+                vc.id,
                 vc.appointment_id,
+                vc.weight,
+                vc.temperature,
                 vc.vaccine_name,
                 vc.serial_no,
                 v.name AS administered_by,
@@ -31,8 +35,10 @@ class VaccinationhistoryModel
             JOIN
                 appointments a ON vc.appointment_id = a.id
             JOIN
-                veterinarians v ON a.vet_id = v.id"
-            ;
+                veterinarians v ON a.vet_id = v.id
+            JOIN
+            pets p ON a.pet_id = p.id
+            ORDER BY a.id ASC";
 
         return $this->query($query);
 
@@ -47,8 +53,12 @@ class VaccinationhistoryModel
     public function getVaccinationHistoryById($id) 
     {
         $query = "SELECT
-                  vc.date,
+                  DATE(a.date_time) AS date,
                   vc.appointment_id,
+                  p.id AS pet_id,
+                  vc.id,
+                  vc.weight,
+                  vc.temperature,
                   vc.vaccine_name,
                   vc.serial_no,
                   v.name AS administered_by,
@@ -60,17 +70,23 @@ class VaccinationhistoryModel
                     appointments a ON vc.appointment_id = a.id
                 JOIN
                     veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id
                 WHERE vc.id= :id";
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
     }
 
-    public function getVaccinationHistoryForPetId($pet_id) 
+    public function getAllVaccinationHistoryForPetId($pet_id) 
     {
         $query = "SELECT
-                    vc.date,
+                    DATE(a.date_time) AS date,
                     vc.appointment_id,
+                    vc.id,
+                    p.id AS pet_id,
+                    vc.weight,
+                    vc.temperature,
                     vc.vaccine_name,
                     vc.serial_no,
                     v.name AS administered_by,
@@ -81,12 +97,41 @@ class VaccinationhistoryModel
                 JOIN
                     appointments a ON vc.appointment_id = a.id
                 JOIN
-                    veterinarians v ON a.vet_id = v.id 
-                WHERE a.pet_id = :pet_id";
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id 
+                WHERE a.pet_id = :pet_id
+                ORDER BY a.id ASC";
 
         return $this->query($query, ['pet_id' => $pet_id]);
     }
 
+    public function getVaccinationHistoryForPetIdById($id,$pet_id) 
+    {
+        $query = "SELECT
+                    DATE(a.date_time) AS date,
+                    vc.appointment_id,
+                    vc.id,
+                    p.id AS pet_id,
+                    vc.weight,
+                    vc.temperature,
+                    vc.vaccine_name,
+                    vc.serial_no,
+                    v.name AS administered_by,
+                    vc.due_date,
+                    vc.remarks
+                FROM
+                    vaccinations vc
+                JOIN
+                    appointments a ON vc.appointment_id = a.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id 
+                WHERE a.pet_id = :pet_id AND t.id = :id";
+
+        return $this->get_row($query, ['pet_id' => $pet_id, 'id' => $id]);
+    }
 
     public function addVaccination($data)
     {
@@ -105,7 +150,8 @@ class VaccinationhistoryModel
                 // Prepare vaccination-specific data
                 $vaccinationData = [
                     'appointment_id' => $appointmentId,
-                    'date' => $data['date'],
+                    'weight' => $data['weight'],
+                    'temperature' => $data['temperature'],
                     'vaccine_name' => $data['vaccine_name'],
                     'serial_no' => $data['serial_no'],
                     'due_date' => $data['due_date'],
@@ -149,13 +195,18 @@ class VaccinationhistoryModel
     {
         $this->errors = [];
 
-        if (empty($data['date'])) {
-            $this->errors['date'] = "Date is required";
-        }
-
         if (empty($data['patient_no'])) {
             $this->errors['patient_no'] = "Patient No is required";
         }
+
+        if (empty($data['weight'])) {
+            $this->errors['weight'] = "Weight is required";
+        }
+        
+        if (empty($data['temperature'])) {
+            $this->errors['temperature'] = "Temperature is required";
+        }
+    
     
         if (empty($data['vaccine_name'])) {
             $this->errors['vaccine_name'] = "Vaccine Name is required";

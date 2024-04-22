@@ -17,6 +17,7 @@
                 <th>Pet Owner</th>
                 <th>Contact Number</th>
                 <th>Vet Name</th>
+                <th>Status</th>
                 
 
             </tr>
@@ -32,6 +33,7 @@
                         <td><?= htmlspecialchars($appointment->petowner); ?></td>
                         <td><?= htmlspecialchars($appointment->contact); ?></td>
                         <td><?= htmlspecialchars($appointment->vet_name); ?></td>
+                        <td><?= htmlspecialchars($appointment->status); ?></td>
                         
                     </tr>
                     

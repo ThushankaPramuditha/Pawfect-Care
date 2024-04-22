@@ -9,6 +9,28 @@ function validatePatientNo() {
     }
 }
 
+function validateWeight() {
+    var Weight = document.getElementById('weight').value;
+    if (!Weight) {
+        document.getElementById('error-weight').textContent = "* Weight is required.";
+        return false;
+    } else {
+        document.getElementById('error-weight').textContent = "";
+        return true;
+    }
+}
+
+function validateTemperature() {
+    var Temperature = document.getElementById('temperature').value;
+    if (!Temperature) {
+        document.getElementById('error-temperature').textContent = "* Temperature is required.";
+        return false;
+    } else {
+        document.getElementById('error-temperature').textContent = "";
+        return true;
+    }
+}
+
 function validateVaccineName() {
     var vaccineName = document.getElementById('vaccine_name').value;
     if (!vaccineName) {
@@ -56,7 +78,30 @@ function validateDueDate() {
 
 //validate update form
 
-function validateUpdateVaccineName() {
+function validateUpdateWeight() {
+    var weight = document.getElementById('update-weight').value;
+    if (!weight) {
+        document.getElementById('error-update-weight').textContent = "* Weight is required.";
+        return false;
+    } else {
+        document.getElementById('error-update-weight').textContent = "";
+        return true;
+    }
+    
+}
+
+function validateUpdateTemperature() {
+    var Temperature = document.getElementById('update-temperature').value;
+    if (!Temperature) {
+        document.getElementById('error-update-temperature').textContent = "* Temperature is required.";
+        return false;
+    } else {
+        document.getElementById('error-update-temperature').textContent = "";
+        return true;
+    }
+}
+
+/*function validateUpdateVaccineName() {
     var vaccineName = document.getElementById('update-vaccine_name').value;
     if (!vaccineName) {
         document.getElementById('error-update-vaccine_name').textContent = "* Vaccine is required.";
@@ -76,17 +121,6 @@ function validateUpdateSerialNo() {
         document.getElementById('error-update-serial_no').textContent = "";
         return true;
     }
-}
-/*function validateUpdateAdministeredBy() {
-    var administeredBy = document.getElementById('update-administered_by').value;
-    if (!administeredBy) {
-        document.getElementById('error-update-administered_by').textContent = "* Administered By is required.";
-        return false;
-    } else {
-        document.getElementById('error-update-administered_by').textContent = "";
-        return true;
-    }
-
 }*/
 
 function validateUpdateDueDate() {
@@ -101,17 +135,6 @@ function validateUpdateDueDate() {
     
 }
 
-/**function validateUpdateRemarks() {
-    var remarks = document.getElementById('update-remarks').value;
-    if (!remarks) {
-        document.getElementById('error-update-remarks').textContent = "* Remarks is required.";
-        return false;
-    } else {
-        document.getElementById('error-update-remarks').textContent = "";
-        return true;
-    }
-    
-}**/
 
  //if (!contact.match(/^[0-9]{10}$/))   "* Contact number must be 10 digits."
  //(!nic.match(/^[0-9]{9}[vVxX]$|^([0-9]{12})$/))    "* NIC format is not valid."

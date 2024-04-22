@@ -25,7 +25,19 @@ class Feedbacks
 	public function delete(string $id): void
     {
         $feedbacksModel = new FeedbacksModel();
-        $feedbacksModel->delete($id, 'id');
+        $success = $feedbacksModel->deleteFeedback($id, 'id');
+
+
+        if ($success) {
+            $_SESSION['flash'] = ['success' => 'Feedback deleted successfully!'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
+
+        } else {
+            $_SESSION['flash'] = ['error' => 'Failed to delete the feedback'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
+        }
 
         redirect('admin/feedbacks');
     }
@@ -41,29 +53,33 @@ class Feedbacks
         $feedbacksModel = new FeedbacksModel();
         $success = $feedbacksModel->removeFeedback($id);
 
+       
         if ($success) {
-            echo "Medical Staff deactivated successfully!";
-            redirect('admin/feedbacks'); //
-        } else {
-            echo "Failed to deactivate medical staff!";
-            // Implement appropriate error handling here
-        }
-        redirect('admin/feedbacks');
-    }
+            $_SESSION['flash'] = ['success' => 'Feedback removed from the website successfully!'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
 
+        } else {
+            $_SESSION['flash'] = ['error' => 'Failed to remove the feedback from the website'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
+        }
+    }
     public function post(string $id): void
     {
         $feedbacksModel = new FeedbacksModel();
         $success = $feedbacksModel->postFeedback($id);
 
         if ($success) {
-            echo "Medical Staff activated successfully!";
-            redirect('admin/feedbacks'); //
+            $_SESSION['flash'] = ['success' => 'Feedback posted successfully!'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
+
         } else {
-            echo "Failed to activate medical staff!";
-            // Implement appropriate error handling here
+            $_SESSION['flash'] = ['error' => 'Failed to post the feedback'];
+            header('Location: ' . ROOT . '/admin/feedbacks');
+            exit();
         }
-        redirect('admin/feedbacks');
     }
     public function search(): void
     {

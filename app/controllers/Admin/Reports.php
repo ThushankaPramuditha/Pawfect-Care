@@ -19,7 +19,14 @@ class Reports {
         $appointmentIncome = $appointmentModel->incomeFromAppointments($from, $to);
         $cancelledCount = $appointmentModel->countAppointmentsByStatus('cancelled', $from, $to);
         $finishedCount = $appointmentModel->countAppointmentsByStatus('finished', $from, $to);
-        $incomeDetailsPerVet = $appointmentModel->incomeFromAppointmentsPerVet($from, $to);        
+        $incomeDetailsPerVet = $appointmentModel->incomeFromAppointmentsPerVet($from, $to);    
+        
+        //check whether to date is behind the form date, or date  range is in the future
+        if($from > $to || $from > date('Y-m-d') || ($from > date('Y-m-d') && $to > date('Y-m-d'))){
+            $_SESSION['flash'] = ['error' => 'Invalid date range.'];
+            header('Location: ' . ROOT . '/admin/reports');
+            exit;
+        }
 
         $html = $this->prepareHTMLReportAppointment($appointmentCount, $appointmentIncome, $cancelledCount, $finishedCount, $from, $to, $incomeDetailsPerVet);
         // echo $html;
@@ -118,6 +125,13 @@ class Reports {
         $bookingCount = $bookingModel->countAllDaycareBookings($from, $to);
         $declinedCount = $bookingModel->countDaycareBookingsByStatus('declined', $from, $to);
         //$finishedCount = $bookingModel->countDaycareBookingsByStatus('finished', $from, $to);
+
+        //check whether to date is behind the form date, or date  range is in the future
+        if($from > $to || $from > date('Y-m-d') || ($from > date('Y-m-d') && $to > date('Y-m-d'))){
+            $_SESSION['flash'] = ['error' => 'Invalid date range.'];
+            header('Location: ' . ROOT . '/admin/reports');
+            exit;
+        }
 
         $html = $this->prepareHTMLReportDaycareBooking($bookingCount, $declinedCount, $from, $to);
         // echo $html;

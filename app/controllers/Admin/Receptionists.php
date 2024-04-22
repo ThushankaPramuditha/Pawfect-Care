@@ -17,26 +17,36 @@ class Receptionists
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $receptionistsModel = new ReceptionistsModel();
-        $receptionistsModel->updateReceptionist($a, $_POST);
-
-        redirect('admin/receptionists');
+        $success = $receptionistsModel->updateReceptionist($a, $_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Receptionist updated successfully!'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update receptionist'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        };
     }
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         $receptionistsModel = new ReceptionistsModel();
-        $receptionistsModel->addReceptionist($_POST);
-
-        redirect('admin/receptionists');
+        $success = $receptionistsModel->addReceptionist($_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Receptionist added successfully!'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add receptionist'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        };
     }
 
-    public function delete(string $id): void
-    {
-        $receptionistsModel = new ReceptionistsModel();
-        $receptionistsModel->delete($id, 'id');
-
-        redirect('admin/receptionists');
-    }
+    
 
     public function viewReceptionist(string $a = '', string $b = '', string $c = ''):void {
         $receptionistsModel = new ReceptionistsModel();
@@ -51,14 +61,16 @@ class Receptionists
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->deactivateReceptionist($id);
 
-        if ($success) {
-            echo "Receptionist deactivated successfully!";
-            redirect('admin/receptionists'); //
-        } else {
-            echo "Failed to deactivate Receptionist!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Receptionist decativated successfully!'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
         }
-        redirect('admin/receptionists');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to deactivate receptionist'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        };
     }
 
     public function activate(string $id): void
@@ -66,14 +78,16 @@ class Receptionists
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->activateReceptionist($id);
 
-        if ($success) {
-            echo "Receptionist activated successfully!";
-            redirect('admin/receptionists'); //
-        } else {
-            echo "Failed to activate Receptionist!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Receptionist activated successfully!'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
         }
-        redirect('admin/receptionists');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to activate receptionist'];
+            header('Location: ' . ROOT . '/admin/receptionists');
+            exit();
+        };
     }
     public function search(): void
     {

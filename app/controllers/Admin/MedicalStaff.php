@@ -17,25 +17,33 @@ class MedicalStaff
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->updateMedicalStaff($a, $_POST);
-
-        redirect('admin/medicalstaff');
+        $success = $medicalstaffModel->updateMedicalStaff($a, $_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member updated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->addMedicalStaff($_POST);
-
-        redirect('admin/medicalstaff');
-    }
-
-    public function delete(string $id): void
-    {
-        $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->delete($id, 'id');
-
-        redirect('admin/medicalstaff');
+        $success = $medicalstaffModel->addMedicalStaff($_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member added successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function viewMedicalStaff(string $a = '', string $b = '', string $c = ''):void {
@@ -50,15 +58,16 @@ class MedicalStaff
     {
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->deactivateMedicalStaff($id);
-
-        if ($success) {
-            echo "Medical Staff deactivated successfully!";
-            redirect('admin/medicalstaff'); //
-        } else {
-            echo "Failed to deactivate medical staff!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member deactivated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
         }
-        redirect('admin/medicalstaff');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to deactivate the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
 
     public function activate(string $id): void
@@ -66,14 +75,16 @@ class MedicalStaff
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->activateMedicalStaff($id);
 
-        if ($success) {
-            echo "Medical Staff activated successfully!";
-            redirect('admin/medicalstaff'); //
-        } else {
-            echo "Failed to activate medical staff!";
-            // Implement appropriate error handling here
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Medical staff member activated successfully!'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
         }
-        redirect('admin/medicalstaff');
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to activate the medical staff member'];
+            header('Location: ' . ROOT . '/admin/medicalstaff');
+            exit();
+        };
     }
     public function search(): void
     {

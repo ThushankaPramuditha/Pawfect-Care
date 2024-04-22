@@ -20,9 +20,17 @@ class EditProfile
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $medicalstaffModel = new MedicalStaffModel();
-        $medicalstaffModel->updateMedicalStaff($a, $_POST);
-
-        redirect('medicalstaff/myprofile');
+		$success = $medicalstaffModel->updateMedicalStaff($a, $_POST);
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Profile updated successfully!'];
+            header('Location: ' . ROOT . '/medicalstaff/myprofile');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update the profile'];
+            header('Location: ' . ROOT . '/medicalstaff/myprofile');
+            exit();
+        };
     }
 
 }

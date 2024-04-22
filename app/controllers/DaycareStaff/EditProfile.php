@@ -20,9 +20,17 @@ class EditProfile
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $daycarestaffModel = new DaycareStaffModel();
-        $daycarestaffModel->updateDaycareStaff($a, $_POST);
-
-        redirect('daycarestaff/myprofile');
+        $success = $daycarestaffModel->updateDaycareStaff($a, $_POST);
+		if($success){
+            $_SESSION['flash'] = ['success' => 'Profile updated successfully!'];
+            header('Location: ' . ROOT . '/daycarestaff/myprofile');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update the profile'];
+            header('Location: ' . ROOT . '/daycarestaff/myprofile');
+            exit();
+        };
     }
 
 }

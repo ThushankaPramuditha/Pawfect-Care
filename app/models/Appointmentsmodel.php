@@ -5,7 +5,7 @@ class AppointmentsModel
     use Model;
 
     protected $table = 'appointments';
-    protected $allowedColumns = ['id','patient_no','date_time','pet_id','vet_id'];
+    protected $allowedColumns = ['id','patient_no','date_time','pet_id','vet_id','status'];
 
     public function getAllAppointments()
     {
@@ -16,7 +16,8 @@ class AppointmentsModel
         p.name AS pet_name,
         po.name AS petowner,
         po.contact,
-        v.name AS vet_name
+        v.name AS vet_name,
+        a.status
         FROM
             appointments a
         JOIN
@@ -31,7 +32,7 @@ class AppointmentsModel
 
     public function getAppointmentsForCurrentDate()
     {
-        // Get the current date in YYYY-MM-DD format
+        // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
         a.date_time,
@@ -40,7 +41,8 @@ class AppointmentsModel
         p.name AS pet_name,
         po.name AS petowner,
         po.contact,
-        v.name AS vet_name
+        v.name AS vet_name,
+        a.status
         FROM
             appointments a
         JOIN
@@ -60,7 +62,7 @@ class AppointmentsModel
 
     public function getAppointmentsForVetId($vetId)
     {
-        // Get the current date in YYYY-MM-DD format
+        // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
             a.date_time,
@@ -69,7 +71,8 @@ class AppointmentsModel
             p.name AS pet_name,
             po.name AS petowner,
             po.contact,
-            v.name AS vet_name
+            v.name AS vet_name,
+            a.status
         FROM
             appointments a
         JOIN
@@ -104,7 +107,8 @@ class AppointmentsModel
         p.name AS pet_name,
         po.name AS petowner,
         po.contact,
-        v.name AS vet_name
+        v.name AS vet_name,
+        a.status
         FROM
             appointments a
         JOIN
@@ -163,9 +167,41 @@ class AppointmentsModel
 
     public function addAppointment(array $data)
     {
-        return $this->insert($data);
+        // Check how many appointments already exist for today
+        $appointmentsToday = $this->countTodayAppointments();
+
+        if ($appointmentsToday >= 3) {
+            return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
+        }
+
+        else {
+            // If less than 3, proceed to add a new appointment
+            $patientNo = $appointmentsToday + 1; // Assign the next patient number
+            $data['patient_no'] = $patientNo;
+            $data['date_time'] = date('Y-m-d H:i:s'); // Ensure MySQL compatible datetime format
+
+        }
+
+        // Insert the new appointment
+        $inserted = $this->insert($data);
+        if ($inserted) {
+            return "Appointment successfully saved with patient number {$patientNo}.";
+        } else {
+            return "Failed to save appointment.";
+        }
+
     }
 
+    public function countTodayAppointments() {
+        $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE DATE(date_time) = :today
+        AND status != 'cancelled'";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+    
     public function updateAppointment($id, array $data)
     {
         // alowed column
@@ -175,6 +211,7 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
+
 
     // public function updateService($id, $data)
     // {
@@ -198,14 +235,14 @@ class AppointmentsModel
             $this->errors['patient_no'] = "Patient No. is required";
         }
 
-        if (empty($data['payment_status'])) {
-            $this->errors['pet_owner_name'] = "Pet Owner Name is required";
+        if (empty($data['petowner_name'])) {
+            $this->errors['petowner_name'] = "Pet Owner Name is required";
         }
 
         if (empty($data['contact_no'])) {
             $this->errors['contact_no'] = "Contact Number is required";
         }
-        if (empty($data['type'])) {
+        if (empty($data['pet_name'])) {
             $this->errors['pet_name'] = "Pet Name is required";
         }
 

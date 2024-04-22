@@ -76,6 +76,7 @@ foreach ($bookingsToday as $booking) {
                 <th>Filled Slots</th>
                 <th>Free Slots</th>
                 <th>Action</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -85,8 +86,8 @@ foreach ($bookingsToday as $booking) {
                     <td><?= htmlspecialchars($booking->filled_slots); ?></td>
                     <td><?= htmlspecialchars($booking->free_slots); ?></td>
                     <td>
-                            <button class="slot-button" onclick="bookSlots(<?= $booking->id ?>)">Book Slot</button>
-                            <button class="slot-button" onclick="cancelBooking(<?= $booking->id ?>)">Cancel Booking</button>
+                            <button class="slot-button" onclick="bookSlots(<?= $booking->id ?>)" style="margin-right:100px;">Book Slot</button>
+                            <button class="slot-button" onclick="cancelBooking(<?= $booking->id ?>)">Remove Slot</button>
                     </td>
                 </tr> 
             <?php endforeach; ?>

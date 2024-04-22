@@ -18,7 +18,18 @@ class Services
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $servicesModel = new ServicesModel();
-        $servicesModel->updateService($a, $_POST);
+        $success = $servicesModel->updateService($a, $_POST);
+
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Service updated successfully!'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update service'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        }
 
         redirect('admin/services');
     }
@@ -26,17 +37,36 @@ class Services
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         $servicesModel = new ServicesModel();
-        $servicesModel->addService($_POST);
+        $success = $servicesModel->addService($_POST);
 
-        redirect('admin/services');
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Service added successfully!'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add service'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        };
     }
 
     public function delete(string $id): void
     {
         $servicesModel = new ServicesModel();
-        $servicesModel->delete($id, 'id');
+        $success = $servicesModel->deleteService($id, 'id');
 
-        redirect('admin/services');
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Service deleted successfully!'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to delete service'];
+            header('Location: ' . ROOT . '/admin/services');
+            exit();
+        }
+  
     }
 
     public function viewService(string $a = '', string $b = '', string $c = ''):void {

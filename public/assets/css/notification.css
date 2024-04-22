@@ -2,7 +2,9 @@
     margin: 0;
     font-family: sans-serif;
 } */
-
+.swal2-container {
+    z-index: 20000 !important; 
+}
 .notificationmenu {
     position: relative;
     display: grid;

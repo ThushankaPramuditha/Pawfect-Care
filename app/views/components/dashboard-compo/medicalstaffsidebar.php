@@ -23,12 +23,12 @@
         }
 
         /* Remove ul disc style */
-        .nav {
+        .sidebar .nav {
             list-style-type: none;
             padding-left: 0;
         }
 
-        .nav-container{
+        .sidebar .nav-container{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -37,11 +37,11 @@
             flex-grow: 1; /* Flex grow to push the bottom container down */
 
         }
-        .nav-item {
+        .sidebar .nav-item {
             margin-bottom: 10px;
         }
 
-        .nav-link {
+        .sidebar .nav-link {
             color: #ffffff; /* New text color */
             font-size: 20px; /* Increase the font size */
             text-decoration: none;
@@ -51,12 +51,12 @@
         
         }
 
-        .nav-item:hover {
+        .sidebar .nav-item:hover {
             background-color: #4b2756; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
 
-        .nav-item:active {
+        .sidebar .nav-item:active {
             background-color: #4b2756; /* Theme color for active item */
             color: #fff; /* Text color for active item */
         }
@@ -68,18 +68,18 @@
             color: #333;
             
         }
-        .nav-item a:hover {
+        .sidebar .nav-item a:hover {
             background-color: #4b2756; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
 
         /* Active menu item */
-        .nav-item.active {
+        .sidebar .nav-item.active {
             background-color: #4b2756; /* Theme color for active item */
             color: #fff; /* Text color for active item */
         }
 
-        .center-image {
+        .sidebar .center-image {
             display: flex;
             width: 90%;
             justify-content: center;
@@ -87,44 +87,43 @@
             padding: 10px 10px;
         }
 
-        .center-image img {
+        .sidebar .center-image img {
             width: 100%; /* Adjust the size as needed */
         }
 
-        .top-container {
+        .sidebar .top-container {
             display: flex;
             width: 100%;
             align-items: flex-start;
             flex-direction: column;
         }
 
-        .bottom-container {
+        .sidebar .bottom-container {
             display: flex;
             justify-content: center;
             align-items: flex-end;
         }
 
-        .logout-button {
-            width: fit-content;
-            height: 45px;
+        .sidebar .logout-button {
+            width: 100%;
             border: none;
             color: #fff;
             background-color: #6a3879;
             border-radius: 5px;
             margin-bottom: 40px;
             font-size: 20px; /* Increase the font size */
-            padding: 10px 40px;
+            padding: 10px 60px;
             text-decoration: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 
             
         }
 
-        .logout-button:hover {
+        .sidebar .logout-button:hover {
             background-color: #4b2756; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
-        .logout-button:active {
+        .sidebar .logout-button:active {
             background-color: #4b2756; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
@@ -133,9 +132,8 @@
 
         </style>
     
-
-
 </head>
+
 
 <body>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">

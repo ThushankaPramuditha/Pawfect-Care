@@ -1,4 +1,7 @@
 /* Navbar Styles */
+.swal2-container {
+    z-index: 20000 !important; 
+}
 .navbar {
     display: flex;
     justify-content: space-between;

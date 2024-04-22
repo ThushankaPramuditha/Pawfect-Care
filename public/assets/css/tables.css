@@ -1,11 +1,14 @@
 
 /* tables */
-
+.swal2-container {
+    z-index: 20000 !important; 
+}
 
 table {
     width: 100%;
     margin-top: 10px;
     border-collapse: collapse;
+    background-color: white;
     overflow-x: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 
@@ -22,16 +25,18 @@ th, td {
 }
 
 th {
-    background-color: #6a3879; /* Gradient background for headers */
+    background-color: #947c9b; /* Gradient background for headers */
     color: white;
+    
 }
 
 tr {
     border-bottom: 1px solid #ddd;
+    
 }
 
 tbody tr:hover {
-    background-color: rgba(132, 139, 200, 0.18) /* Light background color on hover */
+    background-color: #f6f6f6; /* Very light grey for hover */
 }
 
 .edit-action-buttons button {
@@ -83,7 +88,6 @@ tbody tr:hover {
 /* Style the Deactivate button */
 .deactivate-action-buttons button {
     padding: 5px 10px;
-    margin-right: 5px;
     border-radius: 5px;
     border: 1px;
     cursor: pointer;
@@ -110,7 +114,6 @@ tbody tr:hover {
 /* Style the activate button */
 .activate-action-buttons button {
     padding: 5px 10px;
-    margin-right: 5px;
     border-radius: 5px;
     border: 1px;
     cursor: pointer;
@@ -166,181 +169,6 @@ a {
 
 
 
-/* forms */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* Allows content to wrap into new rows */
-    justify-content: space-between; /* Distributes space between and around content items */
-    max-width: 800px; /* Adjust the max-width as needed */
-    margin: 0 auto;
-}
-
-.column {
-    flex: 1; /* Allows columns to grow and shrink as needed */
-    min-width: 300px; /* Minimum width of each column */
-    padding: 10px;
-}
-
-.form-container form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* Allows content to wrap into new rows */
 
 
-}
-/* media query */
-@media screen and (max-width: 800px) {
-    .column {
-        flex: 100%; /* Allows columns to grow and shrink as needed */
-        min-width: 100%; /* Minimum width of each column */
-    }
-}
-
-/* for the button*/
-.flex-container {
-    display: flex;
-    align-items: center; 
-}
-
-h1 {
-    color: #333;
-    font-size: 40px;
-    text-align: center;
-    text-align:left;
-}
-
-form {
-    display: flex;
-    max-width: 100%;
-    margin: 0 auto;
-    margin-top:-20px;
-
-}
-label {
-    margin-bottom: 5px;
-    text-align: left;
-    font-size: 20px;
-    
-}
-
-label:hover {
-    border-color: #4b2756;
-}
-
-
-.form input[type="text"],
-input[type="tel"], 
-input[type="password"], 
-input[type="email"],
-input[type="date"]{
-    font-family: Arial, sans-serif;
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    background-color: #ECECEC;
-
-    border-radius: 5px;
-    font-size: 16px;
-    outline-color:#6a3879;
-}
-
-
-/* Adjustments for buttons */
-button[type="submit"] {
-    background-color: #6a3879;
-    width: 100%;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #4b2756;
-}
-
-input[readonly] {
-    background-color: #eee;
-    cursor: not-allowed;
-}
-
-/*for long text fields*/
-textarea {
-    display: block;
-    width: calc(100% - 20px);
-    background-color: #ECECEC;
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline-color:#6a3879;
-    resize: vertical; /* Allow vertical resizing */
-
-}
-
-/* Basic style for radio buttons */
-input[type="radio"] {
-    margin-right: 5px; 
-}
-
-/* Styling for the radio button when it's checked */
-input[type="radio"]:checked {
-    border: 2px solid #6a3879; 
-    background-color: #6a3879; 
-}
-
-
-/* Style for the image container */
-.img-container {
-    width: 60%;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 50px; 
-    padding: 10px; 
-    text-align: center; 
-}
-
-/* Style for the "+ Add Image" label */
-.image-label {
-    cursor: pointer; 
-}
-
-/* Style for the image preview */
-#pet-image-preview {
-    max-width: 100%;
-    max-height: 200px; 
-    margin-top: 10px; 
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-.error-message {
-    color: #ff0000; /* Red color for the text */
-    margin-bottom: 1px; /* Add some space above the message */
-    font-size: 0.9em; /* Slightly smaller font size */
-    padding: 1px; /* Padding inside the message */
-}
-.disabled-field {
-    background-color: #eee;
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.3;
-}
 

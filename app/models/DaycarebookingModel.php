@@ -60,7 +60,18 @@ class DaycarebookingModel
     {
         return $this->delete($id);
     }
-
+   
+    public function search($term)
+    {
+        $term = "%{$term}%";
+    
+        $query = "SELECT db.*
+                  FROM daycarebooking db
+                  WHERE db.date LIKE :term";
+    
+        return $this->query($query, [':term' => $term]);
+    }
+    
     public function validate($data)
     {
         $this->errors = [];

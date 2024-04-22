@@ -5,61 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day Care Staff</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
-  <style>
-    .view-date-button {
-      cursor: pointer;
-      padding: 5px 10px;
-      background-color: purple;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-    }
-  </style>
+    <style>
+        .view-date-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: purple;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Add this style for modals */
+        .modal-form {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content-delete {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        
+        .modal-form .finished-button {
+            display: block;
+            background-color: #c6ff0b;
+            width: fit-content;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+            
+        }
+
+        .modal-form .modal-content-delete .finished-button:hover {
+            background-color: #b5e20a;
+            color: #fafbf6;
+        }
+
+    
+    </style>
 </head>
-
 <body>
-
-<?php
-?>
-
-
-     <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>   
-    <div style="margin-left: 230px">
-        <!-- <?php include '../app/views/components/panel-header-bar/withbutton.php'; ?>  -->
+    <!-- <div style="margin-top: 80px;">
+    <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+    </div> -->
+    <div style="margin-top: 80px;">
+        <!-- <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>   -->
+        <div style="margin-left: 230px; margin-top:130px">
+        <div class="panel-header">
+            <div class="search-bar" style="margin-left:920px;">
+            <input type="text" id="search" placeholder="yyyy-mm-dd">
+                    <button class="search-button">Search</button>
+                </div>
+  
+            </div>
+            </div>
     </div>
 
-
-    <!-- Add Day Care Booking Modal
-    <div class="modal-form" id="add-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Add Booking</h1>
-            <div class="form-container">
-                <form id="add-booking-form" action="<?php echo ROOT?>/daycarebooking/add" method="post">
-  
-                    <div class="column">
-                        <div class="form-group">
-
-                      
-                        <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" id="date" name="date" required>
-                        </div>
-                      
-                        <div class="flex-container">
-                            <button type="submit" id="add-booking-button">Add a Slot</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-
     <!-- View Day Care by Date Booking Modal -->
-    <div class="modal-form" id="view-modal" style="margin-left:230px; margin-top:50px;">
+    <!-- <div class="modal-form" id="view-modal" style="margin-left:230px; margin-top:50px;">
         <div class="modal-content">
             <div class="form-container">
                 <form id="view-booking-form" action="<?php echo ROOT?>/daycarebookingform/viewtable" method="post">
@@ -68,61 +114,198 @@
                             <label for="date">Date</label>
                             <input type="date" id="date" name="date" required>
                             <div class="flex-container">
-                                <button type="button" id="view-booking-button" style="width:100px; margin-left:150px;" onclick="loadBookings()">View</button>
+                                <button type="button" id="view-booking-button" style="width:100px; margin-left:150px;">View</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-    
+    </div> -->
+
     <div style="margin-left: 230px; margin-right:20px;">
-    <div id="daycarebookingviewtable">
-    <!-- Display the initial table content here -->
-    <?php include '../app/views/components/tables/daycarebookingviewtable.php'; ?>
-</div>
-           
-          </div>
+        <div id="daycarebookingviewtable">
+            <?php include '../app/views/components/tables/daycarebookingviewtable.php'; ?>
+        </div>    
+    </div>
+
+    <!-- Accept Booking Modal -->
+    <div class="modal-form" id="accept-modal">
+        <div class="modal-content-delete">
+            <h1>Accept the Booking</h1>
+            <p>The booking will be accepted</p>
+            <div class="flex-container">
+                <button class="reject">Cancel</button>
+                <a id="accept-booking" href=""><button class="d-button">Accept</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decline Booking Modal -->
+    <div class="modal-form" id="decline-modal">
+        <div class="modal-content-delete">
+            <h1>Decline the Booking</h1>
+            <p>The Booking will be declined</p>
+            <div class="flex-container">
+                <button class="reject">Cancel</button>
+                <a id="decline-booking" href=""><button class="d-button">Decline</button></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Finished Booking Modal -->
+    <div class="modal-form" id="finished-modal">
+        <div class="modal-content-delete">
+            <h1>Daycare Time Over</h1>
+            <p>Daycare Time will be over </p>
+            <div class="flex-container">
+                <button class="reject">Cancel</button>
+                <a id="finished-booking" href=""><button class="d-button">Finish</button></a>
+            </div>
+        </div>
+
 
     <script>
-        // Get the modal elements
-        var addModal = document.getElementById("add-modal");
+              $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/Daycarebookingform/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+            
+            $('body').on('click', '.deactivate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openDeclineeModal(id);
+            });
+            $('body').on('click', '.activate-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openAcceptModal(id);
+            });
 
-         // Function to open add form modal
-         function openAddModal() {
-            addModal.style.display = "block";
+            $('body').on('click', '.finished-button', function(){
+                var id = $(this).closest('tr').attr('key');
+                openFinishedModal(id);
+            });
+        });
+        // $(document).ready(function() {
+        //     $("#datepicker").datepicker({
+        //         dateFormat: 'yy-mm-dd', // Format the date as yyyy-mm-dd
+        //         onSelect: function(dateText, inst) {
+        //             // Automatically trigger search when a date is selected
+        //             var selectedDate = $("#datepicker").val();
+        //             searchByDate(selectedDate);
+        //         }
+        //     });
+        // });
+
+        // function searchByDate(date) {
+        //     $.ajax({
+        //         url: "<?php echo ROOT?>/daycarebookingform/viewtable",
+        //         method: "POST",
+        //         data: { date: date },
+        //         success: function(data) {
+        //             $('#daycarebookingviewtable').html(data);
+        //         }
+        //     });
+        // }
+
+
+         //check
+        var declineModal = document.getElementById("decline-modal");
+        var acceptModal = document.getElementById("accept-modal");
+        var finishedModel = document.getElementById("finished-modal");
+
+
+         // Get the <span> element that closes the modal
+         var span = document.getElementsByClassName("close")[0];
+
+        // Function to open accept modal
+        function openAcceptModal(id) {
+            console.log(id);
+            acceptModal.style.display = "block";
+            document.getElementById("accept-booking").href = `<?php echo ROOT?>/Daycarebookingform/accept/${id}`;
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
         }
 
-            // Event listener for add button click
-        document.querySelector('.add-new-button').addEventListener('click', function () {
-            openAddModal();
-        });
-       
-        function loadBookings() {
-        // Get the selected date from the calendar input
-        var selectedDate = document.getElementById('date').value;
+        // Function to open decline modal
+        function openDeclineModal(id) {
+            console.log(id);
+            declineModal.style.display = "block";
+            document.getElementById("decline-booking").href = `<?php echo ROOT?>/Daycarebookingform/decline/${id}`;
 
-        // Send the selected date to the server using AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '<?php echo ROOT ?>/daycarebookingform/search', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Update the table with the received data
-                    document.getElementById('components/tables/daycarebookingviewtable').innerHTML = xhr.responseText;
-                } else {
-                    console.error('Failed to load bookings.');
-                }
+            span.onclick = function() {
+                modal.style.display = "none";
             }
-        };
-        xhr.send('drop_off_date=' + encodeURIComponent(selectedDate));
-    }
-            
+        }
+       
+        function openFinishedModal(id) {
+            console.log(id);
+            finishedModal.style.display = "block";
+            document.getElementById("finished-booking").href = `<?php echo ROOT?>/Daycarebookingform/finished/${id}`;
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+
+        document.querySelectorAll('.activate-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openAcceptModal(id);
+            });
+        });
+
+        // Event listeners for delete buttons click in the table
+        document.querySelectorAll('.deactivate-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openDeclineModal(id);
+            });
+        });
+
+        document.querySelectorAll('.finished-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openFinishedModal(id);
+            });
+        });
+
+        // Close modals when the close button is clicked
+        var closeButtons = document.querySelectorAll('.close');
+
+        // Close modals when the no button is clicked
+        var noButtons = document.querySelectorAll('.reject');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                declineModal.style.display = "none";
+                acceptModal.style.display = "none";
+
+            });
+        });
+        noButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                declineModal.style.display = "none";
+                acceptModal.style.display = "none";
+
+
+            });
+        });
+
 
     </script>
 </body>

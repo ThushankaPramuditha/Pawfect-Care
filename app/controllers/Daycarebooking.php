@@ -68,6 +68,25 @@ class Daycarebooking
 			redirect('daycarebooking');
 		}
 
+		public function search(): void
+    {
+        $daycarebookingModel = new DaycarebookingModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $daycarebooking = $daycarebookingModel->search($searchTerm);
+
+        if (empty($daycarebooking)) {
+            echo "<tr><td colspan='20'>No daycare booking found</td></tr>";
+        } else {
+            foreach ($daycarebooking as $dbooking) {
+                echo "<tr key='{$dbooking->id}'>";
+                echo "<td>{$dbooking->filled_slots}</td>";
+				echo "<td>{$dbooking->free_slots}</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+    }
+
 }
 	
 	

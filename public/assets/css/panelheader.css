@@ -264,7 +264,25 @@ input[type="date"]{
     color: #fafbf6;
 }
 
+.modal-form .finished-button {
+    display: block;
+    background-color: #c6ff0b;
+    width: fit-content;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+    
+}
 
+.modal-form .modal-content-delete .finished-button:hover {
+    background-color: #b5e20a;
+    color: #fafbf6;
+}
 
 .modal-form a {
     text-decoration: none;

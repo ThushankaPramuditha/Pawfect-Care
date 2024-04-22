@@ -142,7 +142,7 @@
                 <div style="width: 100%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/dashboardservices">
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/dashboarddaycarestaff">
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
@@ -153,24 +153,11 @@
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarestaff">
-                                <span class="menu-title">Daycare Staff</span>
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarebooking">
+                                <span class="menu-title">Daycare Bookings</span>
                             </a>
                         </li>
                         
-
-                         <li class="nav-item">
-                        <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/reports">
-
-                            <span class="menu-title">Reports</span>
-
-                        </a>
-                        </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/feedbacks">
-                        <span class="menu-title">Feedbacks</span>
-                    </a>
-                </li>
                 
                     </ul>
                 </div>

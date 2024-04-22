@@ -20,9 +20,17 @@ class EditProfile
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $veterinariansModel = new VeterinariansModel();
-        $veterinariansModel->updateVeterinarian($a, $_POST);
-
-        redirect('veterinarian/myprofile');
+        $success = $veterinariansModel->updateVeterinarian($a, $_POST);
+		if($success){
+            $_SESSION['flash'] = ['success' => 'Profile updated successfully!'];
+            header('Location: ' . ROOT . '/veterinarian/myprofile');
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to update the profile'];
+            header('Location: ' . ROOT . '/veterinarian/myprofile');
+            exit();
+        };
     }
 
 }

@@ -196,9 +196,26 @@
             icon: 'success',
             title: 'Booking Successful',
             text: 'Daycare booking successfully added.Wait for the confirmation Email. ',
+             //when okay clicked, redirect to services page
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= ROOT ?>/petowner/services';
+            }
+            
         });
 
     <?php endif; ?>
+
+    //when okay clicked, redirect to services page
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Booking Successful',
+    //     text: 'Daycare booking successfully added. Wait for the confirmation Email.',
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         window.location.href = '<?= ROOT ?>/petowner/services';
+    //     }
+    // });
 
     //failure message
     <?php if (isset($_GET['failure'])): ?>

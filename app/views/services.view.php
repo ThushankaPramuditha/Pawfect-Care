@@ -123,7 +123,7 @@
                 <h3 class="card-title">Daycare Services</h3>
                 <p class="card-description">Our daycare services are designed to keep your pets active and engaged while you're away. Our secure facilities and trained staff ensure a day filled with play, exercise, and socialization. Your pet will love it here!</p>  
                 <div class="button">
-                    <a href="<?php echo ROOT?>/login" class="btn">Book a Slot</a>
+                    <a href="<?php echo ROOT?>/daycarebookinguser" class="btn">Book a Slot</a>
                 </div>
             </div>
         </div>

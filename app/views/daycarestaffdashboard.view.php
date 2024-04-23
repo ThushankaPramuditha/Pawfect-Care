@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <title>Dashboard</title>
     <style>
@@ -122,105 +123,6 @@ b{
     grid-template-columns: 12rem auto 23rem;
 }
 
-aside{
-    height: 100vh;
-}
-
-aside .toggle{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1.4rem;
-}
-
-aside .toggle .logo{
-    display: flex;
-    gap: 0.5rem;
-}
-
-aside .toggle .logo img{
-    width: 2rem;
-    height: 2rem;
-}
-
-aside .toggle .close{
-    padding-right: 1rem;
-    display: none;
-}
-
-aside .sidebar{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-white);
-    box-shadow: var(--box-shadow);
-    border-radius: 15px;
-    height: 88vh;
-    position: relative;
-    top: 1.5rem;
-    transition: all 0.3s ease;
-    width: 230px;
-}
-
-aside .sidebar:hover{
-    box-shadow: none;
-}
-
-aside .sidebar a{
-    display: flex;
-    align-items: center;
-    color: var(--color-info-dark);
-    height: 3.7rem;
-    gap: 1rem;
-    position: relative;
-    margin-left: 2rem;
-    transition: all 0.3s ease;
-}
-
-aside .sidebar a span{
-    font-size: 1.6rem;
-    transition: all 0.3s ease;
-}
-
-aside .sidebar a:last-child{
-    position: absolute;
-    bottom: 2rem;
-    width: 100%;
-}
-
-aside .sidebar a.active{
-    width: 100%;
-    color: var(--color-primary);
-    background-color: var(--color-light);
-    margin-left: 0;
-}
-
-aside .sidebar a.active::before{
-    content: '';
-    width: 6px;
-    height: 18px;
-    background-color: var(--color-primary);
-}
-
-aside .sidebar a.active span{
-    color: var(--color-primary);
-    margin-left: calc(1rem - 3px);
-}
-
-aside .sidebar a:hover{
-    color: var(--color-primary);
-}
-
-aside .sidebar a:hover span{
-    margin-left: 0.6rem;
-}
-
-aside .sidebar .message-count{
-    background-color: var(--color-danger);
-    padding: 2px 6px;
-    color: var(--color-white);
-    font-size: 11px;
-    border-radius: var(--border-radius-1);
-}
 
 main{
     margin-top: 1.4rem;
@@ -697,6 +599,20 @@ main table tbody tr td:first-child {
     }
 
 }
+
+::-webkit-scrollbar{
+    width: 0.6rem;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-track{
+    background-color: var(--color-white);
+}
+
         </style>
           
 
@@ -705,52 +621,9 @@ main table tbody tr td:first-child {
 <body>
    
     <div class="container">
-      <aside>
-            <div class="toggle">
-                <div class="logo">
-                <img src="<?=ROOT?>/assets/images/doglogo.jpg" alt="">
-                    <h2>Pawfect<span class="danger">Care</span></h2>
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">
-                        close
-                    </span>
-                </div>
-            </div>
-
-            <div class="sidebar">
-              
-               
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        pets
-                    </span>
-                    <h3>Pet Details</h3>
-                </a>
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        person
-                    </span>
-                    <h3>Pet Owner Details</h3>
-                </a>    
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        help
-                    </span>
-                    <h3>FAQ</h3>
-              </a>
-
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-         </aside>
+      <div>
+      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+        </div>
         <!-- Main Content -->
 
         <main>
@@ -759,9 +632,18 @@ main table tbody tr td:first-child {
             <div class="analyse">
                 <div class="sales">
                     <div class="status">
-                        <div class="info">
-                            <h3 >Daycare Bookings</h3>
-                            <h1 style="text-align: center;">16</h1>
+                        <div class="info" >
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Daycare Bookings</p>
+                            <?php 
+                            
+                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+                                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
+                                $statement = $pdo->prepare($query);
+                                $statement->execute();
+                                $todaybookings = $statement->rowCount();
+                                ?>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
+
                         </div>
                     </div>
                 </div>
@@ -771,8 +653,17 @@ main table tbody tr td:first-child {
                 <div class="sales">
                     <div class="status">
                         <div class="info">
-                            <h3 >Filled Slots</h3>
-                            <h1 style="text-align: center;">16</h1>
+                        <p style="font-size:20px; text-align:center; font-weight:bolder;">Accepted Bookings</p>
+                            <?php 
+                            //get today accepted bookings
+                            $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+                            $query = "SELECT * FROM daycarebookinguser WHERE status = 'accepted' AND drop_off_date = CURDATE()";
+                            $statement = $pdo->prepare($query);
+                            $statement->execute();
+                            $acceptedbookings = $statement->rowCount();
+                            ?>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $acceptedbookings; ?></p>
+
                         </div>
                     </div>
                 </div>
@@ -782,8 +673,15 @@ main table tbody tr td:first-child {
                  <div class="sales">
                       <div class="status">
                             <div class="info">
-                                <h3 >Free Slots</h3>
-                                <h1 style="text-align: center;">11</h1>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Declined Bookings</p>
+                                <?php 
+                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+                                $query = "SELECT * FROM daycarebookinguser WHERE status = 'declined' AND drop_off_date = CURDATE()";
+                                $statement = $pdo->prepare($query);
+                                $statement->execute();
+                                $declinedbookings = $statement->rowCount();
+                                ?>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $declinedbookings; ?></p>
                             </div>
                       </div>
                  </div>
@@ -791,81 +689,105 @@ main table tbody tr td:first-child {
             <!-- End of Analyses -->
 
             <!-- New Users Section -->
-    <!-- <div class="new-users">
-    <h2>Veterinarians</h2>
-    <div class="user-list">
-        <?php
-        // Assume you have a database connection established
-        $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+         
+    <div style="margin-top:100px; display:flex; flex-direction:row;">
+      <div>
+        <canvas id="myDonutChart" width="400" height="350"></canvas>
+        <script>
+            // Get the canvas element
+            var ctx = document.getElementById('myDonutChart').getContext('2d');
 
-        $query = "SELECT * FROM veterinarians";
-        $statement = $pdo->prepare($query);
-        $statement->execute();
-        $veterinarians = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // Define data for the chart
+            var data = {
+                labels: ['All Bookings', 'Accepted', 'Decliend'],
+                datasets: [{
+                    label: 'My First Dataset',
+ 
+                    //add the bookings data
+                    data : [<?php echo $todaybookings; ?>, <?php echo $acceptedbookings; ?>, <?php echo $declinedbookings; ?>],
+                
+                    backgroundColor: [
+                        //colors like purple , rose and blue
+                        'rgb(153, 102, 255)',
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                         
+                        
+                    ],
+                    hoverOffset: 4 // Add space when hovered over a segment
+                }]
+            };
 
-        foreach ($veterinarians as $veterinarian) {
-            ?>
-            <div class="user" id="vet_<?php echo $veterinarian['id']; ?>">
-                <img src="<?=ROOT?>/assets/images/<?php echo $veterinarian['pfp']; ?>">
-                <h2><?php echo $veterinarian['name']; ?></h2>
+            // Configure options for the chart
+            var options = {
+                cutout: 70, // Change this value to adjust the size of the hole in the middle
+                responsive: false, // Disable responsiveness for fixed size
+            };
+
+            // Create the donut chart
+            var myDonutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: options
+            });
+        </script>
+          <!-- //button for slots book
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <a href="<?=ROOT?>/daycarebooking">
+            <div>
+                <h3>Book Slots</h3>
             </div>
-            <?php
-        }
-        ?>
+        </div> -->
+          <div style="justify-content:center;">
+            <button style="height:40px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:5px; padding:10px;">
+            <a href="<?=ROOT?>/daycarebooking">
+                <div>
+                    <h3>Slots View</h3>
+                </div>
+            </a>
+          </div>
+        </div>
+        <div style="margin-left:50px;">
+        <canvas id="myBarChart" width="300" height="350"></canvas>
+        <script>
+            // Get the canvas element
+            var ctx = document.getElementById('myBarChart').getContext('2d');
+
+            // Define data for the chart
+            var data = {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Bookings in a Week',
+                    data : [10, 20, 30, 40],
+                   
+                    backgroundColor: [
+                        //colors like purple , rose and blue,red
+                        'rgb(153, 102, 255)',
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 0, 65)'  
+                    ],
+                    hoverOffset: 4 // Add space when hovered over a segment
+                }]
+            };
+
+            // Configure options for the chart
+            var options = {
+                responsive: false, // Disable responsiveness for fixed size
+            };
+
+            // Create the bar chart
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        </script>
+        </div>
     </div>
-   
-</div> -->
 
-            <!-- End of New Users Section -->
-            <!-- <?php
-
-$pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-
-// Prepare and execute a query to get appointment data
-$query = "SELECT * FROM appointments";
-$statement = $pdo->prepare($query);
-$statement->execute();
-
-// Fetch all appointments as an associative array
-$appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<div class="recent-orders">
-    <h2>Recent Appointments</h2>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Patient No</th>
-                    <th>Pet ID</th>
-                    <th>Pet Name</th>
-                    <th>Pet Owner</th>
-                    <th>Contact Number</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    
             
-                foreach ($appointments as $appointment) {
-                        echo "<tr>";
-                        echo "<td>".$appointment['patient_no']."</td>";
-                        echo "<td>".$appointment['pet_id']."</td>";
-                        echo "<td>".$appointment['pet_name']."</td>";
-                        echo "<td>".$appointment['pet_owner_name']."</td>";
-                        echo "<td>".$appointment['contact_no']."</td>";
-                        echo "<td>".$appointment['date']."</td>";
-                        echo "<td><a href='".ROOT."receptionist/appointments/".$appointment['id']."'>View</a></td>";
-                        echo "</tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-</div> -->
-
-            <!-- End of Recent Orders -->
-
         </main>
         <!-- End of Main Content -->
 
@@ -881,8 +803,9 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Thushanka</b></p>
-                        <small class="text-muted">Daycare Staff</small>
+                        <!-- display the name of the daycare staff using session -->
+                        <p style="display:none"><b>Hello</b></p>
+                        <p ><b>Daycare Staff</b></p>
                     </div>
                     <div class="profile-photo">
                     <!-- <a href="<?php echo ROOT; ?>receptionist/myprofile"> -->
@@ -919,8 +842,14 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->execute();
     $daycarebookinguser = $statement->fetchAll(PDO::FETCH_ASSOC);
     
+    //get the notification count
+    $query = "SELECT * FROM daycarebookinguser WHERE status = 'pending'";
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $pendingbookings = $statement->rowCount();
+
     ?>
-    <div style="display:flex; flex-direction:column;">
+    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
         <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
          <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
             <!-- <div class="icon">
@@ -940,6 +869,19 @@ $appointments = $statement->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <?php } ?>
     </div>
+       
+        <!-- button to view more bookings path is Daycarebookingform -->
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <a href="<?=ROOT?>/daycarebookingform">
+            <div>
+                <span class="material-icons-sharp">
+                      arrow_forward
+                </span>
+                <h3>View</h3>
+            </div>
+      
+        </div>
+ </div>
 </div>
 
 

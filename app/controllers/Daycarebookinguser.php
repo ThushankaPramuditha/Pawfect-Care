@@ -58,6 +58,9 @@ class Daycarebookinguser
 
         //success parameter indicating a successful booking
         redirect('daycarebookinguser/addDaycarebookinguser?success=true');
+        //after successful booking, redirect to the services page
+
+        
        
     } else {
         // Failed insertion

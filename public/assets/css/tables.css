@@ -1,16 +1,25 @@
 
 /* tables */
+
 .swal2-container {
     z-index: 20000 !important; 
 }
 
+.table-container {
+    width: 100%; /* Adjust based on your design */
+    height: 75vh; /* Or whatever height you want */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: auto; /* Keeps the horizontal overflow hidden */
+    border-radius: 5px;
+    
+}
+
 table {
     width: 100%;
-    margin-top: 10px;
     border-collapse: collapse;
     background-color: white;
     overflow-x: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+    overflow-y:auto; 
 
 }
 
@@ -20,24 +29,27 @@ th, td {
     padding-bottom: 10px;
     padding-top: 10px;
     text-align: left;
-    background-color: white;
 
 }
 
 th {
+    position: sticky;
+    top: 0;
     background-color: #947c9b; /* Gradient background for headers */
     color: white;
+    z-index: 10;
     
 }
 
-tr {
-    border-bottom: 1px solid #ddd;
-    
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Light gray for odd rows */
 }
 
-tbody tr:hover {
-    background-color: #f6f6f6; /* Very light grey for hover */
+tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for even rows */
 }
+
+
 
 .edit-action-buttons button {
     background-color:#6a387935;

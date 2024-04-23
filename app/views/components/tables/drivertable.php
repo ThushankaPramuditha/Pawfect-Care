@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
+<div class = "table-container">
+
     <table>
         <thead>
             <tr>

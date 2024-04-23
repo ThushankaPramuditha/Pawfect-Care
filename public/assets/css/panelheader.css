@@ -439,3 +439,20 @@ input[type="date"]{
         min-width: 100%; /* Minimum width of each column */
     }
 }
+
+.modal-form .select-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px; /* Adjust margin as needed */
+}
+
+#vet-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px; /* Adjust width as needed */
+    background-color: #f9f9f9; /* Light gray background */
+    color: #333; /* Dark text color */
+}

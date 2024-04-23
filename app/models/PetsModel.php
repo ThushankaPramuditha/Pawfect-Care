@@ -18,6 +18,16 @@ class PetsModel
         
     }
 
+    public function getAllPetsDetailsByPetId($id) {
+        $query = "SELECT  p.name AS pet_name, p.birthday, p.gender,p.species,p.breed, po.name AS pet_owner_name, po.address, po.contact, po.nic
+        FROM pets AS p
+        JOIN petowners AS po ON p.petowner_id = po.id
+        WHERE p.id = :id";
+  
+        return $this->query($query, ['id' => $id]);
+        
+    }
+
     public function getPetById($id) {
         $query = "SELECT p.*, u.email, u.status
                   FROM pets AS p

@@ -731,13 +731,6 @@ main table tbody tr td:first-child {
                 options: options
             });
         </script>
-          <!-- //button for slots book
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarebooking">
-            <div>
-                <h3>Book Slots</h3>
-            </div>
-        </div> -->
           <div style="justify-content:center;">
             <button style="height:40px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:5px; padding:10px;">
             <a href="<?=ROOT?>/daycarebooking">
@@ -750,9 +743,11 @@ main table tbody tr td:first-child {
         <div style="margin-left:50px;">
         <canvas id="myBarChart" width="300" height="350"></canvas>
         <script>
+           
             // Get the canvas element
             var ctx = document.getElementById('myBarChart').getContext('2d');
-
+             //function to get week1, week2, week3, week4 bookings
+            
             // Define data for the chart
             var data = {
                 labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
@@ -782,6 +777,39 @@ main table tbody tr td:first-child {
                 data: data,
                 options: options
             });
+
+
+            // function getWeeksBookings(){
+            //     //get the bookings for week1
+            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() AND CURDATE() + INTERVAL 7 DAY";
+            //     $statement = $pdo->prepare($query);
+            //     $statement->execute();
+            //     $week1bookings = $statement->rowCount();
+
+            //     //get the bookings for week2
+            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 7 DAY AND CURDATE() + INTERVAL 14 DAY";
+            //     $statement = $pdo->prepare($query);
+            //     $statement->execute();
+            //     $week2bookings = $statement->rowCount();
+
+            //     //get the bookings for week3
+            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 14 DAY AND CURDATE() + INTERVAL 21 DAY";
+            //     $statement = $pdo->prepare($query);
+            //     $statement->execute();
+            //     $week3bookings = $statement->rowCount();
+
+            //     //get the bookings for week4
+            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 21 DAY AND CURDATE() + INTERVAL 28 DAY";
+            //     $statement = $pdo->prepare($query);
+            //     $statement->execute();
+            //     $week4bookings = $statement->rowCount();
+
+            //     return [$week1bookings, $week2bookings, $week3bookings, $week4bookings];
+            // }
         </script>
         </div>
     </div>

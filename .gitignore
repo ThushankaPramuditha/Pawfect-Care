@@ -1,5 +1,2 @@
 app/core/config.php
 app/vendor/autoload.php
-# Ignore npm dependencies
-node_modules/
-

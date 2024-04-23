@@ -1,4 +1,7 @@
 /* CSS styles for the veterinarian profile form */
+.swal2-container {
+    z-index: 20000 !important; 
+}
 body {
     font-family: Arial, sans-serif;
     background-color: rgba(132, 139, 200, 0.18);
@@ -86,38 +89,12 @@ button[type="submit"]:hover {
     display:flex;
 }
 
-/* Style for the image preview */
-#pet-image-preview {
-    max-width: 100%; /* Ensure the image doesn't exceed the container width */
-    max-height: 200px; 
-    margin-top: 10px; /* Add space between the label and the image preview */
-}
-
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/*for logout button with class "logout-button"  inside class bottom container*/
-.bottom-container .logout-button {
-    width: 100%;
-    height: 45px;
-    border: none;
-    color: #fff;
-    background-color: #6a3879;
-    padding: 10px 40px;
-    margin-top: 0;
-    border-radius: 5px;
-    margin-bottom: 40px;
-    font-size: 20px; /* Increase the font size */
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
-}
 
-.bottom-container  .logout-button:hover {
-    background-color: #4b2756; /* Theme color on hover */
-    color: #fff; /* Text color on hover */
-}
 
 .error-message {
     color: #ff0000; /* Red color for the text */
@@ -126,3 +103,63 @@ a {
     padding: 1px; /* Padding inside the message */
 }
 
+/* for edit profile?updateprofile pages with grey background*/
+.formcontainer {
+    width: 50%;
+
+}
+
+.formcontainer input[type="text"],
+input[type="tel"], 
+input[type="password"], 
+input[type="email"],
+input[type="date"]{
+    font-family: Arial, sans-serif;
+    display: block;  
+    background-color: #ffffff;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+}
+/*for long text fields*/
+.formcontainer textarea {
+    display: block;
+    width: calc(100% - 20px);
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline-color:#6a3879;
+    resize: vertical; /* Allow vertical resizing */
+
+}
+.formcontainer .error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
+}
+
+.formcontainer h1 {
+    color: #333;
+    font-size: 40px;
+    text-align:left;
+    /* text-align: center; */
+    margin-bottom: 40px;
+}
+.formcontainer label, label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left;
+    font-size: 20px;
+}

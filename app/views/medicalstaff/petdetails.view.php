@@ -74,12 +74,12 @@
             
             $('body').on('click', '.medicalhistory-button', function() {
                 var id = $(this).closest('tr').attr('key');
-                var baseUrl = '<?php echo ROOT ?>/medicalstaff/medicalhistory/getMedicalHistoryForPetId/'; // Replace with your actual base URL for deactivation
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/medicalhistory/'; // Replace with your actual base URL for deactivation
                 window.location.href = baseUrl + id;
             });
             $('body').on('click', '.vaccinationhistory-button', function() {
                 var id = $(this).closest('tr').attr('key');
-                var baseUrl = '<?php echo ROOT ?>/medicalstaff/vaccinationhistory/getVaccinationHistoryForPetId/'; // Replace with your actual base URL for deactivation
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/vaccinationhistory/'; // Replace with your actual base URL for deactivation
                 window.location.href = baseUrl + id;
             });
         });

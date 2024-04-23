@@ -21,7 +21,7 @@
             
     </header>
         </div>
-        <?php include '../app/views/components/tables/appointmentviewonlytable.php'; ?> 
+        <?php include '../app/views/components/tables/appointmentwithoutvettable.php'; ?> 
     </div>
 </div>
 </body>

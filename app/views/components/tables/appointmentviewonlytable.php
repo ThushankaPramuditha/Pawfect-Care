@@ -9,7 +9,7 @@
      <table>
         <thead>
             <tr>
-
+                <th>appointment ID</th>
                 <th>Date Time</th>
                 <th>Patient No.</th>
                 <th>Pet ID</th>
@@ -26,6 +26,7 @@
             <?php if (is_array($appointments) && !empty($appointments)): ?>
                 <?php foreach ($appointments as $appointment): ?>
                     <tr key = "<?php echo $appointment->id; ?>">
+                        <td><?= htmlspecialchars($appointment->id); ?></td>
                         <td><?= htmlspecialchars($appointment->date_time); ?></td>
                         <td><?= htmlspecialchars($appointment->patient_no); ?></td>
                         <td><?= htmlspecialchars($appointment->pet_id); ?></td>

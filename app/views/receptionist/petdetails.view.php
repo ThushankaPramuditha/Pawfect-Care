@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
-
     <title>Pet Details</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
+<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+<script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
+
 
 <body>
-<?php $_SESSION['updatepath'] = 'editpetdetails' ?>
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  

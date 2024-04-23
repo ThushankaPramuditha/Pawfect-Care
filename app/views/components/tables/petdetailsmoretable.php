@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
 <body>
-    <table >
+<div class = "table-container">
+<table >
         <thead>
             <tr>
                 <th>Pet ID</th>

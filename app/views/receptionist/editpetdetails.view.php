@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit pet details</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 </head>
 
 <body>

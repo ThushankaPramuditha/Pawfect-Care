@@ -5,7 +5,7 @@ class AppointmentsModel
     use Model;
 
     protected $table = 'appointments';
-    protected $allowedColumns = ['id','patient_no','date_time','pet_id','vet_id','status'];
+    protected $allowedColumns = ['patient_no','date_time','pet_id','vet_id','status'];
 
     public function getAllAppointments()
     {
@@ -36,6 +36,7 @@ class AppointmentsModel
         // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
+        a.id,
         a.date_time,
         a.patient_no,
         a.pet_id,
@@ -85,7 +86,7 @@ class AppointmentsModel
         WHERE
             DATE(a.date_time) = :current_date
             AND
-            v.id = :vet_id";
+            a.vet_id = :vet_id";
 
         // Bind the current date and vet_id parameters to the query
         $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
@@ -103,6 +104,7 @@ class AppointmentsModel
     {
         $currentDate = date('Y-m-d');
         $query = "SELECT
+        a.id,
         a.date_time,
         a.patient_no,
         a.pet_id,
@@ -191,7 +193,6 @@ class AppointmentsModel
     public function addAppointment(array $data)
     {
         // Check how many appointments already exist for today
-
         $appointmentsToday = $this->countTodayAppointments($vetId);
 
         if ($appointmentsToday >= 3) {
@@ -213,22 +214,21 @@ class AppointmentsModel
         } else {
             return "Failed to save appointment.";
         }
-
     }
 
-    //get the active appointment count for current date for particular vet
-    public function countTodayAppointments($vetId) {
 
+      //get the active appointment count for current date for particular vet
+      public function countTodayAppointments($vetId) {
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE DATE(date_time) = :today
-
         AND vet_id = :vet_id
         AND status != 'cancelled'";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
+
     
 
     public function updateAppointment($id, array $data)
@@ -282,7 +282,7 @@ class AppointmentsModel
         return empty($this->errors);
     }
 
-/////////////////////////////////////////////////////////////// reports   /////////////////////////////////////////////////
+//////////////////////////////////// reports   /////////////////////////////////////////////////
 
     //get the appointment count for given period for all vets
     public function countAllAppointments($startDate, $endDate) {

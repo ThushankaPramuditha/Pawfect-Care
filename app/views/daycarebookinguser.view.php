@@ -149,7 +149,6 @@
                     <input type="hidden" id="petowner_id" name="petowner_id" value="<?php echo $_SESSION['USER']->id; ?>"> 
                     <div id="error-petowner_id" class="error-message"></div>
                      
-
                     <label for="drop-off-date">Drop off Date:</label>
                     <input type="date" id="drop-off-date" name="drop-off-date">
                     <div id="error-drop-off-date" class="error-message"></div>
@@ -196,9 +195,26 @@
             icon: 'success',
             title: 'Booking Successful',
             text: 'Daycare booking successfully added.Wait for the confirmation Email. ',
+             //when okay clicked, redirect to services page
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= ROOT ?>/petowner/services';
+            }
+            
         });
 
     <?php endif; ?>
+
+    //when okay clicked, redirect to services page
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Booking Successful',
+    //     text: 'Daycare booking successfully added. Wait for the confirmation Email.',
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         window.location.href = '<?= ROOT ?>/petowner/services';
+    //     }
+    // });
 
     //failure message
     <?php if (isset($_GET['failure'])): ?>

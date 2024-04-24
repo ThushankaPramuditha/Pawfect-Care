@@ -4,89 +4,62 @@ class MedicalHistory
 {
     use Controller;
 
-    public function index()
+    public function index(string $petId = ''): void
     {
+        $userdataModel = new VeterinariansModel();
+		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
 
-      $userdataModel = new VeterinariansModel();
-      $data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
-      $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-
-      $this->view('veterinarian/medicalhistory',$data);
-    }
-
-  
-  /*public function index(string $a = '', string $b = '', string $c = ''): void
-    {
         $medicalhistoryModel = new MedicalhistoryModel();
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
-        $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistory();
+        $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistoryForPetId($petId);
+       
         $this->view('veterinarian/medicalhistory', $data);
-    }*/
-
-    public function getMedicalHistoryForPetId(string $a = '', string $b = '', string $c = ''): void
-    {
-        $medicalhistoryModel = new MedicalhistoryModel();
-        $data['medicalhistory']  = $medicalhistoryModel->getMedicalHistoryForPetId($a);
-        // Load the view with the medical history data
-        $this->view('veterinarian/medicalhistory', $data);
-        
     }
 
-    public function update(string $a = '', string $b = '', string $c = ''): void
+    public function update(string $Id = ''): void
     {
-        $medicalhistoryModel = new MedicalhistoryModel();
-        $medicalhistoryModel->updateMedicalHistory($a, $_POST);
-
-        redirect('veterinarian/medicalhistory');
-    }
-
-
-
-    /*public function update(string $id = ''): void
-    {
-        $medicalhistoryModel = new MedicalhistoryModel();
+        $userdataModel = new VeterinariansModel();
+		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
         
-        // Fetch the medical history by ID
-        $data['medicalhistory'] = $medicalhistoryModel->getMedicalHistoryById($id);
+        $medicalhistoryModel = new MedicalhistoryModel();
+        $medicalhistoryModel->updateMedicalHistory($Id, $_POST);
 
-
-        // Check if the history data is available
-        if (!$data['medicalhistory']) {
-            // Redirect or handle the case where data is not found
-            redirect('veterinarian/medicalhistory');
-        }
-
-
-        // Check if the form is submitted
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Perform the update
-            $medicalhistoryModel->updateMedicalHistory($id, $_POST);
-            // Redirect after update
-            redirect('veterinarian/medicalhistory');
-        }
-
-        // Load the update view
-        $this->view('veterinarian/medicalhistory/update', $data);
-    }*/
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
 
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        $userdataModel = new VeterinariansModel();
+		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
+
         $medicalhistoryModel = new MedicalhistoryModel();
+        //$petId = $_POST['pet_id'];
         $medicalhistoryModel->addTreatment($_POST);
-        redirect('veterinarian/medicalhistory');
+
+    
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+     
     }
 
-    public function viewMedicalHistory(string $a = '', string $b = '', string $c = ''): void
+    public function viewMedicalHistory(string $Id = '', string $petId = ''): void
     {
+        $userdataModel = new VeterinariansModel();
+		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
+
         $medicalhistoryModel = new MedicalhistoryModel();
-        $data['medicalhistory'] = $medicalhistoryModel-> getMedicalHistoryById($a);
+        $data['medicalhistory'] = $medicalhistoryModel-> getMedicalHistoryForPetIdById($Id,$petId);
          // show($a);
         // die();
         $this->view('veterinarian/medicalhistory/update', $data);
     }
 
 }
+
+	
+
+   
+
 
 	
 

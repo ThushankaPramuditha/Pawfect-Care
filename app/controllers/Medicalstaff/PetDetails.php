@@ -9,8 +9,8 @@ class Petdetails
         $userdataModel = new MedicalStaffModel();
         $data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
-        $petdetailsModel = new PetdetailsModel();
-        $petDetails = $petdetailsModel->getAllPetDetails();
+        $petsModel = new PetsModel();
+        $petDetails = $petsModel->getAllPetDetails();
 
         // Calculate age for each pet
         foreach ($petDetails as $pet) {
@@ -28,16 +28,16 @@ class Petdetails
     }
 
 
-    public function viewPetdetails(string $a = '', string $b = '', string $c = ''): void
+    /*public function viewPetdetails(string $a = '', string $b = '', string $c = ''): void
     {
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
-        $petdetailsModel = new PetdetailsModel();
-        $data['petdetails'] = $petdetailsModel-> getPetdetailsById($a);
+        $petsModel = new PetsModel();
+        $data['petdetails'] = $petsModel-> getPetdetailsById($a);
          // show($a);
         // die();
         $this->view('medicalstaff/petdetails/update', $data);
-    }
+    }*/
     
 }
 

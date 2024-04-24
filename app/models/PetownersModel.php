@@ -107,6 +107,21 @@ class PetownersModel
         return $this->delete($id);
     }
 
+    public function getpetdetails($id)
+  {
+    $query = "SELECT p.*, u.email ,u.status
+    FROM petowners AS p
+    JOIN users AS u ON p.user_id = u.id
+    WHERE p.id = :id";
+
+    return $this->get_row($query, ['id' => $id]);
+
+  }
+
+  public function addpet($data){
+    return $this->insert($data);
+  }
+  
     public function deactivatePetowner($id)
     {
         return $this->update($id, ['status' => 'inactive']);

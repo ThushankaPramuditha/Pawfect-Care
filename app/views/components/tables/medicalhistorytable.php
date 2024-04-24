@@ -11,35 +11,56 @@
     <table>
         <thead>
             <tr>
+                
                 <th>Pet ID</th>
                 <th>Date</th>
+                <!--th>Appointment ID</th-->
+                <th>Weight</th>
+                <th>Temperature</th>
                 <th>Medical Condition</th>
                 <th>Treatment</th>
-                <th>Medication</th>
+                <th>Prescription</th>
+                <th>Treated By</th>
                 <th>Remarks</th>
+                
             </tr>
         </thead>
+        
         <tbody>
 
-        <?php foreach ($medicalhistory as $medicalhistory) { ?>
-                <tr key = "<?php echo $medicalhistory->id; ?>" >
-                    <td><?php echo $medicalhistory->id?></td>
-                    <td><?php echo $medicalhistory->date?></td>
-                    <td><?php echo $medicalhistory->medical_condition?></td>
-                    <td><?php echo $medicalhistory->treatment?></td>
-                    <td><?php echo $medicalhistory->medication?></td>
-                    <td><?php echo $medicalhistory->remarks?></td>
-                    <td class="edit-action-buttons">
-                    <button class="edit-icon"></button>
-                    </td>
+        <?php if (is_array($medicalhistory) && !empty($medicalhistory)): ?>
+            <?php foreach ($medicalhistory as $history): ?>
+                <tr key = "<?php echo $history->id; ?>">
+                    <td><?= htmlspecialchars($history->pet_id); ?></td>
+                    <td><?= htmlspecialchars($history->date); ?></td>
+                    <!--td><!?= htmlspecialchars($history->appointment_id); ?></td-->
+                    <td><?= htmlspecialchars($history->weight); ?></td>
+                    <td><?= htmlspecialchars($history->temperature); ?></td>
+                    <td><?= htmlspecialchars($history->med_condition); ?></td>
+                    <td><?= htmlspecialchars($history->treatment); ?></td>
+                    <td><?= htmlspecialchars($history->prescription); ?></td>
+                    <td><?= htmlspecialchars($history->treated_by); ?></td>
+                    <td><?= htmlspecialchars($history->remarks); ?></td>
+                    <!--td class="edit-action-buttons">
+                        <button class="edit-icon" onclick="openUpdateModal(<!?php echo $history->id; ?>, <!?php echo $history->pet_id; ?>)"></button>
+                    </td-->
+
                     
                 </tr>
+                
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
 
-                <?php
-                } 
-                ?>
-                    
+                <td colspan="20">No history found.</td>
+
+            </tr>
+        <?php endif; ?>
+        
         </tbody>
-    </table>
+         
+            
+     </table>
 </body>
 </html>
+

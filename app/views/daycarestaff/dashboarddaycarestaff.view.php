@@ -619,17 +619,18 @@ main table tbody tr td:first-child {
 </head>
 
 <body>
-   
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     <div class="container">
+   
       <div>
       <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
         </div>
         <!-- Main Content -->
 
         <main>
-            <h1>Analytics</h1>
+            <!-- <h1>Analytics</h1> -->
             <!-- Analyses -->
-            <div class="analyse">
+            <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
@@ -731,14 +732,14 @@ main table tbody tr td:first-child {
                 options: options
             });
         </script>
-          <div style="justify-content:center;">
+          <!-- <div style="justify-content:center;">
             <button style="height:40px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:5px; padding:10px;">
-            <a href="<?=ROOT?>/daycarebooking">
+            <a href="<?=ROOT?>/daycarestaff/daycarebooking">
                 <div>
                     <h3>Slots View</h3>
                 </div>
             </a>
-          </div>
+          </div> -->
         </div>
         <div style="margin-left:50px;">
         <canvas id="myBarChart" width="300" height="350"></canvas>
@@ -829,23 +830,23 @@ main table tbody tr td:first-child {
                 </button>
                 
 
-                <div class="profile">
+                <!-- <div class="profile">
                     <div class="info">
-                        <!-- display the name of the daycare staff using session -->
-                        <p style="display:none"><b>Hello</b></p>
+                        <display the name of the daycare staff using session -->
+                        <!-- <p style="display:none"><b>Hello</b></p>
                         <p ><b>Daycare Staff</b></p>
                     </div>
                     <div class="profile-photo">
-                    <!-- <a href="<?php echo ROOT; ?>receptionist/myprofile"> -->
+                    <a href="<?php echo ROOT; ?>/daycarestaff/myprofile">
                     <img src="<?=ROOT?>/assets/images/petowner.png">
                     
                     </div>
-                </div>
+                </div> --> 
 
             </div>
             <!-- End of Nav -->
 
-            <div class="user-profile1">
+            <div class="user-profile1" style="margin-top:50px;">
                 <div class="logo">
                 <img src="<?=ROOT?>/assets/images/logocolor.png" alt="Pawfect Care Logo" style="width:200px;">
                     <!-- <h2>PawfectCare</h2> -->
@@ -900,7 +901,7 @@ main table tbody tr td:first-child {
        
         <!-- button to view more bookings path is Daycarebookingform -->
         <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarebookingform">
+        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
                 <span class="material-icons-sharp">
                       arrow_forward

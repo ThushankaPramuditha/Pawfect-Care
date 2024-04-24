@@ -27,9 +27,28 @@ class PetsModel
         // die();
         return $this->get_row($query, ['id' => $id]);
     }
+    
 
+    public function addPet($data) {
+      
+        return $this->insert($data);
+    }
+    
 
+    public function updatePet($id, $data) {
+        $data = array_filter($data, function ($key) {
+            return in_array($key, $this->allowedColumns);
+        }, ARRAY_FILTER_USE_KEY);
+        return $this->update($id, $data, 'id');
+    }
 
+    public function deletePet($id) {
+        return $this->delete($id);
+    }
 
+    public function getPetsByOwnerId($id) {
+        $query = "SELECT * FROM pets WHERE petowner_id = :id";
+        return $this->query($query, ['id' => $id]);
+    }
 
 }

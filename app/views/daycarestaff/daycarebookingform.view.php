@@ -100,7 +100,7 @@
 </head>
 <body>
     <div style="margin-top: 80px;">
-    <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     </div> 
     <div style="margin-top: 80px;">
         <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>

@@ -24,7 +24,7 @@
                     <button class="search-button">Search</button>
                 </div>
             
-    </header>
+             </header>
         </div>
         <table>
         <thead>

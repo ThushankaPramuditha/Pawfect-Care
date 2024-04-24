@@ -10,7 +10,9 @@ class Daycarebookingform
     public function index()
     {
         $data['username'] = isset($_SESSION['USER']) ? $_SESSION['USER']->email : 'User';
-        $this->view('daycarebookingform', $data);
+        $userdataModel = new DaycareStaffModel();
+        $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
+        $this->view('daycarestaff/daycarebookingform', $data);
     } 
 
     public function viewtable()
@@ -40,7 +42,7 @@ class Daycarebookingform
         } else {
             $_SESSION['error'] = "Failed to decline daycare booking!";
         }
-        redirect('daycarebookingform');
+        redirect('daycarestaff/daycarebookingform');
     }
 
 public function accept(string $id): void
@@ -69,7 +71,7 @@ public function accept(string $id): void
     
 
     //redirect to daycarebooking
-    redirect('daycarebooking');
+    redirect('daycarestaff/daycarebooking');
 }
 
 
@@ -105,7 +107,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 		} else {
 			$_SESSION['error'] = "Failed to finish daycare booking!";
 		}
-		redirect('daycarebooking');
+		redirect('daycarestaff/daycarebooking');
 	}
     public function search(): void
     {

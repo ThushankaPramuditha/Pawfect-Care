@@ -7,6 +7,33 @@ class PetsModel
     protected $table = 'pets';
     protected $allowedColumns = ['name', 'birthday', 'gender', 'species', 'breed', 'petowner_id'];
 
+    public function getAllPetDetails()
+    {
+        
+        //return $this->findAll();
+        $query = "SELECT p.*, po.name AS owner_name, po.contact
+        FROM
+            pets p
+        JOIN
+            petowners po ON p.petowner_id = po.id";
+
+        return $this->query($query);
+    }
+
+    /*public function getPetDetailsById($id)
+    {
+        //return $this->first(['id' => $id]);
+        $query = "SELECT p.*, po.name AS owner_name, po.contact
+        FROM
+            pets p
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        WHERE p.id= :id";
+
+        return $this->get_row($query, ['id' => $id]);
+    }*/
+
+    
     public function getAllPetsByUserId($id) {
         $query = "SELECT p.id, p.name
         FROM pets AS p

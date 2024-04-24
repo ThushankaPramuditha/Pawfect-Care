@@ -4,18 +4,23 @@ class Appointments
 {
     use Controller;
 
-    public function index()
+    public function index(string $a ='',string $b = '', string $c = ''): void
 	{
 
 		$userdataModel = new VeterinariansModel();
 		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
+        $vetId = $data['userdata']->id;
+        $appointmentsModel = new AppointmentsModel();
+        //$data['appointments'] = $appointmentsModel->findAll();
+        $data['appointments'] = $appointmentsModel->getAppointmentsForVetId($vetId);
+
 		$this->view('veterinarian/appointments',$data);
 	}
 
 
-  /* public function update(string $a = '', string $b = '', string $c = ''): void
+    /* public function update(string $a = '', string $b = '', string $c = ''): void
     {
         $appointmentsModel = new AppointmentsModel();
         $appointmentsModel->updateAppointments($a, $_POST);

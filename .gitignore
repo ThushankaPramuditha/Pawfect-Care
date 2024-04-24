@@ -1,2 +1,4 @@
 app/core/config.php
 app/vendor/autoload.php
+# add node modules
+app/node_modules/

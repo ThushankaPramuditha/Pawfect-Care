@@ -83,16 +83,27 @@
             background-color: #b5e20a;
             color: #fafbf6;
         }
+        ::-webkit-scrollbar{
+            width: 0.6rem;
+        }
 
+        ::-webkit-scrollbar-thumb{
+            background-color: var(--color-primary);
+            border-radius: 1rem;
+        }
+
+        ::-webkit-scrollbar-track{
+            background-color: var(--color-white);
+        }
     
     </style>
 </head>
 <body>
-    <!-- <div style="margin-top: 80px;">
-    <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
-    </div> -->
     <div style="margin-top: 80px;">
-        <!-- <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>   -->
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+    </div> 
+    <div style="margin-top: 80px;">
+        <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
         <div style="margin-left: 230px; margin-top:130px">
         <div class="panel-header">
             <div class="search-bar" style="margin-left:920px;">
@@ -123,7 +134,7 @@
         </div>
     </div> -->
 
-    <div style="margin-left: 230px; margin-right:20px;">
+    <div style="margin-left: 230px;margin-right:20px; overflow:hidden; height:360px; overflow-y:scroll; overflow-x:scroll;">
         <div id="daycarebookingviewtable">
             <?php include '../app/views/components/tables/daycarebookingviewtable.php'; ?>
         </div>    

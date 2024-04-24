@@ -12,7 +12,6 @@ class DaycareStaffModel
                   FROM daycarestaff AS d
                   JOIN users AS u ON d.user_id = u.id";
         
-
         return $this->query($query);
         
     }

@@ -1,31 +1,14 @@
+.swal2-container {
+    z-index: 20000 !important; 
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 20px;
     margin: 0;
-    color: #333;
-    
+    color: #333;   
 }
 
-.greetuser {
-    background-color: #EEE; /* Subtle background color */
-    padding: 8px 16px;
-    border-radius: 20px; /* Rounded corners for the background */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Soft shadow for depth */
-    display: inline-block;
-    
-}
-.user-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333; /* A richer color for the name for emphasis */
-}
-
-.user-type {
-    display: block;
-    font-size: 14px;
-    color: #666;
-}
 .right-header {
     display: flex;
     justify-content: right;
@@ -38,23 +21,24 @@ body {
     align-items: center;
     margin-top: 80px;
     padding: 10px 20px;
-    width: 80%;                 /* Ensures the header takes full width */
-    position: fixed;             /* Keeps the header fixed at the top of the viewport */
-    top: 0;                      /* Aligns the header at the top edge of the viewport */
+    width: 80%;                 
+    position: fixed;             
+    top: 0;                     
     z-index: 500; 
 }
 
 /*search bar*/
-.search-bar {
+.panel-header .search-bar {
+    width:40%;
     font-size: 16px;
     background: #f1f1f1;
     border: 1px solid #ccc;
-    border-radius: 5px; /* Make corners more curved */
-    display: flex; /* Display button and input in a row */
-    overflow: hidden; /* Hide overflowed button */
+    border-radius: 5px; 
+    display: flex; 
+    overflow: hidden; 
 }
 
-.search-bar input[type="text"]{
+.panel-header .search-bar input[type="text"]{
     width:auto; 
     font-size: 16px;
     border: none; /* Remove input border */
@@ -62,7 +46,7 @@ body {
     flex: 1; /* Input takes remaining space */
 }
 
-.search-button {
+.panel-header .search-button {
     font-size: 16px;
     background: #6a3879; /* Blue background color */
     border: none; /* Remove button border */
@@ -75,7 +59,7 @@ body {
 
 }
 /*buttons*/
-.add-new-button {
+.panel-header .add-new-button {
 
     background-color: #6a387944;
     border:none;
@@ -89,7 +73,7 @@ body {
     box-shadow: #6a3879;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 }
-.add-new-button:hover {
+.panel-header .add-new-button:hover {
     background-color: #6a3879;
     color: #fff;
 }
@@ -99,10 +83,10 @@ a {
     color: inherit;
 }
 
-/*-------------------modal form-------------------*/
+/*-------------------modal form for CRUD-------------------*/
 .modal-form {
     display: flex;
-    height: 100vh; /* 100% of the viewport height */
+    height: 100vh; 
     display: none;
     position: fixed;
     z-index: 10000;
@@ -264,7 +248,30 @@ input[type="date"]{
     color: #fafbf6;
 }
 
+.modal-form .column {
+    flex: 1; /* Allows columns to grow and shrink as needed */
+    min-width: 300px; /* Minimum width of each column */
+    padding: 10px;
+}
+.modal-form .finished-button {
+    display: block;
+    background-color: #c6ff0b;
+    width: fit-content;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
 
+}
+
+.modal-form .modal-content-delete .finished-button:hover {
+    background-color: #b5e20a;
+    color: #fafbf6;
+}
 
 .modal-form a {
     text-decoration: none;
@@ -312,7 +319,6 @@ input[type="date"]{
 .modal-content .form-container {
         max-width: 100%;
         margin: 0 auto;
-    
 }
 .modal-content input[type="text"],
 input[type="tel"], 
@@ -356,14 +362,36 @@ input[type="date"]{
     margin-top: 10px; 
 }
 
+.modal-form .error-message {
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
+}
+
+.modal-form .disabled-field {
+    background-color: #eee;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.modal-form .form-container form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allows content to wrap into new rows */
+}
+
 /* for the button*/
-.flex-container {
+.modal-content .flex-container {
     display: flex;
     width: 60%;
     align-items: center; /* Center vertically */
     justify-content: space-between;
 }
-.reject {
+
+/* for the button*/
+ .flex-container .reject {
     display: block;
     background-color: #6a387944;
     border:none;
@@ -378,14 +406,14 @@ input[type="date"]{
 
 }
 
-.reject:hover {
+ .flex-container .reject:hover {
     background-color: #6a3879;
     color: #fff;
 }
 
 /*deactivate and activate buttons*/
 
-.d-button {
+ .flex-container .d-button {
     display: block;
     background-color: #6a387944;
     border:none;
@@ -397,57 +425,34 @@ input[type="date"]{
     cursor: pointer;
     transition: background-color 0.3s;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
-
-
 }
 
-.d-button:hover {
+ .flex-container .d-button:hover {
     background-color: #6a3879;
     color: #fff;
 }
 
-.formcontainer {
-    width: 60%;
-
+/* media query */
+@media screen and (max-width: 800px) {
+    .column {
+        flex: 100%; /* Allows columns to grow and shrink as needed */
+        min-width: 100%; /* Minimum width of each column */
+    }
 }
 
+.modal-form .select-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px; /* Adjust margin as needed */
+}
 
-.formcontainer input[type="text"],
-input[type="tel"], 
-input[type="password"], 
-input[type="email"],
-input[type="date"]{
-    font-family: Arial, sans-serif;
-    display: block;  
-    background-color: #ffffff;
-    width: calc(100% - 20px);
+#vet-select {
     padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    outline-color:#6a3879;
-}
-/*for long text fields*/
-.formcontainer textarea {
-    display: block;
-    width: calc(100% - 20px);
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline-color:#6a3879;
-    resize: vertical; /* Allow vertical resizing */
-
-}
-.error-message {
-    color: #ff0000; /* Red color for the text */
-    margin-bottom: 1px; /* Add some space above the message */
-    font-size: 0.9em; /* Slightly smaller font size */
-    padding: 1px; /* Padding inside the message */
+    width: 200px; /* Adjust width as needed */
+    background-color: #f9f9f9; /* Light gray background */
+    color: #333; /* Dark text color */
 }

@@ -28,7 +28,7 @@
             
     </header>
         </div>
-
+        <div class = "table-container">
         <table>
         
 
@@ -176,7 +176,7 @@
         </div>
     </div>
 
-
+</div>
     <script>
         $(document).ready(function(){
             $('#search').on('keyup', function(){

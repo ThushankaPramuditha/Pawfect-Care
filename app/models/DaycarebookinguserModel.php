@@ -102,29 +102,29 @@ public function getBookingsForDate($date)
 }
 
 
- public function search(array $data)
-    {
-        // Prepare the query
-        $query = "SELECT
-                    d.drop_off_time,
-                    d.pick_up_time,
-                    d.drop_off_date,
-                    d.pet_id,
-                    p.name AS pet_name,
-                    po.name AS pet_owner_name,
-                    po.contact AS pet_owner_contact
-                FROM
-                    daycarebookinguser d
-                JOIN
-                    pets p ON d.pet_id = p.id
-                JOIN
-                    petowners po ON p.petowner_id = po.id
-                WHERE
-                    d.drop_off_date = :drop_off_date";
-                    
-        // Execute the query
-        return $this->query($query, $data);
-    }
+public function search($term)
+{
+    $term = "%{$term}%";
+ 
+       $query = "SELECT d.* , p.name AS pet_name, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+                FROM daycarebookinguser d
+                JOIN pets p ON d.pet_id = p.id
+                JOIN petowners po ON p.petowner_id = po.id
+                WHERE d.drop_off_date LIKE :term";
+
+          return $this->query($query, [':term' => $term]);
+}
+
+public function searchByDate($date)
+{
+    $query = "SELECT d.*, p.name AS pet_name, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+              FROM daycarebookinguser d
+              JOIN pets p ON d.pet_id = p.id
+              JOIN petowners po ON p.petowner_id = po.id
+              WHERE d.drop_off_date = :date";
+
+    return $this->query($query, [':date' => $date]);
+}
   
     public function updateDaycarebooking($id, array $data)
         {
@@ -135,7 +135,49 @@ public function getBookingsForDate($date)
         
             return $this->update($id, $data, 'id');
         }
-    
+ 
+
+    public function getPetOwneremail($id)
+    {
+       // Query to fetch petowner using daycarebookinguser id
+         $query = "SELECT u.email
+                  FROM daycarebookinguser dbu
+                  JOIN pets p ON dbu.pet_id = p.id
+                  JOIN petowners po ON p.petowner_id = po.id
+                  JOIN users u ON po.user_id = u.id
+                  WHERE dbu.id = :id";
+
+        $bindings = [':id' => $id];
+        $result = $this->query($query, $bindings);
+        return $result[0]->email;
+    }
+
+        public function acceptDaycarebooking($id)
+            {
+                // Update the status of the daycare booking to 'accepted'
+                $query = "UPDATE daycarebookinguser SET status = 'accepted' WHERE id = :id AND status = 'pending'";
+                $bindings = [':id' => $id];
+                $result = $this->query($query, $bindings);
+                return $result; // Return true or false based on the success of the update operation
+            }
+
+            public function declineDaycarebooking($id)
+            {
+                // Update the status of the daycare booking to 'declined'
+                $query = "UPDATE daycarebookinguser SET status = 'declined' WHERE id = :id AND status = 'pending'";
+                $bindings = [':id' => $id];
+                $result = $this->query($query, $bindings);
+
+                return $result; // Return true or false based on the success of the update operation
+            }
+
+            public function finishDaycarebooking($id){
+                $query = "UPDATE daycarebookinguser SET status = 'finished' WHERE id = :id AND status = 'accepted'";
+                $bindings = [':id' => $id];
+                $result = $this->query($query, $bindings);
+                return $result;
+            }
+
         // Define validation rules
         public function validate($data)
         {

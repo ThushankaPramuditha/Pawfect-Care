@@ -25,7 +25,7 @@
 
         
 
-        .greet-user {
+        .sticky-header .greet-user {
             display: flex;
             align-items: start;
             justify-content: right;
@@ -34,13 +34,13 @@
 
         }
 
-        .user-name {
+        .sticky-header .user-name {
             font-size: 1.2rem;
             font-weight: bold;
             color: #333; /* A richer color for the name for emphasis */
         }
 
-        .user-type {
+        .sticky-header .user-type {
             display: block;
             font-size: 0.8rem;
             color: #666;
@@ -60,7 +60,7 @@
         }
 
         /* Optional: Make text unselectable for better UX */
-        .greet-user, .center-image {
+        .sticky-header .greet-user, .center-image {
             -webkit-user-select: none; /* Chrome/Safari */
             -moz-user-select: none; /* Firefox */
             -ms-user-select: none; /* IE10+ */

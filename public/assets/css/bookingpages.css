@@ -1,3 +1,6 @@
+.swal2-container {
+    z-index: 20000 !important; 
+}
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;

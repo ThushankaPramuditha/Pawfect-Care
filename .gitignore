@@ -1,2 +1,3 @@
 app/core/config.php
+app/vendor/autoload.php
 vendor

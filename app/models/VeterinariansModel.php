@@ -51,7 +51,8 @@ class VeterinariansModel
 
 
     }
-  
+
+    
     /*public function getVetIdByName($vetName)
     {
         $conditions = ['name' => $vetName];

@@ -45,8 +45,8 @@ class EmailModel {
          }
 
          //add windows reload
+
             
     }
 }
 
-?>

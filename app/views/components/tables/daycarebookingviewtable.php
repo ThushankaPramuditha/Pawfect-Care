@@ -64,7 +64,11 @@ function getPetName($pdo, $pet_id)
                 <th>Allergies</th>
                 <th>Behaviour</th>
                 <th>Medications</th>
-                <th class="edit-action-buttons"></th>
+                <th>Status</th>
+                <th class="activate-action-buttons"></th>
+                <th class="deactivate-action-buttons"></th>
+                <th class="finished-action-buttons"></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -81,8 +85,15 @@ function getPetName($pdo, $pet_id)
                         <td><?= htmlspecialchars($daycarebooking->allergies); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->pet_behaviour); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->medications); ?></td>
-                        <td class="edit-action-buttons">
-                            <!-- Add edit button or any other action buttons here -->
+                        <td><?= htmlspecialchars($daycarebooking->status); ?></td>
+                        <td class="activate-action-buttons">
+                            <button class="activate-button">Accept</button>
+                        </td>
+                        <td class="deactivate-action-buttons">
+                            <button class="deactivate-button">Decline</button>
+                        </td>
+                        <td class="finish-action-buttons">
+                            <button class="finished-button">Finish</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

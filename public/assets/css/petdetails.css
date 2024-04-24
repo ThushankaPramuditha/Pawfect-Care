@@ -1,5 +1,8 @@
 
 /* CSS styles for the form */
+.swal2-container {
+    z-index: 20000 !important; 
+}
 body {
 font-family: Arial, sans-serif;
 background: linear-gradient(to right, #ffff, #ffffff, #ffffff);

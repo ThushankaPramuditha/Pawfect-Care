@@ -10,7 +10,7 @@ class MyProfile
 	public function index()
 	{
 		$userdataModel = new DaycareStaffModel();
-		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+		$data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
 
 		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 

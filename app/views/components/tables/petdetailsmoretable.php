@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
-<body>                                           <!--not used this table.anyone can change this-->
+
+<body>
+  <div class = "table-container">                                      <!--not used this table.anyone can change this-->
     <table >
-        <thead>
+
+ <thead>
             <tr>
                 <th>Pet ID</th>
                 <th>Name</th>

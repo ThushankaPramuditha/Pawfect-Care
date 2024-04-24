@@ -1,4 +1,7 @@
 /* CSS styles for the login form */
+.swal2-container {
+    z-index: 20000 !important; 
+}
 body {
     font-family: Arial, sans-serif;
     /* background-color:#f4f4f4; */

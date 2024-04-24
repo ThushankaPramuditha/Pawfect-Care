@@ -6,22 +6,21 @@
     <title>Change Password</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
 </head>
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
-<?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
+    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <div class = "form-container"> 
+        <div class = "formcontainer"> 
          
             <h1>Change Password</h1>
 
             <form id="change-password-form" action="<?php echo ROOT?>/receptionist/changepassword/update" method="post">
             
-                <label for="prev-password">Previous Password:</label>
+            <label for="prev-password">Previous Password:</label>
                 <input type="password" id="prev-password" name="prev-password" required>
                 <div id="error-prev-password" class="error-message"></div>
                 <br>
@@ -45,7 +44,7 @@
             </form>   
      
         </div>
-    </div>            
+</div>      
     </div>
     <script>
 

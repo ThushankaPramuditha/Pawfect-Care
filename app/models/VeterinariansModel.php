@@ -16,6 +16,17 @@ class VeterinariansModel
         return $this->query($query);
         
     }
+
+    public function getAllAvailableVeterinarians() {
+        $query = "SELECT v.*, u.email ,u.status
+                  FROM veterinarians AS v
+                  JOIN users AS u ON v.user_id = u.id
+                WHERE v.availability = 'available'";
+
+        return $this->query($query);
+        
+    }
+
     public function search($term)
     {
         $term = "%{$term}%";

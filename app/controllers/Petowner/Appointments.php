@@ -27,7 +27,6 @@ class Appointments
     }
     
 
-    // In your Appointments controller
     public function checkAvailability() {
         date_default_timezone_set('Asia/Colombo');
 

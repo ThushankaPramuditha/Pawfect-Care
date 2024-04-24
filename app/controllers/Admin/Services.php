@@ -8,7 +8,7 @@ class Services
     {
         $servicesModel = new ServicesModel();
         // show($servicesModel->findAll());
-        $data['services'] = $servicesModel->findAll();
+        $data['services'] = $servicesModel->getAllServices();
 
         // You can include any additional logic or data fetching here
 

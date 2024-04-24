@@ -620,12 +620,10 @@ main table tbody tr td:first-child {
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-    <div class="container">
-   
-      <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
-        </div>
-        <!-- Main Content -->
+
+<div style = "margin-top: 80px; ">
+    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
+    <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
 
         <main>
             <!-- <h1>Analytics</h1> -->

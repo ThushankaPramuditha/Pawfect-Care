@@ -25,7 +25,8 @@ class AppointmentsModel
         JOIN
             petowners po ON p.petowner_id = po.id
         JOIN
-            veterinarians v ON a.vet_id = v.id";
+            veterinarians v ON a.vet_id = v.id
+        ORDER BY a.date_time DESC";
 
         return $this->query($query);
     }
@@ -148,8 +149,46 @@ class AppointmentsModel
         } else {
             return false; 
         }
+
+
     }
 
+    public function searchForReceptionist($term, $date = '') {
+        $term = "%{$term}%";
+        $dateCondition = !empty($date) ? "AND DATE(date_time) = :date" : "";
+        
+        $query = "SELECT
+            a.id,
+            a.date_time,
+            a.patient_no,
+            a.pet_id,
+            p.name AS pet_name,
+            po.name AS petowner,
+            po.contact,
+            v.name AS vet_name,
+            a.status
+            FROM appointments a
+            JOIN
+                pets p ON a.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            JOIN
+                veterinarians v ON a.vet_id = v.id
+            WHERE 
+            (p.name LIKE :term 
+            OR po.name LIKE :term 
+            OR po.contact LIKE :term)
+            {$dateCondition}";
+    
+        $bindings = [':term' => $term];
+        if (!empty($date)) {
+            $bindings[':date'] = $date;
+        }
+    
+        return $this->query($query, $bindings);
+    }
+
+    
 
     public function addAppointment(array $data)
     {

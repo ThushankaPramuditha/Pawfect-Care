@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 </head>
-<body>
+<body>                                           <!--not used this table.anyone can change this-->
     <table >
         <thead>
             <tr>
@@ -37,10 +37,12 @@
                         <td><?= htmlspecialchars($petdetail->owner_name); ?></td>
                         <td><?= htmlspecialchars($petdetail->contact); ?></td>
                         <td class="medicalhistory-action-buttons">
-                            <button class="medicalhistory-button"><a href="<?php echo ROOT ?>/veterinarian/medicalhistory/getMedicalHistoryForPetId/<?php echo $petdetail->id ?>">Medical History</a></button>
+                            <!--button class="medicalhistory-button"><a href="<!?php echo ROOT ?>/veterinarian/medicalhistory/<?php echo $petdetail->id ?>">Medical History</a></button-->
+                            <button class="medicalhistory-button" onclick="getMedicalHistory(<?php echo $petdetail->id ?>)">Medical History</button>
                         </td>
                         <td class="vaccinationhistory-action-buttons">
-                            <button class="vaccinationhistory-button"><a href="<?php echo ROOT ?>/veterinarian/vaccinationhistory/getVaccinationHistoryForPetId/<?php echo $petdetail->id ?>">Vaccination History</a></button>
+                            <!--button class="vaccinationhistory-button"><a href="<?php echo ROOT ?>/veterinarian/vaccinationhistory/<?php echo $petdetail->id ?>">Vaccination History</a></button-->
+                            <button class="vaccinationhistory-button" onclick="getVaccinationHistory(<?php echo $petdetail->id ?>)">Vaccination History</button>
                         </td>
                     </tr>
                     

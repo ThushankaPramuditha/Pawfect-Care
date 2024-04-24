@@ -6,19 +6,19 @@
     <title>Medical History</title>
 </head>
 
-<script src="<?php echo ROOT?>/assets/js/validatemedicalhistory.js"></script>
+<!--script src="<?php echo ROOT?>/assets/js/validatemedicalhistory.js"></script-->
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
 
-<body onload="setInitialDateTime()">
+<body>
 
     <!--?php $_SESSION['addnewpath'] = 'addtreatment' ?-->
     <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px; margin-top:130px">
-    <div class="panel-header">
-            <button class="add-new-button">Add New</button>
+    <div class="panel-header"style="display:flex; justify-content:flex-end">
+            <!--button class="add-new-button">Add New</button-->
             <div class="search-bar">
                     <input type="text" id="search" placeholder="Search treatment...">
                     <button class="search-button">Search</button>
@@ -26,7 +26,7 @@
             
     </header>
         </div>
-        <?php include '../app/views/components/tables/medicalhistoryupdatetable.php'; ?> 
+        <?php include '../app/views/components/tables/medicalhistorytable.php'; ?> 
     </div>
 </div>
 
@@ -35,7 +35,7 @@
 
     <!--Add treatment model--> 
 
-    <div class="modal-form" id="add-modal">
+    <!--div class="modal-form" id="add-modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h1>Add Treatment</h1>
@@ -86,10 +86,10 @@
                     </div>
                 
             </div>
-    </div>
+    </div-->
 
     <!-- Update medicalhistory Modal -->
-    <div class="modal-form" id="update-modal">
+    <!--div class="modal-form" id="update-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h1>Update Medical History</h1>
@@ -97,7 +97,7 @@
                     
                 </div>
         </div>
-    </div>
+    </div-->
 
     <!-- Delete medicalhistory Modal 
     <div class="modal-form" id="delete-modal">
@@ -112,184 +112,9 @@
         </div>
     </div>-->
 
-    <script>
-            // Get the modal elements
-            var addModal = document.getElementById("add-modal");
-            var updateModal = document.getElementById("update-modal");
-            //var deleteModal = document.getElementById("delete-modal");
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // Function to open add form modal
-            function openAddModal() {
-                addModal.style.display = "block";
-            }
-
-            function openUpdateModal(id) {
-                console.log(id);
-                updateModal.style.display = "block";
-                $.get(`<?php echo ROOT?>/Veterinarian/MedicalHistory/viewMedicalHistory/${id}`, function(data) {
-                    // Update the modal content with the fetched data
-                        $("#updatemedicalhistory").html(data);
-                });
-                // set time out and updateforminit
-                setTimeout(updateFormInit, 1000);
-
-                span.onclick = function() {
-                modal.style.display = "none";
-                }
-                    
-            }
-
-            /*function setInitialDate() {
-                // Get the current date in the format YYYY-MM-DD
-                var currentDate = new Date().toISOString().split('T')[0];
-
-                // Set the value of the date input field
-                document.getElementById('date').value = currentDate;
-            }
-
-            // Call setInitialDate() when the form is loaded
-            window.addEventListener('DOMContentLoaded', setInitialDate);*/
-
-            function setInitialDateTime() {
-            // Get the current date and time
-            var currentDateTime = new Date().toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
-
-            // Set the value of the date_time input field
-            document.getElementById('date_time').value = currentDateTime;
-            }
-
-            // Call setInitialDateTime() when the form is loaded
-            window.addEventListener('DOMContentLoaded', setInitialDateTime);
-
-
-            // Event listener for add button click
-            document.querySelector('.add-new-button').addEventListener('click', function () {
-            openAddModal();
-            });
-
-            // Event listeners for update buttons click
-            document.querySelectorAll('.edit-icon').forEach(function (button) {
-                button.addEventListener('click', function () {
-                    var id = this.parentElement.parentElement.getAttribute('key');
-                    openUpdateModal(id);
-                });
-            });
-
-            // Event listeners for delete buttons click
-            /**document.querySelectorAll('.delete-icon').forEach(function (button) {
-                button.addEventListener('click', function () {
-                    var id = this.parentElement.parentElement.getAttribute('key');
-                    console.log(id)
-                    openDeleteModal(id);
-                });
-            });**/
-
-            // Close modals when the close button is clicked
-            var closeButtons = document.querySelectorAll('.close');
-
-            // Close modals when the no button is clicked
-            /**var noButtons = document.querySelectorAll('.reject');**/
-
-            closeButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    addModal.style.display = "none";
-                    updateModal.style.display = "none";
-
-                });
-            });
-            /*noButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    deleteModal.style.display = "none";
-
-                });
-            });***/
-
-            // Attach event listeners for validation on input for add form
-            
-            document.getElementById('patient_no').addEventListener('input', validatePatientNo);
-            document.getElementById('weight').addEventListener('focus', validatePatientNo);
-            document.getElementById('temperature').addEventListener('focus', validateWeight);
-            document.getElementById('med_condition').addEventListener('focus', validateTemperature);
-            document.getElementById('treatment').addEventListener('focus', validateMedCondition);
-            document.getElementById('prescription').addEventListener('focus', validateTreatment);
-            document.getElementById('treated_by').addEventListener('focus', validatePrescription);
-            document.getElementById('treated_by').addEventListener('input', validateTreatedBy);
-            
-            
-            function validateAddForm() {
-                var isValid = true;
-
-                isValid = validatePatientNo() && isValid;
-                isValid = validateWeight() && isValid;
-                isValid = validateTemperature() && isValid;
-                isValid = validateMedCondition() && isValid;
-                isValid = validateTreatment() && isValid;
-                isValid = validatePrescription() && isValid;
-                isValid = validateTreatedBy() && isValid;
-
-
-                if (!isValid) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Validation Error',
-                        html: "Please correct the errors before submitting.",
-                    });
-                    return false;
-                }
-                return true;
-            }
-            document.getElementById("add-treatment-form").addEventListener('submit', function(event) {
-                
-                if (!validateAddForm()) {
-                    event.preventDefault();
-                } else {
-                    addModal.style.display = "none";
-                }
-            });
-
-            function updateFormInit() {
-            
-                document.getElementById('update-weight').addEventListener('input', validateUpdateWeight);
-                document.getElementById('update-temperature').addEventListener('input', validateUpdateTemperature);
-                document.getElementById('update-med_condition').addEventListener('input', validateUpdateMedCondition);
-                document.getElementById('update-treatment').addEventListener('input', validateUpdateTreatment);
-                document.getElementById('update-prescription').addEventListener('input', validateUpdatePrescription);
-
-                document.getElementById("updated-form").addEventListener('submit', function(event) {
-                    //console.log("insideee");
-                    if (!validateUpdateForm()) {
-                        event.preventDefault();
-                    } else {
-                        addModal.style.display = "none";
-                    }
-            
-                });
-            }
-
-            function validateUpdateForm() {
-                var isValid = true;
-
-                isValid = validateUpdateWeight() && isValid;
-                isValid = validateUpdateTemperature() && isValid;
-                isValid = validateUpdateMedCondition() && isValid;
-                isValid = validateUpdateTreatment() && isValid;
-                isValid = validateUpdatePrescription() && isValid;
-
-                if (!isValid) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Validation Error',
-                        html: "Please correct the errors before submitting.",
-                    });
-                    return false;
-                }
-                return true;
-            }
-            
-        </script>
+     
+  
     </body>
     </html>
 

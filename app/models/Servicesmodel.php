@@ -5,11 +5,16 @@ class ServicesModel
     use Model;
 
     protected $table = 'services';
-    protected $allowedColumns = ['service', 'description'];
+    protected $allowedColumns = ['id','service', 'description'];
 
     public function getAllServices()
     {
-        return $this->findAll();
+        //order the date by ascending order
+        $query = "SELECT service, description
+         FROM services 
+         ORDER BY id ASC";
+        
+        return $this->query($query);
     }
 
     public function getServiceById($id)

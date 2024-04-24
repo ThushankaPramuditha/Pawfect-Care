@@ -704,89 +704,10 @@ main table tbody tr td:first-child {
 </head>
 
 <body>
-   
-    <div class="container">
-      <aside>
-            <div class="toggle">
-                <div class="logo">
-                <img src="<?=ROOT?>/assets/images/doglogo.jpg" alt="">
-                    <h2>Pawfect<span class="danger">Care</span></h2>
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">
-                        close
-                    </span>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        dashboard
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="<?php echo ROOT; ?>veterinarian/myprofile">
-                    <span class="material-icons-sharp">
-                            medical_services
-                    </span>
-                    <h3>Veterinarians</h3>
-                </a>
-
-
-                <a href="<?php echo ROOT; ?>ambulancedriver/myprofile">
-                    <span class="material-icons-sharp">
-                        local_hospital
-                    </span>
-                    <h3>Ambulance Drivers</h3>
-                </a>
-
-
-                <a href="#" class="active">
-                    <span class="material-icons-sharp">
-                        insights
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-               
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        pets
-                    </span>
-                    <h3>Pet Details</h3>
-                </a>
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        person
-                    </span>
-                    <h3>Pet Owner Details</h3>
-                </a>    
-
-                <a href="<?php echo ROOT; ?>receptionist/appointments">
-                    <span class="material-icons-sharp">
-                        calendar_today
-                    </span>
-                    <h3>Appointments</h3>
-                </a>
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        help
-                    </span>
-                    <h3>FAQ</h3>
-              </a>
-
-
-                <a href="#">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-         </aside>
-        <!-- Main Content -->
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<div style = "margin-top: 80px; ">
+    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
+    <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
 
         <main>
             <h1>Analytics</h1>

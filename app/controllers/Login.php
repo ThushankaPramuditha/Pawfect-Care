@@ -33,7 +33,7 @@ class Login
                         redirect('admin/dashboardservices');
                     }
                     else if($row->user_type == 'Ambulance Driver'){
-                        redirect('ambulancedriver/dashboard');
+                        redirect('ambulancedriver/dashboardambulancedriver');
                     }
                     else if($row->user_type == 'Receptionist'){
                         redirect('receptionist/dashboardreceptionist');

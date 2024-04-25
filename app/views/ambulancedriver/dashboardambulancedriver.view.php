@@ -623,7 +623,7 @@ main table tbody tr td:first-child {
     <div class="container">
    
       <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+      <!-- <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?> -->
         </div>
         <!-- Main Content -->
 

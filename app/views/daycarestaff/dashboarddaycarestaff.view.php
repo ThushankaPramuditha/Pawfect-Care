@@ -635,15 +635,7 @@ main table tbody tr td:first-child {
                     <div class="status">
                         <div class="info" >
                             <p style="font-size:20px; text-align:center; font-weight:bolder;">Daycare Bookings</p>
-                            <?php 
-                            
-                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
-                                $statement = $pdo->prepare($query);
-                                $statement->execute();
-                                $todaybookings = $statement->rowCount();
-                                ?>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingtoday; ?></p>
 
                         </div>
                     </div>
@@ -655,15 +647,7 @@ main table tbody tr td:first-child {
                     <div class="status">
                         <div class="info">
                         <p style="font-size:20px; text-align:center; font-weight:bolder;">Accepted Bookings</p>
-                            <?php 
-                            //get today accepted bookings
-                            $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                            $query = "SELECT * FROM daycarebookinguser WHERE status = 'accepted' AND drop_off_date = CURDATE()";
-                            $statement = $pdo->prepare($query);
-                            $statement->execute();
-                            $acceptedbookings = $statement->rowCount();
-                            ?>
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $acceptedbookings; ?></p>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsaccepted; ?></p>
 
                         </div>
                     </div>
@@ -675,14 +659,7 @@ main table tbody tr td:first-child {
                       <div class="status">
                             <div class="info">
                             <p style="font-size:20px; text-align:center; font-weight:bolder;">Declined Bookings</p>
-                                <?php 
-                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                                $query = "SELECT * FROM daycarebookinguser WHERE status = 'declined' AND drop_off_date = CURDATE()";
-                                $statement = $pdo->prepare($query);
-                                $statement->execute();
-                                $declinedbookings = $statement->rowCount();
-                                ?>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $declinedbookings; ?></p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsdeclined; ?></p>
                             </div>
                       </div>
                  </div>
@@ -705,7 +682,7 @@ main table tbody tr td:first-child {
                     label: 'My First Dataset',
  
                     //add the bookings data
-                    data : [<?php echo $todaybookings; ?>, <?php echo $acceptedbookings; ?>, <?php echo $declinedbookings; ?>],
+                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
                 
                     backgroundColor: [
                         //colors like purple , rose and blue
@@ -732,14 +709,7 @@ main table tbody tr td:first-child {
                 options: options
             });
         </script>
-          <!-- <div style="justify-content:center;">
-            <button style="height:40px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:5px; padding:10px;">
-            <a href="<?=ROOT?>/daycarestaff/daycarebooking">
-                <div>
-                    <h3>Slots View</h3>
-                </div>
-            </a>
-          </div> -->
+       
         </div>
         <div style="margin-left:50px;">
         <canvas id="myBarChart" width="300" height="350"></canvas>
@@ -780,37 +750,6 @@ main table tbody tr td:first-child {
             });
 
 
-            // function getWeeksBookings(){
-            //     //get the bookings for week1
-            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() AND CURDATE() + INTERVAL 7 DAY";
-            //     $statement = $pdo->prepare($query);
-            //     $statement->execute();
-            //     $week1bookings = $statement->rowCount();
-
-            //     //get the bookings for week2
-            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 7 DAY AND CURDATE() + INTERVAL 14 DAY";
-            //     $statement = $pdo->prepare($query);
-            //     $statement->execute();
-            //     $week2bookings = $statement->rowCount();
-
-            //     //get the bookings for week3
-            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 14 DAY AND CURDATE() + INTERVAL 21 DAY";
-            //     $statement = $pdo->prepare($query);
-            //     $statement->execute();
-            //     $week3bookings = $statement->rowCount();
-
-            //     //get the bookings for week4
-            //     $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-            //     $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() + INTERVAL 21 DAY AND CURDATE() + INTERVAL 28 DAY";
-            //     $statement = $pdo->prepare($query);
-            //     $statement->execute();
-            //     $week4bookings = $statement->rowCount();
-
-            //     return [$week1bookings, $week2bookings, $week3bookings, $week4bookings];
-            // }
         </script>
         </div>
     </div>
@@ -827,21 +766,7 @@ main table tbody tr td:first-child {
                     <span class="material-icons-sharp">
                         menu
                     </span>
-                </button>
-                
-
-                <!-- <div class="profile">
-                    <div class="info">
-                        <display the name of the daycare staff using session -->
-                        <!-- <p style="display:none"><b>Hello</b></p>
-                        <p ><b>Daycare Staff</b></p>
-                    </div>
-                    <div class="profile-photo">
-                    <a href="<?php echo ROOT; ?>/daycarestaff/myprofile">
-                    <img src="<?=ROOT?>/assets/images/petowner.png">
-                    
-                    </div>
-                </div> --> 
+               </button>
 
             </div>
             <!-- End of Nav -->
@@ -900,35 +825,6 @@ main table tbody tr td:first-child {
         </div>
  </div>
 </div>
-
-
-
-                <!-- <div class="notification deactive">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                           volume_up
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3></h3>
-                            <small class="text_muted">
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div> -->
-
-            <!-- <div class="notification add-reminder">
-              <div>
-                <span class="material-icons-sharp">
-                    arrow_forward
-                </span>
-                <h3>View More</h3>
-             </div>
-        </div> -->
 
             </div>
 

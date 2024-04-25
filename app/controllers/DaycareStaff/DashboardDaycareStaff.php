@@ -8,9 +8,13 @@ class DashboardDaycareStaff
     {
         AuthorizationMiddleware::authorize(['Daycare Staff']);
         $userdataModel = new DaycareStaffModel();
-        $daycaresbookingusermodel = new DaycarebookinguserModel();
+        $daycarebookingsusermodel = new DaycarebookinguserModel();
         $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
-        $data['daycarebookings'] = $daycaresbookingusermodel->getAllDaycarebookings();
+        $data['daycarebookings'] = $daycarebookingsusermodel->getAllDaycarebookings();
+        // get day care bookings status accepted
+        $data['daycarebookingtoday'] = $daycarebookingsusermodel->countTodayBookings();
+        $data['daycarebookingsaccepted'] = $daycarebookingsusermodel->countTodayacceptedBookings(); 
+        $data['daycarebookingsdeclined'] = $daycarebookingsusermodel->countTodaydeclinedBookings();
 
         $this->view('daycarestaff/dashboarddaycarestaff',$data);
     }

@@ -9,13 +9,31 @@ class AmbulanceBookingModel
 
 
     public function getAllAmbulanceBookings() {
-        $query = "SELECT ab.*, p.name AS pet_name, p.owner_id
+        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
                   FROM ambulancebookings AS ab
-                  JOIN pets AS p ON ab.pet_id = p.id";
+                  JOIN pets AS p ON ab.pet_id = p.id
+                  ORDER BY ab.date_time DESC";
         return $this->query($query);
-        
     }
-
+    
+    public function getLocationBypetIdandTime($pet_id) {
+        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
+                  FROM ambulancebookings AS ab
+                  JOIN pets AS p ON ab.pet_id = p.id
+                  WHERE ab.pet_id = :pet_id AND DATE(ab.date_time) = CURDATE()
+                  ORDER BY ab.date_time DESC";
+        return $this->get_row($query, ['pet_id' => $pet_id]);
+    }
+    
+    public function getAmbulanceDriverId($id) {
+        $query = "SELECT a.*, u.email ,u.status
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id
+                  WHERE a.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+    }
     public function getAmbulanceDriverById($id) {
         $query = "SELECT a.*, u.email ,u.status
                   FROM ambulancedrivers AS a
@@ -75,7 +93,7 @@ class AmbulanceBookingModel
                   WHERE ab.id = :id";
         return $this->get_row($query, ['id' => $id]);
     }
-
+    
 
     public function updateBookingStatus($id, $status) {
         $query = "UPDATE ambulancebookings SET status = :status WHERE id = :id";
@@ -90,7 +108,13 @@ class AmbulanceBookingModel
         return $this->get_row($query, ['pet_id' => $pet_id]);
     }
 
- 
+   public function countTodayBookings() {
+        $query = "SELECT COUNT(*) AS total
+                  FROM ambulancebookings
+                  WHERE  DATE(date_time) = CURDATE()";
+        $result = $this->get_row($query);
+        return $result->total;
+    }
 
     public function validate($data)
     {

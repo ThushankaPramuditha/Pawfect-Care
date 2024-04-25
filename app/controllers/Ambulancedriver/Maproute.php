@@ -1,6 +1,6 @@
 <?php 
 
-class Dashboardambulancedriver
+class Maproute
 {
     use Controller;
 
@@ -13,11 +13,13 @@ class Dashboardambulancedriver
         $data['userdata'] = $userdataModel->getDriverRoleDataById($_SESSION['USER']->id);
         $data['ambulancebookings'] = $ambulancebookingmodel->getAllAmbulancebookings();
         $data['todaybookings'] = $ambulancebookingmodel->countTodayBookings();
+        $pet_id = $_GET['pet_id'];
+        $locationData = $ambulancebookingmodel->getLocationBypetIdandTime($pet_id);
+        $data['pickup_lat'] = $locationData->pickup_lat;
+        $data['pickup_lng'] = $locationData->pickup_lng;
         // $data['daycarebookings'] = $daycaresbookingusermodel->getAllDaycarebookings();
-        $this->view('ambulancedriver/dashboardambulancedriver',$data);
+        $this->view('ambulancedriver/maproute',$data);
     }
-
-
 
 //  function to get the appointment details from the database
 }

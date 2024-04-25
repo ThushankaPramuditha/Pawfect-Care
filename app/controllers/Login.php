@@ -30,22 +30,22 @@ class Login
                    
                     
                     if($row->user_type == 'Admin'){
-                        redirect('admin/dashboardservices/');
+                        redirect('admin/dashboardservices');
                     }
                     else if($row->user_type == 'Ambulance Driver'){
-                        redirect('ambulancedriver/dashboard/');
+                        redirect('ambulancedriver/dashboardambulancedriver');
                     }
                     else if($row->user_type == 'Receptionist'){
-                        redirect('receptionist/dashboardreceptionist/');
+                        redirect('receptionist/dashboardreceptionist');
                     }
                     else if($row->user_type == 'Medical Staff'){
-                        redirect('medicalstaff/dashboardmedicalstaff/');
+                        redirect('medicalstaff/dashboardmedicalstaff');
                     }
                     else if($row->user_type == 'Veterinarian'){
-                        redirect('veterinarian/dashboardveterinarian/');
+                        redirect('veterinarian/dashboardveterinarian');
                     }
                     else if($row->user_type == 'Daycare Staff'){
-                        redirect('daycarestaff/dashboarddaycarestaff/');
+                        redirect('daycarestaff/dashboarddaycarestaff');
                     }
                     else {
                         redirect('petowner/home');

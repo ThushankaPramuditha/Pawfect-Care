@@ -105,32 +105,40 @@
             margin-bottom: 10px;
         }
 
+        .add-new-button {
+
+            background-color: #6a387944;
+            border:none;
+            width: fit-content;
+            color:#6a3879;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: #6a3879;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+            }
+            .add-new-button:hover {
+            background-color: #6a3879;
+            color: #fff;
+            }
+
     </style>
 </head>  
 <body>
 
-<?php include 'navbarpetowner.php'; ?>
-
+<?php include '../app/views/navbar.php' ?>
+<!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
     <div class="modal-content" style="margin-top:10px;">
     <div style="display: flex; justify-content: center;">
             <h1>Daycare Booking</h1>
         </div>
         <div class="form-container">
-        <form id="daycarebooking-form" action="<?php echo ROOT?>/daycarebookinguser/addDaycarebooking" method="post">
+        <form id="daycarebooking-form" action="<?php echo ROOT?>/petowner/daycarebookinguser/addDaycarebooking" method="post">
             <div style="display: flex; justify-content: space-between; margin-top:10px;">
                  <div class="column" style="margin-right:90px;">
 
-
-                    <!-- <div class="select-container">
-                        <label for="pet-select">Choose a pet:</label>
-                        <select name="pets" id="pet-select">
-                            <?php if (!empty($data['pets'])): ?>
-                                <?php foreach ($data['pets'] as $pet): ?>
-                                <option value="<?= htmlspecialchars($pet->id) ?>"><?= htmlspecialchars($pet->name) ?></option>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </select>
-                    </div> -->
 
                     <div class="select-container">
                         <label for="pet-select">Choose a pet:</label>
@@ -149,7 +157,6 @@
                     <input type="hidden" id="petowner_id" name="petowner_id" value="<?php echo $_SESSION['USER']->id; ?>"> 
                     <div id="error-petowner_id" class="error-message"></div>
                      
-
                     <label for="drop-off-date">Drop off Date:</label>
                     <input type="date" id="drop-off-date" name="drop-off-date">
                     <div id="error-drop-off-date" class="error-message"></div>
@@ -191,14 +198,31 @@
     <script>
     
     
-    <?php if (isset($_GET['success'])): ?>
+    <?php if (isset($_GET['true'])): ?>
         Swal.fire({
             icon: 'success',
             title: 'Booking Successful',
             text: 'Daycare booking successfully added.Wait for the confirmation Email. ',
+             //when okay clicked, redirect to services page
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= ROOT ?>/petowner/services';
+            }
+            
         });
 
     <?php endif; ?>
+
+    //when okay clicked, redirect to services page
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Booking Successful',
+    //     text: 'Daycare booking successfully added. Wait for the confirmation Email.',
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         window.location.href = '<?= ROOT ?>/petowner/services';
+    //     }
+    // });
 
     //failure message
     <?php if (isset($_GET['failure'])): ?>

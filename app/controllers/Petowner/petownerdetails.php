@@ -6,8 +6,10 @@ class PetOwnerDetails
     
     public function index()
     {
-        $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+        
         $this->view('petowner/petownerdetails', $data);
     }
 }

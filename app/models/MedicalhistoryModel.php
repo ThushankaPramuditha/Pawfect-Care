@@ -100,6 +100,40 @@ class MedicalhistoryModel
         return $this->query($query, ['pet_id' => $pet_id]);
     }
     
+    public function searchMedicalHistoryPerPet($searchTerm, $petId) {
+        $searchTerm = "%{$searchTerm}%";
+        $query = "SELECT
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
+        t.appointment_id,
+        t.weight,
+        t.temperature,
+        t.med_condition,
+        t.treatment,
+        t.prescription,
+        v.name AS treated_by,
+        t.remarks
+        FROM
+            treatments t
+        JOIN
+            appointments a ON t.appointment_id = a.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        JOIN
+            pets p ON a.pet_id = p.id
+            WHERE a.pet_id = :petId
+            AND
+            (t.med_condition LIKE :searchTerm OR
+            v.name LIKE :searchTerm)
+            ORDER BY a.id ASC";
+    
+        $parameters = [':searchTerm' => $searchTerm, ':petId' => $petId];
+    
+    
+        return $this->query($query, $parameters);
+    }
+
     public function getMedicalHistoryForPetIdById($id,$pet_id)
     {
         $query = "SELECT

@@ -6,10 +6,9 @@ class ChangePassword
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Medical Staff']);
 		$userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
-
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
 		$this->view('medicalstaff/changepassword',$data);
 	}
@@ -17,6 +16,7 @@ class ChangePassword
     
 
     public function update() {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

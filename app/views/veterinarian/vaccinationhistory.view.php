@@ -9,15 +9,12 @@
 </head>
 
 
-<script src="<?php echo ROOT ?>/assets/js/validatehistory.js"></script>
-
 <body onload="setInitialDate()">
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header"style="display:flex; justify-content:flex-end">
-            <!--button class="add-new-button">Add New</button-->
             <div class="search-bar">
                     <input type="text" id="search" placeholder="Search by vaccination...">
                     <button class="search-button">Search</button>
@@ -31,6 +28,7 @@
 </div>
 </body>
 </html>
+
 
         
 <!-- Add vaccination Modal ->

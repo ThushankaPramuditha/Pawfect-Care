@@ -6,6 +6,7 @@ class Appointments
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $appointmentsModel = new AppointmentsModel();

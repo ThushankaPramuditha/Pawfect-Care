@@ -9,12 +9,15 @@ class Daycarebookingform
 
     public function index()
     {
-        $data['username'] = isset($_SESSION['USER']) ? $_SESSION['USER']->email : 'User';
-        $this->view('daycarebookingform', $data);
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
+        $userdataModel = new DaycareStaffModel();
+        $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
+        $this->view('daycarestaff/daycarebookingform', $data);
     } 
 
     public function viewtable()
     {
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
         // Check if a date is provided
         if (isset($_POST['date'])) {
             // Fetch bookings for the selected date
@@ -32,6 +35,7 @@ class Daycarebookingform
 
     public function decline(string $id): void
     {  
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
         $daycarebookinguserModel = new DaycarebookinguserModel();
         $success = $daycarebookinguserModel->declineDaycarebooking($id);
 
@@ -40,11 +44,12 @@ class Daycarebookingform
         } else {
             $_SESSION['error'] = "Failed to decline daycare booking!";
         }
-        redirect('daycarebookingform');
+        redirect('daycarestaff/daycarebookingform');
     }
 
 public function accept(string $id): void
 {
+    AuthorizationMiddleware::authorize(['Daycare Staff']);
     $daycarebookinguserModel = new DaycarebookinguserModel();
     $success = $daycarebookinguserModel->acceptDaycarebooking($id);
      
@@ -69,12 +74,13 @@ public function accept(string $id): void
     
 
     //redirect to daycarebooking
-    redirect('daycarebooking');
+    redirect('daycarestaff/daycarebooking');
 }
 
 
 public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 {
+    AuthorizationMiddleware::authorize(['Daycare Staff']);
     try {
         // Query to fetch pet owner's email using the provided pet ID
         $query = "SELECT po.email 
@@ -97,6 +103,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 
 	public function finished(string $id): void
 	{
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$daycarebookinguserModel = new DaycarebookinguserModel();
 		$success = $daycarebookinguserModel->finishDaycarebooking($id);
 
@@ -105,7 +112,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 		} else {
 			$_SESSION['error'] = "Failed to finish daycare booking!";
 		}
-		redirect('daycarebooking');
+		redirect('daycarestaff/daycarebooking');
 	}
     public function search(): void
     {

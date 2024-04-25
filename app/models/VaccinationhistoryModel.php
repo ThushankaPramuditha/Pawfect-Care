@@ -80,6 +80,7 @@ class VaccinationhistoryModel
 
     public function getAllVaccinationHistoryForPetId($pet_id) 
     {
+        
         $query = "SELECT
                     DATE(a.date_time) AS date,
                     vc.appointment_id,
@@ -102,9 +103,45 @@ class VaccinationhistoryModel
                     pets p ON a.pet_id = p.id 
                 WHERE a.pet_id = :pet_id
                 ORDER BY a.id ASC";
-
         return $this->query($query, ['pet_id' => $pet_id]);
     }
+
+    
+    public function searchVaccinationHistoryPerPet($searchTerm, $petId) {
+        $searchTerm = "%{$searchTerm}%";
+        $query = "SELECT
+                DATE(a.date_time) AS date,
+                vc.appointment_id,
+                vc.id,
+                p.id AS pet_id,
+                vc.weight,
+                vc.temperature,
+                vc.vaccine_name,
+                vc.serial_no,
+                v.name AS administered_by,
+                vc.due_date,
+                vc.remarks
+            FROM
+                vaccinations vc
+            JOIN
+                appointments a ON vc.appointment_id = a.id
+            JOIN
+                veterinarians v ON a.vet_id = v.id
+            JOIN
+                pets p ON a.pet_id = p.id 
+            WHERE a.pet_id = :petId
+            AND
+            (vc.serial_no LIKE :searchTerm OR
+            vc.vaccine_name LIKE :searchTerm OR
+            v.name LIKE :searchTerm)
+            ORDER BY a.id ASC";
+    
+        $parameters = [':searchTerm' => $searchTerm, ':petId' => $petId];
+    
+    
+        return $this->query($query, $parameters);
+    }
+
 
     public function getVaccinationHistoryForPetIdById($id,$pet_id) 
     {

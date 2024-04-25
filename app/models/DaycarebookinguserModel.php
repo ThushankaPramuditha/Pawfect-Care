@@ -47,7 +47,7 @@ class DaycarebookinguserModel
         // Insert the new booking
         $inserted = $this->insert($data);
         if ($inserted) {
-            return true; // Booking successfully saved
+            return true; 
         } else {
             return "Failed to save booking.";
         }
@@ -154,12 +154,13 @@ public function searchByDate($date)
 
         public function acceptDaycarebooking($id)
             {
-                // Update the status of the daycare booking to 'accepted'
                 $query = "UPDATE daycarebookinguser SET status = 'accepted' WHERE id = :id AND status = 'pending'";
                 $bindings = [':id' => $id];
                 $result = $this->query($query, $bindings);
                 return $result; // Return true or false based on the success of the update operation
             }
+
+
 
             public function declineDaycarebooking($id)
             {
@@ -176,6 +177,46 @@ public function searchByDate($date)
                 $bindings = [':id' => $id];
                 $result = $this->query($query, $bindings);
                 return $result;
+            }
+
+            public function countTodayBookings() {
+                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
+                $result = $this->query($query);
+                // if not found
+                if(!$result){
+                    return 0;
+                }
+                return count($result);
+
+            }
+
+            public function countTodayacceptedBookings(){
+                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'accepted'";
+                $result = $this->query($query);
+                // if not found
+                if(!$result){
+                    return 0;
+                }
+                return count($result);
+            }
+
+            public function countTodaydeclinedBookings(){
+                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'declined'";
+                $result = $this->query($query);
+                // if not found
+                if(!$result){
+                    return 0;
+                }
+
+                return count($result);
+            }
+
+            public function getNotifications(){
+            
+                $query = "SELECT * FROM daycarebookinguser";
+                $result = $this->query($query);
+                return $result;
+       
             }
 
         // Define validation rules

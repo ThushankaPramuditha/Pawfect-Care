@@ -153,7 +153,7 @@
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarebooking">
+                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarebookingform">
                                 <span class="menu-title">Daycare Bookings</span>
                             </a>
                         </li>
@@ -163,11 +163,9 @@
                 </div>
             </div>
             <div class="bottom-container">
-                <button class="logout-button">
-                    <a  href="logout">
-                        <span>Logout</span>
-                    </a>
-                </button>
+                <form action="<?=ROOT?>/logout" method="POST" style="margin: 0; padding: 0;">
+                    <button type="submit" class="logout-button" name="logout" style="cursor:pointer;"> Logout</button>
+                </form>
             </div>
         </div>
     </nav>

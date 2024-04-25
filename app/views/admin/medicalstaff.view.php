@@ -14,9 +14,8 @@
 
 
 <body>
-    <div style="margin-top: 80px;">
 <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
-</div>
+
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
     <div style = "margin-left: 230px; margin-top:130px">

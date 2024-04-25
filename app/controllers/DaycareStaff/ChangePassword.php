@@ -6,10 +6,9 @@ class ChangePassword
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$userdataModel = new DaycareStaffModel();
 		$data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
-
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
 		$this->view('daycarestaff/changepassword',$data);
 	}
@@ -17,6 +16,7 @@ class ChangePassword
     
 
     public function update() {
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

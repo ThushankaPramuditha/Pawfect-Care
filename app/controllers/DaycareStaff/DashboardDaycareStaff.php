@@ -6,22 +6,21 @@ class DashboardDaycareStaff
 
     public function index()
     {
-
-        $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
+        $userdataModel = new DaycareStaffModel();
+        $daycarebookingsusermodel = new DaycarebookinguserModel();
+        $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
+        $data['daycarebookings'] = $daycarebookingsusermodel->getAllDaycarebookings();
+        // get day care bookings status accepted
+        $data['daycarebookingtoday'] = $daycarebookingsusermodel->countTodayBookings();
+        $data['daycarebookingsaccepted'] = $daycarebookingsusermodel->countTodayacceptedBookings(); 
+        $data['daycarebookingsdeclined'] = $daycarebookingsusermodel->countTodaydeclinedBookings();
 
         $this->view('daycarestaff/dashboarddaycarestaff',$data);
     }
+
+
 
 //  function to get the appointment details from the database
-    public function getAppointmentDetails()
-    {
-        $daycarebookinguserModel = new DaycarebookinguserModel();
-        $data['daycarebookinguser'] = $daycarebookinguserModel->findAll();
-
-        //display in dashboard notification section
-        $this->view('daycarestaff/dashboarddaycarestaff',$data);
-
-        // $this->view('daycarestaffdashboard',$data);
-    }
 }
 

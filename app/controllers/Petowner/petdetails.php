@@ -6,6 +6,9 @@ class Petdetails
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         $petDetailsModel = new PetDetailsModel();
         $data['petDetails'] = $petDetailsModel->getAllPetDetails();
 
@@ -16,6 +19,9 @@ class Petdetails
 
     public function update(string $id = ''): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         $petDetailsModel = new PetDetailsModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,6 +33,10 @@ class Petdetails
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+
         $petDetailsModel = new PetDetailsModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,6 +48,10 @@ class Petdetails
 
     public function delete(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+
         $petDetailsModel = new PetDetailsModel();
         $petDetailsModel->deletePetDetails($id);
 
@@ -46,6 +60,10 @@ class Petdetails
 
     public function viewPetDetails(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+        
         $petDetailsModel = new PetDetailsModel();
         $data['petdetails'] = $petDetailsModel->getPetDetailsById($id);
 

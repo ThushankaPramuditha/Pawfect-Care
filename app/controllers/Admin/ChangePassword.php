@@ -9,12 +9,13 @@ class ChangePassword
 
 	public function index()
 	{
-
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+        AuthorizationMiddleware::authorize(['Admin']);
 
 		$this->view('admin/changepassword',$data);
 	}
 	public function update() {
+        AuthorizationMiddleware::authorize(['Admin']);
+
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

@@ -5,47 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Ambulance</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bookingpages.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/panelheader.css">
+    <style>
+        .button {
+            background-color: #6a387944;
+            border: none;
+            color: #6a3879;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
 
+        .button:hover {
+            background-color: #6a3879;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 <?php include 'navbar.php'; ?>
 
-<div class="logo">
-   <a href="<?=ROOT?>home">
-    <img src="<?= ROOT ?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
-  </a>
-</div>
-
 <h1>Book Pet Ambulance</h1>
 
 <div class="cardcontainer">
-<div class="card">
-  <div class="image-container">
-  <img src="<?= ROOT?>/assets/images/driver3.png" alt="Avatar" style="width:100%">
-  </div>  
-  <div class="container">
-    <h4><b>MR.NIPUL WEERASIRI</b></h4> 
-    <p class="available">available for a ride</p>
-    <p>contact number: 077 123 4567</p>
-    <button class="button" type="submit" name="book">Book Now</button>
-  </div>
-</div>  
- 
-
-<div class="card">
-<div class="image-container">
-  <img src="<?= ROOT?>/assets/images/driver4.png" alt="Avatar" style="width:100%">
-  </div> 
-  <div class="container">
-    <h4><b>MR.KUMAR SEWAGAMA</b></h4> 
-    <p class="not-available">not available</p> 
-    <p>contact number: 077 123 4567</p>
-    <button class="button" type="submit" name="book" style="opacity: 0.5; pointer-events: none;">Book Now</button>
-  </div>
+    <?php foreach ($data['ambulancedrivers'] as $ambulance): ?>
+        <div class="card">
+            <div class="image-container">
+                <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Avatar" style="align-item:center; width:100px; margin-top:20px;">
+            </div>
+            <div class="container" style="margin-bottom:20px;">
+                <h4><b><?php echo $ambulance->name ?></b></h4>
+                <p class="available"><?php echo $ambulance->availability ?></p>
+                <p>contact number: <?php echo $ambulance->contact ?></p>
+                <div class="button-container" style="margin-left:0px; margin-top:10px;">
+                <a href="<?php echo ROOT?>/petowner/bookrideform?ambulance_id=<?php echo $ambulance->id ?>" class="btn">Book an Ambulance</a>
+                </div>
+            
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
-</div>
-
- </div>
 </body>
 </html>

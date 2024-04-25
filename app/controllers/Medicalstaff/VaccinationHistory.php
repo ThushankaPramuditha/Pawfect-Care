@@ -6,6 +6,7 @@ class VaccinationHistory
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         $vaccinationhistoryModel = new VaccinationhistoryModel();
@@ -17,6 +18,7 @@ class VaccinationHistory
     
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -32,6 +34,7 @@ class VaccinationHistory
    
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -44,6 +47,7 @@ class VaccinationHistory
 
     public function viewVaccinationHistory(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         

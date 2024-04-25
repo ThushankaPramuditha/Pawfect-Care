@@ -6,6 +6,7 @@ class Receptionists
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        AuthorizationMiddleware::authorize(['Admin']);
 		$receptionistsModel = new ReceptionistsModel();
 		// show($receptionistsModel->findAll());
 		$data['receptionists'] = $receptionistsModel->getAllReceptionists();
@@ -16,6 +17,7 @@ class Receptionists
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->updateReceptionist($a, $_POST);
         if($success){
@@ -32,6 +34,7 @@ class Receptionists
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->addReceptionist($_POST);
         if($success){
@@ -49,6 +52,7 @@ class Receptionists
     
 
     public function viewReceptionist(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $receptionistsModel = new ReceptionistsModel();
         $data['receptionists'] = $receptionistsModel->getReceptionistById($a);
         // show($a);
@@ -58,6 +62,7 @@ class Receptionists
     }
     public function deactivate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->deactivateReceptionist($id);
 
@@ -75,6 +80,7 @@ class Receptionists
 
     public function activate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $receptionistsModel = new ReceptionistsModel();
         $success = $receptionistsModel->activateReceptionist($id);
 

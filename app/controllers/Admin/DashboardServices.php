@@ -11,7 +11,6 @@ class DashboardServices
 	{
 
 		AuthorizationMiddleware::authorize(['Admin']);
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
 
 		$this->view('admin/dashboardservices',$data);
 	}

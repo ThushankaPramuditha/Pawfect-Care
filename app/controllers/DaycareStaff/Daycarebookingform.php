@@ -10,7 +10,6 @@ class Daycarebookingform
     public function index()
     {
         AuthorizationMiddleware::authorize(['Daycare Staff']);
-        $data['username'] = isset($_SESSION['USER']) ? $_SESSION['USER']->email : 'User';
         $userdataModel = new DaycareStaffModel();
         $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
         $this->view('daycarestaff/daycarebookingform', $data);

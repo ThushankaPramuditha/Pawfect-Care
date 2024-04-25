@@ -7,7 +7,6 @@ class DashboardDaycareStaff
     public function index()
     {
         AuthorizationMiddleware::authorize(['Daycare Staff']);
-        $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
         $userdataModel = new DaycareStaffModel();
         $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
 

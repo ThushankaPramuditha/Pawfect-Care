@@ -9,6 +9,10 @@ class Services
 
 	public function index()
 	{
+		AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+		
 		$servicesModel = new ServicesModel();
 		$data['services'] = $servicesModel->getAllServices(); 
 		

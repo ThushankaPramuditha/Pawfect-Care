@@ -13,11 +13,6 @@ class MyProfile
 		$data['user']->email = $_SESSION['USER']->email;
 		$data['user']->id = $_SESSION['USER']->id;
 
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-
-
-		
-
 		$this->view('admin/myprofile',$data);
 	}
 

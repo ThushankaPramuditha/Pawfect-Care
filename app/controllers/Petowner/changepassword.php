@@ -6,12 +6,15 @@ class ChangePassword
     
     public function index()
     {
-        // $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-       $data= [];
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);       $data= [];
 
         $this->view('petowner/changepassword', $data);
     }
     public function update() {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+ 
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

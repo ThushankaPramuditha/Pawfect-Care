@@ -9,7 +9,7 @@ class EditProfile
 
 	public function index()
 	{
-
+        AuthorizationMiddleware::authorize(['Medical Staff']);
 		$userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -20,6 +20,7 @@ class EditProfile
 
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $medicalstaffModel = new MedicalStaffModel();
 		$success = $medicalstaffModel->updateMedicalStaff($a, $_POST);
         if($success){

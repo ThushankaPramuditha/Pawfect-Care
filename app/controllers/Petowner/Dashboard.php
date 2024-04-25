@@ -9,21 +9,23 @@ class Dashboard
         $userId = $_SESSION['USER']->id;
         $petownerModel = new PetownersModel();
         $petsModel = new PetsModel();
-         
-        $daycareBookings = $petownerModel->getDaycareBookingsByUserId($userId);
-        $pets = $petsModel->getAllPetsByUserId($userId);
-        $petOwnerId = $petownerModel->getPetOwnerById($userId); // Updated variable name
+        
+        $data['user_id'] = $userId;
+        $data['daycareBookings']= $petownerModel->getDaycareBookingsByUserId($userId);
+        $data['pets'] = $petsModel->getAllPetsByUserId($userId);
+        $data['petownerId'] = $petownerModel->getPetOwnerById($userId); 
 
-        $data = [
-            'daycareBookings' => $daycareBookings,
-            'pets' => $pets,
-            'petownerId' => $petOwnerId // Updated variable name
-        ];
+      
+        // $data = [
+        //     'daycareBookings' => $daycareBookings,
+        //     'pets' => $pets,
+        //     'petownerId' => $petOwnerId // Updated variable name
+        // ];
 
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-        $petDetailsModel = new PetsModel();
+        // $petDetailsModel = new PetsModel();
 
 
         $this->view('petowner/dashboard', $data);

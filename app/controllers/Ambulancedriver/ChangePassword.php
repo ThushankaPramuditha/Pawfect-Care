@@ -9,6 +9,7 @@ class ChangePassword
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
 		$userdataModel = new AmbulanceDriversModel();
 		$data['userdata'] = $userdataModel->getDriverRoleDataById($_SESSION['USER']->id);
 
@@ -17,6 +18,7 @@ class ChangePassword
 		$this->view('ambulancedriver/changepassword',$data);
 	}
 	public function update() {
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

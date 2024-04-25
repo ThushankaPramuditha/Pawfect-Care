@@ -9,6 +9,7 @@ class EditProfile
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
 		$userdataModel = new AmbulanceDriversModel();
 		$data['userdata'] = $userdataModel->getDriverRoleDataById($_SESSION['USER']->id);
 
@@ -19,6 +20,7 @@ class EditProfile
 
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $success = $ambulancedriversModel->updateAmbulanceDriver($a, $_POST);
 		if($success){

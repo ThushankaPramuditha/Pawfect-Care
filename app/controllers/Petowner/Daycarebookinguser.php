@@ -13,7 +13,7 @@ class Daycarebookinguser
          
     // Retrieve pet owner details from session
     $data['pet_owner_id'] = $user_id;
-        $this->view('daycarebookinguser', $data);
+        $this->view('petowner/daycarebookinguser', $data);
     }
 
     public function addDaycarebooking()
@@ -46,25 +46,20 @@ class Daycarebookinguser
         'pet_owner_id' => $petOwnerId,
     ];
     
-    
     // Call the model method to add the daycare booking
-    $result = $model->addDaycarebooking($data);
-
-
+    $success = $model->addDaycarebooking($data);
     // Check the result and provide feedback
-    if ($result === true) {
+    if ($success === true) {
         // Successful insertion
         // echo "Daycare booking successfully added.";
-
-        //success parameter indicating a successful booking
-        redirect('daycarebookinguser/addDaycarebookinguser?success=true');
+        redirect('petowner/daycarebookinguser?true');
         //after successful booking, redirect to the services page
 
         
        
     } else {
         // Failed insertion
-        echo "Failed to add daycare booking. Error: " . $result;
+        echo "Failed to add daycare booking. Error: " . $success;
        
     }
 }

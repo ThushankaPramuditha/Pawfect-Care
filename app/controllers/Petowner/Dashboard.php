@@ -85,6 +85,39 @@ class Dashboard
 
     }
 
+    //for medical history table
+    public function viewMedHistory(string $id)
+    {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $medModel = new MedicalhistoryModel();
+        $data['medicalhistory']  = $medModel->getAllMedicalHistoryForPetId($id);
+        
+        $this->view('petowner/medicalhistory', $data);
+    }
+
+    //writeeee!!!
+    public function viewVacHistory(){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $vacModel = new VaccinationhistoryModel();
+        $data['vaccinationhistory']  = $vacModel->getAllVaccinationHistoryForPetId($id);
+        
+        $this->view('petowner/vaccinationhistory', $data);    
+    }
+
+    
+    //writeeee!!!
+
+    public function searchVacHistory(){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+    }
+
+    public function searchMedHistory(){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+    }
+
+
+
+
    
 
     //validation

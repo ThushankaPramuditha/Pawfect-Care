@@ -358,7 +358,30 @@
         </div>
  </div>
 
- 
+ <!-- modal container for vaccination history popup -->
+    <div class="modal-form" id="vaccine-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Vaccination History</h1>
+                
+        </div>
+    </div>
+
+<!-- modal container for medical history popup -->
+<div class="modal-form" id="med-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Medical History</h1>
+                
+        </div>
+    </div>
+
+   
+
+
+
+</div>
+
 
 <!-- Add Pets Modal -->
 <div class="modal-form" id="add-modal">
@@ -409,178 +432,250 @@
     </div>
 </div>
 
-    <!-- Update Day Care Staff Modal -->
-    <div class="modal-form" id="update-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Edit Pet</h1>
-                <div id="updatepet" class="form-container">
-                    
-                </div>
-        </div>
+<!-- Update Day Care Staff Modal -->
+<div class="modal-form" id="update-modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Edit Pet</h1>
+            <div id="updatepet" class="form-container">
+                
+            </div>
     </div>
+</div>
 
-    <script>
 
-        // Get the modal elements
-        var addModal = document.getElementById("add-modal");
-        var updateModal = document.getElementById("update-modal");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        
-        // Function to open add form modal
-        function openAddModal() {
-          addModal.style.display = "block";
-        }
-         function openUpdateModal(id) {
-                console.log(id);
-                updateModal.style.display = "block";
-                $.get(`<?php echo ROOT?>/petowner/dashboard/viewPetDetails/${id}`, function(data) {
-                        // Update the modal content with the fetched data
-                        $("#updatepet").html(data);
-                    });
-                
-                // set time out and updateforminit
-                setTimeout(updateFormInit, 1000);
-                span.onclick = function() {
-                modal.style.display = "none";
-                }
-                
+<script>
+    $(document).ready(function(){
+        $('#searchmedhistory').on('keyup', function(){
+            var searchTerm = $(this).val();
+            $.ajax({
+            url: "<?php echo ROOT ?>/Petowner/Dashboard/searchMedHistory",
+            type: "POST",
+            data: {search: searchTerm},
+            success: function(data) {
+                $('tbody').html(data);
             }
-        
-            
-        // Event listener for add button click
-        document.querySelector('.add-new-button').addEventListener('click', function () {
-            openAddModal();
-        });
-
-        // Event listeners for update buttons click
-        document.querySelectorAll('.edit-button').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var id = this.parentElement.parentElement.getAttribute('key');
-                openUpdateModal(id);
             });
         });
-       
-        var closeButtons = document.querySelectorAll('.close');
+    }); 
 
-            // Close modals when the no button is clicked
-            var noButtons = document.querySelectorAll('.reject');
-
-            closeButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    addModal.style.display = "none";
-                    updateModal.style.display = "none";
-                    deactivateModal.style.display = "none";
-                    activateModal.style.display = "none";
-
-
-                });
-            });
-            noButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    deactivateModal.style.display = "none";
-                    activateModal.style.display = "none";
-
-
-                });
-            });
-
-            // Attach event listeners for validation on input for add form
-            document.getElementById('name').addEventListener('input', validateName);
-            document.getElementById('birthday').addEventListener('input', validateBirthday);
-           document.getElementById('gender').addEventListener('input', validateGender);   
-            document.getElementById('species').addEventListener('input', validateSpecies);
-            document.getElementById('breed').addEventListener('input', validateBreed);
-           
-            function validateAddForm() {
-            var isValid = true;
-
-            isValid = validateName() && isValid;
-            isValid = validateBirthday() && isValid;
-            isValid = validateGender() && isValid;
-            isValid = validateSpecies() && isValid;
-            isValid = validateBreed() && isValid;
-
-
-            if (!isValid) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Validation Error',
-                    html: "Please correct the errors before submitting.",
-                });
-                return false;
+    $(document).ready(function(){
+        $('#searchvaccinehistory').on('keyup', function(){
+            var searchTerm = $(this).val();
+            $.ajax({
+            url: "<?php echo ROOT ?>/Petowner/Dashboard/searchVacHistory",
+            type: "POST",
+            data: {search: searchTerm},
+            success: function(data) {
+                $('tbody').html(data);
             }
-            return true;
-        }
+            });
+        });
+    }); 
 
-        document.getElementById("add-pet-form").addEventListener('submit', function(event) {
-            
-            if (!validateAddForm()) {
+    // Get the modal elements
+    var addModal = document.getElementById("add-modal");
+    var updateModal = document.getElementById("update-modal");
+    var viewMedicalHistoryModal = document.getElementById("med-modal");
+    var viewVaccinationHistoryModal = document.getElementById("vaccine-modal");
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    
+    // Function to open add form modal
+    function openAddModal() {
+        addModal.style.display = "block";
+    }
+
+    function openUpdateModal(id) {
+        console.log(id);
+        updateModal.style.display = "block";
+        $.get(`<?php echo ROOT?>/petowner/dashboard/viewPetDetails/${id}`, function(data) {
+                // Update the modal content with the fetched data
+                $("#updatepet").html(data);
+            });
+        
+        // set time out and updateforminit
+        setTimeout(updateFormInit, 1000);
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        
+    }
+
+    function openMedicalHistoryModal(id) {
+        console.log(id);
+        viewMedicalHistoryModal.style.display = "block";
+        document.getElementById("medical-history-button").href = `<?php echo ROOT?>/petowner/Dashboard/viewMedHistory/${id}`;  
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        
+    }
+
+    function openVaccinationHistoryModal(id) {
+        console.log(id);
+        viewVaccinationHistoryModal.style.display = "block";
+        document.getElementById("vaccination-history-button").href = `<?php echo ROOT?>/petowner/Dashboard/viewVacHistory/${id}`;  
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        
+    }
+        
+    
+        
+    // Event listener for add button click
+    document.querySelector('.add-new-button').addEventListener('click', function () {
+        openAddModal();
+    });
+
+    // Event listeners for update buttons click
+    document.querySelectorAll('.edit-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var id = this.parentElement.parentElement.getAttribute('key');
+            openUpdateModal(id);
+        });
+    });
+
+    //view medical history
+    document.querySelectorAll('.medical-history-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var id = this.parentElement.parentElement.getAttribute('key');
+            console.log(id)
+            openMedicalHistoryModal(id);
+        });
+    });
+
+    //view vaccination history
+    document.querySelectorAll('.vaccination-history-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var id = this.parentElement.parentElement.getAttribute('key');
+            console.log(id)
+            openVaccinationHistoryModal(id);
+        });
+    });
+    
+    var closeButtons = document.querySelectorAll('.close');
+
+        // Close modals when the no button is clicked
+        var noButtons = document.querySelectorAll('.reject');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                addModal.style.display = "none";
+                updateModal.style.display = "none";
+                viewVaccinationHistoryModal.style.display = "none";
+                viewMedicalHistoryModal.style.display = "none";
+
+
+            });
+        });
+        noButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                deactivateModal.style.display = "none";
+                activateModal.style.display = "none";
+
+
+            });
+        });
+
+        // Attach event listeners for validation on input for add form
+        document.getElementById('name').addEventListener('input', validateName);
+        document.getElementById('birthday').addEventListener('input', validateBirthday);
+        document.getElementById('gender').addEventListener('input', validateGender);   
+        document.getElementById('species').addEventListener('input', validateSpecies);
+        document.getElementById('breed').addEventListener('input', validateBreed);
+        
+        function validateAddForm() {
+        var isValid = true;
+
+        isValid = validateName() && isValid;
+        isValid = validateBirthday() && isValid;
+        isValid = validateGender() && isValid;
+        isValid = validateSpecies() && isValid;
+        isValid = validateBreed() && isValid;
+
+
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: "Please correct the errors before submitting.",
+            });
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById("add-pet-form").addEventListener('submit', function(event) {
+        
+        if (!validateAddForm()) {
+            event.preventDefault();
+        } else {
+            addModal.style.display = "none";
+        }
+    });
+
+    function updateFormInit() {
+        // Attach event listeners for validation on input for update form
+        document.getElementById('update-name').addEventListener('input', validateUpdateName);
+        document.getElementById('update-birthday').addEventListener('input', validateUpdateBirthday);
+        document.getElementById('update-gender').addEventListener('input', validateUpdateGender); 
+        document.getElementById('update-species').addEventListener('input', validateUpdateSpecies);
+        document.getElementById('update-breed').addEventListener('input', validateUpdateBreed);
+
+        document.getElementById("updated-form").addEventListener('submit', function(event) {
+            console.log("insideee");
+            if (!validateUpdateForm()) {
                 event.preventDefault();
             } else {
                 addModal.style.display = "none";
             }
+    
         });
+    
+    }
 
-        function updateFormInit() {
-            // Attach event listeners for validation on input for update form
-            document.getElementById('update-name').addEventListener('input', validateUpdateName);
-            document.getElementById('update-birthday').addEventListener('input', validateUpdateBirthday);
-            document.getElementById('update-gender').addEventListener('input', validateUpdateGender); 
-            document.getElementById('update-species').addEventListener('input', validateUpdateSpecies);
-            document.getElementById('update-breed').addEventListener('input', validateUpdateBreed);
+    function validateUpdateForm() {
+        var isValid = true;
 
-            document.getElementById("updated-form").addEventListener('submit', function(event) {
-                console.log("insideee");
-                if (!validateUpdateForm()) {
-                    event.preventDefault();
-                } else {
-                    addModal.style.display = "none";
-                }
+        isValid = validateUpdateName() && isValid;
+        isValid = validateUpdateBirthday() && isValid;
+        isValid = validateUpdateGender() && isValid;
+        isValid = validateUpdateSpecies() && isValid;
+        isValid = validateUpdateBreed() && isValid;
         
+
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: "Please correct the errors before submitting.",
             });
-        
+            return false;
         }
+        return true;
+    }
 
-        function validateUpdateForm() {
-            var isValid = true;
-
-            isValid = validateUpdateName() && isValid;
-            isValid = validateUpdateBirthday() && isValid;
-            isValid = validateUpdateGender() && isValid;
-            isValid = validateUpdateSpecies() && isValid;
-            isValid = validateUpdateBreed() && isValid;
-            
-
-            if (!isValid) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Validation Error',
-                    html: "Please correct the errors before submitting.",
-                });
-                return false;
+        //sweeetalert for validation SUCCESS and ERROR
+        window.onload = function() {
+        <?php if (isset($_SESSION['flash'])): ?>
+            const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+            if (flash.success) {
+                Swal.fire('Success', flash.success, 'success');
+            } else if (flash.error) {
+                Swal.fire('Error', flash.error, 'error');
             }
-            return true;
-        }
+            <?php unset($_SESSION['flash']); ?>
+        <?php endif; ?>
+    };
+        
 
-          //sweeetalert for validation SUCCESS and ERROR
-          window.onload = function() {
-            <?php if (isset($_SESSION['flash'])): ?>
-                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
-                if (flash.success) {
-                    Swal.fire('Success', flash.success, 'success');
-                } else if (flash.error) {
-                    Swal.fire('Error', flash.error, 'error');
-                }
-                <?php unset($_SESSION['flash']); ?>
-            <?php endif; ?>
-        };
-          
-
-    </script>
+</script>
 </body>
 
 </html>

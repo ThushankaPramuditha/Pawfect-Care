@@ -31,21 +31,21 @@
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
-<div style = "margin-top: 80px; ">
-       
-    <div style = "margin-left: 230px">
-       
-        <div style="margin-bottom: 60px;"></div>
-        <div class="flex-container">
-            <div class="chart-container" style="margin-left: 120px;">
-            
-            </div>  
-            <div class="notification-container">
-               
-            </div>
-        </div> 
-       
-   </div>
+
+    <div style = "margin-top: 80px; ">
+        <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>  
+        <div style = "margin-left: 230px; margin-top:130px">
+            <div class="flex-container">
+                <div class="chart-container" style="margin-left: 120px;">
+                
+                </div>  
+                <div class="notification-container">
+                
+                </div>
+            </div> 
+        
+        </div>
+    </div>
 </div>
 </body>
 </html>

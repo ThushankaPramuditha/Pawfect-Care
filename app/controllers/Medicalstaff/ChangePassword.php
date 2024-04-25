@@ -6,6 +6,7 @@ class ChangePassword
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Medical Staff']);
 		$userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -17,6 +18,7 @@ class ChangePassword
     
 
     public function update() {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
 		$prevPassword = $_POST['prev-password'];
         $newPassword = $_POST['new-password'];
 

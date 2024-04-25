@@ -6,6 +6,7 @@ class MedicalHistory
 
     public function index(string $petId = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -18,6 +19,7 @@ class MedicalHistory
 
     public function update(string $Id = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
         
@@ -30,6 +32,7 @@ class MedicalHistory
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -44,6 +47,7 @@ class MedicalHistory
 
     public function viewMedicalHistory(string $Id = '', string $petId = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 

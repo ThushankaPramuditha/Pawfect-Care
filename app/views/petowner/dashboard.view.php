@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
     <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/panelheader.css">
    
@@ -262,7 +263,7 @@
             <?php
 
                  foreach ($pets as $pet): ?>
-                    <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet->id; ?>">
+                    <div  class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet->id; ?>">
                         <div style="display:flex; flex-direction:row; justify-content:space-between;">
                             <h2><?php echo $pet->name; ?></h2>
                             <button class="edit-button"><a href="<?php echo ROOT ?>/petowner/editpet/<?php echo $pet->id; ?>">Edit Details</a></button>
@@ -279,8 +280,8 @@
                             </div>
                         </div>
                         <div style="display:flex; flex-direction:row; justify-content:space-between; margin-left:10px;">
-                            <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet->id; ?>">Medical History</a></button>
-                            <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet->id; ?>">Vaccination History</a></button>
+                        <button onclick="location.href='<?php echo ROOT ?>/petowner/medicalhistory/getMedicalData/<?php echo $pet->id; ?>'">Medical History</button>
+                        <button onclick="location.href='<?php echo ROOT ?>/petowner/vaccinationhistory/getVaccinationData/<?php echo $pet->id; ?>'">Vaccination History</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -357,23 +358,7 @@
         </div>
  </div>
 
- <!-- modal container for vaccination history popup -->
-    <div class="modal-form" id="vaccine-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Vaccination History</h1>
-                
-        </div>
-    </div>
-
-<!-- modal container for medical history popup -->
-<div class="modal-form" id="med-modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Medical History</h1>
-                
-        </div>
-    </div>
+ 
 
    
 
@@ -476,8 +461,7 @@
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
     var updateModal = document.getElementById("update-modal");
-    var viewMedicalHistoryModal = document.getElementById("med-modal");
-    var viewVaccinationHistoryModal = document.getElementById("vaccine-modal");
+    
 
 
     // Get the <span> element that closes the modal
@@ -504,29 +488,7 @@
         }
         
     }
-
-    function openMedicalHistoryModal(id) {
-        console.log(id);
-        viewMedicalHistoryModal.style.display = "block";
-        document.getElementById("medical-history-button").href = `<?php echo ROOT?>/petowner/Dashboard/viewMedHistory/${id}`;  
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-        
-    }
-
-    function openVaccinationHistoryModal(id) {
-        console.log(id);
-        viewVaccinationHistoryModal.style.display = "block";
-        document.getElementById("vaccination-history-button").href = `<?php echo ROOT?>/petowner/Dashboard/viewVacHistory/${id}`;  
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-        
-    }
-        
-    
-        
+     
     // Event listener for add button click
     document.querySelector('.add-new-button').addEventListener('click', function () {
         openAddModal();
@@ -540,23 +502,7 @@
         });
     });
 
-    //view medical history
-    document.querySelectorAll('.medical-history-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            var id = this.parentElement.parentElement.getAttribute('key');
-            console.log(id)
-            openMedicalHistoryModal(id);
-        });
-    });
-
-    //view vaccination history
-    document.querySelectorAll('.vaccination-history-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            var id = this.parentElement.parentElement.getAttribute('key');
-            console.log(id)
-            openVaccinationHistoryModal(id);
-        });
-    });
+    
     
     var closeButtons = document.querySelectorAll('.close');
 
@@ -567,8 +513,6 @@
             button.addEventListener('click', function() {
                 addModal.style.display = "none";
                 updateModal.style.display = "none";
-                viewVaccinationHistoryModal.style.display = "none";
-                viewMedicalHistoryModal.style.display = "none";
 
 
             });

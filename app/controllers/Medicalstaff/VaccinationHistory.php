@@ -30,7 +30,6 @@ class VaccinationHistory
     }
 
    
-
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         $userdataModel = new MedicalStaffModel();

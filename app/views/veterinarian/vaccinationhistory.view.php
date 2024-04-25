@@ -43,32 +43,32 @@
             <form id="add-vaccination-form" action="<?php echo ROOT ?>/Veterinarian/VaccinationHistory/add" method="post">
                 <div class="column">
                     <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required><br>
+                    <input type="date" id="date" name="date" ><br>
 
                     <label for="patient no">Patient No:</label>
-                    <input type="text" id="patient_no" name="patient_no" required><br>
+                    <input type="text" id="patient_no" name="patient_no" ><br>
                     <div id="error-patient_no" class="error-message"></div>
 
                     <label for="vaccine name">Vaccine Name:</label>
-                    <input type="text" id="vaccine_name" name="vaccine_name" required><br>
+                    <input type="text" id="vaccine_name" name="vaccine_name" ><br>
                     <div id="error-vaccine_name" class="error-message"></div>
 
                     <label for="serial no">Serial No:</label>
-                    <input type="text" id="serial_no" name="serial_no" required><br>
+                    <input type="text" id="serial_no" name="serial_no" ><br>
                     <div id="error-serial_no" class="error-message"></div>
                 </div>
                 <div class="column">
 
                     <label for="administered by">Administered By:</label>
-                    <input type="text" id="administered_by" name="vet_name" required><br>
+                    <input type="text" id="administered_by" name="vet_name" ><br>
                     <div id="error-administered_by" class="error-message"></div>
 
                     <label for="due date">Next Due Date:</label>
-                    <input type="date" id="due_date" name="due_date" required><br>
+                    <input type="date" id="due_date" name="due_date" ><br>
                     <div id="error-due_date" class="error-message"></div>
 
                     <label for="remarks">Remarks:</label>
-                    <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;" required></textarea><br>
+                    <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;" ></textarea><br>
 
                 </div>
                 <div class="flex-container">

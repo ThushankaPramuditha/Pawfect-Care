@@ -43,40 +43,40 @@
                         <form id="add-treatment-form" action="<?php echo ROOT?>/Veterinarian/MedicalHistory/add" method="post">
                         <div class ="column">
                             <label for="date_time">Date Time:</label>
-                            <input type="date_time" id="date_time" name="date_time" required><br>
+                            <input type="date_time" id="date_time" name="date_time"><br>
 
                             <label for="patient no">Patient No:</label>
-                            <input type="text" id="patient_no" name="patient_no" required><br>
+                            <input type="text" id="patient_no" name="patient_no"><br>
                             <div id="error-patient_no" class="error-message"></div>
 
                             <label for="weight">Weight:</label>
-                            <input type="text" id="weight" name="weight" required><br>
+                            <input type="text" id="weight" name="weight"><br>
                             <div id="error-weight" class="error-message"></div>
 
                             <label for="temperature">Temperature:</label>
-                            <input type="text" id="temperature" name="temperature" required><br>
+                            <input type="text" id="temperature" name="temperature"><br>
                             <div id="error-temperature" class="error-message"></div>
 
                             <label for="medical condition">Medical Condition:</label>
-                            <input type="text" id="med_condition" name="med_condition" required><br>
+                            <input type="text" id="med_condition" name="med_condition"><br>
                             <div id="error-med_condition" class="error-message"></div>
 
                         </div>
                         <div class ="column">
                             <label for="treatment">Treatment:</label>
-                            <input type="text" id="treatment" name="treatment" required><br>
+                            <input type="text" id="treatment" name="treatment"><br>
                             <div id="error-treatment" class="error-message"></div>
 
                             <label for="prescription">Prescription:</label>
-                            <input type="text" id="prescription" name="prescription" required><br>
+                            <input type="text" id="prescription" name="prescription"><br>
                             <div id="error-prescription" class="error-message"></div>
 
                             <label for="treated by">Treated By:</label>
-                            <input type="text" id="treated_by" name="vet_name" required><br>
+                            <input type="text" id="treated_by" name="vet_name"><br>
                             <div id="error-treated_by" class="error-message"></div>
 
                             <label for="remarks">Remarks:</label>
-                            <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;" required></textarea><br>
+                            <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;"></textarea><br>
                         </div>
 
                             <div class="flex-container">

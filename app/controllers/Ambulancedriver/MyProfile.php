@@ -9,6 +9,7 @@ class MyProfile
 
 	public function index()
 	{
+		AuthorizationMiddleware::authorize(['Ambulance Driver']);
 		$userdataModel = new AmbulanceDriversModel();
 		$data['userdata'] = $userdataModel->getDriverRoleDataById($_SESSION['USER']->id);
 

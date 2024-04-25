@@ -46,7 +46,7 @@ $(document).ready(function(){
       $('#search').on('keyup', function(){
        var searchTerm = $(this).val();
        $.ajax({
-       url: "<?php echo ROOT ?>/Daycrebooking/search",
+       url: "<?php echo ROOT ?>/Daycarestaff/Daycrebooking/search",
        type: "POST",
        data: {search: searchTerm},
        success: function(data) {

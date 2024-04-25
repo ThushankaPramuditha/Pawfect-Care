@@ -6,6 +6,7 @@ class Veterinarians
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        AuthorizationMiddleware::authorize(['Admin']);
 		$veterinariansModel = new VeterinariansModel();
 		// show($veterinariansModel->findAll());
 		$data['veterinarians'] = $veterinariansModel->getAllVeterinarians();
@@ -16,6 +17,7 @@ class Veterinarians
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $veterinariansModel = new VeterinariansModel();
         $success = $veterinariansModel->updateVeterinarian($a, $_POST);
 
@@ -34,6 +36,7 @@ class Veterinarians
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $veterinariansModel = new VeterinariansModel();
         $success = $veterinariansModel->addVeterinarian($_POST);
 
@@ -50,6 +53,7 @@ class Veterinarians
     }
 
     public function viewVeterinarian(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $veterinariansModel = new VeterinariansModel();
         $data['veterinarians'] = $veterinariansModel->getVeterinarianById($a);
         // show($a);
@@ -59,6 +63,7 @@ class Veterinarians
     }
     public function deactivate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $veterinariansModel = new VeterinariansModel();
         $success = $veterinariansModel->deactivateVeterinarian($id);
 
@@ -77,6 +82,7 @@ class Veterinarians
 
     public function activate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $veterinariansModel = new VeterinariansModel();
         $success = $veterinariansModel->activateVeterinarian($id);
 

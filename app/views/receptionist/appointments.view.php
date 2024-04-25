@@ -19,10 +19,15 @@
 <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header">
             <button class="add-new-button">Add New</button>
+
+            <div class="filter-date">
+                    <input type="date"  id="date-filter" placeholder="Filter by date..." style="background-color: #ffffff; margin:0px; color: #666 ">   
+            </div>
+
             <div class="search-bar">
                     <input type="text" id="search" placeholder="Search appointments...">
                     <button class="search-button">Search</button>
-                </div>
+            </div>
             
     </header>
         </div>        
@@ -95,6 +100,26 @@ Add Appointment Modal -->
 
 
     <script>
+        $(document).ready(function() {
+            $('#date-filter').change(updateTable);
+            $('#search').on('keyup', updateTable);
+            function updateTable() {
+                var searchTerm = $('#search').val();
+                var filterDate = $('#date-filter').val(); 
+                
+                $.ajax({
+                    url: "<?php echo ROOT ?>/Receptionist/Appointments/search",
+                    type: "POST",
+                    data: { search: searchTerm, date: filterDate }, 
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
+                });
+            }
+            
+        });
+
+        
         // Real-time pet detail updating
         document.getElementById('pet_id').addEventListener('change', function() {
             var petId = this.value.trim(); 
@@ -210,11 +235,11 @@ Add Appointment Modal -->
 
         document.getElementById("add-appointment-form").addEventListener('submit', function(event) {
             var vetId = document.getElementById('vet-select').value;
-            var petId = document.getElementById('pet_id').value.trim();
+            var petName = document.getElementById('pet_name').value.trim();
             var freeSlots = parseInt(document.getElementById('free-slots').textContent);
 
             // Check if a pet ID is entered and if a vet is selected
-            if (!petId) {
+            if (!petName) {
                 event.preventDefault(); // Prevent form submission
 
                 Swal.fire({
@@ -250,6 +275,19 @@ Add Appointment Modal -->
                 return;
             }
         });
+
+        //sweeetalert for validation SUCCESS and ERROR
+        window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+                if (flash.success) {
+                    Swal.fire('Success', flash.success, 'success');
+                } else if (flash.error) {
+                    Swal.fire('Error', flash.error, 'error');
+                }
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
 
 
     </script>

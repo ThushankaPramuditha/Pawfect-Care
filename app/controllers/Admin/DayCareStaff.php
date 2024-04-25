@@ -6,6 +6,7 @@ class DaycareStaff
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        AuthorizationMiddleware::authorize(['Admin']);
 		$daycarestaffModel = new DaycareStaffModel();
 		// show($daycarestaffModel->findAll());
 		$data['daycarestaff'] = $daycarestaffModel->getAllDaycareStaff();
@@ -16,6 +17,7 @@ class DaycareStaff
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $daycarestaffModel = new DaycareStaffModel();
         $success = $daycarestaffModel->updateDaycareStaff($a, $_POST);
 
@@ -33,6 +35,7 @@ class DaycareStaff
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $daycarestaffModel = new DaycareStaffModel();
         $success = $daycarestaffModel->addDaycareStaff($_POST);
         if($success){
@@ -48,6 +51,7 @@ class DaycareStaff
     }
 
     public function viewDaycareStaff(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $daycarestaffModel = new DaycareStaffModel();
         $data['daycarestaff'] = $daycarestaffModel->getDaycareStaffById($a);
         // show($a);
@@ -57,6 +61,7 @@ class DaycareStaff
     }
     public function deactivate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $daycarestaffModel = new DaycareStaffModel();
         $success = $daycarestaffModel->deactivateDaycareStaff($id);
 
@@ -74,6 +79,7 @@ class DaycareStaff
 
     public function activate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $daycarestaffModel = new DaycareStaffModel();
         $success = $daycarestaffModel->activateDaycareStaff($id);
 

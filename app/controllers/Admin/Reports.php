@@ -7,10 +7,12 @@ class Reports {
     use Controller;
 
     public function index(){
+        AuthorizationMiddleware::authorize(['Admin']);
         $this->view('admin/reports');
     }
 ////////////////////////////////////////////////////////////////appointment_report////////////////////////////////////////////////////////////////
     public function generateAppointmentReport() {
+        AuthorizationMiddleware::authorize(['Admin']);
         $from = $_POST['from'];
         $to = $_POST['to'];
 
@@ -118,6 +120,7 @@ class Reports {
 
     ////////////////////////////////////////////////////////////////daycare_report////////////////////////////////////////////////////////////////
     public function generateDaycareReport() {
+        AuthorizationMiddleware::authorize(['Admin']);
         $from = $_POST['from'];
         $to = $_POST['to'];
 

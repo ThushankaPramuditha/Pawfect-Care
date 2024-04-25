@@ -7,6 +7,8 @@ class Feedbacks
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
 

@@ -20,10 +20,19 @@ class Dashboard
             'petownerId' => $petOwnerId // Updated variable name
         ];
 
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+        $petDetailsModel = new PetsModel();
+
+
         $this->view('petowner/dashboard', $data);
     }
     
     public function addPet(){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
 
         $petDetailsModel = new PetsModel();
 
@@ -44,6 +53,9 @@ class Dashboard
     }
 
     public function updatePet(string $id){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
 
         $petDetailsModel = new PetsModel();
         $success = $petDetailsModel->updatePet($id, $_POST);
@@ -61,6 +73,10 @@ class Dashboard
     }   
      
     public function viewPetDetails(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
+        
         $petDetailsModel = new PetsModel();
         //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
 

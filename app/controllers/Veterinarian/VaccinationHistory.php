@@ -6,10 +6,10 @@ class VaccinationHistory
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Veterinarian']);
         $userdataModel = new VeterinariansModel();
 		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
         $vaccinationhistoryModel = new VaccinationhistoryModel();
-        //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistoryForPetId($a);
         $this->view('veterinarian/vaccinationhistory', $data);
 
@@ -17,6 +17,7 @@ class VaccinationHistory
     
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Veterinarian']);
         $userdataModel = new VeterinariansModel();
 		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
 
@@ -31,6 +32,7 @@ class VaccinationHistory
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Veterinarian']);
         $userdataModel = new VeterinariansModel();
 		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
 
@@ -43,6 +45,7 @@ class VaccinationHistory
 
     public function viewVaccinationHistory(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Veterinarian']);
         $userdataModel = new VeterinariansModel();
 		$data['userdata'] = $userdataModel->getVetRoleDataById($_SESSION['USER']->id);
         

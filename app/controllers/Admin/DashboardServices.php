@@ -9,6 +9,7 @@ class DashboardServices
 
 	public function index()
 	{
+
 		$data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
 		$daycaresbookingusermodel = new DaycarebookinguserModel();
 		$appointmentsmodel = new Appointmentsmodel();
@@ -33,6 +34,12 @@ class DashboardServices
 		$data['week4Income'] = $week4Income;
 	
 		$this->view('admin/dashboardservices', $data);
+
+
+		AuthorizationMiddleware::authorize(['Admin']);
+
+		$this->view('admin/dashboardservices',$data);
+
 	}
 	
 

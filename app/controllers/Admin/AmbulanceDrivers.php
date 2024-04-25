@@ -6,6 +6,7 @@ class AmbulanceDrivers
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        AuthorizationMiddleware::authorize(['Admin']);
 		$ambulancedriversModel = new AmbulanceDriversModel();
 		$data['ambulancedrivers'] = $ambulancedriversModel->getAllAmbulanceDrivers();
         
@@ -15,6 +16,7 @@ class AmbulanceDrivers
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $success = $ambulancedriversModel->updateAmbulanceDriver($a, $_POST);
         if($success){
@@ -31,6 +33,7 @@ class AmbulanceDrivers
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $success = $ambulancedriversModel->addAmbulanceDriver($_POST);
         if($success){
@@ -48,6 +51,7 @@ class AmbulanceDrivers
     
 
     public function viewAmbulanceDriver(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $data['ambulancedrivers'] = $ambulancedriversModel->getAmbulanceDriverById($a);
         // show($a);
@@ -57,6 +61,7 @@ class AmbulanceDrivers
     }
     public function deactivate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $success = $ambulancedriversModel->deactivateAmbulanceDriver($id);
 
@@ -74,6 +79,7 @@ class AmbulanceDrivers
 
     public function activate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $ambulancedriversModel = new AmbulanceDriversModel();
         $success = $ambulancedriversModel->activateAmbulanceDriver($id);
 
@@ -91,6 +97,7 @@ class AmbulanceDrivers
 
     public function search(): void
     {
+        
         $ambulancedriversModel = new AmbulanceDriversModel();
         $searchTerm = $_POST['search'] ?? '';
         $ambulancedrivers = $ambulancedriversModel->search($searchTerm);

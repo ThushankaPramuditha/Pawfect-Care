@@ -6,6 +6,7 @@ class MedicalStaff
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        AuthorizationMiddleware::authorize(['Admin']);
 		$medicalstaffModel = new MedicalStaffModel();
 		// show($medicalstaffModel->findAll());
 		$data['medstaff'] = $medicalstaffModel->getAllMedicalStaff();
@@ -16,6 +17,7 @@ class MedicalStaff
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->updateMedicalStaff($a, $_POST);
         if($success){
@@ -32,6 +34,7 @@ class MedicalStaff
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->addMedicalStaff($_POST);
         if($success){
@@ -47,6 +50,7 @@ class MedicalStaff
     }
 
     public function viewMedicalStaff(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $medicalstaffModel = new MedicalStaffModel();
         $data['medstaff'] = $medicalstaffModel->getMedicalStaffById($a);
         // show($a);
@@ -56,6 +60,7 @@ class MedicalStaff
     }
     public function deactivate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->deactivateMedicalStaff($id);
         if($success){
@@ -72,6 +77,7 @@ class MedicalStaff
 
     public function activate(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $medicalstaffModel = new MedicalStaffModel();
         $success = $medicalstaffModel->activateMedicalStaff($id);
 

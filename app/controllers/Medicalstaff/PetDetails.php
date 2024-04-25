@@ -6,6 +6,7 @@ class Petdetails
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
         $data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
@@ -22,6 +23,7 @@ class Petdetails
     }
 
     public function calculateAge($birthday) {
+        AuthorizationMiddleware::authorize(['Medical Staff']);
         $dateOfBirth = new DateTime($birthday);
         $today = new DateTime('today');
         return $dateOfBirth->diff($today)->y;

@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/tables.css">
 </head>
 
+<style>
+ .finish-button {
+    background: #FFFF80; /* Very light yellow */
+    border: 1px; /* Matching border color */
+    border-radius: 5px;
+    color:#FF8000; /* Text color */
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.finish-button:hover {
+    background: #ffff00; /* Yellow color on hover */
+    color: #ffffff; /* White text color on hover */
+}
+    
+
+    </style>
 <body>
 
 <?php
@@ -67,7 +84,7 @@ function getPetName($pdo, $pet_id)
                 <th>Status</th>
                 <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
-                <th class="finished-action-buttons"></th>
+                <th class="finish-action-buttons"></th>
                 
             </tr>
         </thead>
@@ -93,7 +110,7 @@ function getPetName($pdo, $pet_id)
                             <button class="deactivate-button">Decline</button>
                         </td>
                         <td class="finish-action-buttons">
-                            <button class="finished-button">Finish</button>
+                            <button class="finish-button">Finish</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

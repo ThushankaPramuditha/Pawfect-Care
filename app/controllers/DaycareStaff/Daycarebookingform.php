@@ -73,7 +73,6 @@ public function accept(string $id): void
     } 
     
 
-    //redirect to daycarebooking
     redirect('daycarestaff/daycarebooking');
 }
 
@@ -101,7 +100,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
     }
 }
 
-	public function finished(string $id): void
+	public function finish(string $id): void
 	{
         AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$daycarebookinguserModel = new DaycarebookinguserModel();
@@ -112,7 +111,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 		} else {
 			$_SESSION['error'] = "Failed to finish daycare booking!";
 		}
-		redirect('daycarestaff/daycarebooking');
+		redirect('daycarestaff/daycarebookingform');
 	}
     public function search(): void
     {

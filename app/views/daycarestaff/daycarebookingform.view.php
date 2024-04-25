@@ -63,26 +63,7 @@
             border-radius: 5px;
         }
 
-        
-        .modal-form .finished-button {
-            display: block;
-            background-color: #c6ff0b;
-            width: fit-content;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
-            
-        }
 
-        .modal-form .modal-content-delete .finished-button:hover {
-            background-color: #b5e20a;
-            color: #fafbf6;
-        }
         ::-webkit-scrollbar{
             width: 0.6rem;
         }
@@ -166,13 +147,13 @@
 
 
     <!-- Finished Booking Modal -->
-    <div class="modal-form" id="finished-modal">
+    <div class="modal-form" id="finish-modal">
         <div class="modal-content-delete">
             <h1>Daycare Time Over</h1>
             <p>Daycare Time will be over </p>
             <div class="flex-container">
                 <button class="reject">Cancel</button>
-                <a id="finished-booking" href=""><button class="d-button">Finish</button></a>
+                <a id="finish-booking" href=""><button class="d-button" >Finish</button></a>
             </div>
         </div>
 
@@ -182,7 +163,7 @@
             $('#search').on('keyup', function(){
                 var searchTerm = $(this).val();
                 $.ajax({
-                url: "<?php echo ROOT ?>/Daycarebookingform/search",
+                url: "<?php echo ROOT ?>/Daycarestaff/Daycarebookingform/search",
                 type: "POST",
                 data: {search: searchTerm},
                 success: function(data) {
@@ -194,16 +175,16 @@
             
             $('body').on('click', '.deactivate-button', function(){
                 var id = $(this).closest('tr').attr('key');
-                openDeclineeModal(id);
+                openDeclineModal(id);
             });
             $('body').on('click', '.activate-button', function(){
                 var id = $(this).closest('tr').attr('key');
                 openAcceptModal(id);
             });
 
-            $('body').on('click', '.finished-button', function(){
+            $('body').on('click', '.finish-button', function(){
                 var id = $(this).closest('tr').attr('key');
-                openFinishedModal(id);
+                openFinishModal(id);
             });
         });
         // $(document).ready(function() {
@@ -232,7 +213,7 @@
          //check
         var declineModal = document.getElementById("decline-modal");
         var acceptModal = document.getElementById("accept-modal");
-        var finishedModel = document.getElementById("finished-modal");
+        var finishModal = document.getElementById("finish-modal");
 
 
          // Get the <span> element that closes the modal
@@ -242,7 +223,7 @@
         function openAcceptModal(id) {
             console.log(id);
             acceptModal.style.display = "block";
-            document.getElementById("accept-booking").href = `<?php echo ROOT?>/Daycarebookingform/accept/${id}`;
+            document.getElementById("accept-booking").href = `<?php echo ROOT?>/Daycarestaff/Daycarebookingform/accept/${id}`;
 
             span.onclick = function() {
                 modal.style.display = "none";
@@ -253,23 +234,24 @@
         function openDeclineModal(id) {
             console.log(id);
             declineModal.style.display = "block";
-            document.getElementById("decline-booking").href = `<?php echo ROOT?>/Daycarebookingform/decline/${id}`;
+            document.getElementById("decline-booking").href = `<?php echo ROOT?>/Daycarestaff/Daycarebookingform/decline/${id}`;
 
             span.onclick = function() {
                 modal.style.display = "none";
             }
         }
        
-        function openFinishedModal(id) {
+        function openFinishModal(id) {
             console.log(id);
-            finishedModal.style.display = "block";
-            document.getElementById("finished-booking").href = `<?php echo ROOT?>/Daycarebookingform/finished/${id}`;
+            console.log("Open finish modal called with id:", id);
+            console.log("Finish modal:", finishModal);
+            finishModal.style.display = "block"; // Change 'finishModel' to 'finishModal'
+            document.getElementById("finish-booking").href = `<?php echo ROOT?>/Daycarestaff/Daycarebookingform/finish/${id}`;
 
             span.onclick = function() {
                 modal.style.display = "none";
             }
         }
-
         document.querySelectorAll('.activate-button').forEach(function (button) {
             button.addEventListener('click', function () {
                 var id = this.parentElement.parentElement.getAttribute('key');
@@ -287,11 +269,11 @@
             });
         });
 
-        document.querySelectorAll('.finished-button').forEach(function (button) {
+        document.querySelectorAll('.finish-button').forEach(function (button) {
             button.addEventListener('click', function () {
                 var id = this.parentElement.parentElement.getAttribute('key');
                 console.log(id)
-                openFinishedModal(id);
+                openFinishModal(id);
             });
         });
 
@@ -305,6 +287,7 @@
             button.addEventListener('click', function() {
                 declineModal.style.display = "none";
                 acceptModal.style.display = "none";
+                finishModal.style.display = "none";
 
             });
         });
@@ -312,6 +295,7 @@
             button.addEventListener('click', function() {
                 declineModal.style.display = "none";
                 acceptModal.style.display = "none";
+                finishModal.style.display = "none";
 
 
             });

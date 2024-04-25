@@ -6,6 +6,7 @@ class Appointments
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Receptionist']);
         $userdataModel = new ReceptionistsModel();
         $appointmentsModel = new Appointmentsmodel();
         $vetsModel = new VeterinariansModel();
@@ -19,6 +20,7 @@ class Appointments
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Receptionist']);
         $userdataModel = new ReceptionistsModel();
 		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
 
@@ -29,6 +31,7 @@ class Appointments
     }
 
     public function getFreeBookingSlots($vetId) {
+        AuthorizationMiddleware::authorize(['Receptionist']);
         $appointmentModel = new Appointmentsmodel();
         $filledSlots = $appointmentModel->countTodayAppointments($vetId);
         $freeSlots = 3 - $filledSlots;
@@ -39,6 +42,7 @@ class Appointments
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Receptionist']);
         date_default_timezone_set('Asia/Colombo');
 
         $userdataModel = new Receptionistsmodel();
@@ -61,6 +65,7 @@ class Appointments
     }
 
     public function viewAppointments(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Receptionist']);
         $userdataModel = new Receptionistsmodel();
 		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
         

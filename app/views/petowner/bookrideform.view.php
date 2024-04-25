@@ -289,6 +289,6 @@ map.on('click', function(e) {
 
     </script>
 
-</script>
+
 </body>
 </html>

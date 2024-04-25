@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
     
     <title>Dashboard</title>
     <style>
@@ -40,7 +47,7 @@
     appearance: 0;
     border: 0;
     text-decoration: none;
-    box-sizing: border-box;
+   
 }
 
 html{
@@ -484,8 +491,6 @@ main table tbody tr td:last-child,
 main table tbody tr td:first-child {
     display: none;
 }
-
-
    
 }
 
@@ -613,7 +618,9 @@ main table tbody tr td:first-child {
     background-color: var(--color-white);
 }
 
-        </style>
+#map { height: 350px; width:300px;}
+
+</style>
           
 
 </head>
@@ -628,134 +635,24 @@ main table tbody tr td:first-child {
         <!-- Main Content -->
 
         <main>
-            <!-- <h1>Analytics</h1> -->
-            <!-- Analyses -->
-            <div class="analyse" style="margin-top:50px;">
+            <!-- <h1>Analytics</h1> --> 
+           <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Daycare Bookings</p>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingtoday; ?></p>
-
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Transport Bookings</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
                         </div>
                     </div>
                 </div>
-          
-            
-              <!-- filled slots -->
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;">Accepted Bookings</p>
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsaccepted; ?></p>
-
-                        </div>
-                    </div>
-                </div>
-             
-
-               <!-- free slots -->
-                 <div class="sales">
-                      <div class="status">
-                            <div class="info">
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Declined Bookings</p>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsdeclined; ?></p>
-                            </div>
-                      </div>
-                 </div>
-                </div>
+    
+            </div> 
             <!-- End of Analyses -->
 
-            <!-- New Users Section -->
-         
-    <div style="margin-top:100px; display:flex; flex-direction:row;">
-      <div>
-        <canvas id="myDonutChart" width="400" height="350"></canvas>
-        <script>
-            // Get the canvas element
-            var ctx = document.getElementById('myDonutChart').getContext('2d');
-
-            // Define data for the chart
-            var data = {
-                labels: ['All Bookings', 'Accepted', 'Decliend'],
-                datasets: [{
-                    label: 'My First Dataset',
- 
-                    //add the bookings data
-                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
-                
-                    backgroundColor: [
-                        //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
-                         
-                        
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
-
-            // Configure options for the chart
-            var options = {
-                cutout: 70, // Change this value to adjust the size of the hole in the middle
-                responsive: false, // Disable responsiveness for fixed size
-            };
-
-            // Create the donut chart
-            var myDonutChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: data,
-                options: options
-            });
-        </script>
+             <!-- New Users Section  -->
+        
        
-        </div>
-        <div style="margin-left:50px;">
-        <canvas id="myBarChart" width="300" height="350"></canvas>
-        <script>
-           
-            // Get the canvas element
-            var ctx = document.getElementById('myBarChart').getContext('2d');
-             //function to get week1, week2, week3, week4 bookings
-            
-            // Define data for the chart
-            var data = {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                datasets: [{
-                    label: 'Bookings in a Week',
-                    data : [10, 20, 30, 40],
-                   
-                    backgroundColor: [
-                        //colors like purple , rose and blue,red
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 0, 65)'  
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
 
-            // Configure options for the chart
-            var options = {
-                responsive: false, // Disable responsiveness for fixed size
-            };
-
-            // Create the bar chart
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: options
-            });
-
-
-        </script>
-        </div>
-    </div>
-
-    
-            
         </main>
         <!-- End of Main Content -->
 
@@ -789,28 +686,28 @@ main table tbody tr td:first-child {
 
 
 <div>
-  
-    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-    <?php   foreach ($data['daycarebookings'] as $daycarebooking)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
-            <div class="notification-item">
-                <div class="info">
-                    <h3>Daycare Booking</h3>
-                    <small class="text-muted">New Booking</small>
-                    <p>
-                    <?php echo 'pet_id:' . $daycarebooking->pet_id . ' has been booked for daycare on ' . $daycarebooking->drop_off_date . ' at ' . $daycarebooking->drop_off_time . ' to ' . $daycarebooking->pick_up_time; ?>
 
-                    </p>
+    <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <?php foreach ($ambulancebookings as $ambulance): ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                <div class="notification-item">
+                    <div class="info">
+                        <h3>Transport Bookings</h3>
+                        <small class="text-muted">New Booking</small>
+                        <p>
+                            <?php echo 'pet_id:' . $ambulance->pet_id . ' has been booked an ambulance ride at ' . $ambulance->date_time . 'for the location ' . $ambulance->pickup_lat . ', ' . $ambulance->pickup_lng ?>
+                        </p>
+                        <div style="margin-left:100px; margin-top:2px;">
+                        <button style="background-color:rgb(153, 102, 255); padding: 5px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $ambulance->pet_id ?>&date=<?php echo $ambulance->date_time ?>">View</a></button>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
+
        
         <!-- button to view more bookings path is Daycarebookingform -->
         <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
@@ -838,7 +735,7 @@ const sideMenu = document.querySelector('aside');
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-btn');
 
-// const darkMode = document.querySelector('.dark-mode');
+
 
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';
@@ -848,8 +745,15 @@ closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
 
+ //leaflet map with osm tile layer
+ //set to colombo
+    var mymap = L.map('map').setView([6.9271, 79.8612], 13);
+    var tilelayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: "OSM"}).addTo(mymap);
 
+    //marker
+    var marker = L.marker([6.9271, 79.8612]).addTo(mymap);
 
-</script>    
+ 
+    </script>
  </body>
 </html>

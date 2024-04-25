@@ -9,7 +9,6 @@ class Dashboard
         $userId = $_SESSION['USER']->id;
         $petownerModel = new PetownersModel();
         $petsModel = new PetsModel();
-        
         $data['user_id'] = $userId;
         $data['daycareBookings']= $petownerModel->getDaycareBookingsByUserId($userId);
         $data['pets'] = $petsModel->getAllPetsByUserId($userId);

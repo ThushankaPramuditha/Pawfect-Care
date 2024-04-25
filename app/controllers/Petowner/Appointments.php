@@ -6,6 +6,7 @@ class Appointments
     use Controller;
 
     public function saveAppointment() {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
         date_default_timezone_set('Asia/Colombo');
     
         $petId = $_POST['pet_id'];
@@ -28,9 +29,9 @@ class Appointments
     
 
     public function checkAvailability() {
+        AuthorizationMiddleware::authorize(['Pet Owner']);
         date_default_timezone_set('Asia/Colombo');
 
-        
         $vetId = $_POST['vet_id'];
     
         $model = new AppointmentsModel();

@@ -10,8 +10,9 @@ class Home
 	public function index()
 	{
 
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-		$feedbacksModel = new FeedbacksModel();
+		AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);		$feedbacksModel = new FeedbacksModel();
 		$data['feedbacks'] = $feedbacksModel->getPostedFeedbacks();
 
 		$this->view('petowner/home',$data);

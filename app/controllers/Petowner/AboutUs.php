@@ -9,8 +9,9 @@ class Aboutus
 
 	public function index()
 	{
-
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
+		AuthorizationMiddleware::authorize(['Pet Owner']);
+		$userdataModel = new MedicalStaffModel();
+		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
 		$this->view('petowner/aboutus',$data);
 	}

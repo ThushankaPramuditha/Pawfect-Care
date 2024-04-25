@@ -6,7 +6,7 @@ class Feedbacks
 
 	public function index()
 	{
-
+        AuthorizationMiddleware::authorize(['Admin']);
 		$feedbacksModel = new FeedbacksModel();
 		$data['feedbacks'] = $feedbacksModel->getAllFeedbacks();
 		
@@ -16,6 +16,7 @@ class Feedbacks
 
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $feedbacksModel->updateFeedback($a, $_POST);
 
@@ -24,6 +25,7 @@ class Feedbacks
 
 	public function delete(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $success = $feedbacksModel->deleteFeedback($id, 'id');
 
@@ -43,6 +45,7 @@ class Feedbacks
     }
 
     public function viewFeedback(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $data['feedback'] = $feedbacksModel->getFeedbackById($a);
         $this->view('admin/feedbacks/update', $data);
@@ -50,6 +53,7 @@ class Feedbacks
 
 	public function remove(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $success = $feedbacksModel->removeFeedback($id);
 
@@ -67,6 +71,7 @@ class Feedbacks
     }
     public function post(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $success = $feedbacksModel->postFeedback($id);
 
@@ -83,6 +88,7 @@ class Feedbacks
     }
     public function search(): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $feedbacksModel = new FeedbacksModel();
         $searchTerm = $_POST['search'] ?? '';
         $feedbacks = $feedbacksModel->search($searchTerm);

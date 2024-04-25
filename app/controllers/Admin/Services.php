@@ -6,6 +6,7 @@ class Services
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
         // show($servicesModel->findAll());
         $data['services'] = $servicesModel->getAllServices();
@@ -17,6 +18,7 @@ class Services
 
     public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
         $success = $servicesModel->updateService($a, $_POST);
 
@@ -36,6 +38,7 @@ class Services
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
         $success = $servicesModel->addService($_POST);
 
@@ -53,6 +56,7 @@ class Services
 
     public function delete(string $id): void
     {
+        AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
         $success = $servicesModel->deleteService($id, 'id');
 
@@ -70,6 +74,7 @@ class Services
     }
 
     public function viewService(string $a = '', string $b = '', string $c = ''):void {
+        AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
         $data['service'] = $servicesModel->getServiceById($a);
         $this->view('admin/services/update', $data);

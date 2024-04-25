@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="<?php echo ROOT?>/assets/js/validatepetdetails.js"></script>
 
     <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/panelheader.css">
    
@@ -266,7 +267,7 @@
                     <div  class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet->id; ?>">
                         <div style="display:flex; flex-direction:row; justify-content:space-between;">
                             <h2><?php echo $pet->name; ?></h2>
-                            <button class="edit-button"><a href="<?php echo ROOT ?>/petowner/editpet/<?php echo $pet->id; ?>">Edit Details</a></button>
+                            <button key="<?php echo $pet->id; ?>" class="edit-button">Edit Details</a></button>
                         </div>
                         <div style="display:flex; flex-direction:row;">
                             <div style="margin-top:15px;">
@@ -399,12 +400,6 @@
                     <input type="text" id="breed" name="breed">
                     <div id="error-breed" class="error-message"></div>
                 
-                    <?php
-                 
-                    ?>
-                    <label for="petowner_id">Pet Owner ID:</label>
-                    <input type="text" id="petowner_id" name="petowner_id" value="<?php echo $petowner_id?>" readonly>
-                    <div id="error-petowner_id" class="error-message"></div>
                 </div>
                 <div class="flex-container">
                     <button type="submit" id="add-pet-button">Add Pet</button>
@@ -430,39 +425,10 @@
 
 
 <script>
-    $(document).ready(function(){
-        $('#searchmedhistory').on('keyup', function(){
-            var searchTerm = $(this).val();
-            $.ajax({
-            url: "<?php echo ROOT ?>/Petowner/Dashboard/searchMedHistory",
-            type: "POST",
-            data: {search: searchTerm},
-            success: function(data) {
-                $('tbody').html(data);
-            }
-            });
-        });
-    }); 
-
-    $(document).ready(function(){
-        $('#searchvaccinehistory').on('keyup', function(){
-            var searchTerm = $(this).val();
-            $.ajax({
-            url: "<?php echo ROOT ?>/Petowner/Dashboard/searchVacHistory",
-            type: "POST",
-            data: {search: searchTerm},
-            success: function(data) {
-                $('tbody').html(data);
-            }
-            });
-        });
-    }); 
 
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
     var updateModal = document.getElementById("update-modal");
-    
-
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -497,7 +463,7 @@
     // Event listeners for update buttons click
     document.querySelectorAll('.edit-button').forEach(function (button) {
         button.addEventListener('click', function () {
-            var id = this.parentElement.parentElement.getAttribute('key');
+            var id = this.getAttribute('key');
             openUpdateModal(id);
         });
     });

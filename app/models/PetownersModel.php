@@ -27,6 +27,7 @@ class PetownersModel
         
         return $this->get_row($query, ['id' => $id]);
     }
+ 
     public function getPetownerByUserId($id) {
         $query = "SELECT po.id
         FROM petowners AS po
@@ -35,6 +36,19 @@ class PetownersModel
   
         return $this->query($query, ['id' => $id]);
         
+    }
+
+    public function getDaycareBookingsByUserId($userId) {
+      
+       
+     $query=  "SELECT daycarebookinguser.*, petowners.name AS petowner_name
+                                FROM users
+                                JOIN petowners ON users.id = petowners.user_id
+                                JOIN pets ON petowners.id = pets.petowner_id
+                                JOIN daycarebookinguser ON pets.id = daycarebookinguser.pet_id
+                                WHERE users.id = :userId AND daycarebookinguser.status = 'accepted'";
+        return $this->query($query, ['userId' => $userId]); 
+
     }
 
     public function getPetownerRoleDataById($id) {
@@ -53,6 +67,12 @@ class PetownersModel
     // {
     //     return $this->insert($data);
     // }
+
+    public function petownerCount()
+    {
+        $query = "SELECT COUNT(*) as count FROM petowners";
+        return $this->get_row($query)->count;
+    }
 
     public function addPetowner($data)
     {

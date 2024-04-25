@@ -47,7 +47,7 @@ class DaycarebookinguserModel
         // Insert the new booking
         $inserted = $this->insert($data);
         if ($inserted) {
-            return true; // Booking successfully saved
+            return true; 
         } else {
             return "Failed to save booking.";
         }
@@ -176,6 +176,21 @@ public function searchByDate($date)
                 $bindings = [':id' => $id];
                 $result = $this->query($query, $bindings);
                 return $result;
+            }
+
+            public function countTodayBookings() {
+                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
+                $result = $this->query($query);
+                return count($result);
+  
+            }
+
+            public function getNotifications(){
+            
+                $query = "SELECT * FROM daycarebookinguser";
+                $result = $this->query($query);
+                return $result;
+       
             }
 
         // Define validation rules

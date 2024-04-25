@@ -189,7 +189,49 @@ class AppointmentsModel
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
+       
+    public function counttodayallAppointments(){
+        $today = date('Y-m-d');
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE DATE(date_time) = :today";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
 
+    //I want a function to get incomefrom appointmets for weeek1, week2, week3 week4
+    public function incomeFromAppointmentsForWeek($week) {
+        $startDate = date('Y-m-d', strtotime("first day of this month"));
+        $endDate = date('Y-m-d', strtotime("last day of this month"));
+        $week1 = date('Y-m-d', strtotime("first day of this month"));
+        $week2 = date('Y-m-d', strtotime("first day of this month + 1 week"));
+        $week3 = date('Y-m-d', strtotime("first day of this month + 2 weeks"));
+        $week4 = date('Y-m-d', strtotime("first day of this month + 3 weeks"));
+        //only forweek1,week2,week3 and week4
+        if ($week == 1) {
+            $startDate = $week1;
+            $endDate = $week2;
+        } elseif ($week == 2) {
+            $startDate = $week2;
+            $endDate = $week3;
+        } elseif ($week == 3) {
+            $startDate = $week3;
+            $endDate = $week4;
+        } elseif ($week == 4) {
+            $startDate = $week4;
+            $endDate = date('Y-m-d', strtotime("last day of this month"));
+        }
+
+        $count = $this->countAllAppointments($startDate, $endDate);
+        $income = $count * 400;
+        return $income;
+    }
+    
+
+
+     
+
+    
     
 
     public function updateAppointment($id, array $data)
@@ -201,7 +243,7 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
-
+    
 
     public function validate($data)
     {

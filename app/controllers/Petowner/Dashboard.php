@@ -6,10 +6,20 @@ class Dashboard
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userId = $_SESSION['USER']->id;
+        $petownerModel = new PetownersModel();
+        $petsModel = new PetsModel();
+         
+        $daycareBookings = $petownerModel->getDaycareBookingsByUserId($userId);
+        $pets = $petsModel->getAllPetsByUserId($userId);
+        $petOwnerId = $petownerModel->getPetOwnerById($userId); // Updated variable name
 
-        $petDetailsModel = new PetsModel();
+        $data = [
+            'daycareBookings' => $daycareBookings,
+            'pets' => $pets,
+            'petownerId' => $petOwnerId // Updated variable name
+        ];
 
-        $data['pets'] = $petDetailsModel->getAllPetsByUserId($_SESSION['USER']->id);
         $this->view('petowner/dashboard', $data);
     }
     
@@ -52,6 +62,8 @@ class Dashboard
      
     public function viewPetDetails(string $a = '', string $b = '', string $c = ''):void {
         $petDetailsModel = new PetsModel();
+        //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
+
         $data['pet'] = $petDetailsModel->getPetById($a);
         $this->view('petowner/dashboard/update', $data);
 

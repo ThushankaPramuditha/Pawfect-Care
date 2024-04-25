@@ -6,13 +6,26 @@ class Dashboard
 
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
+        $userId = $_SESSION['USER']->id;
+        $petownerModel = new PetownersModel();
+        $petsModel = new PetsModel();
+         
+        $daycareBookings = $petownerModel->getDaycareBookingsByUserId($userId);
+        $pets = $petsModel->getAllPetsByUserId($userId);
+        $petOwnerId = $petownerModel->getPetOwnerById($userId); // Updated variable name
+
+        $data = [
+            'daycareBookings' => $daycareBookings,
+            'pets' => $pets,
+            'petownerId' => $petOwnerId // Updated variable name
+        ];
 
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         $petDetailsModel = new PetsModel();
 
-        $data['pets'] = $petDetailsModel->getAllPetsByUserId($_SESSION['USER']->id);
+
         $this->view('petowner/dashboard', $data);
     }
     
@@ -65,6 +78,8 @@ class Dashboard
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         
         $petDetailsModel = new PetsModel();
+        //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
+
         $data['pet'] = $petDetailsModel->getPetById($a);
         $this->view('petowner/dashboard/update', $data);
 

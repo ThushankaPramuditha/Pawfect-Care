@@ -4,9 +4,10 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
-
+    <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/panelheader.css">
+   
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -258,32 +259,18 @@
  
         <div class="new-users" style="display:flex; width:70%; margin-left:230px; margin-top:80px;">
             <div class="user-list" style="display:flex; flex-direction:row; gap:0.5rem; ">
-                <?php
-                  
-                  $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
+            <?php
 
-                  // Get the user id from the session
-                  $userId = $_SESSION['USER']->id;
-                  
-                  // Prepare and execute the SQL query to fetch pet details joined with users and petowners
-                  $stmt = $pdo->prepare("SELECT pets.*
-                                        FROM users
-                                        JOIN petowners ON users.id = petowners.user_id
-                                        JOIN pets ON petowners.id = pets.petowner_id
-                                        WHERE users.id = :userId");
-                  $stmt->execute(['userId' => $userId]);
-                  $pets = $stmt->fetchAll();
-                foreach ($pets as $pet) {
-                ?>
-                    <div class="pet" style=" display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet['id']; ?>">
-                        <div style=";display:flex; flex-direction:row; justify-content:space-between; ">
+                 foreach ($data['pets'] as $pet): ?>
+                    <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet['id']; ?>">
+                        <div style="display:flex; flex-direction:row; justify-content:space-between;">
                             <h2><?php echo $pet['name']; ?></h2>
-                            <button class="edit-button"><<?php echo $pet['id']; ?>">Edit Details</a></button>
+                            <button class="edit-button"><a href="<?php echo ROOT ?>/petowner/editpet/<?php echo $pet['id']; ?>">Edit Details</a></button>
                         </div>
                         <div style="display:flex; flex-direction:row;">
-                        <div style="margin-top:15px;">
-                        <img src="<?php echo ROOT ?>/assets/images/doglogo.jpg">
-                        </div>
+                            <div style="margin-top:15px;">
+                                <img src="<?php echo ROOT ?>/assets/images/doglogo.jpg">
+                            </div>
                             <div class="pet-content" style="margin-left:70px; text-align:left;">
                                 <p style="font-size:15px;">Id: <?php echo $pet['id']; ?></p>
                                 <p style="font-size:15px;">Breed: <?php echo $pet['breed']; ?></p>
@@ -291,17 +278,14 @@
                                 <p style="font-size:15px;">Gender: <?php echo $pet['gender']; ?></p>
                             </div>
                         </div>
-
                         <div style="display:flex; flex-direction:row; justify-content:space-between; margin-left:10px;">
                             <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet['id']; ?>">Medical History</a></button>
                             <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet['id']; ?>">Vaccination History</a></button>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
+                <?php endforeach; ?>
+            </div>
                 <div class="new-users" style="display:flex; flex-direction:column;">
-                    <!-- <button style="width:250px; margin-left:35px; margin-top:-200px;"><a href="<?php echo ROOT ?>/petowner/addpet">Add a Pet</a></button> -->
                 </div>
             </div>
         </div>
@@ -314,38 +298,20 @@
                     </span>
            </div>
             <?php 
-            $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-            //select all the daycare bookings that have been accepted for the petowner
-            $userId = $_SESSION['USER']->id;
-                        
-            // Prepare and execute the SQL query to fetch pet details joined with users and petowners
-            $stmt = $pdo->prepare("SELECT daycarebookinguser.* ,petowners.name AS petowner_name
-                                    FROM users
-                                    JOIN petowners ON users.id = petowners.user_id
-                                    JOIN pets ON petowners.id = pets.petowner_id
-                                    JOIN daycarebookinguser ON pets.id = daycarebookinguser.pet_id
-                                    WHERE users.id = :userId AND daycarebookinguser.status = 'accepted'"
-                                );
-            $stmt->execute(['userId' => $userId]);
-            $daycarebookinguser = $stmt->fetchAll();
 
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
                 <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                    <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
+                    <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
                     <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                        <!-- <div class="icon">
-                            <span class="material-icons-sharp">
-                                volume_up
-                            </span>
-                        </div> -->
+                   
                         <div class="notification-item">
                             <div class="info">
                                 <h3>Daycare Booking</h3>
                                 <small class="text-muted">New Booking</small>
                                 <p>
-                                    <?php echo $daycarebookingnotification['petowner_name'];; ?> your booking is accepted <?php echo $daycarebookingnotification['drop_off_date'];?> at <?php echo $daycarebookingnotification['drop_off_time'] ;?> to <?php echo $daycarebookingnotification['pick_up_time'] ;?> 
-                                </p>
+                 <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
+
                             </div>
                         </div>
                     </div>
@@ -353,19 +319,15 @@
              </div>
                     <p style="font-size:20px; font-weight:bolder;">Daycare Booking</p>
                     <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                        <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
+                        <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                            <!-- <div class="icon">
-                                <span class="material-icons-sharp">
-                                    volume_up
-                                </span>
-                            </div> --> 
+                            
                             <div class="notification-item">
                                 <div class="info">
                                     <h3>Daycare Booking</h3>
                                     <small class="text-muted">New Booking</small>
                                     <p>
-                                        <?php echo $daycarebookingnotification['petowner_name'];; ?> your booking is accepted <?php echo $daycarebookingnotification['drop_off_date'];?> at <?php echo $daycarebookingnotification['drop_off_time'] ;?> to <?php echo $daycarebookingnotification['pick_up_time'] ;?> 
+                                    <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
                                     </p>
                                 </div>
                             </div>
@@ -374,7 +336,7 @@
                     </div>
             <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
             <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
+                <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
                     <!-- <div class="icon">
                         <span class="material-icons-sharp">
@@ -386,7 +348,7 @@
                             <h3>Daycare Booking</h3>
                             <small class="text-muted">New Booking</small>
                             <p>
-                                <?php echo $daycarebookingnotification['petowner_name'];; ?> your booking is accepted <?php echo $daycarebookingnotification['drop_off_date'];?> at <?php echo $daycarebookingnotification['drop_off_time'] ;?> to <?php echo $daycarebookingnotification['pick_up_time'] ;?> 
+                            <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
                             </p>
                         </div>
                     </div>
@@ -454,14 +416,7 @@
                     <div id="error-breed" class="error-message"></div>
                 
                     <?php
-                    $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                    $userId = $_SESSION['USER']->id;
-                    $stmt = $pdo->prepare("SELECT petowners.id
-                                        FROM users
-                                        JOIN petowners ON users.id = petowners.user_id
-                                        WHERE users.id = :userId");
-                    $stmt->execute(['userId' => $userId]);
-                    $petowner_id = $stmt->fetchColumn();
+                 
                     ?>
                     <label for="petowner_id">Pet Owner ID:</label>
                     <input type="text" id="petowner_id" name="petowner_id" value="<?php echo $petowner_id?>" readonly>

@@ -39,9 +39,10 @@ class Dashboard
         $petDetailsModel = new PetsModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $success = $petDetailsModel->addPet($_POST);
+            $_POST['petowner_id'] = $data['userdata']->id;
+            $success = $petDetailsModel->addPet($_POST);
         }
-        
+    
         if($success){
             $_SESSION['flash'] = ['success' => 'Pet added successfully!'];
             header('Location: ' . ROOT . '/petowner/dashboard');
@@ -55,6 +56,7 @@ class Dashboard
     }
 
     public function updatePet(string $id){
+        
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
@@ -83,6 +85,9 @@ class Dashboard
         //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
 
         $data['pet'] = $petDetailsModel->getPetById($a);
+        
+
+
         $this->view('petowner/dashboard/update', $data);
 
     }

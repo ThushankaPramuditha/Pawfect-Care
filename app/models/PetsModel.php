@@ -60,8 +60,8 @@ class PetsModel
                   FROM pets AS p
                   JOIN petowners AS po ON p.petowner_id = po.id
                   JOIN users AS u ON po.user_id = u.id
-                  WHERE u.id = :id";
-        
+                  WHERE p.id = :id";
+       
         return $this->get_row($query, ['id' => $id]);
     }
     
@@ -76,6 +76,7 @@ class PetsModel
         $data = array_filter($data, function ($key) {
             return in_array($key, $this->allowedColumns);
         }, ARRAY_FILTER_USE_KEY);
+    
         return $this->update($id, $data, 'id');
     }
 

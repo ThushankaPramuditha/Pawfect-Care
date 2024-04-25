@@ -9,6 +9,7 @@ class EditProfile
 
 	public function index()
 	{
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$userdataModel = new DaycareStaffModel();
 		$data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
 
@@ -19,6 +20,7 @@ class EditProfile
 
 	public function update(string $a = '', string $b = '', string $c = ''): void
     {
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
         $daycarestaffModel = new DaycareStaffModel();
         $success = $daycarestaffModel->updateDaycareStaff($a, $_POST);
 		if($success){

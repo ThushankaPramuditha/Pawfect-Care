@@ -6,7 +6,7 @@ class VaccinationhistoryModel
     use Model;
 
     protected $table = 'vaccinations';
-    protected $allowedColumns = ['id','appointment_id','weight','temperature','vaccine_name','serial_no','due_date','remarks'];
+    protected $allowedColumns = ['appointment_id','weight','temperature','vaccine_name','serial_no','due_date','remarks'];
 
      //CHECK THIS ADD VACCHISTORY PART
 
@@ -220,6 +220,42 @@ class VaccinationhistoryModel
     
         return $this->update($id, $data, 'id');
     }
+
+    /*public function search($pet_id , $term)
+    {
+        $term = "%{$term}%";
+
+        $query = "SELECT
+                    DATE(a.date_time) AS date,
+                    vc.appointment_id,
+                    vc.id,
+                    p.id AS pet_id,
+                    vc.weight,
+                    vc.temperature,
+                    vc.vaccine_name,
+                    vc.serial_no,
+                    v.name AS administered_by,
+                    vc.due_date,
+                    vc.remarks
+                FROM
+                    vaccinations vc
+                JOIN
+                    appointments a ON vc.appointment_id = a.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id 
+                WHERE a.pet_id = :pet_id AND
+                    (DATE(a.date_time) = :term OR
+                    vc.vaccine_name = :term OR
+                    vc.serial_no = :term
+                    v.name = :term)
+                ORDER BY a.id ASC";
+
+        return $this->query($query, ['pet_id' => $pet_id,'term' => $term]);
+       
+    }*/
+
     
     
     /*public function deleteVaccinationHistory($id)

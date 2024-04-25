@@ -54,7 +54,8 @@ class AppointmentsModel
         JOIN
             veterinarians v ON a.vet_id = v.id
         WHERE
-            DATE(a.date_time) = :current_date";
+            DATE(a.date_time) = :current_date
+        ORDER BY a.id ASC";
 
         // Bind the current date parameter to the query
         $data = array(':current_date' => $currentDate);
@@ -86,7 +87,8 @@ class AppointmentsModel
         WHERE
             DATE(a.date_time) = :current_date
             AND
-            a.vet_id = :vet_id";
+            a.vet_id = :vet_id
+        ORDER BY a.id ASC";
 
         // Bind the current date and vet_id parameters to the query
         $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
@@ -122,7 +124,8 @@ class AppointmentsModel
         JOIN
             veterinarians v ON a.vet_id = v.id
         WHERE
-            DATE(a.date_time) = :current_date";
+            DATE(a.date_time) = :current_date
+        ORDER BY a.id ASC";
 
         // Bind the current date parameter to the query
         $data = array(':current_date' => $currentDate);
@@ -282,7 +285,45 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
-    
+
+
+    /*public function searchForMedStaff($term)
+    {
+        $term = "%{$term}%";
+        
+        $currentDate = date('Y-m-d');
+        $query = "SELECT
+                a.id,
+                a.date_time,
+                a.patient_no,
+                a.pet_id,
+                p.name AS pet_name,
+                po.name AS petowner,
+                po.contact,
+                v.name AS vet_name,
+                a.status
+                FROM
+                    appointments a
+                JOIN
+                    pets p ON a.pet_id = p.id
+                JOIN
+                    petowners po ON p.petowner_id = po.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                WHERE
+                    DATE(a.date_time) = :current_date AND
+                    (p.name LIKE :term OR
+                    po.contact LIKE :term OR
+                    v.name LIKE :term OR
+                    a.status LIKE :term)
+                ORDER BY a.id ASC";
+
+                // Bind the parameters to the query
+                $data = array(':current_date' => $currentDate,':term' => $term);
+        
+        return $this->query($query, $data);
+    }*/
+
 
     public function validate($data)
     {

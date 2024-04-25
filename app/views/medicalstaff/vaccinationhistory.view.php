@@ -49,38 +49,38 @@
                     <input type="date" id="date" name="date" required><br>
 
                     <label for="patient no">Patient No:</label>
-                    <input type="text" id="patient_no" name="patient_no" required><br>
+                    <input type="text" id="patient_no" name="patient_no"><br>
                     <div id="error-patient_no" class="error-message"></div>
 
                     <label for="weight">Weight:</label>
-                    <input type="text" id="weight" name="weight" required><br>
+                    <input type="text" id="weight" name="weight"><br>
                     <div id="error-weight" class="error-message"></div>
 
                     <label for="temperature">Temperature:</label>
-                    <input type="text" id="temperature" name="temperature" required><br>
+                    <input type="text" id="temperature" name="temperature"><br>
                     <div id="error-temperature" class="error-message"></div>
 
                     <label for="vaccine name">Vaccine Name:</label>
-                    <input type="text" id="vaccine_name" name="vaccine_name" required><br>
+                    <input type="text" id="vaccine_name" name="vaccine_name"><br>
                     <div id="error-vaccine_name" class="error-message"></div>
 
                 </div>
                 <div class="column">
 
                     <label for="serial no">Serial No:</label>
-                    <input type="text" id="serial_no" name="serial_no" required><br>
+                    <input type="text" id="serial_no" name="serial_no"><br>
                     <div id="error-serial_no" class="error-message"></div>
 
                     <label for="administered by">Administered By:</label>
-                    <input type="text" id="administered_by" name="vet_name" required><br>
+                    <input type="text" id="administered_by" name="vet_name"><br>
                     <div id="error-administered_by" class="error-message"></div>
 
                     <label for="due date">Next Due Date:</label>
-                    <input type="date" id="due_date" name="due_date" required><br>
+                    <input type="date" id="due_date" name="due_date"><br>
                     <div id="error-due_date" class="error-message"></div>
 
                     <label for="remarks">Remarks:</label>
-                    <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;" required></textarea><br>
+                    <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;"></textarea><br>
 
                 </div>
                 <div class="flex-container">
@@ -117,6 +117,36 @@
 
 
 <script>
+
+            /*$(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); // Get the search term from the input field
+                    var searchTerm = $(this).val();
+                    var petId = <?php echo json_encode($vaccinationhistory->pet_id); ?>;
+                    
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/search",
+                        type: "POST",
+                        data: { pet_id: petId,search: searchTerm  }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                    console.log(searchTerm)
+                });
+
+                // to update when filtered by search
+                $('body').on('click', '.edit-icon', function(){
+                    var Id = $(this).closest('tr').attr('key');
+                    openUpdateModal(Id,petId);
+                });
+            });*/
+
+
+
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
     var updateModal = document.getElementById("update-modal");

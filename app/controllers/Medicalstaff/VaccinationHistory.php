@@ -32,7 +32,6 @@ class VaccinationHistory
     }
 
    
-
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         AuthorizationMiddleware::authorize(['Medical Staff']);

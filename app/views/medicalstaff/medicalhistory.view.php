@@ -20,7 +20,7 @@
     <div class="panel-header">
             <button class="add-new-button">Add New</button>
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search treatment...">
+            <input type="text" id="search" data-pet-id="<?= $medicalhistory->pet_id ?>" placeholder="Search treatment...">
                     <button class="search-button">Search</button>
                 </div>
             
@@ -47,37 +47,37 @@
                             <input type="date" id="date" name="date" required><br>
 
                             <label for="patient no">Patient No:</label>
-                            <input type="text" id="patient_no" name="patient_no" required><br>
+                            <input type="text" id="patient_no" name="patient_no" ><br>
                             <div id="error-patient_no" class="error-message"></div>
 
                             <label for="weight">Weight:</label>
-                            <input type="text" id="weight" name="weight" required><br>
+                            <input type="text" id="weight" name="weight" ><br>
                             <div id="error-weight" class="error-message"></div>
 
                             <label for="temperature">Temperature:</label>
-                            <input type="text" id="temperature" name="temperature" required><br>
+                            <input type="text" id="temperature" name="temperature"><br>
                             <div id="error-temperature" class="error-message"></div>
 
                             <label for="medical condition">Medical Condition:</label>
-                            <input type="text" id="med_condition" name="med_condition" required><br>
+                            <input type="text" id="med_condition" name="med_condition"><br>
                             <div id="error-med_condition" class="error-message"></div>
 
                         </div>
                         <div class ="column">
                             <label for="treatment">Treatment:</label>
-                            <input type="text" id="treatment" name="treatment" required><br>
+                            <input type="text" id="treatment" name="treatment"><br>
                             <div id="error-treatment" class="error-message"></div>
 
                             <label for="prescription">Prescription:</label>
-                            <input type="text" id="prescription" name="prescription" required><br>
+                            <input type="text" id="prescription" name="prescription"><br>
                             <div id="error-prescription" class="error-message"></div>
 
                             <label for="treated by">Treated By:</label>
-                            <input type="text" id="treated_by" name="vet_name" required><br>
+                            <input type="text" id="treated_by" name="vet_name"><br>
                             <div id="error-treated_by" class="error-message"></div>
 
                             <label for="remarks">Remarks:</label>
-                            <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;" required></textarea><br>
+                            <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;"></textarea><br>
                         </div>
 
                             <div class="flex-container">
@@ -114,6 +114,38 @@
     </div>-->
 
     <script>
+
+            /*$(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('click', function(){
+                    //var searchTerm = $('#search').val(); // Get the search term from the input field
+                    var searchTerm = $(this).val();
+                    
+                    //var petId = <!?php echo json_encode($medicalhistory->pet_id); ?>;
+                    var petId = $('#search').data('pet-id');// Retrieve the pet ID from the input element
+
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Medicalstaff/MedicalHistory/search",
+                        type: "POST",
+                        data: { pet_id: petId,search: searchTerm  }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                    console.log(searchTerm)
+                });
+
+                // to update when filtered by search
+                $('body').on('click', '.edit-icon', function(){
+                    var Id = $(this).closest('tr').attr('key');
+                    openUpdateModal(Id,petId);
+                });
+            });*/
+
+
+
             // Get the modal elements
             var addModal = document.getElementById("add-modal");
             var updateModal = document.getElementById("update-modal");
@@ -124,6 +156,7 @@
 
             // Function to open add form modal
             function openAddModal() {
+                console.log('dsdbff'); 
                 addModal.style.display = "block";
             }
 
@@ -140,8 +173,7 @@
                 });
 
                 setTimeout(updateFormInit, 1000);
-
-            // to close the modal
+                // to close the modal
                 span.onclick = function() {
                     updateModal.style.display = "none";
                 }
@@ -169,15 +201,15 @@
             window.addEventListener('DOMContentLoaded', setInitialDateTime);*/
 
 
-            // Event listener for add button click
+            //Event listener for add button click
             document.querySelector('.add-new-button').addEventListener('click', function () {
             openAddModal();
             });
 
             document.querySelectorAll('.edit-icon').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var Id = this.getAttribute('id');
-                    var petId = this.getAttribute('pet-id');
+                    var Id = this.parentElement.parentElement.getAttribute('id');
+                    var petId = this.parentElement.parentElement.getAttribute('pet-id');
                     openUpdateModal(Id, petId);
                 });
             });
@@ -237,6 +269,7 @@
 
 
                 if (!isValid) {
+                    console.log("dvnbfb");
                     Swal.fire({
                         icon: 'error',
                         title: 'Validation Error',
@@ -284,15 +317,29 @@
                 //isValid = validateUpdatePrescription() && isValid;
 
                 if (!isValid) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Validation Error',
-                        html: "Please correct the errors before submitting.",
-                    });
-                    return false;
-                }
-                return true;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    html: "Please correct the errors before submitting.",
+                });
+                return false;
             }
+            return true;
+        }
+        //sweeetalert for validation SUCCESS and ERROR
+        window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+                if (flash.success) {
+                    Swal.fire('Success', flash.success, 'success');
+                } else if (flash.error) {
+                    Swal.fire('Error', flash.error, 'error');
+                }
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
+        
+
             
         </script>
     </body>

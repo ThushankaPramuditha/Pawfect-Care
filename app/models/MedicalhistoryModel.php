@@ -5,7 +5,7 @@ class MedicalhistoryModel
     use Model;
 
     protected $table = 'treatments';
-    protected $allowedColumns = ['id','appointment_id','weight','temperature','med_condition','treatment','prescription','remarks'];
+    protected $allowedColumns = ['appointment_id','weight','temperature','med_condition','treatment','prescription','remarks'];
 
     /*public function getAllMedicalHistory()
     {
@@ -221,6 +221,41 @@ class MedicalhistoryModel
     {
         return $this->delete($id);
     }*/
+
+    /*public function search($pet_id , $term)
+    {
+        $term = "%{$term}%";
+
+        $query = "SELECT
+                DATE(a.date_time) AS date,
+                p.id AS pet_id,
+                t.id,
+                t.appointment_id,
+                t.weight,
+                t.temperature,
+                t.med_condition,
+                t.treatment,
+                t.prescription,
+                v.name AS treated_by,
+                t.remarks
+                FROM
+                    treatments t
+                JOIN
+                    appointments a ON t.appointment_id = a.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id
+                WHERE a.pet_id = :pet_id AND
+                    (DATE(a.date_time) = :term OR
+                    t.med_condition = :term OR
+                    v.name = :term)
+                ORDER BY a.id ASC";
+
+        return $this->query($query, ['pet_id' => $pet_id,'term' => $term]);
+       
+    }*/
+
 
         
     public function validate($data)

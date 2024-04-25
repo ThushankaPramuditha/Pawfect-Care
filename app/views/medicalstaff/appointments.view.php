@@ -17,12 +17,30 @@
             <div class="search-bar">
                     <input type="text" id="search" placeholder="Search appointment...">
                     <button class="search-button">Search</button>
-                </div>
+            </div>
             
     </header>
-        </div>
-        <?php include '../app/views/components/tables/appointmentviewonlytable.php'; ?> 
     </div>
+    <?php include '../app/views/components/tables/appointmentviewonlytable.php'; ?> 
+</div>
 </div>
 </body>
 </html>
+
+<!--add models-->
+
+<script>
+     $(document).ready(function(){
+            $('#search').on('keyup', function(){
+                var searchTerm = $(this).val();
+                $.ajax({
+                url: "<?php echo ROOT ?>/Medicalstaff/Appointments/search",
+                type: "POST",
+                data: {search: searchTerm},
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+                });
+            });
+     });
+</script>

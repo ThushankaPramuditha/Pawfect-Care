@@ -793,11 +793,7 @@ main table tbody tr td:first-child {
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
     <?php   foreach ($data['daycarebookings'] as $daycarebooking)  { ?>
          <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
+         
             <div class="notification-item">
                 <div class="info">
                     <h3>Daycare Booking</h3>

@@ -261,26 +261,26 @@
             <div class="user-list" style="display:flex; flex-direction:row; gap:0.5rem; ">
             <?php
 
-                 foreach ($data['pets'] as $pet): ?>
-                    <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet['id']; ?>">
+                 foreach ($pets as $pet): ?>
+                    <div class="pet" style="display:flex; flex-direction:column; margin-top:10px; margin-bottom:1px;" id="pet_<?php echo $pet->id; ?>">
                         <div style="display:flex; flex-direction:row; justify-content:space-between;">
-                            <h2><?php echo $pet['name']; ?></h2>
-                            <button class="edit-button"><a href="<?php echo ROOT ?>/petowner/editpet/<?php echo $pet['id']; ?>">Edit Details</a></button>
+                            <h2><?php echo $pet->name; ?></h2>
+                            <button class="edit-button"><a href="<?php echo ROOT ?>/petowner/editpet/<?php echo $pet->id; ?>">Edit Details</a></button>
                         </div>
                         <div style="display:flex; flex-direction:row;">
                             <div style="margin-top:15px;">
                                 <img src="<?php echo ROOT ?>/assets/images/doglogo.jpg">
                             </div>
                             <div class="pet-content" style="margin-left:70px; text-align:left;">
-                                <p style="font-size:15px;">Id: <?php echo $pet['id']; ?></p>
-                                <p style="font-size:15px;">Breed: <?php echo $pet['breed']; ?></p>
-                                <p style="font-size:15px;">Date of Birth: <?php echo $pet['birthday']; ?></p>
-                                <p style="font-size:15px;">Gender: <?php echo $pet['gender']; ?></p>
+                                <p style="font-size:15px;">Id: <?php echo $pet->id; ?></p>
+                                <p style="font-size:15px;">Breed: <?php echo $pet->breed; ?></p>
+                                <p style="font-size:15px;">Date of Birth: <?php echo $pet->birthday; ?></p>
+                                <p style="font-size:15px;">Gender: <?php echo $pet->gender; ?></p>
                             </div>
                         </div>
                         <div style="display:flex; flex-direction:row; justify-content:space-between; margin-left:10px;">
-                            <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet['id']; ?>">Medical History</a></button>
-                            <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet['id']; ?>">Vaccination History</a></button>
+                            <button><a href="<?php echo ROOT ?>/petowner/petmedicalhistory/<?php echo $pet->id; ?>">Medical History</a></button>
+                            <button><a href="<?php echo ROOT ?>/petowner/petvaccinationhistory/<?php echo $pet->id; ?>">Vaccination History</a></button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -288,7 +288,6 @@
                 <div class="new-users" style="display:flex; flex-direction:column;">
                 </div>
             </div>
-        </div>
 
         <div class="announcement" style="display:flex; flex-direction:column; margin-top:15px;">
             <div>

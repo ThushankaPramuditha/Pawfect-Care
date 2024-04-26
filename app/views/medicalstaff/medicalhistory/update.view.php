@@ -1,4 +1,4 @@
-<form id="updated-form" action="<?php echo ROOT ?>/MedicalStaff/MedicalHistory/update/<?php echo $medicalhistory->id; ?>" method="post">
+<form id="updated-form" action="<?php echo ROOT?>/Medicalstaff/MedicalHistory/update/<?php echo $medicalhistory->id; ?>" method="post">
 
                     <!--div class="column"-->
 

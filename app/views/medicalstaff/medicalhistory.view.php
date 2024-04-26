@@ -19,14 +19,20 @@
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header">
             <button class="add-new-button">Add New</button>
-            <div class="search-bar">
-            <input type="text" id="search" data-pet-id="<?= $medicalhistory->pet_id ?>" placeholder="Search treatment...">
-                    <button class="search-button">Search</button>
-                </div>
+
+            <?php if (!empty($medicalhistory)): ?>
+            <?php $petId = $medicalhistory[0]->pet_id; ?>
             
-    </header>
-        </div>
-        <?php include '../app/views/components/tables/medicalhistoryupdatetable.php'; ?> 
+            <?php endif; ?>
+
+            <div class="search-bar">
+            <input type="text" id="search" placeholder="Search by medical condition or veterinarian name...">
+                    <button class="search-button">Search</button>
+            </div>
+            
+        </header>
+    </div>
+    <?php include '../app/views/components/tables/medicalhistoryupdatetable.php'; ?> 
     </div>
 </div>
 
@@ -115,34 +121,33 @@
 
     <script>
 
-            /*$(document).ready(function(){
+            $(document).ready(function(){
                 //$('.search-button').on('click', function(){ 
-                $('#search').on('click', function(){
-                    //var searchTerm = $('#search').val(); // Get the search term from the input field
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); 
                     var searchTerm = $(this).val();
+                    var petId = <?= json_encode($petId); ?>;
                     
-                    //var petId = <!?php echo json_encode($medicalhistory->pet_id); ?>;
-                    var petId = $('#search').data('pet-id');// Retrieve the pet ID from the input element
-
                     console.log(petId)
                     $.ajax({
                         url: "<?php echo ROOT ?>/Medicalstaff/MedicalHistory/search",
                         type: "POST",
-                        data: { pet_id: petId,search: searchTerm  }, 
+                        data: { search: searchTerm,petId:petId }, 
                         success: function(data) {
                             $('tbody').html(data);
                         }
                     
                     });
-                    console.log(searchTerm)
                 });
 
                 // to update when filtered by search
                 $('body').on('click', '.edit-icon', function(){
                     var Id = $(this).closest('tr').attr('key');
+                    var petId = <?= json_encode($petId); ?>;
                     openUpdateModal(Id,petId);
                 });
-            });*/
+            });
+
 
 
 
@@ -208,21 +213,21 @@
 
             document.querySelectorAll('.edit-icon').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var Id = this.parentElement.parentElement.getAttribute('id');
-                    var petId = this.parentElement.parentElement.getAttribute('pet-id');
+                    var Id = this.getAttribute('id');
+                    var petId = this.getAttribute('pet-id');
                     openUpdateModal(Id, petId);
                 });
             });
 
 
-            // Event listeners for delete buttons click
-            /**document.querySelectorAll('.delete-icon').forEach(function (button) {
+            // Event listeners for update buttons click
+            document.querySelectorAll('.edit-icon').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var id = this.parentElement.parentElement.getAttribute('key');
-                    console.log(id)
-                    openDeleteModal(id);
+                    var Id = this.getAttribute('id');
+                    var petId = this.getAttribute('pet-id');
+                    openUpdateModal(Id, petId);
                 });
-            });**/
+            });
 
             // Close modals when the close button is clicked
             var closeButtons = document.querySelectorAll('.close');

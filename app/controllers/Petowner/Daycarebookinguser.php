@@ -46,6 +46,23 @@ class Daycarebookinguser
         'pet_owner_id' => $petOwnerId,
     ];
     
+    // $notificationmodel = new NotificationModel();
+    // $notificationData = [
+    //     'user_id' => $user_id,
+    //     'message' => $data['message'],
+    //     'type' => 'transport',
+    //     'appointment_id' => $appointment_id,
+    //     'status' => 'unread'
+    // ];
+
+    // $transportnotification = $notificationmodel->addNotification($notificationData);
+
+    // if ($transportnotification !== false) {
+    //     echo "Notification added successfully";
+    // } else {
+    //     echo "Failed to add notification";
+    // }
+    
     // Call the model method to add the daycare booking
     $success = $model->addDaycarebooking($data);
     // Check the result and provide feedback

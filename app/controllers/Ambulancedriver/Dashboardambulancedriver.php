@@ -19,13 +19,14 @@ class Dashboardambulancedriver
         $this->view('ambulancedriver/dashboardambulancedriver', $data);
     }
     
-    public function acceptBooking() {
-        $id = $_GET['id'];
+    public function acceptBooking(string $id) : void
+    {
+        
         $ambulancebookingmodel = new AmbulanceBookingModel();
         $success = $ambulancebookingmodel->acceptBooking($id);
         
         if ($success === true) {
-            redirect('ambulancedriver/dashboardambulancedriver?true');
+            redirect('ambulancedriver/dashboardambulancedriver');
         } else {
             echo "Failed to accept booking. Error: " . $success;
         }

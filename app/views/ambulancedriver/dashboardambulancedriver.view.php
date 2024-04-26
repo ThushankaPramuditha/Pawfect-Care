@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-      <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
     
     <title>Dashboard</title>
@@ -654,16 +650,22 @@ main table tbody tr td:first-child {
             <h2>Recent Bookings</h2>
             <div class="user-list" style="display: flex; flex-direction: column;">
             <div class="user" style="align-items: center; display: flex; justify-content: center;">
-                <img src="<?= ROOT ?>/assets/images/taxi.png" alt="Taxi Image">
+                <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
                 <h3><?php echo $recentbookings->pet_owner_name ?></h3>
                 <p><?php echo $recentbookings->pet_owner_contact ?></p>
                 <p><?php echo $recentbookings->date_time ?></p>
                 <p><?php echo $recentbookings->pickup_lat . ', ' . $recentbookings->pickup_lng ?></p>
                 <!-- Button to accept the bookings -->
-            </div>  
-            <div style="align-items: center; display: flex; justify-content: center;">
-                <button id="acceptButton" onclick="openAcceptModal(<?= $recentbookings->id ?>)" style="background-color: rgb(153, 102, 255); padding: 5px; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
+            </div>
+            <div style="display:flex; flex-direction:row;">
+            <div style="margin-left:100px; margin-top:2px;">
+                <button style="background-color:rgb(153, 102, 255); padding: 5px; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>">View</a></button>
+            </div>
+            <div style="align-items: center; display: flex; margin-left:450px;">
+                <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color: rgb(153, 102, 255); padding: 5px; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
                 </div>
+            </div>  
+           
              </div>
             </div>
 
@@ -730,7 +732,8 @@ main table tbody tr td:first-child {
             <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
             <?php foreach ($transportnotifications as $notification) {?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                    <div class="notification-item">
+                <span class="close" style="margin-left:280px;">&times;</span>
+                    <div class="notification-item" style="display:flex; justify-content:center;">
                         <div class="info">
                             <h3>Transport Bookings</h3>
                             <small class="text-muted">New Booking</small>
@@ -767,62 +770,92 @@ main table tbody tr td:first-child {
                 <h1>Accept the Ride</h1>
                 <p>Start the Journey</p>
                 <div class="flex-container">
-                    <button class="reject" onclick="closeAcceptModal()">Cancel</button>
-                    <button id="accept-booking" class="d-button" onclick="acceptBooking()">Accept</button>
+                    <button class="reject">Cancel</button>
+                    <a id="accept-booking" href=""><button class="d-button">Accept</button></a>
                 </div>
             </div>
         </div>
      
 
 <script>
+
+$('body').on('click', '.accept-button', function(){
+    var id = <?php echo json_encode($recentbookings->id); ?>;
+    console.log(id);
+    openAcceptModal(id);
+});
+
 var acceptModal = document.getElementById("accept-modal");
 
+ // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
 function openAcceptModal(id) {
-    console.log(id);
-    acceptModal.style.display = "block";
-    // Set the booking ID in the data attribute of the accept button
-    document.getElementById("accept-booking").setAttribute("data-booking-id", id);
-}
+            console.log(id);
+            acceptModal.style.display = "block";
+            document.getElementById("accept-booking").href = `<?php echo ROOT?>/Ambulancedriver/Dashboardambulancedriver/acceptBooking/${id}`;
 
-function closeAcceptModal() {
-    acceptModal.style.display = "none";
-}
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
 
-document.querySelectorAll('.acceptButton').forEach(function (button) {
+
+document.querySelectorAll('.accept-button').forEach(function (button) {
             button.addEventListener('click', function () {
                 var id = this.parentElement.parentElement.getAttribute('key');
                 console.log(id)
                 openAcceptModal(id);
             });
         });
-// Function to accept the booking
-function acceptBooking() {
-    // Retrieve the booking ID from the accept button's data attribute
-    var bookingId = document.getElementById("accept-booking").getAttribute("data-booking-id");
-    
-    // Send an AJAX request to accept the booking
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", `<?= ROOT ?>/ambulancedriver/acceptBooking?booking_id=${id}`, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-   
-            console.log("Booking accepted successfully");
-      
-            closeAcceptModal();
-           
-        } else {
-            // Handle error
-            console.error("Error accepting booking");
-        }
-    };
-    xhr.onerror = function() {
-        // Handle error
-        console.error("Error accepting booking");
-    };
-    xhr.send();
-}
 
- 
+var closeButtons = document.querySelectorAll('.close');
+
+var noButtons = document.querySelectorAll('.reject');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                acceptModal.style.display = "none";
+            });
+    });
+    noButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+               acceptModal.style.display = "none";
+            });
+        });
+      
+
+// JavaScript code
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Function to open the modal
+//     function openAcceptModal(id) {
+//         var acceptModal = document.getElementById("accept-modal");
+//         acceptModal.style.display = "block";
+//         document.getElementById("accept-booking").href = `<?php echo ROOT?>/Ambulancedriver/Dashboardambulancedriver/acceptBooking/${id}`;
+//     }
+
+//     // Function to close the modal
+//     function closeAcceptModal() {
+//         var acceptModal = document.getElementById("accept-modal");
+//         acceptModal.style.display = "none";
+//     }
+
+//     // Event listeners
+//     document.querySelectorAll('.accept-button').forEach(function (button) {
+//         button.addEventListener('click', function () {
+//             var id = this.getAttribute('data-id');
+//             openAcceptModal(id);
+//         });
+//     });
+
+//     document.querySelectorAll('.close-modal').forEach(function (button) {
+//         button.addEventListener('click', function () {
+//             closeAcceptModal();
+//         });
+//     });
+// });
+
+
     </script>
  </body>
 </html>

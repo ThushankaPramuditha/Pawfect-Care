@@ -22,8 +22,11 @@ class AmbulanceBookingModel
 
  //get today's most recent booking
  public function getTodaysMostRecentBooking($userId) {
-    // Get today's date
+    // Get today's date of Colombo timezone
+    date_default_timezone_set('Asia/Colombo');
     $today = date('Y-m-d');
+
+
 
     $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
               FROM ambulancebookings AS ab
@@ -31,7 +34,7 @@ class AmbulanceBookingModel
               JOIN petowners AS po ON p.petowner_id = po.id
               JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
               WHERE ad.user_id = :user_id
-              AND DATE(ab.date_time) = :today
+              AND DATE(ab.date_time) = :today AND ab.status = 'pending'
               ORDER BY ab.date_time DESC LIMIT 1";
 
     return $this->get_row($query, ['user_id' => $userId, 'today' => $today]);
@@ -39,18 +42,28 @@ class AmbulanceBookingModel
 
 //accept bookings
 public function acceptBooking($id) {
-    $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id";
-    return $this->query($query, ['id' => $id]);
+    $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
+    $bindings = [':id' => $id];
+    $result = $this->query($query, $bindings);
+    return $result; 
 }
 
-    public function getLocationBypetIdandTime($pet_id) {
-        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
-                  FROM ambulancebookings AS ab
-                  JOIN pets AS p ON ab.pet_id = p.id
-                  WHERE ab.pet_id = :pet_id AND DATE(ab.date_time) = CURDATE()
-                  ORDER BY ab.date_time DESC";
-        return $this->get_row($query, ['pet_id' => $pet_id]);
+public function getLocationBypetIdandTime($pet_id) {
+    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
+              FROM ambulancebookings AS ab
+              JOIN pets AS p ON ab.pet_id = p.id
+              WHERE ab.pet_id = :pet_id AND DATE(ab.date_time) = CURDATE()
+              ORDER BY ab.date_time DESC";
+    $result = $this->get_row($query, ['pet_id' => $pet_id]);
+
+    if ($result === false) {
+        // Error occurred, handle it or log it
+        // Example: trigger_error($this->error(), E_USER_ERROR);
+        return false; // Return false to indicate failure
     }
+
+    return $result; // Return the result if successful
+}
     
     public function getAmbulanceDriverId($id) {
         $query = "SELECT a.*, u.email ,u.status

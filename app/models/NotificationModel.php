@@ -26,12 +26,52 @@ class NotificationModel{
 
     public function getTransportNotificationsByDriverId($driverId)
     {
+        
         $query = "SELECT n.*, ab.pet_id, ab.pickup_lat, ab.pickup_lng, ab.date_time
                   FROM notifications AS n
                   JOIN ambulancebookings AS ab ON n.appointment_id = ab.id
                   WHERE n.receiver_id = :receiver_id AND n.type = 'transport' 
                   ORDER BY n.created_at DESC";
         $result = $this->query($query, ['receiver_id' => $driverId]);
+    
+        // Check if the query was successful
+        if ($result !== false) {
+            // Return the query result
+            return $result;
+        } else {
+            // Query failed, return an empty array or handle the error as needed
+            return [];
+        }
+    }
+
+    public function getVetAppointmentNotifications()
+    {
+        $query = "SELECT n.*, a.pet_id, a.date_time, u.email AS vet_email
+                  FROM notifications AS n
+                  JOIN appointments AS a ON n.appointment_id = a.id
+                  JOIN veterinarians AS v ON a.vet_id = v.id
+                  JOIN users AS u ON v.user_id = u.id
+                  WHERE n.type = 'vet'
+                  ORDER BY n.created_at DESC";
+        $result = $this->query($query);
+    
+        // Check if the query was successful
+        if ($result !== false) {
+            // Return the query result
+            return $result;
+        } else {
+            // Query failed, return an empty array or handle the error as needed
+            return [];
+        }
+    }
+
+    public function getDaycareNotifications(){
+        $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
+                  FROM notifications AS n
+                  JOIN daycarebookinguser AS d ON n.appointment_id = d.id
+                  WHERE n.type = 'daycare'
+                  ORDER BY n.created_at DESC";
+        $result = $this->query($query);
     
         // Check if the query was successful
         if ($result !== false) {

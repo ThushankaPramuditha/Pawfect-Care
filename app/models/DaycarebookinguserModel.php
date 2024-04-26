@@ -73,6 +73,33 @@ class DaycarebookinguserModel
             return false;
         }
     }
+
+    public function getPetOwnerId($id){
+       $query = "SELECT po.id
+                FROM daycarebookinguser dbu
+                JOIN pets p ON dbu.pet_id = p.id
+                JOIN petowners po ON p.petowner_id = po.id
+                WHERE dbu.id = :id";
+
+        $bindings = [':id' => $id];
+        $result = $this->query($query, $bindings);
+        return $result[0]->id;
+    }
+
+    public function getPetOwnerEmailById($id)
+    {
+    // Query to fetch pet owner using daycarebookinguser id
+        $query = "SELECT u.email
+                  FROM daycarebookinguser dbu
+                  JOIN pets p ON dbu.pet_id = p.id
+                  JOIN petowners po ON p.petowner_id = po.id
+                  JOIN users u ON po.user_id = u.id
+                  WHERE dbu.id = :id";
+
+        $bindings = [':id' => $id];
+        $result = $this->query($query, $bindings);
+        return $result[0]->email;
+    }
     
     //function to search date and load the booking for that day
    // In DaycarebookinguserModel class
@@ -114,6 +141,18 @@ public function search($term)
 
           return $this->query($query, [':term' => $term]);
 }
+
+        public function getLastInsertedId(){
+            $query = "SELECT id FROM daycarebookinguser ORDER BY id DESC LIMIT 1";
+            $result = $this->query($query);
+
+            if ($result && !empty($result[0]->id)) {
+                return $result[0]->id; // Access id property of the first row
+            } else {
+                return null; // Return null if no record is found or id is empty
+            }
+        }
+
 
 public function searchByDate($date)
 {

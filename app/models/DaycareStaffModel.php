@@ -48,7 +48,13 @@ class DaycareStaffModel
 
 
     }
-
+    public function getDaycareStaffId(){
+        $query = "SELECT d.*, u.email ,u.status
+                  FROM daycarestaff AS d
+                  JOIN users AS u ON d.user_id = u.id";
+        return $this->query($query);
+    
+    }
     public function addDaycareStaff($data)
     {
         $userModel = new UserModel;

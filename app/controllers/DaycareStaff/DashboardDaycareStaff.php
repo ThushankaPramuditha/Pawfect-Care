@@ -5,7 +5,7 @@ class DashboardDaycareStaff
     use Controller;
 
     public function index()
-    {
+    {   date_default_timezone_set('Asia/Colombo');
         AuthorizationMiddleware::authorize(['Daycare Staff']);
         $userdataModel = new DaycareStaffModel();
         $daycarebookingsusermodel = new DaycarebookinguserModel();
@@ -15,6 +15,8 @@ class DashboardDaycareStaff
         $data['daycarebookingtoday'] = $daycarebookingsusermodel->countTodayBookings();
         $data['daycarebookingsaccepted'] = $daycarebookingsusermodel->countTodayacceptedBookings(); 
         $data['daycarebookingsdeclined'] = $daycarebookingsusermodel->countTodaydeclinedBookings();
+        $notificationModel = new NotificationModel();
+        $data['daycarenotifications'] = $notificationModel->getDaycareNotifications();
 
         $this->view('daycarestaff/dashboarddaycarestaff',$data);
     }

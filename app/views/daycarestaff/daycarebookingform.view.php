@@ -156,8 +156,7 @@
                 <a id="finish-booking" href=""><button class="d-button" >Finish</button></a>
             </div>
         </div>
-
-
+    </div>
     <script>
               $(document).ready(function(){
             $('#search').on('keyup', function(){

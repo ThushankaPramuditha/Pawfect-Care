@@ -530,7 +530,7 @@
             addModal.style.display = "none";
         }
     });
-
+    
     function updateFormInit() {
         // Attach event listeners for validation on input for update form
         document.getElementById('update-name').addEventListener('input', validateUpdateName);

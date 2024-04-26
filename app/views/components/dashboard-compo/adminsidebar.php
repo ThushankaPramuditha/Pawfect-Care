@@ -145,7 +145,7 @@
 
 
 <body>
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#ffff;">
         <div class="nav-container">
             <div class="top-container">
                 <div style="width: 100%">

@@ -53,6 +53,7 @@
             text-align: center;
             font-size: 25px;
             perspective: 1000px;
+            align-items: center;
         }
 
         .container:hover {
@@ -138,17 +139,20 @@
                 flex-direction:column;
                 width:300px;
                 box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-                border-radius: 12px;
+                border-radius: 24px;
                 overflow: hidden;
-                margin: 20px 0;
+                margin: 10px;
                 transition: transform 0.3s;
                 color:black;
                 text-align: center;
-                box-shadow: 0 0 20px 8px #d0d0d0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                flex-basis: calc(33.33% - 20px);
+                background-color: #ffffff;    
                 }
 
         .card3:hover {
-          transform: scale(1.02);
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
 
@@ -163,34 +167,43 @@
         width:100%;
         height:100%;
         object-fit:cover;
-        object-position:bottom;
+        object-position:center;
+        border-radius: 12px 12px 0 0;
         }
+
         .card3-text{
         margin:-30px auto;
         margin-right:20px;
         height:300px;
         width:300px;
-        background-color:#f4f4f4;
         color:#333;
-        padding:20px,40px,0,20px;
+        padding: 20px;
+        text-align: center;
         }
 
         .card3-body{
-        font-size:1.25rem;
+        font-size:1rem;
         }
 
         .button{
         margin:10px auto;
         margin-top:20px;
         margin-bottom:20px;
+        
         }
         .btn{
-        padding:10px 20px;
-        background-color:white;
-        color:purple;
-        font-weight: bold;
-        border-radius:5px;
+        padding: 10px 20px;
+        background-color:#6a387944;
+        color:#6a3879;
+        font-size: 16px;
+        font-weight: normal;
+        border-radius:24px;
         text-decoration:none;
+        background-color: #6a387944;
+        border:none;
+        width: fit-content;
+        transition: background-color 0.5s, color 0.5s, transform 0.5s;
+            
         }
         .btn:hover{
         background-color:#fff;
@@ -209,7 +222,7 @@
         width:320px;
         height:380px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        border-radius: 12px;
+        border-radius:20px 20px 20px 20px; 
         overflow: hidden;
         transition: transform 0.3s;
         color:black;
@@ -223,10 +236,10 @@
         }
 
         .card2-image{
-        border-radius: 20px;    
+        border-radius:0 0 20px 20px;    
         margin-top:0px;    
-        width:400px;
-        height:300px;
+        width:320px;
+        height:320px;
         }
         .card2-image>img{
         width:100%;
@@ -236,9 +249,11 @@
         }
 
         .card2-text{
-        background-color:darkblue;
+        background-color:#6a3879;
         color:#fff;
         border-radius:0 0 20px 20px;
+        font-size: 20px;
+        font-weight: normal;
         }
 
 
@@ -280,11 +295,12 @@
         }
 
       .card4 {
+      flex-basis: calc(30% - 20px);
       height: 300px;
-      width: 240px;
+      width: 250px;
       position: relative;
       transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      border-radius: 16px;
+      border-radius: 24px;
       box-shadow: 0 0 20px 8px #d0d0d0;
       overflow: hidden;
     }
@@ -303,7 +319,9 @@
       bottom: 0;
       border-radius: 16px;
       transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-      padding: 1rem;
+      padding: 20px;
+      text-wrap:wrap;
+      font-size: 16px;
     }
 
     .card-descript {
@@ -311,13 +329,15 @@
       position: absolute;
       gap: .5em;
       flex-direction: column;
-      background-color: darkblue;
+      background-color: whitesmoke;
       color: #212121;
-      height: 70%;
-      bottom: 0;
+      height: 30%;
+      bottom: 10px;
+      padding-left: 20px;
       border-radius: 16px;
       transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-      padding: 1rem;
+      padding: 2rem;
+      font-size: 16px;
     }
 
     /*Text*/
@@ -364,7 +384,7 @@
         }
 
         .feedback-container {
-            max-width: 1200px;
+            max-width: 4000px;
             margin: 0 auto;
             padding: 20px;
             display: flex;
@@ -373,16 +393,17 @@
         }
 
         .feedback-container .card {
-            flex-basis: calc(33.33% - 20px);
+            flex-basis: calc(40% - 20px);
             margin: 10px;
-            padding: 2%;
-            border-radius: 12px;
+            padding: 4%;
+            border-radius: 24px;
             overflow: hidden;
             transition: transform 0.3s;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
+            font-size: 16px;
         }
 
         .feedback-container .card:hover {
@@ -418,8 +439,8 @@
 
         <div class="home-container" style="display:flex;">
             <div class="left-section" style="display:flex; flex-direction:column;">
-                <p class style="color:black; font-size:50px;font-weight:bold;  ">Pawfect Care Center</p>
-                <p class style="color:black; font-weight:bold; font-style: italic;">Serving Love And Care, The PAWFECT Way! </p>
+                <div class="pawfect-title" style="color:#353535; font-size:50px;font-weight:bold;">Pawfect Care Center</div>
+                <div class="tagline" style="color:#353535;font-size:20px; font-weight:normal;">Serving Love And Care, The PAWFECT Way! </div>
 
             </div>
         
@@ -432,7 +453,7 @@
 
     <div class="container">
          <div class="services-section">
-            <h2 class style="color:darkblue; font-weight:bold">Our Services</h2>
+            <h2 class style="color:#4f5484; font-weight:bold">Our Services</h2>
             <div style="display:flex; dlex-direction:row; justify-content:space-between; margin-top:50px; margin-bottom:0px; ">
              <div class="card3">
                 <div class="card3-image">
@@ -476,22 +497,22 @@
       <div class="service card section" style=" margin-top:0px; flex-direction:column; width:100%; margin-left:160px;">
       
         <div class="top row" style="display:flex; flex-direction:row; margin-top:100px;">
-            <div class="card2" style="margin-right:200px;  width:320px;  height:280px;">
-                <div class="card2-image" style="width:320px; height:210px;">
+            <div class="card2" style="margin-right:200px;">
+                <div class="card2-image">
                     <img src="<?php echo ROOT?>/assets/images/dentalcare.jpg">
                 </div>
                 <div class="card2-text">
-                    <p style="font-size:25px; font-weight:bold;">Dental Care</p>
+                    <p style="font-size:20px; font-weight:bold;">Dental Care</p>
                     <!-- <p class="card3-body" style="padding-bottom:15px;">Dental services for pets, including teeth cleaning,extractions,and treatment of dental issues. Good dental health is essential for a pet's overall well-being</p> -->
                 </div>
             </div>  
             
-            <div class="card2" style=" width:320px;  height:280px;">
-                <div class="card2-image" style="width:320px;  height:210px;">
+            <div class="card2">
+                <div class="card2-image">
                     <img src="<?php echo ROOT?>/assets/images/laboratory.jpg">
                 </div>
                 <div class="card2-text">
-                    <p style="font-size:25px; font-weight:bold;">Laboratory Services</p>
+                    <p style="font-size:20px; font-weight:bold;">Laboratory Services</p>
                     <!-- <p class="card3-body" style="padding-bottom:15px;">In-house diagnostic laboratory services for quick and accurate testing of blood, urine, and other samples. Essential for diagnosing pet health issues promptly</p> -->
                 </div>
             </div> 
@@ -499,23 +520,23 @@
         
         <div class="bottom row"  style="display:flex; flex-direction:row; margin-top:100px;">
             
-         <div class="card2" style="margin-right:200px;  width:320px;  height:280px; border-radius:20px;">
-                <div class="card2-image"  style="width:320px; height:210px; ">
+         <div class="card2" style="margin-right:200px;">
+                <div class="card2-image" >
                     <img src="<?php echo ROOT?>/assets/images/xray.jpg">
                 </div>
                 <div class="card2-text">
-                    <p style="font-size:25px; font-weight:bold; ">Pet X Rays and Imaging</p>
+                    <p style="font-size:20px; font-weight:bold; ">Pet X Rays and Imaging</p>
                     <!-- <p class="card3-body" style="padding-bottom:15px;">Diagnostic imaging services, including X-rays and ultrasound, to assess a pet's internal health and identify any underlying issues</p> -->
                 </div>
          </div> 
     
     
-          <div class="card2" style="  width:320px;  height:280px;">
-                <div class="card2-image"style="width:320px;  height:210px;">
+          <div class="card2" >
+                <div class="card2-image">
                     <img src="<?php echo ROOT?>/assets/images/petfood.jpg">
                 </div>
                 <div class="card2-text">
-                    <p style="font-size:25px; font-weight:bold; ">Nutritional Counseling</p>
+                    <p style="font-size:20px; font-weight:bold; ">Nutritional Counseling</p>
                     <!-- <p class="card3-body" style="padding-bottom:15px;">Expert guidance on selecting the right pet food and creating <br>a balanced diet tailored to a pet's specific needs</p> -->
                 </div>
           </div>
@@ -527,7 +548,7 @@
     </div>
 
     <div class="container" style="margin-top:100px;">
-        <h2 style="color:darkblue; margin-bottom:80px;">Why Create an Account?</h2>
+        <h2 style="color:#4f5484; font-weight:bold">Why Create an Account?</h2>
       <div style="display:flex; flex-direction:row; gap:60px; margin-bottom:200px;">
         <div class="card4">
           <div class="card4-descript">
@@ -572,7 +593,7 @@
 
 
  <div class="container" style="margin-top:100px;">
-        <h2 style="color:darkblue; margin-bottom:80px;">Feedbacks From Our Petowners</h2>  
+        <h2 style="color:#4f5484; margin-bottom:40px;">Feedbacks From Our Petowners</h2>  
  <div class="feedback-container">
         <!-- Static cards with three columns per row -->
 

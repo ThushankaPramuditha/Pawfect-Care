@@ -58,30 +58,31 @@
 
 
 <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
             $('#search').on('keyup', function(){
                 var searchTerm = $(this).val();
                 $.ajax({
-                url: "<?php echo ROOT ?>/medicalstaff/petdetails/search",
-                type: "POST",
-                data: {search: searchTerm},
-                success: function(data) {
-                    $('tbody').html(data);
-                }
+                    url: "<?php echo ROOT ?>/medicalstaff/petdetails/search",
+                    type: "POST",
+                    data: {search: searchTerm},
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
                 });
             });
 
-            
+        
             $('body').on('click', '.medicalhistory-button', function() {
                 var id = $(this).closest('tr').attr('key');
-                var baseUrl = '<?php echo ROOT ?>/medicalstaff/medicalhistory/'; // Replace with your actual base URL for deactivation
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/medicalhistory/'; 
                 window.location.href = baseUrl + id;
             });
             $('body').on('click', '.vaccinationhistory-button', function() {
                 var id = $(this).closest('tr').attr('key');
-                var baseUrl = '<?php echo ROOT ?>/medicalstaff/vaccinationhistory/'; // Replace with your actual base URL for deactivation
+                var baseUrl = '<?php echo ROOT ?>/medicalstaff/vaccinationhistory/'; 
                 window.location.href = baseUrl + id;
             });
+
         });
 
 

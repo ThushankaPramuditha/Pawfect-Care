@@ -15,7 +15,8 @@ class PetsModel
         FROM
             pets p
         JOIN
-            petowners po ON p.petowner_id = po.id";
+            petowners po ON p.petowner_id = po.id
+        ORDER BY P.id ASC";
 
         return $this->query($query);
     }
@@ -88,5 +89,23 @@ class PetsModel
         $query = "SELECT * FROM pets WHERE petowner_id = :id";
         return $this->query($query, ['id' => $id]);
     }
+
+    public function searchAllPetDetails($searchTerm) {
+        $searchTerm = "%{$searchTerm}%";
+        $query = "SELECT p.*, po.name AS owner_name, po.contact
+        FROM
+            pets p
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        WHERE p.name LIKE :searchTerm OR
+            po.name LIKE :searchTerm OR
+            po.contact LIKE :searchTerm
+        ORDER BY p.id ASC";
+         
+        return $this->query($query, [':searchTerm' => $searchTerm]);
+    }
+    
+
+    
 
 }

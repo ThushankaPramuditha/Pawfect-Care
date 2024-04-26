@@ -1,6 +1,11 @@
 <?php 
 
 session_start();
+// if (isset($_SESSION['flash1'])) {
+//         var_dump($_SESSION['flash1']);
+
+// }
+
 
 
 require "../app/core/init.php";

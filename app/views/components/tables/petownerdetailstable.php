@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +10,43 @@
 <body>
 <div class = "table-container">
 <table>
-        <thead>
+<thead>
             <tr>
-                <th>Owner Name</th>
+                <th>Petowner ID</th>
+                <th>Name</th>
                 <th>NIC</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Contact No.</th>
-                <th class="edit-action-buttons"></th>
+                <th>Contact Number</th>
+                
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>AB123456C</td>
-                <td>johndoe@example.com</td>
-                <td>123 Elm St</td>
-                <td>123-456-7890</td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>XY987654Z</td>
-                <td>janesmith@example.com</td>
-                <td>456 Oak St</td>
-                <td>987-654-3210</td>
-                <td class="edit-action-buttons">
-                <a href = "<?php echo $_SESSION['updatepath'] ?>"><button class="edit-icon"></button></a>                </td>
-            </tr>
+
+            <?php if (is_array($petownerdetails) && !empty($petownerdetails)): ?>
+                <?php foreach ($petownerdetails as $petownerdetail): ?>
+                    <tr key="<?php echo $petownerdetail->id; ?>">
+                        <td><?= htmlspecialchars($petownerdetail->id); ?></td>
+                        <td><?= htmlspecialchars($petownerdetail->name); ?></td>
+                        <td><?= htmlspecialchars($petownerdetail->nic); ?></td>
+                        <td><?= htmlspecialchars($petownerdetail->email); ?></td>
+                        <td><?= htmlspecialchars($petownerdetail->address); ?></td>
+                        <td><?= htmlspecialchars($petownerdetail->contact); ?></td>
+                  
+                        
+                    </tr>
+                    
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="20">No petowner details found.</td>
+                </tr>
+            <?php endif; ?>
+
         </tbody>
+       
     </table>
 </body>
 </html>
+
+

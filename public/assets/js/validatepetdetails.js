@@ -1,4 +1,15 @@
 // Validation for add form
+function validateID() {
+    var id = document.getElementById('petowner_id').value;
+    if (!id) {
+        document.getElementById('error-id').textContent = "* Pet owner ID is required.";
+        return false;
+    } else {
+        document.getElementById('error-id').textContent = "";
+        return true;
+    }
+}
+
 function validateName() {
     var name = document.getElementById('name').value;
     if (!name) {

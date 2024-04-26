@@ -626,7 +626,7 @@ main table tbody tr td:first-child {
     <div class="container">
    
       <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+      <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>
         </div>
         <!-- Main Content -->
 
@@ -788,7 +788,7 @@ $('body').on('click', '.accept-button', function(){
 var acceptModal = document.getElementById("accept-modal");
 
  // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// var span = document.getElementsByClassName("close")[0];
 
 function openAcceptModal(id) {
             console.log(id);

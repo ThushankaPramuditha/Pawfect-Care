@@ -15,13 +15,20 @@
         <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <style>
         #map {
+            width:100%;
             height: 100vh;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     
+    <div style="display: flex; flex-direction:row;">
     <div id="map"></div>
+    <div>
+       <button onclick="window.location.href='<?php echo ROOT?>/ambulancedriver/dashboardambulancedriver'">Back</button>
+    </div>
+    </div>
 
     <script>
         //view Colombo
@@ -37,7 +44,7 @@
             iconAnchor: [20, 40]
         })
 
-        var marker = L.marker([6.9271, 79.8612], {icon: taxiIcon}).addTo(map);
+        var marker = L.marker([6.580656, 79.963901], {icon: taxiIcon}).addTo(map);
         map.on('click', function(e){
             console.log(e.latlng);
 
@@ -49,7 +56,7 @@
         //routing
         L.Routing.control({
             waypoints: [
-                L.latLng(6.9271, 79.8612),
+                L.latLng(6.580656, 79.963901),
                 L.latLng(pickup_lat, pickup_lng)
             ]
         }).on('routesfound', function(e) {

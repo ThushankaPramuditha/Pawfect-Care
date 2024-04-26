@@ -8,14 +8,41 @@ class AmbulanceBookingModel
     protected $allowedColumns = ['id','pet_id','pickup_lat','driver_id','pickup_lng','date_time','status'];
 
 
-    public function getAllAmbulanceBookings() {
-        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
+    public function getAllAmbulanceBookings($userId) {
+        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id AS pet_owner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
                   FROM ambulancebookings AS ab
                   JOIN pets AS p ON ab.pet_id = p.id
+                  JOIN petowners AS po ON p.petowner_id = po.id
+                  JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+                  WHERE ad.user_id = :user_id
                   ORDER BY ab.date_time DESC";
-        return $this->query($query);
+        return $this->query($query, ['user_id' => $userId]);
     }
     
+
+ //get today's most recent booking
+ public function getTodaysMostRecentBooking($userId) {
+    // Get today's date
+    $today = date('Y-m-d');
+
+    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+              FROM ambulancebookings AS ab
+              JOIN pets AS p ON ab.pet_id = p.id
+              JOIN petowners AS po ON p.petowner_id = po.id
+              JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+              WHERE ad.user_id = :user_id
+              AND DATE(ab.date_time) = :today
+              ORDER BY ab.date_time DESC LIMIT 1";
+
+    return $this->get_row($query, ['user_id' => $userId, 'today' => $today]);
+}
+
+//accept bookings
+public function acceptBooking($id) {
+    $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id";
+    return $this->query($query, ['id' => $id]);
+}
+
     public function getLocationBypetIdandTime($pet_id) {
         $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
                   FROM ambulancebookings AS ab
@@ -42,6 +69,17 @@ class AmbulanceBookingModel
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
+    }
+
+    public function getLastInsertedId(){
+        $query = "SELECT id FROM ambulancebookings ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query);
+    
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
     }
 
     public function addBooking($data) {
@@ -84,7 +122,7 @@ class AmbulanceBookingModel
             return false;
         }
     }
-
+  
 
     public function getBookingById($id) {
         $query = "SELECT ab.*, p.name AS pet_name, p.owner_id
@@ -108,13 +146,16 @@ class AmbulanceBookingModel
         return $this->get_row($query, ['pet_id' => $pet_id]);
     }
 
-   public function countTodayBookings() {
+   public function countTodayBookings($userId) {
         $query = "SELECT COUNT(*) AS total
-                  FROM ambulancebookings
-                  WHERE  DATE(date_time) = CURDATE()";
-        $result = $this->get_row($query);
+                  FROM ambulancebookings AS ab
+                  JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+                  WHERE  DATE(date_time) = CURDATE() AND ad.user_id = :user_id";
+        $result = $this->get_row($query, ['user_id' => $userId]);
         return $result->total;
     }
+
+
 
     public function validate($data)
     {

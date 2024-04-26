@@ -650,21 +650,62 @@ main table tbody tr td:first-child {
             <!-- End of Analyses -->
 
              <!-- New Users Section  -->
-        
+            <div class="new-users">
+            <h2>Recent Bookings</h2>
+            <div class="user-list" style="display: flex; flex-direction: column;">
+            <div class="user" style="align-items: center; display: flex; justify-content: center;">
+                <img src="<?= ROOT ?>/assets/images/taxi.png" alt="Taxi Image">
+                <h3><?php echo $recentbookings->pet_owner_name ?></h3>
+                <p><?php echo $recentbookings->pet_owner_contact ?></p>
+                <p><?php echo $recentbookings->date_time ?></p>
+                <p><?php echo $recentbookings->pickup_lat . ', ' . $recentbookings->pickup_lng ?></p>
+                <!-- Button to accept the bookings -->
+            </div>  
+            <div style="align-items: center; display: flex; justify-content: center;">
+                <button id="acceptButton" onclick="openAcceptModal(<?= $recentbookings->id ?>)" style="background-color: rgb(153, 102, 255); padding: 5px; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
+                </div>
+             </div>
+            </div>
+
+            <!-- End of New Users Section -->
+
+            <!-- Recent Orders Section -->
+            <div class="recent-orders">
+                <h2>Booking Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pet Owner Name</th>
+                            <th>Pet Name </th>
+                            <th>Date & Time</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($ambulancebookings as $ambulance): ?>
+                        <tr>
+                            <td><?php echo $ambulance->pet_owner_name ?></td>
+                            <td><?php echo $ambulance->pet_name ?></td>
+                            <td><?php echo $ambulance->date_time ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- End of Recent Orders Section -->	
        
 
         </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
-        <div class="right-section">
+    <div class="right-section">
             <div class="nav">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">
                         menu
                     </span>
                </button>
-
             </div>
             <!-- End of Nav -->
 
@@ -676,7 +717,7 @@ main table tbody tr td:first-child {
                 </div>
             </div>
 
-            <div class="reminders">
+        <div class="reminders">
                 <div class="header">
                     <h2>Notifications</h2>
                     <span class="material-icons-sharp">
@@ -685,73 +726,101 @@ main table tbody tr td:first-child {
                 </div>
 
 
-<div>
-
-    <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
-            <?php foreach ($ambulancebookings as $ambulance): ?>
-            <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                <div class="notification-item">
-                    <div class="info">
-                        <h3>Transport Bookings</h3>
-                        <small class="text-muted">New Booking</small>
-                        <p>
-                            <?php echo 'pet_id:' . $ambulance->pet_id . ' has been booked an ambulance ride at ' . $ambulance->date_time . 'for the location ' . $ambulance->pickup_lat . ', ' . $ambulance->pickup_lng ?>
-                        </p>
-                        <div style="margin-left:100px; margin-top:2px;">
-                        <button style="background-color:rgb(153, 102, 255); padding: 5px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $ambulance->pet_id ?>&date=<?php echo $ambulance->date_time ?>">View</a></button>
+          <div>
+            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <?php foreach ($transportnotifications as $notification) {?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                    <div class="notification-item">
+                        <div class="info">
+                            <h3>Transport Bookings</h3>
+                            <small class="text-muted">New Booking</small>
+                            <p>
+                                <?php echo $notification->message ?>
+                            </p>
+                            <div style="margin-left:100px; margin-top:2px;">
+                                <button style="background-color:rgb(153, 102, 255); padding: 5px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a></button>
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
+            <?php }?>
             </div>
-        <?php endforeach; ?>
-    </div>
 
        
-        <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
-            <div>
-                <span class="material-icons-sharp">
-                      arrow_forward
-                </span>
-                <h3>View</h3>
+            <!-- button to view more bookings path is Daycarebookingform -->
+            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
+                <div>
+                    <span class="material-icons-sharp">
+                        arrow_forward
+                    </span>
+                    <h3>View</h3>
+                </div>
             </div>
-      
         </div>
- </div>
-</div>
-
-            </div>
-
-        </div>
-
+       </div>
 
     </div>
+   <!-- accept modal-->
+   <div class="modal-form" id="accept-modal">
+            <div class="modal-content-delete">
+                <h1>Accept the Ride</h1>
+                <p>Start the Journey</p>
+                <div class="flex-container">
+                    <button class="reject" onclick="closeAcceptModal()">Cancel</button>
+                    <button id="accept-booking" class="d-button" onclick="acceptBooking()">Accept</button>
+                </div>
+            </div>
+        </div>
+     
 
 <script>
-const sideMenu = document.querySelector('aside');
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
+var acceptModal = document.getElementById("accept-modal");
 
+function openAcceptModal(id) {
+    console.log(id);
+    acceptModal.style.display = "block";
+    // Set the booking ID in the data attribute of the accept button
+    document.getElementById("accept-booking").setAttribute("data-booking-id", id);
+}
 
+function closeAcceptModal() {
+    acceptModal.style.display = "none";
+}
 
-menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'block';
-});
-
-closeBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'none';
-});
-
- //leaflet map with osm tile layer
- //set to colombo
-    var mymap = L.map('map').setView([6.9271, 79.8612], 13);
-    var tilelayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: "OSM"}).addTo(mymap);
-
-    //marker
-    var marker = L.marker([6.9271, 79.8612]).addTo(mymap);
+document.querySelectorAll('.acceptButton').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openAcceptModal(id);
+            });
+        });
+// Function to accept the booking
+function acceptBooking() {
+    // Retrieve the booking ID from the accept button's data attribute
+    var bookingId = document.getElementById("accept-booking").getAttribute("data-booking-id");
+    
+    // Send an AJAX request to accept the booking
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", `<?= ROOT ?>/ambulancedriver/acceptBooking?booking_id=${id}`, true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+   
+            console.log("Booking accepted successfully");
+      
+            closeAcceptModal();
+           
+        } else {
+            // Handle error
+            console.error("Error accepting booking");
+        }
+    };
+    xhr.onerror = function() {
+        // Handle error
+        console.error("Error accepting booking");
+    };
+    xhr.send();
+}
 
  
     </script>

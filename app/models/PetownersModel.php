@@ -27,6 +27,24 @@ class PetownersModel
         
         return $this->get_row($query, ['id' => $id]);
     }
+
+    public function getPetOwnerIdByUserId($id) {
+        $query = "SELECT po.id
+                  FROM petowners AS po
+                  JOIN users AS u ON po.user_id = u.id
+                  WHERE u.id = :id";
+    
+        // Assuming `get_row` fetches a single row from the result set
+        $result = $this->get_row($query, ['id' => $id]);
+    
+        // Extract the pet owner id from the result
+        if ($result) {
+            return $result->id;
+        } else {
+            return null; // Or handle the case when no pet owner is found for the given user id
+        }
+    }
+    
  
     public function getPetownerByUserId($id) {
         $query = "SELECT po.id

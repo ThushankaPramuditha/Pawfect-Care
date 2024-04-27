@@ -16,7 +16,7 @@ class AuthorizationMiddleware {
                 redirect('admin/dashboardservices');
             }
             else if($user->user_type == 'Ambulance Driver'){
-                redirect('ambulancedriver/dashboard');
+                redirect('ambulancedriver/dashboardambulancedriver');
             }
             else if($user->user_type == 'Receptionist'){
                 redirect('receptionist/dashboardreceptionist');

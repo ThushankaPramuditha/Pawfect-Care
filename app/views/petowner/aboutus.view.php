@@ -65,10 +65,10 @@
         margin-right:20px;
         height:120px;
         width:500px;
-        background-color:purple;
-        color:white;
+        background-color:#D7CADB;
+        color:#6A3879;
         padding-top:20px;
-    
+        text-transform: capitalize;
         }
 
         .card-body{

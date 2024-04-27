@@ -249,8 +249,8 @@
         }
 
         .card2-text{
-        background-color:#6a3879;
-        color:#fff;
+        background-color:#9b59b6;
+        color:#FFF8F0;
         border-radius:0 0 20px 20px;
         font-size: 20px;
         font-weight: normal;
@@ -316,7 +316,7 @@
       position: absolute;
       gap: .5em;
       flex-direction: column;
-      background-color: black;
+      background-color: #8F4BAA;
       color: white;
       height: 72%;
       bottom: 0;

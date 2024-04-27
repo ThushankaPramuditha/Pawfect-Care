@@ -58,6 +58,37 @@ class MedicalHistory
         $this->view('veterinarian/medicalhistory/update', $data);
     }
 
+    public function search(): void
+    {
+        $medicalhistoryModel = new MedicalhistoryModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $petId = $_POST['petId'] ?? '';
+        $medicalhistory = $medicalhistoryModel->searchMedicalHistoryPerPet($searchTerm, $petId);
+        if(empty($medicalhistory)){
+            echo "<tr><td colspan='20'>No medicalhistory found</td></tr>";
+        }
+        else{
+            foreach ($medicalhistory as $history) {
+                echo "<tr key='{$history->id}'>";
+                echo "<td>{$history->pet_id}</td>";
+                echo "<td>{$history->date}</td>";
+                echo "<td>{$history->weight}</td>";
+                echo "<td>{$history->temperature}</td>";
+                echo "<td>{$history->med_condition}</td>";
+                echo "<td>{$history->treatment}</td>";
+                echo "<td>{$history->prescription}</td>";
+                echo "<td>{$history->treated_by}</td>";
+                echo "<td>{$history->remarks}</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+    }
+
+
+    
+
+
 }
 
 	

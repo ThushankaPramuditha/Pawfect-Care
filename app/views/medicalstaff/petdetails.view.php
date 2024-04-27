@@ -19,7 +19,7 @@
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header" style="display:flex; justify-content:flex-end">
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search pets...">
+                    <input type="text" id="search" placeholder="Search pets by name,owner name,contact...">
                     <button class="search-button">Search</button>
                 </div>
             

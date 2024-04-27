@@ -93,9 +93,6 @@ class MedicalHistory
         exit; 
     }
 
-
-    
-
 }
 
 	

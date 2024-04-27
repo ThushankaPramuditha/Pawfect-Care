@@ -25,7 +25,7 @@
             <?php endif; ?>
 
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search by vaccine name ,serial number or veterinarian...">
+                    <input type="text" id="search" placeholder="Search by vaccine name,serial number or veterinarian...">
                     <button class="search-button">Search</button>
             </div>
             

@@ -10,6 +10,7 @@ class Services
         $servicesModel = new ServicesModel();
         // show($servicesModel->findAll());
         $data['services'] = $servicesModel->getAllServices();
+        
 
         // You can include any additional logic or data fetching here
 
@@ -76,7 +77,7 @@ class Services
     public function viewService(string $a = '', string $b = '', string $c = ''):void {
         AuthorizationMiddleware::authorize(['Admin']);
         $servicesModel = new ServicesModel();
-        $data['service'] = $servicesModel->getServiceById($a);
+        $data['services'] = $servicesModel->getServiceById($a);
         $this->view('admin/services/update', $data);
     }
 

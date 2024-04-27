@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaccination History</title>
-
+<?php $activePage = 'petdetails';?>
     <script src="<?php echo ROOT ?>/assets/js/validatehistory.js"></script>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 </head>

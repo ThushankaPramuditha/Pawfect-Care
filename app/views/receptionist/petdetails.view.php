@@ -13,6 +13,8 @@
 
 
 <body>
+<?php $activePage = 'petdetails';?>
+
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  

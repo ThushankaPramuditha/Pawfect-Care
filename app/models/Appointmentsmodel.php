@@ -389,9 +389,11 @@ class AppointmentsModel
         if ($result && !empty($result[0]->email)) {
             return $result[0]->email; // Access email property of the first row
         } else {
-            return null; // Return null if no record is found or email is empty
-        } 
-    }        
+            return null; // Return null if no record is found or email is empty        
+
+        }  
+    }       
+
      
     public function updateAppointment($id, array $data)
     {

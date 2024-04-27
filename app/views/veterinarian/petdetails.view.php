@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
     <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 
+    <?php $activePage = 'petdetails';?>
 
     <title>Pet Details</title>
 </head>

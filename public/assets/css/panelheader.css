@@ -384,9 +384,8 @@ input[type="date"]{
 }
 
 /* for the button*/
-.modal-content .flex-container {
+.modal-form .flex-container {
     display: flex;
-    width: 60%;
     align-items: center; /* Center vertically */
     justify-content: space-between;
 }

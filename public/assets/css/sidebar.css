@@ -1,50 +1,74 @@
 /* Sidebar styles */
 .sidebar {
     width: 230px;
-    height: 100%;
-    background-color: #140e23;
+    min-height: 100vh;
+    background-color: #cfc3d3;
     position: fixed;
     left: 0;
     top: 0;
-    padding-top: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Remove ul disc style */
-.nav {
+.sidebar .nav {
     list-style-type: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure full width */
 }
 
-.nav-container{
+.sidebar .nav-container{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    padding-top: 80px;
+    flex-grow: 1; /* Flex grow to push the bottom container down */
 
 }
-.nav-item {
+.sidebar .nav-item {
     margin-bottom: 10px;
+    display: block; /* Full width for clickable area */
+
+    
 }
 
-.nav-link {
-    color: #ffffff; /* New text color */
-    font-size: 20px; /* Increase the font size */
+.sidebar .nav-link {
     text-decoration: none;
-    display: block;
-    padding: 10px 20px;
-    border-radius: 5px;
-   
+    font-size: 20px;
+    display: block; /* Important for padding to take full width */
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #6a3879;
+    border-radius: 15px;          
+    padding: 10px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    transition: background-color 0.3s;
+
 }
 
-.nav-item:hover {
-    background-color: #4b2756; /* Theme color on hover */
-    color: #fff; /* Text color on hover */
+.sidebar .nav-link:hover, .sidebar .nav-link:focus, .sidebar .nav-link:active {
+    background-color: #6a3879;
+    color: #fff;
 }
 
-.nav-item:active {
-    background-color: #4b2756; /* Theme color for active item */
-    color: #fff; /* Text color for active item */
+/* Specific styles when nav-item is active (if needed to be more specific) */
+.nav-item .nav-link-active {
+    text-decoration: none;
+    font-size: 20px;
+    display: block; /* Important for padding to take full width */
+    text-align: center;
+    background-color: #6a3879;
+    color: #fff;
+    border-radius: 15px;          
+    padding: 10px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    transition: background-color 0.3s;
 }
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -53,60 +77,42 @@ body {
     color: #333;
     
 }
-.nav-item a:hover {
-    background-color: #4b2756; /* Theme color on hover */
-    color: #fff; /* Text color on hover */
-}
 
-/* Active menu item */
-.nav-item.active {
-    background-color: #4b2756; /* Theme color for active item */
-    color: #fff; /* Text color for active item */
-}
 
-.center-image {
-    display: flex;
-    width: 90%;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 10px;
-}
-
-.center-image img {
-    width: 100%; /* Adjust the size as needed */
-}
-
-.top-container {
+.sidebar .top-container {
     display: flex;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
 }
 
-.bottom-container {
+.sidebar .bottom-container {
     display: flex;
+    width:100%;
     justify-content: center;
     align-items: flex-end;
 }
 
-.logout-button {
-    width: 80%;
-    height: 45px;
+.sidebar .logout-button {
+    width: 100%;
     border: none;
     color: #fff;
-    background-color: #6a3879;
-    border-radius: 5px;
+    background-color: #947c9b;
+    border-radius: 15px;
     margin-bottom: 40px;
     font-size: 20px; /* Increase the font size */
+    padding: 10px 60px;
     text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1); /* Added box shadow */
 
     
 }
 
-.logout-button:hover {
-    background-color: #4b2756; /* Theme color on hover */
+.sidebar .logout-button:hover {
+    background-color: #795e81; /* Theme color on hover */
     color: #fff; /* Text color on hover */
 }
-
-
+.sidebar .logout-button:active {
+    background-color: #795e81; /* Theme color on hover */
+    color: #fff; /* Text color on hover */
+}

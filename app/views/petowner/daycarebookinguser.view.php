@@ -11,7 +11,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
             margin: 0;
             color: #333;
             font-size: 16px;
@@ -128,8 +127,7 @@
 </head>  
 <body>
 
-<?php include '../app/views/navbar.php' ?>
-<!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
+<?php include 'navbar.php' ?>
     <div class="modal-content" style="margin-top:10px;">
     <div style="display: flex; justify-content: center;">
             <h1>Daycare Booking</h1>
@@ -137,7 +135,7 @@
         <div class="form-container">
         <form id="daycarebooking-form" action="<?php echo ROOT?>/petowner/daycarebookinguser/addDaycarebooking" method="post">
             <div style="display: flex; justify-content: space-between; margin-top:10px;">
-                 <div class="column" style="margin-right:90px;">
+                 <div class="column" style="margin-left:40px; margin-right:90px;">
 
 
                     <div class="select-container">
@@ -162,7 +160,7 @@
                     <div id="error-drop-off-date" class="error-message"></div>
 
                     <label for="drop-off-time">Drop off Time:</label>
-                    <input type="time" id="drop-off-time" name="drop-off-time">
+                    <input type="time" id="drop-off-time" name="drop-off-time" style="margin-top:20px;">
                     <div id="error-drop-off-time" class="error-message"></div>
 
                     <label for="pick-up-time">Pick up Time:</label>
@@ -172,24 +170,24 @@
                 </div>
                 <div class="column" style=" margin-left:20px; padding-right:50px;">
                     <label for="list-of-items">List of Items:</label>
-                    <textarea id="list-of-items" name="list-of-items" style="border-radius: 10px;" rows="4"></textarea>
+                    <textarea id="list-of-items" name="list-of-items" style="border-radius: 10px; margin-right:60px;" rows="1"></textarea>
                     <div id="error-list-of-items" class="error-message"></div>
 
                     <label for="allergies">Allergies:</label>
-                    <textarea id="allergies" name="allergies" style="border-radius: 10px;" rows="4"></textarea>
+                    <textarea id="allergies" name="allergies" style="border-radius: 10px;" rows="1"></textarea>
                     <div id="error-allergies" class="error-message"></div>
 
                     <label for="pet-behaviour">Pet Behaviour:</label>
-                    <textarea id="pet-behaviour" name="pet-behaviour" style="border-radius: 10px;" rows="4"></textarea>
+                    <textarea id="pet-behaviour" name="pet-behaviour" style="border-radius: 10px;" rows="1"></textarea>
                     <div id="error-pet-behaviour" class="error-message"></div>
 
                     <label for="medications">Medications:</label>
-                    <textarea id="medications" name="medications" style="border-radius: 10px;" rows="4"></textarea>
+                    <textarea id="medications" name="medications" style="border-radius: 10px;" rows="1"></textarea>
                     <div id="error-medications" class="error-message"></div>
                 </div>
                
             </div>
-            <div class="flex-container" style="display: flex; justify-content: center; margin-left: 100px; margin-top:20px;">
+            <div class="flex-container" style="display: flex; justify-content: center; margin-left: 100px; ">
                     <button class="add-new-button" type="submit" name="submit">Submit</button>
                 </div>
             </form>
@@ -197,43 +195,20 @@
     </div>
     <script>
     
+    window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+                if (flash.success) {
+                    Swal.fire('Success', flash.success, 'success');
+                } else if (flash.error) {
+                    Swal.fire('Error', flash.error, 'error');
+                }
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
     
-    <?php if (isset($_GET['true'])): ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Booking Successful',
-            text: 'Daycare booking successfully added.Wait for the confirmation Email. ',
-             //when okay clicked, redirect to services page
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '<?= ROOT ?>/petowner/services';
-            }
-            
-        });
-
-    <?php endif; ?>
-
-    //when okay clicked, redirect to services page
-    // Swal.fire({
-    //     icon: 'success',
-    //     title: 'Booking Successful',
-    //     text: 'Daycare booking successfully added. Wait for the confirmation Email.',
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         window.location.href = '<?= ROOT ?>/petowner/services';
-    //     }
-    // });
-
-    //failure message
-    <?php if (isset($_GET['failure'])): ?>
-        Swal.fire({
-            icon: 'error',
-            title: 'Booking Failed',
-            text: 'Failed to add daycare booking. Error: <?= $_GET['failure'] ?>',
-        });
-
-    <?php endif; ?>
-
+    
+        
 
 </script>
 </body>

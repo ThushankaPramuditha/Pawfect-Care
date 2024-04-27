@@ -633,9 +633,9 @@ main table tbody tr td:first-child {
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:50px;">Current<br> Number</p>
-                       
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:70px;">Current<br> Number</p>
+<!--                        
+                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p> -->
 
                         </div>
                     </div>
@@ -653,9 +653,6 @@ main table tbody tr td:first-child {
                         </div>
                     </div>
                 </div>
-             
-
-             >
 
                 </div>
             <!-- End of Analyses -->

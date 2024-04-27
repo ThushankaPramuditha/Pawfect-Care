@@ -672,7 +672,7 @@ main table tbody tr td:first-child {
             <!-- End of New Users Section -->
 
             <!-- Recent Orders Section -->
-            <div class="recent-orders">
+            <!-- <div class="recent-orders">
                 <h2>Booking Table</h2>
                 <table>
                     <thead>
@@ -693,7 +693,7 @@ main table tbody tr td:first-child {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
             <!-- End of Recent Orders Section -->	
        
 
@@ -788,7 +788,7 @@ $('body').on('click', '.accept-button', function(){
 var acceptModal = document.getElementById("accept-modal");
 
  // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close")[0];
 
 function openAcceptModal(id) {
             console.log(id);

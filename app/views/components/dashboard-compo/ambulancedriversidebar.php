@@ -152,11 +152,11 @@
                             </a>
                         </li>
                        
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/daycarestaff/daycarebookingform">
-                                <span class="menu-title">Transport Bookings</span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo ROOT?>/ambulancedriver/ridedetails">
+                                <span class="menu-title">Ride Details</span>
                             </a>
-                        </li> -->
+                        </li>
                         
                 
                     </ul>

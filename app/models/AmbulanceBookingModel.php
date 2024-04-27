@@ -168,6 +168,57 @@ public function getLocationBypetIdandTime($pet_id) {
         return $result->total;
     }
 
+    
+
+    public function countTodayAmbulancebookings(){
+        $query = "SELECT COUNT(*) AS total
+                  FROM ambulancebookings
+                  WHERE DATE(date_time) = CURDATE()";
+        $result = $this->get_row($query);
+        return $result->total;
+    }
+
+    public function countweekallAmbulancebookings(){
+        $query = "SELECT COUNT(*) AS total
+                  FROM ambulancebookings
+                  WHERE WEEK(date_time) = WEEK(NOW())";
+        $result = $this->get_row($query);
+        return $result->total;
+    }
+     
+    public function searchForAmbulanceDriver($term, $date = '') {
+        $term = "%{$term}%";
+        $dateCondition = !empty($date) ? "AND DATE(date_time) = :date" : "";
+        
+        $query = "SELECT
+            ab.id,
+            ab.date_time,
+            ab.pickup_lat,
+            ab.pickup_lng,
+            ab.pet_id,
+            p.name AS pet_name,
+            po.name AS petowner,
+            po.contact AS contact,
+            po.id AS petowner_id,
+            ab.status
+            FROM ambulancebookings ab
+            JOIN
+                pets p ON ab.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            WHERE 
+            (po.name LIKE :term 
+            OR po.contact LIKE :term
+            OR po.id LIKE :term)
+            {$dateCondition}";
+    
+        $bindings = [':term' => $term];
+        if (!empty($date)) {
+            $bindings[':date'] = $date;
+        }
+    
+        return $this->query($query, $bindings);
+    }
 
 
     public function validate($data)

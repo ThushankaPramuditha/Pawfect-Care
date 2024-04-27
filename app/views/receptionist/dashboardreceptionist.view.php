@@ -630,7 +630,7 @@ main table tbody tr td:first-child {
     <div class="container">
    
       <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+      <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
         </div>
         <!-- Main Content -->
 
@@ -735,68 +735,10 @@ main table tbody tr td:first-child {
        </div>
 
     </div>
-   <!-- accept modal-->
-   <div class="modal-form" id="accept-modal">
-            <div class="modal-content-delete">
-                <h1>Accept the Ride</h1>
-                <p>Start the Journey</p>
-                <div class="flex-container">
-                    <button class="reject" onclick="closeAcceptModal()">Cancel</button>
-                    <button id="accept-booking" class="d-button" onclick="acceptBooking()">Accept</button>
-                </div>
-            </div>
-        </div>
+ 
      
 
 <script>
-var acceptModal = document.getElementById("accept-modal");
-
-function openAcceptModal(id) {
-    console.log(id);
-    acceptModal.style.display = "block";
-    // Set the booking ID in the data attribute of the accept button
-    document.getElementById("accept-booking").setAttribute("data-booking-id", id);
-}
-
-function closeAcceptModal() {
-    acceptModal.style.display = "none";
-}
-
-document.querySelectorAll('.acceptButton').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var id = this.parentElement.parentElement.getAttribute('key');
-                console.log(id)
-                openAcceptModal(id);
-            });
-        });
-// Function to accept the booking
-function acceptBooking() {
-    // Retrieve the booking ID from the accept button's data attribute
-    var bookingId = document.getElementById("accept-booking").getAttribute("data-booking-id");
-    
-    // Send an AJAX request to accept the booking
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", `<?= ROOT ?>/ambulancedriver/acceptBooking?booking_id=${id}`, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-   
-            console.log("Booking accepted successfully");
-      
-            closeAcceptModal();
-           
-        } else {
-            // Handle error
-            console.error("Error accepting booking");
-        }
-    };
-    xhr.onerror = function() {
-        // Handle error
-        console.error("Error accepting booking");
-    };
-    xhr.send();
-}
-
- 
-    </script>
+</script>
  </body>
 </html>

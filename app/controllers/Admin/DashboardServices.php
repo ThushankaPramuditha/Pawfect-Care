@@ -9,16 +9,22 @@ class DashboardServices
 
 	public function index()
 	{
-
 		$data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
 		$daycaresbookingusermodel = new DaycarebookinguserModel();
 		$appointmentsmodel = new Appointmentsmodel();
+		$ambulancebookingmodel = new AmbulancebookingModel();
+		$feedbacksmodel = new FeedbacksModel();
 		$petownerModel = new PetownersModel();
 	
 		// Fetch data for various metrics
 		$data['appointmentbookings'] = $appointmentsmodel->counttodayallAppointments();
-		$data['todaybookings'] = $daycaresbookingusermodel->countTodayBookings();
+		$data['todaydaycarebookings'] = $daycaresbookingusermodel->countTodayBookings();
+		$data['weeekdaycarebookings'] = $daycaresbookingusermodel->countweekallBookings();
+		$data['weekappointments'] = $appointmentsmodel->countweekallAppointments();
+		$data['weekambulancebookings'] = $ambulancebookingmodel->countweekallAmbulancebookings();
 		$data['daycarebookings'] = $daycaresbookingusermodel->getAllDaycarebookings();
+        $data['ambulancebookings'] = $ambulancebookingmodel->countTodayAmbulancebookings();
+		$data['feedbacks'] = $feedbacksmodel-> getNotPostedFeedbacks();
 		$data['petownercount'] = $petownerModel->petownerCount();
 		
 		// Calculate weekly income
@@ -33,7 +39,7 @@ class DashboardServices
 		$data['week3Income'] = $week3Income;
 		$data['week4Income'] = $week4Income;
 	
-		$this->view('admin/dashboardservices', $data);
+		// $this->view('admin/dashboardservices', $data);
 
 
 		AuthorizationMiddleware::authorize(['Admin']);

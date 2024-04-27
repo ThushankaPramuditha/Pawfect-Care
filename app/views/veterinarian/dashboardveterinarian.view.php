@@ -7,6 +7,8 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php $activePage = 'dashboardveterinarian';?>
     
     <title>Dashboard</title>
     <style>
@@ -231,15 +233,12 @@ main .new-users .user-list:hover{
     box-shadow: none;
 }
 
-    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
-    <?php $activePage = 'dashboardveterinarian';?>
-
-
+ 
 main .new-users .user-list .user{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
 main .new-users .user-list .user img{

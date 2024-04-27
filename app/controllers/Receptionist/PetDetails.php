@@ -21,14 +21,7 @@ class PetDetails
 		$this->view('receptionist/petdetails',$data);
 	}
 
-	public function calculateAge($birthday) {
-		AuthorizationMiddleware::authorize(['Receptionist']);
-		$dateOfBirth = new DateTime($birthday);
-		$today = new DateTime('today');
-
-		//get the year element of the difference between the two dates
-		return $dateOfBirth->diff($today)->y;
-	}
+	
 
 	public function add()
     {
@@ -47,9 +40,50 @@ class PetDetails
             exit();
         };
     }
+
+	public function search(): void
+    {
+        
+        $petsModel = new PetsModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $petsModel = $petsModel->search($searchTerm);
+
+        if(empty($petsModel)){
+            echo "<tr><td colspan='20'>No pets found</td></tr>";
+        }
+        else{
+            foreach ($petsModel as $pets) {
+				$dateOfBirth = new DateTime($pets->birthday);
+				$today = new DateTime('today');
+				$pets->age =  $dateOfBirth->diff($today)->y;
+                echo "<tr key='{$pets->id}'>";
+                echo "<td>{$pets->id}</td>";
+                echo "<td>{$pets->name}</td>";
+                echo "<td>{$pets->age}</td>";
+                echo "<td>{$pets->breed}</td>";
+                echo "<td>{$pets->species}</td>";
+                echo "<td>{$pets->gender}</td>";
+                echo "<td>{$pets->petowner_id}</td>";
+                echo "<td>{$pets->owner_name}</td>";
+				echo "<td>{$pets->nic}</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
+
+	public function calculateAge($birthday) {
+		AuthorizationMiddleware::authorize(['Receptionist']);
+		$dateOfBirth = new DateTime($birthday);
+		$today = new DateTime('today');
+
+		//to get the year difference between the two dates
+		return $dateOfBirth->diff($today)->y;
+	}
 		
 
-	}
+}
 
 
 

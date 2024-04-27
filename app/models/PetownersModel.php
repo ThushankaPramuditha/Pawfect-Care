@@ -18,6 +18,20 @@ class PetownersModel
         return $this->query($query);    
     }
 
+    public function search($term)
+    {
+        $term = "%{$term}%";
+        $query = "SELECT p.*, u.email ,u.status
+                FROM petowners AS p
+                JOIN users AS u ON p.user_id = u.id
+                WHERE p.name LIKE :term
+                OR p.id LIKE :term
+                OR p.nic LIKE :term
+                OR p.contact LIKE :term";
+        
+        return $this->query($query, [':term' => $term]);
+    }
+
     public function getPetownerById($id)
     {
         $query = "SELECT p.*, u.email ,u.status

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#ffff;">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="nav-container">
             <div class="top-container">
                 <div style="width: 90%">

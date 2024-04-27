@@ -385,6 +385,22 @@ class AppointmentsModel
         }
      }
 
+     public function getCurrentPatientNo()
+    {
+        $query = "SELECT patient_no 
+                FROM appointments 
+                WHERE status = 'current' LIMIT 1";
+
+        $result = $this->query($query);
+
+        if ($result && $result[0] && isset($result[0]->patient_no)) {
+            return $result[0]->patient_no;
+        } else {
+            return null; 
+        }
+    }
+
+
      public function getVetName($vetId){
         $query = "SELECT name FROM veterinarians WHERE id = :vet_id";
         $result = $this->query($query, [':vet_id' => $vetId]);

@@ -15,18 +15,18 @@
             <div id="error-update-serial_no" class="error-message"></div-->
 
             <label for="update-weight">Weight:</label>
-            <input type="text" id="update-weight" name="weight" value="<?php echo $vaccinationhistory->weight;?>">
+            <input type="text" id="update-weight" name="weight" value="<?php echo $vaccinationhistory->weight;?>"><br>
             <div id="error-update-weight" class="error-message"></div>
 
             <label for="update-temperature">Temperature:</label>
-            <input type="text" id="update-temperature" name="temperature" value="<?php echo $vaccinationhistory->temperature;?>">
+            <input type="text" id="update-temperature" name="temperature" value="<?php echo $vaccinationhistory->temperature;?>"><br>
             <div id="error-update-temperature" class="error-message"></div>
 
         </div>
         <div class="column">
 
             <label for="update-due date">Next Due Date:</label>
-            <input type="date" id="update-due_date" name="due_date" value="<?php echo $vaccinationhistory->due_date;?>">
+            <input type="date" id="update-due_date" name="due_date" value="<?php echo $vaccinationhistory->due_date;?>"><br>
             <div id="error-update-due_date" class="error-message"></div>
 
             <label for="update remarks">Remarks:</label>

@@ -9,9 +9,14 @@ class VaccinationHistory
         AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistoryForPetId($a);
+
+        $appointmentsModel = new AppointmentsModel();
+        $data['appointments'] = $appointmentsModel->getCurrentPatientNo();
+
         $this->view('medicalstaff/vaccinationhistory', $data);
 
     }
@@ -25,8 +30,18 @@ class VaccinationHistory
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
-            $vaccinationhistoryModel->updateVaccinationHistory($a, $_POST);
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            $success = $vaccinationhistoryModel->updateVaccinationHistory($a, $_POST);
+
+            if($success){
+                $_SESSION['flash'] = ['success' => 'Vaccination updated successfully!'];
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
+            else{
+                $_SESSION['flash'] = ['error' => 'Failed to update vaccination'];
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+                exit();
+            };
         }
 
     }
@@ -40,9 +55,20 @@ class VaccinationHistory
 
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$petId = $a;
-        $vaccinationhistoryModel->addVaccination($_POST);
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        //redirect("medicalstaff/vaccinationhistory/{$petId}");
+        $success = $vaccinationhistoryModel->addVaccination($_POST);
+
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Vaccination added successfully!'];
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            //redirect("medicalstaff/vaccinationhistory/{$petId}");
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add vaccination'];
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        };
+        
     }
 
     public function viewVaccinationHistory(string $a = '', string $b = '', string $c = ''): void

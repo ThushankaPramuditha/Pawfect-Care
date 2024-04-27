@@ -26,12 +26,22 @@ class MedicalHistory
         $medicalhistoryModel = new MedicalhistoryModel();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
-            $medicalhistoryModel->updateMedicalHistory($a, $_POST);
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            $success = $medicalhistoryModel->updateMedicalHistory($a, $_POST);
+
+            if($success){
+                $_SESSION['flash'] = ['success' => 'Treatment updated successfully!'];
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
+            else{
+                $_SESSION['flash'] = ['error' => 'Failed to update treatment'];
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+                exit();
+            };
+                
         }
         
     }
-
 
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
@@ -40,12 +50,20 @@ class MedicalHistory
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
         $medicalhistoryModel = new MedicalhistoryModel();
-        //$petId = $_POST['pet_id'];
-        $medicalhistoryModel->addTreatment($_POST);
+        //$petId = $_POST['pet_id']??'';
+        $success = $medicalhistoryModel->addTreatment($_POST);
 
-    
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-     
+        if($success){
+            $_SESSION['flash'] = ['success' => 'Treatment added successfully!'];
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+        else{
+            $_SESSION['flash'] = ['error' => 'Failed to add treatment'];
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        };
+       
     }
 
     public function viewMedicalHistory(string $a = '', string $b = '', string $c = ''): void

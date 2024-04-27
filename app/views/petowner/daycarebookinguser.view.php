@@ -137,7 +137,7 @@
         <div class="form-container">
         <form id="daycarebooking-form" action="<?php echo ROOT?>/petowner/daycarebookinguser/addDaycarebooking" method="post">
             <div style="display: flex; justify-content: space-between; margin-top:10px;">
-                 <div class="column" style="margin-left:40px; margin-right:90px;">
+                 <div class="column" style="margin-left:30px; margin-right:30px;">
 
 
                     <div class="select-container">

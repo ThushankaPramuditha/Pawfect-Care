@@ -30,6 +30,25 @@ class FeedbacksModel
         return $this->findAll();
     }
 
+public function getNotPostedFeedbacks()
+{
+    $query = "SELECT f.*, po.name AS owner_name
+              FROM feedbacks f
+              JOIN petowners po 
+              ON f.petowner_id = po.id
+              WHERE f.status = 'not posted'";
+
+    $feedbacks = $this->query($query);
+
+    // Check if there are feedbacks
+    if ($feedbacks && count($feedbacks) > 0) {
+        return $feedbacks;
+    } else {
+        return "No feedbacks at the moment.";
+    }
+}
+
+
     public function search($term)
     {
         $term = "%{$term}%";

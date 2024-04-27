@@ -630,7 +630,7 @@ main table tbody tr td:first-child {
     <div class="container">
    
       <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+      <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>
         </div>
         <!-- Main Content -->
 
@@ -676,7 +676,7 @@ main table tbody tr td:first-child {
             <!-- End of New Users Section -->
 
             <!-- Recent Orders Section -->
-            <div class="recent-orders">
+            <!-- <div class="recent-orders">
                 <h2>Booking Table</h2>
                 <table>
                     <thead>
@@ -697,7 +697,7 @@ main table tbody tr td:first-child {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
             <!-- End of Recent Orders Section -->	
        
 

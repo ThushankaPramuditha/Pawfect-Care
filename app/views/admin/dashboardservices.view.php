@@ -621,11 +621,10 @@ main table tbody tr td:first-child {
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
-
     <div class="container">
    
       <div>
-      <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?>
+      <?php include '../app/views/components/dashboard-compo/adminsidebar.php'; ?> 
         </div>
         <!-- Main Content -->
 
@@ -635,11 +634,9 @@ main table tbody tr td:first-child {
             <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
-                        <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:50px;">Daycare <br> Bookings</p>
-                       
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $todaybookings; ?></p>
-
+                        <div class="info" style="margin-left:30px;">
+                            <p style="font-size:20px; display:flex; justify-content:center; text-align:center; font-weight:bolder;">Vet<br> Appointments</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $appointmentbookings; ?></p>
                         </div>
                     </div>
                 </div>
@@ -648,10 +645,9 @@ main table tbody tr td:first-child {
               <!-- filled slots -->
                 <div class="sales">
                     <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:40px;">Appointment<br> Bookings</p>
-                
-                            <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:40px;"><?php echo $appointmentbookings; ?></p>
+                        <div class="info"  style="margin-left:60px;">
+                        <p style="font-size:20px; display:flex; justify-content:center; font-weight:bolder;text-align:center;">Daycare<br> Bookings</p>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaydaycarebookings; ?></p>
 
                         </div>
                     </div>
@@ -661,21 +657,19 @@ main table tbody tr td:first-child {
                <!-- free slots -->
                  <div class="sales">
                       <div class="status">
-                            <div class="info">
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:50px;">Transport <br> Bookings </p>
-            
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $todaybookings; ?></p>
+                            <div class="info" style="margin-left:10px;">
+                            <p style="font-size:20px; display:flex; justify-content:center; font-weight:bolder;text-align:center;">Ambulance Bookings</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $ambulancebookings; ?></p>
                             </div>
                       </div>
                  </div>
-
                 </div>
             <!-- End of Analyses -->
 
             <!-- New Users Section -->
          
-    <div style="margin-top:50px; display:flex; flex-direction:row;">
-      <div>
+    <div style="margin-top:100px; display:flex; flex-direction:row;">
+    <div>
         <canvas id="myDonutChart" width="350" height="350"></canvas>
         <script>
             // Get the canvas element
@@ -685,16 +679,16 @@ main table tbody tr td:first-child {
             var data = {
                 labels: ['Daycare Bookings', 'Vet Appointments', 'Transport Bookings'],
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: 'Week Bookings',
  
                     //add the bookings data
-                    data : [<?php echo $data['todaybookings']; ?>, <?php echo $data['appointmentbookings']; ?>, <?php echo  $data['todaybookings'];; ?>],
+                    data : [<?php echo $weeekdaycarebookings; ?>, <?php echo $weekappointments; ?>, <?php echo  $weekambulancebookings; ?>],
                 
                     backgroundColor: [
-                        //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
+                        //colors like light blue ,light green and light red
+                        'rgb(173, 216, 230)',
+                        'rgb(0, 0, 255)',
+                        'rgb(0, 0, 139)'
                          
                         
                     ],
@@ -718,7 +712,7 @@ main table tbody tr td:first-child {
        
         </div>
         <div style="margin-left:50px;">
-        <canvas id="myLineChart" width="300" height="300"></canvas>
+        <canvas id="myLineChart" width="320" height="320"></canvas>
         <script>
             // Get the canvas element
             var ctx = document.getElementById('myLineChart').getContext('2d');
@@ -753,6 +747,7 @@ main table tbody tr td:first-child {
             });
        </script>
         </div>
+
     </div>
 
     
@@ -767,9 +762,7 @@ main table tbody tr td:first-child {
                     <span class="material-icons-sharp">
                         menu
                     </span>
-                </button>
-                
-
+               </button>
 
             </div>
             <!-- End of Nav -->
@@ -784,7 +777,7 @@ main table tbody tr td:first-child {
 
             <div class="reminders">
                 <div class="header">
-                    <h2>Notifications</h2>
+                    <h2>Feedbacks</h2>
                     <span class="material-icons-sharp">
                         notifications_none
                     </span>
@@ -792,34 +785,31 @@ main table tbody tr td:first-child {
 
 
 <div>
-    <?php 
-
-    ?>
+  
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-        <?php   foreach ($data['daycarebookings'] as $daycarebooking)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
-            <div class="notification-item">
-                <div class="info">
-                    <h3>Daycare Booking</h3>
-                    <small class="text-muted">New Booking</small>
-                    <p>
-                    <?php echo 'pet_id:' . $daycarebooking->pet_id . ' has been booked for daycare on ' . $daycarebooking->drop_off_date . ' at ' . $daycarebooking->drop_off_time . ' to ' . $daycarebooking->pick_up_time; ?>
-
-                    </p>
+            <?php if (is_array($feedbacks) || is_object($feedbacks)) { ?>
+            <?php foreach ($feedbacks as $feedback) { ?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                    <div class="notification-item">
+                        <div class="info">
+                            <h3>Feedback</h3>
+                            <p>
+                                Pet Owner ID: <?php echo $feedback->petowner_id; ?><br>
+                                Feedback: <?php echo $feedback->feedback; ?><br>
+                                Date: <?php echo $feedback->date; ?>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            <?php } ?>
+        <?php } else { ?>
+            <h3>No feedbacks at the moment.</h3>
         <?php } ?>
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
         <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
+        <a href="<?=ROOT?>/admin/feedbacks">
             <div>
                 <span class="material-icons-sharp">
                       arrow_forward
@@ -830,8 +820,6 @@ main table tbody tr td:first-child {
         </div>
  </div>
 </div>
-
-
 
             </div>
 

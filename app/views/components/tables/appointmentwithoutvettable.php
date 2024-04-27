@@ -34,7 +34,6 @@
                         <td><?= htmlspecialchars($appointment->status); ?></td>
                         
                     </tr>
-                    
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>

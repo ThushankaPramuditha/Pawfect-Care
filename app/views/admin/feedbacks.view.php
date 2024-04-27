@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php $activePage = 'feedbacks'; ?>
 
 
     <title>Feedbacks</title>

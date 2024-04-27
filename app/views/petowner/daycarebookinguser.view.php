@@ -127,7 +127,9 @@
 </head>  
 <body>
 
-<?php include 'navbar.php' ?>
+
+<?php include 'navbar.php'; ?>
+
     <div class="modal-content" style="margin-top:10px;">
     <div style="display: flex; justify-content: center;">
             <h1>Daycare Booking</h1>

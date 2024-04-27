@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <?php $activePage = 'myprofile';?>
 
 </head>
 

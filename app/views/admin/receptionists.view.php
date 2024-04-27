@@ -10,6 +10,7 @@
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+<?php $activePage = 'receptionists'; ?>
 
 
 

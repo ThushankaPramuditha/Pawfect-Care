@@ -1,3 +1,5 @@
+<?php $activePage = 'veterinarians'; ?>
+
 <form id="updated-form" action="<?php echo ROOT?>/Admin/Veterinarians/update/<?php echo $veterinarians->id; ?>" method="post">
     <div class="column">
         <label for="update-name">Full Name:</label>

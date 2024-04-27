@@ -9,6 +9,7 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php $activePage = 'myprofile';?>
 
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

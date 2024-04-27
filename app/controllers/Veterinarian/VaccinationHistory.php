@@ -55,6 +55,35 @@ class VaccinationHistory
         // die();
         $this->view('veterinarian/vaccinationhistory/update', $data);
     }
+
+    public function search(): void 
+    {
+        $vaccinationHistoryModel = new VaccinationhistoryModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $petId = $_POST['petId'] ?? '';
+       
+        $vaccinationhistory = $vaccinationHistoryModel->searchVaccinationHistoryPerPet($searchTerm, $petId);
+        
+        if(empty($vaccinationhistory)) {
+            echo "<tr><td colspan='9'>No vaccination found</td></tr>";
+        } else {
+            foreach ($vaccinationhistory as $history) {
+                echo "<tr key='{$history->id}'>";
+                echo "<td>{$history->pet_id}</td>";
+                echo "<td>{$history->date}</td>";
+                echo "<td>{$history->weight}</td>";
+                echo "<td>{$history->temperature}</td>";
+                echo "<td>{$history->vaccine_name}</td>";
+                echo "<td>{$history->serial_no}</td>";
+                echo "<td>{$history->administered_by}</td>";
+                echo "<td>{$history->due_date}</td>";
+                echo "<td>{$history->remarks}</td>";
+                echo "</tr>";
+            }
+        }
+        exit;
+    }
+
 }
 
 

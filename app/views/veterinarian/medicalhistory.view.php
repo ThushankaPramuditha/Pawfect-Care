@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical History</title>
+    <?php $activePage = 'petdetails';?>
+
 </head>
 
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
@@ -16,10 +18,14 @@
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header"style="display:flex; justify-content:flex-end">
+            <?php if (!empty($medicalhistory)): ?>
+                    <?php $petId = $medicalhistory[0]->pet_id; ?>
+                    
+            <?php endif; ?>
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search treatment...">
-                    <button class="search-button">Search</button>
-                </div>
+                <input type="text" id="search" placeholder="Search treatment...">
+                <button class="search-button">Search</button>
+            </div>
             
     </header>
         </div>
@@ -110,7 +116,29 @@
         </div>
     </div>-->
 
+    <script>
 
+            $(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); 
+                    var searchTerm = $(this).val();
+                    var petId = <?= json_encode($petId); ?>;
+                    
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Veterinarian/MedicalHistory/search",
+                        type: "POST",
+                        data: { search: searchTerm,petId:petId }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                });
+
+            });
+    </script>
      
   
     </body>

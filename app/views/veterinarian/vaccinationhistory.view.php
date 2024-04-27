@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php $activePage = 'petdetails';?>
 
     <title>Vaccination History</title>
 </head>
@@ -15,8 +16,14 @@
     <?php include '../app/views/components/dashboard-compo/veterinariansidebar.php'; ?>  
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header"style="display:flex; justify-content:flex-end">
+
+            <?php if (!empty($vaccinationhistory)): ?>
+                <?php $petId = $vaccinationhistory[0]->pet_id; ?>
+            
+            <?php endif; ?>
+
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search by vaccination...">
+                    <input type="text" id="search" placeholder="Search by vaccine name,serial number or veterinarian...">
                     <button class="search-button">Search</button>
                 </div>
             
@@ -103,7 +110,25 @@
 
 
 <script>
-    
+         $(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); 
+                    var searchTerm = $(this).val();
+                    var petId = <?= json_encode($petId); ?>;
+                    
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Veterinarian/VaccinationHistory/search",
+                        type: "POST",
+                        data: { search: searchTerm,petId:petId }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                });
+            });
 </script>
 </body>
 

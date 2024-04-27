@@ -1,3 +1,5 @@
+<?php $activePage = 'receptionists'; ?>
+
 <form id="updated-form" action="<?php echo ROOT?>/Admin/Receptionists/update/<?php echo $receptionists->id; ?>" method="post">
     <div class="column">
         <label for="update-name">Full Name:</label>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
+    <?php $activePage = 'daycarebookingform';?>
 
   <style>
     .view-date-button {

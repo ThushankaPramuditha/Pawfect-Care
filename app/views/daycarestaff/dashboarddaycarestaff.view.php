@@ -686,9 +686,9 @@ main table tbody tr td:first-child {
                     data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
                 
                     backgroundColor: [
-                        'rgb(173, 216, 230)',
-                        'rgb(0, 0, 255)',
-                        'rgb(0, 0, 139)'
+                        'rgb(204, 102, 255)',
+                        'rgb(255, 204, 255)',
+                        'rgb(102, 0, 102)'
                          
                         
                     ],
@@ -725,7 +725,7 @@ main table tbody tr td:first-child {
                     label: 'Weekly Bookings',
                     data: [<?php echo $week1count; ?>, <?php echo $week2count; ?>, <?php echo $week3count; ?>, <?php echo $week4count; ?>],
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(204, 102, 255)',
                     tension: 0.1
                 }]
             };
@@ -784,7 +784,7 @@ main table tbody tr td:first-child {
   
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:300px; overflow-y:scroll;" >
     <?php   foreach ($daycarenotifications as $notification)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
          
             <div class="notification-item">
                 <div class="info">
@@ -801,13 +801,13 @@ main table tbody tr td:first-child {
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:#ffff;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:#ffff;">View</h3>
             </div>
       
         </div>

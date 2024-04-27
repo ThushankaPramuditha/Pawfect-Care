@@ -15,10 +15,10 @@ class DashboardVeterinarian
         
 		$appointmentmodel = new Appointmentsmodel();
 		$notificationModel = new NotificationModel();
-
-		$data['counttodayallAppointments'] = $appointmentmodel->countTodayAppointments($_SESSION['USER']->id);
-		$data['countweekallAppointments'] = $appointmentmodel->countweekAppointments($_SESSION['USER']->id);
-		$data['vetnotifications'] = $notificationModel->getVetNotificationByUserId($_SESSION['USER']->id);
+        $vetId = $appointmentmodel->getVetIdByUserId($_SESSION['USER']->id);
+		$data['counttodayallAppointments'] = $appointmentmodel->countTodayAppointments($vetId);
+		$data['countweekallAppointments'] = $appointmentmodel->countweekAppointments($vetId);
+		$data['vetnotifications'] = $notificationModel->getVetNotificationByVetUserId($_SESSION['USER']->id);
 
 		$this->view('veterinarian/dashboardveterinarian',$data);
 	}

@@ -59,9 +59,9 @@ body{
     background-color: var(--color-background);
 }
 
-a{
+/* a{
     color: var(--color-dark);
-}
+} */
 
 img{
     display: block;
@@ -686,9 +686,10 @@ main table tbody tr td:first-child {
                 
                     backgroundColor: [
                         //colors like light blue ,light green and light red
-                        'rgb(173, 216, 230)',
-                        'rgb(0, 0, 255)',
-                        'rgb(0, 0, 139)'
+                       
+                        'rgb(204, 102, 255)',
+                        'rgb(255, 204, 255)',
+                        'rgb(102, 0, 102)'
                          
                         
                     ],
@@ -725,10 +726,8 @@ main table tbody tr td:first-child {
                     data: [<?= $week1Income ?>, <?= $week2Income ?>, <?= $week3Income ?>, <?= $week4Income ?>],
                     backgroundColor: [
                         //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(153, 102, 255)',
-                        'rgb(153, 102, 255)',
-                        'rgb(153, 102, 255)'
+                        'rgb(204, 102, 255)',
+                        
                     ],
                     hoverOffset: 4 // Add space when hovered over a segment
                 }]
@@ -789,7 +788,7 @@ main table tbody tr td:first-child {
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
             <?php if (is_array($feedbacks) || is_object($feedbacks)) { ?>
             <?php foreach ($feedbacks as $feedback) { ?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <div class="notification-item">
                         <div class="info">
                             <h3>Feedback</h3>
@@ -808,13 +807,13 @@ main table tbody tr td:first-child {
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; color:white; cursor:pointer;  font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/admin/feedbacks">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:#ffff;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:#ffff">View</h3>
             </div>
       
         </div>

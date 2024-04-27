@@ -423,7 +423,18 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
+     
 
+    public function getVetIdbyUserId($userId){
+        $query = "SELECT id FROM veterinarians WHERE user_id = :user_id";
+        $result = $this->query($query, [':user_id' => $userId]);
+    
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
+    }
     
 
     public function validate($data)

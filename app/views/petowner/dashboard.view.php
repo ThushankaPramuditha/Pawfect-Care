@@ -298,39 +298,39 @@
                 </div>
             </div>
 
-        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap;">
+        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:100px;">
             
             <?php 
 
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
-                <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                    <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                    <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                
+                    <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
+                    <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                    
                         <div class="notification-item">
                             <div class="info">
-                                <h3>Daycare Booking</h3>
+                                <h3>Vet Appointment</h3>
                                 <small class="text-muted">New Booking</small>
                                 <p>
-                 <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
-
+                                <?php echo $vnotification->message ?></p>
                             </div>
                         </div>
                     </div>
                     <?php } ?>
              </div>
                     <p style="font-size:20px; font-weight:bolder;">Daycare Booking</p>
-                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                        <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                        <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                        <?php foreach ($daycarenotifications as $dnotification) { ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
                             <div class="notification-item">
                                 <div class="info">
                                     <h3>Daycare Booking</h3>
                                     <small class="text-muted">New Booking</small>
                                     <p>
-                                    <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
+                                    <?php echo $dnotification->message ?></p>
                                     </p>
                                 </div>
                             </div>
@@ -338,9 +338,9 @@
                         <?php } ?>
                     </div>
             <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+            <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <!-- <div class="icon">
                         <span class="material-icons-sharp">
                             volume_up
@@ -348,10 +348,10 @@
                     </div> --> 
                     <div class="notification-item">
                         <div class="info">
-                            <h3>Daycare Booking</h3>
+                            <h3>Upcoming Vaccination</h3>
                             <small class="text-muted">New Booking</small>
                             <p>
-                            <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
+                            <?php echo $vnotification->message?></p>
                             </p>
                         </div>
                     </div>

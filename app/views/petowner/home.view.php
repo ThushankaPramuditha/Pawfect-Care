@@ -249,7 +249,7 @@
         }
 
         .card2-text{
-        background-color:#9b59b6;
+        background-color: #9b59b6;
         color:#FFF8F0;
         border-radius:0 0 20px 20px;
         font-size: 20px;
@@ -265,6 +265,7 @@
               margin: 20px 0;
               transition: transform 0.3s;
               color: black;
+              padding: 20px;
               /* font-weight: bold; */
               text-align: center;
               backdrop-filter: blur(5px); /* Frosted glass effect */
@@ -296,7 +297,7 @@
 
       .card4 {
       flex-basis: calc(30% - 20px);
-      height: 300px;
+      height: 350px;
       width: 250px;
       position: relative;
       transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -315,11 +316,10 @@
       flex-direction: column;
       background-color: #8F4BAA;
       color: white;
-      height: 70%;
+      height: 80%;
       bottom: 0;
       border-radius: 16px;
       transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-      padding: 20px;
       text-wrap:wrap;
       font-size: 16px;
     }
@@ -331,7 +331,7 @@
       flex-direction: column;
       background-color: whitesmoke;
       color: #212121;
-      height: 30%;
+      height: 100%;
       bottom: 10px;
       padding-left: 20px;
       border-radius: 16px;
@@ -349,6 +349,9 @@
     .text-body {
       font-size: 1rem;
       line-height: 130%;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 5px;
     }
 
 

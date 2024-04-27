@@ -168,10 +168,7 @@
             width: 100%;
         }
 
-        input,
-        textarea,
-
-        button {
+        .button {
             /* Add spacing between form elements */
             padding: 10px; /* Add padding to form elements */
             width: 100%; /* Make form elements fill the container width */
@@ -179,16 +176,13 @@
             border: 1px solid #ccc; /* Add a thin border to each form element */
             border-radius: 24px; /* Add rounded corners on all borders */
             align-self: center;
+            padding: 10px 20px; 
+            border: none; 
+            cursor: pointer;"
 
         }
 
-        button {
-            background-color: purple;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
+        .button:hover {
             background-color: darkmagenta;
         }
 
@@ -246,7 +240,8 @@
         }
 
         h2.m{
-            margin-left:100px; 
+            align-self:center;
+            margin-bottom: 10px; 
             color: #353535; 
             font-size:40px; 
         }
@@ -289,7 +284,7 @@
         <div class="feedback-form-container">
             <form id = "feedback-form" action="<?=ROOT?>/petowner/feedbacks/add" method="post">
                 <textarea name="feedback" placeholder="Enter Your Feedback..." class="in" style="width:100%"></textarea>
-                <button type="submit" style="background-color: purple; color: white; padding: 10px 20px; border: none; cursor: pointer;">Submit</button>
+                <button type="submit" style="color:white; height:auto; background-color: darkmagenta; border-radius:24px; align-self: center; width: 400px;">Submit</button>
             </form>
         </div>
     </div>
@@ -328,7 +323,7 @@
                 <input class="in-s" type="text" name="name" placeholder="Enter your name">
                 <input type="text" name="email" placeholder="Enter your email" class="in-s">
                 <textarea name="message" placeholder="Got more Questions? let us know..." class="in-s"></textarea>
-                <button type="submit" name="submit">Send Message</button>
+                <button type="submit" name="submit" style="color:white; height:auto; background-color: darkmagenta; border-radius:24px; align-self: center; width: 400px;">Send Message</button>
             </form>
         </div>
 

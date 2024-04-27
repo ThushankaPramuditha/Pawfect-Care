@@ -41,6 +41,24 @@ class Daycarebookingform
 
         if ($success) {
             $_SESSION['message'] = "Daycare booking declined successfully!";
+             // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
+            //sample email
+            $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+            if($petOwnerEmail) {
+                // Send email to the pet owner
+                $subject = "Your Daycare Booking has been declined";
+                // $message = "Your daycare booking has been accepted. You will receive a phone call shortly.";
+                $message = "
+                        <div style='color: #333; font-family: Arial, sans-serif; font-size: 16px;'>
+                            <p style='font-weight: bold;'>Your daycare booking has been accepted.</p>
+                            <p>You will receive a phone call shortly to confirm the details.</p>
+                        </div>
+                    ";
+                $emailModel = new EmailModel();
+                $emailModel->sendEmail($petOwnerEmail, $subject, $message);
+            } else {
+                // $_SESSION['error'] = "Failed to fetch pet owner email!";
+            }
         } else {
             $_SESSION['error'] = "Failed to decline daycare booking!";
         }
@@ -57,23 +75,52 @@ public function accept(string $id): void
         $_SESSION['message'] = "Daycare booking accepted successfully!";
         
         // Fetch the pet owner's email using the provided pet ID
-            $email = $daycarebookinguserModel->getPetOwnerEmail($id);
-            if($email) {
-            // Send email to the pet owner
-            $subject = "Your Daycare Booking has been Accepted";
-            $message = "Your daycare booking has been accepted. You will receive a phone call shortly.";
-            $emailModel = new EmailModel();
-            $emailModel->sendEmail($email, $subject, $message);
-        } else {
-            $_SESSION['error'] = "Failed to fetch pet owner email!";
-        }
+            // $email = $daycarebookinguserModel->getPetOwnerEmail($id);
+
+        // Add notification
+         $petOwnerId = $daycarebookinguserModel->getPetOwnerId($id);
+        
+        //  $petOwnerEmail = $this->getPetOwnerEmailByPetId($petOwnerId);
+          
+        //   $notificationModel = new NotificationModel();
+        //     $notificationData = [
+        //         'user_id' => $_SESSION['USER']->id,
+        //         'receiver_id' =>$petOwnerId,
+        //         'message' => "Your Daycare booking accepted successfully!",
+        //         'type' => 'daycare',
+        //         'appointment_id' => $id,
+        //         'status' => 'unread'
+        //     ];
+        //     $daycarenotification = $notificationModel->addNotification($notificationData);
+        //     if ($daycarenotification !== false) {
+        //         echo "Notification added successfully";
+        //     } else {
+        //         echo "Failed to add notification";
+        //     }
+           
+            // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
+            //sample email
+            $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+            if($petOwnerEmail) {
+                // Send email to the pet owner
+                $subject = "Your Daycare Booking has been Accepted";
+                $message = "
+                <div style='color: #333; font-family: Arial, sans-serif; font-size: 16px;'>
+                    <p style='color: #008000; font-weight: bold;'>Your daycare booking has been accepted.</p>
+                    <p>You will receive a phone call shortly to confirm the details.</p>
+                </div>
+            ";
+                $emailModel = new EmailModel();
+                $emailModel->sendEmail($petOwnerEmail, $subject, $message);
+            } else {
+                // $_SESSION['error'] = "Failed to fetch pet owner email!";
+            }
+
     } else {
         $_SESSION['error'] = "Failed to accept daycare booking!";
 
     } 
-    
 
-    //redirect to daycarebooking
     redirect('daycarestaff/daycarebooking');
 }
 
@@ -101,7 +148,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
     }
 }
 
-	public function finished(string $id): void
+	public function finish(string $id): void
 	{
         AuthorizationMiddleware::authorize(['Daycare Staff']);
 		$daycarebookinguserModel = new DaycarebookinguserModel();
@@ -109,10 +156,32 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 
 		if ($success) {
 			$_SESSION['message'] = "Daycare booking finished successfully!";
+
+              // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
+            //sample email
+            $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+            if($petOwnerEmail) {
+                // Send email to the pet owner
+                $subject = "Your Daycare Booking Time has been finished";
+                // $message = "<h2>Your daycare booking time has been finished. Please pick up your pet.</h2>";
+                $message = "
+                        <div style='color: #333; font-family: Arial, sans-serif; font-size: 16px;'>
+                            <h2 style='color: #333; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold;'>Attention: Your daycare booking time has ended</h2>
+                            <p>Your daycare booking has come to an end. Please pick up your pet at your earliest convenience.</p>
+                            <p>If you have any questions or concerns, feel free to contact us. Thank you for choosing Pawfect Care!</p>
+                        </div>
+                    ";
+                $emailModel = new EmailModel();
+                $emailModel->sendEmail($petOwnerEmail, $subject, $message);
+            } else {
+                // $_SESSION['error'] = "Failed to fetch pet owner email!";
+                
+            }
+
 		} else {
 			$_SESSION['error'] = "Failed to finish daycare booking!";
 		}
-		redirect('daycarestaff/daycarebooking');
+		redirect('daycarestaff/daycarebookingform');
 	}
     public function search(): void
     {

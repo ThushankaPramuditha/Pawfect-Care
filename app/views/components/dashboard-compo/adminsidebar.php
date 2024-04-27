@@ -12,19 +12,21 @@
         .sidebar {
             width: 230px;
             min-height: 100vh;
-            background-color: #140e23;
+            background-color: #f4f4f4;
             position: fixed;
             left: 0;
             top: 0;
             z-index: 10;
             display: flex;
             flex-direction: column;
+            padding-left: 10px;
         }
 
         /* Remove ul disc style */
         .sidebar .nav {
             list-style-type: none;
             padding-left: 0;
+            padding-right: 10px;
         }
 
         .sidebar .nav-container{
@@ -38,26 +40,31 @@
         }
         .sidebar .nav-item {
             margin-bottom: 10px;
+            border-radius: 16px;
+            background-color: #D6B9DF;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar .nav-link {
-            color: #ffffff; /* New text color */
-            font-size: 20px; /* Increase the font size */
+            color: #56475C; /* New text color */
+            font-size: 18px; /* Increase the font size */
             text-decoration: none;
+            font-weight: bold;
             display: block;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius:16px;
         
         }
 
         .sidebar .nav-item:hover {
-            background-color: #4b2756; /* Theme color on hover */
-            color: #fff; /* Text color on hover */
+            background-color: #947c9b; /* Theme color on hover */
+            color: #56475C; /* Text color on hover */
         }
 
         .sidebar .nav-item:active {
-            background-color: #4b2756; /* Theme color for active item */
-            color: #fff; /* Text color for active item */
+            background-color: #947c9b; /* Theme color for active item */
+            color: #56475C; /* Text color for active item */
         }
         body {
             font-family: Arial, sans-serif;
@@ -68,13 +75,13 @@
             
         }
         .sidebar .nav-item a:hover {
-            background-color: #4b2756; /* Theme color on hover */
+            background-color: #947c9b; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
 
         /* Active menu item */
         .sidebar .nav-item.active {
-            background-color: #4b2756; /* Theme color for active item */
+            background-color: #947c9b; /* Theme color for active item */
             color: #fff; /* Text color for active item */
         }
 
@@ -107,11 +114,12 @@
             width: fit-content;
             height: 45px;
             border: none;
-            color: #fff;
-            background-color: #6a3879;
-            border-radius: 5px;
+            color: #7A408C;
+            background-color: #DEC7E5;
+            border-radius: 20px;
             margin-bottom: 40px;
             font-size: 20px; /* Increase the font size */
+            font-weight: bold;
             padding: 10px 40px;
             text-decoration: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
@@ -120,7 +128,7 @@
         }
 
         .sidebar .logout-button:hover {
-            background-color: #4b2756; /* Theme color on hover */
+            background-color: #7A408C; /* Theme color on hover */
             color: #fff; /* Text color on hover */
         }
         .sidebar .logout-button:active {
@@ -137,7 +145,7 @@
 
 
 <body>
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#ffff;">
         <div class="nav-container">
             <div class="top-container">
                 <div style="width: 100%">

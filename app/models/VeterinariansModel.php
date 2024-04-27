@@ -77,6 +77,7 @@ class VeterinariansModel
             return false; 
         }
     }*/
+    
     public function getVetIdByName($vetName)
     {
         $query = "SELECT id FROM $this->table WHERE name = :vet_name";
@@ -93,6 +94,23 @@ class VeterinariansModel
             return false; 
         }
 
+    }
+
+    public function getVeterinarianIdByUserId($userId)
+    {
+        $query = "SELECT id FROM $this->table WHERE user_id = :user_id";
+        
+        $bindings = [
+            'user_id' => $userId,
+        ];
+
+        $result = $this->query($query, $bindings);
+
+        if ($result && count($result) > 0) {
+            return $result[0]->id;
+        } else {
+            return false; 
+        }
     }
 
     

@@ -167,9 +167,13 @@
 
                     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['USER']->id; ?>"> 
                     <div id="error-user_id" class="error-message"></div>
-               
-                    <input type="hidden" id="driver_id" name="driver_id" value="<?php echo $_GET['ambulance_id'] ?>">
-                    <div id="error-driver_id" class="error-message"></div>
+                   <?php
+                        // Assuming ambulance_id is an integer
+                        $ambulance_id = isset($_GET['ambulance_id']) ? intval($_GET['ambulance_id']) : 0;
+                    ?>
+                      <input type="hidden" id="driver_id" name="driver_id" value="<?php echo $ambulance_id; ?>">
+                     <div id="error-driver_id" class="error-message"></div>
+
                      
                     <!-- pick your location -->
                     <p>Pick Your Location Here <i class="fas fa-hand-point-right"></i></p>
@@ -289,6 +293,6 @@ map.on('click', function(e) {
 
     </script>
 
-</script>
+
 </body>
 </html>

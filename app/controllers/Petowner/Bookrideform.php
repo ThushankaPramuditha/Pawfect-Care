@@ -21,38 +21,57 @@ class Bookrideform
         // Retrieve data from the form
         $pet_id = $_POST['pet_id'];
         $pickup_lat = $_POST['pick-up-lat'];
-        $pickup_lng  = $_POST['pick-up-lng'];
+        $pickup_lng = $_POST['pick-up-lng'];
         $user_id = $_SESSION['USER']->id;
         $driver_id = $_POST['driver_id'];
+        
+       
     
         $ambulancemodel = new AmbulanceBookingModel();
+        $date_time = date('Y-m-d H:i:s');
         $data = [
             'pet_id' => $pet_id,
             'pickup_lat' => $pickup_lat,
             'pickup_lng' => $pickup_lng,
             'user_id' => $user_id,
             'driver_id' => $driver_id,
-
-        ]; // Add a semicolon here
+            'message' => "petId : $pet_id booked an ambulance ride to $pickup_lat $pickup_lng at $date_time for$driver_id ",
     
-        // Call the model method to add the daycare booking
-        //define success variable
-        
+        ];
     
-        $success= $ambulancemodel->addBooking($data);
+        // Call the model method to add the ambulance booking
+        $success = $ambulancemodel->addBooking($data);
     
+        // Check if the booking was successful
         if ($success === true) {
-            // echo "Daycare booking successfully added.";
-            redirect('petowner/bookrideform?true');
-            //after successful booking, redirect to the services page
+            // Retrieve the ID of the newly added ambulance booking
+            $appointment_id = $ambulancemodel->getLastInsertedId();
     
-            
-           
+            // If booking was successful, add notification
+            $notificationmodel = new NotificationModel();
+            $notificationData = [
+                'user_id' => $user_id,
+                'receiver_id' => $driver_id,
+                'message' => $data['message'],
+                'type' => 'transport',
+                'appointment_id' => $appointment_id,
+                'status' => 'unread'
+            ];
+    
+            $transportnotification = $notificationmodel->addNotification($notificationData);
+    
+            if ($transportnotification !== false) {
+                echo "Notification added successfully";
+            } else {
+                echo "Failed to add notification";
+            }
+            // Redirect to the services page
+            redirect('petowner/bookrideform?true');
         } else {
             // Failed insertion
-            echo "Failed to add daycare booking. Error: " . $success;
-           
+            echo "Failed to add ambulance booking. Error: " . $success;
         }
     }
+    
     
 }

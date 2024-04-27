@@ -96,12 +96,12 @@ foreach ($bookingsToday as $booking) {
 <?php endforeach; ?>
 <script>
    async function bookSlots(id) {
-       await fetch(`<?php echo ROOT?>/daycarebooking/bookSlots/${id}`);
+       await fetch(`<?php echo ROOT?>/daycarestaff/daycarebooking/bookSlots/${id}`);
        window.location.reload();    
    }
 
     async function cancelBooking(id) {
-         await fetch(`<?php echo ROOT?>/daycarebooking/cancelBooking/${id}`);
+         await fetch(`<?php echo ROOT?>/daycarestaff/daycarebooking/cancelBooking/${id}`);
          window.location.reload();    
     }
 </script>

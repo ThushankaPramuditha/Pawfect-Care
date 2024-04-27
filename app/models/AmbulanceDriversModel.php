@@ -27,6 +27,26 @@ class AmbulanceDriversModel
         return $this->get_row($query, ['id' => $id]);
     }
 
+        public function getAmbulanceDriverIdByUserId($id) {
+            $query = "SELECT a.id
+                    FROM ambulancedrivers AS a
+                    JOIN users AS u ON a.user_id = u.id
+                    WHERE u.id = :id";
+            
+            // Execute the query and fetch the result
+            $result = $this->get_row($query, ['id' => $id]);
+        
+            // Check if a result was obtained
+            if ($result) {
+                // Access the 'id' property of the result object
+                return $result->id;
+            } else {
+                // Return null if no result was found
+                return null;
+            }
+        }
+    
+
     public function search($term)
     {
         $term = "%{$term}%";

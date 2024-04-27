@@ -341,7 +341,56 @@ class AppointmentsModel
         $income = $count * 400;
         return $income;
     }
+
+
+     public function getLastInsertedId(){
+        $query = "SELECT id FROM appointments ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query);
     
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
+     }
+
+     public function getPatientNo($petId){
+        $query = "SELECT patient_no FROM appointments WHERE pet_id = :pet_id ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query, [':pet_id' => $petId]);
+    
+        if ($result && !empty($result[0]->patient_no)) {
+            return $result[0]->patient_no; // Access patient_no property of the first row
+        } else {
+            return null; // Return null if no record is found or patient_no is empty
+        }
+     }
+
+     public function getVetName($vetId){
+        $query = "SELECT name FROM veterinarians WHERE id = :vet_id";
+        $result = $this->query($query, [':vet_id' => $vetId]);
+    
+        if ($result && !empty($result[0]->name)) {
+            return $result[0]->name; // Access name property of the first row
+        } else {
+            return null; // Return null if no record is found or name is empty
+        }
+     }
+
+     public function getPetOwnerEmailById($id){
+        $query = "SELECT u.email 
+                  FROM appointments As a
+                    JOIN pets AS p ON a.pet_id = p.id
+                    JOIN petowners AS po ON p.petowner_id = po.id
+                    JOIN users AS u ON po.user_id = u.id
+                    WHERE a.id = :id";
+        $result = $this->query($query, [':id' => $id]);
+
+        if ($result && !empty($result[0]->email)) {
+            return $result[0]->email; // Access email property of the first row
+        } else {
+            return null; // Return null if no record is found or email is empty
+        }         
+     
     public function updateAppointment($id, array $data)
     {
         // alowed column

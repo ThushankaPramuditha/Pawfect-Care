@@ -10,8 +10,7 @@ class PetsModel
     public function getAllPetDetails()
     {
         
-        //return $this->findAll();
-        $query = "SELECT p.*, po.name AS owner_name, po.contact
+        $query = "SELECT p.*, po.name AS owner_name, po.contact, po.nic
         FROM
             pets p
         JOIN

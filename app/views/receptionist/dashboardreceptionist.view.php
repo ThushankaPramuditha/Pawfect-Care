@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
     
     <title>Dashboard</title>
     <style>
@@ -40,7 +47,7 @@
     appearance: 0;
     border: 0;
     text-decoration: none;
-    box-sizing: border-box;
+   
 }
 
 html{
@@ -484,8 +491,6 @@ main table tbody tr td:last-child,
 main table tbody tr td:first-child {
     display: none;
 }
-
-
    
 }
 
@@ -613,226 +618,71 @@ main table tbody tr td:first-child {
     background-color: var(--color-white);
 }
 
-        </style>
+#map { height: 350px; width:300px;}
+
+</style>
           
 
 </head>
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-
-<div style = "margin-top: 80px; ">
-    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
-    <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
+    <div class="container">
+   
+      <div>
+      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+        </div>
+        <!-- Main Content -->
 
         <main>
-            <!-- <h1>Analytics</h1> -->
-            <!-- Analyses -->
-            <div class="analyse" style="margin-top:50px;">
+            <!-- <h1>Analytics</h1> --> 
+           <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Daycare Bookings</p>
-                            <?php 
-                            
-                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
-                                $statement = $pdo->prepare($query);
-                                $statement->execute();
-                                $todaybookings = $statement->rowCount();
-                                ?>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
-
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Today Appointments</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $allappointments; ?></p>
                         </div>
                     </div>
                 </div>
-          
-            
-              <!-- filled slots -->
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;">Accepted Bookings</p>
-                            <?php 
-                            //get today accepted bookings
-                            $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                            $query = "SELECT * FROM daycarebookinguser WHERE status = 'accepted' AND drop_off_date = CURDATE()";
-                            $statement = $pdo->prepare($query);
-                            $statement->execute();
-                            $acceptedbookings = $statement->rowCount();
-                            ?>
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $acceptedbookings; ?></p>
-
-                        </div>
-                    </div>
-                </div>
-             
-
-               <!-- free slots -->
-                 <div class="sales">
-                      <div class="status">
-                            <div class="info">
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Declined Bookings</p>
-                                <?php 
-                                $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-                                $query = "SELECT * FROM daycarebookinguser WHERE status = 'declined' AND drop_off_date = CURDATE()";
-                                $statement = $pdo->prepare($query);
-                                $statement->execute();
-                                $declinedbookings = $statement->rowCount();
-                                ?>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $declinedbookings; ?></p>
-                            </div>
-                      </div>
-                 </div>
-                </div>
+    
+            </div> 
             <!-- End of Analyses -->
 
-            <!-- New Users Section -->
-         
-    <div style="margin-top:100px; display:flex; flex-direction:row;">
-      <div>
-        <!-- <canvas id="myDonutChart" width="400" height="350"></canvas>
-        <script>
-            // Get the canvas element
-            var ctx = document.getElementById('myDonutChart').getContext('2d');
-
-            // Define data for the chart
-            var data = {
-                labels: ['All Bookings', 'Accepted', 'Decliend'],
-                datasets: [{
-                    label: 'My First Dataset',
- 
-                    //add the bookings data
-                    data : [<?php echo $todaybookings; ?>, <?php echo $acceptedbookings; ?>, <?php echo $declinedbookings; ?>],
-                
-                    backgroundColor: [
-                        //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
-                         
-                        
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
-
-            // Configure options for the chart
-            var options = {
-                cutout: 70, // Change this value to adjust the size of the hole in the middle
-                responsive: false, // Disable responsiveness for fixed size
-            };
-
-            // Create the donut chart
-            var myDonutChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: data,
-                options: options
-            });
-        </script>
-          <div style="justify-content:center;">
-            <button style="height:40px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:5px; padding:10px;">
-            <a href="<?=ROOT?>/daycarestaff/daycarebooking">
-                <div>
-                    <h3>Slots View</h3>
-                </div>
-            </a>
-          </div> -->
-          <div class="new-users">
+             <!-- New Users Section  -->
+             <div class="new-users">
                 <h2>Veterinarians</h2>
-                <div class="user-list">
-                    <?php
-                    // Assume you have a database connection established
-                    $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-
-                    $query = "SELECT * FROM veterinarians";
-                    $statement = $pdo->prepare($query);
-                    $statement->execute();
-                    $veterinarians = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($veterinarians as $veterinarian) {
-                        ?>
-                        <div class="user" id="vet_<?php echo $veterinarian['id']; ?>">
-                            <img src="<?=ROOT?>/assets/images/petowner.png">
-                            <h2><?php echo $veterinarian['name']; ?></h2>
+                <div class="user-list" style="display: flex; ">
+                    <?php foreach ($veterinarians as $veterinarian) { ?>
+                        <div class="user" style="align-items: center; display: flex; justify-content: center;">
+                            <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
+                            <h3><?php echo $veterinarian->name ?></h3>
+                            <div style="align-items: center; display: flex; justify-content: center;">  
+                            </div>
                         </div>
-                        <?php
-                    }
-                    ?>
+                    <?php } ?>
                 </div>
-            
             </div>
 
-        </div> 
-        <!-- <div style="margin-left:50px;">
-        <canvas id="myBarChart" width="300" height="350"></canvas>
-        <script>
+
+            <!-- End of New Users Section -->
+
+            <!-- Recent Orders Section -->
            
-            // Get the canvas element
-            var ctx = document.getElementById('myBarChart').getContext('2d');
-             //function to get week1, week2, week3, week4 bookings
-            
-            // Define data for the chart
-            var data = {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                datasets: [{
-                    label: 'Bookings in a Week',
-                    data : [10, 20, 30, 40],
-                   
-                    backgroundColor: [
-                        //colors like purple , rose and blue,red
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 0, 65)'  
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
+            <!-- End of Recent Orders Section -->	
+       
 
-            // Configure options for the chart
-            var options = {
-                responsive: false, // Disable responsiveness for fixed size
-            };
-
-            // Create the bar chart
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: options
-            });
-        </script>
-        </div>
-    </div> -->
-
-    
-            
         </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
-        <div class="right-section">
+    <div class="right-section">
             <div class="nav">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">
                         menu
                     </span>
-                </button>
-                
-
-                <!-- <div class="profile">
-                    <div class="info">
-                        <display the name of the daycare staff using session -->
-                        <!-- <p style="display:none"><b>Hello</b></p>
-                        <p ><b>Daycare Staff</b></p>
-                    </div>
-                    <div class="profile-photo">
-                    <a href="<?php echo ROOT; ?>/daycarestaff/myprofile">
-                    <img src="<?=ROOT?>/assets/images/petowner.png">
-                    
-                    </div>
-                </div> --> 
-
+               </button>
             </div>
             <!-- End of Nav -->
 
@@ -844,7 +694,7 @@ main table tbody tr td:first-child {
                 </div>
             </div>
 
-            <div class="reminders">
+        <div class="reminders">
                 <div class="header">
                     <h2>Notifications</h2>
                     <span class="material-icons-sharp">
@@ -853,109 +703,100 @@ main table tbody tr td:first-child {
                 </div>
 
 
-<div>
-    <?php 
-    $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
-    $query = "SELECT * FROM daycarebookinguser";
-    $statement = $pdo->prepare($query);
-    $statement->execute();
-    $daycarebookinguser = $statement->fetchAll(PDO::FETCH_ASSOC);
-    
-    //get the notification count
-    $query = "SELECT * FROM daycarebookinguser WHERE status = 'pending'";
-    $statement = $pdo->prepare($query);
-    $statement->execute();
-    $pendingbookings = $statement->rowCount();
+          <div>
+            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <?php foreach ($vetnotifications as $notification) {?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                    <div class="notification-item">
+                        <div class="info">
+                            <h3>Vet Appointments</h3>
+                            <small class="text-muted">New Booking</small>
+                           <p>
+                                <?php echo $notification->message ?>
+                            </p> 
+                        </div>
+                    </div>
+                </div>
+            <?php }?>
+            </div>
 
-    ?>
-    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-        <?php foreach ($daycarebookinguser as $daycarebookingnotification) { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
-            <div class="notification-item">
-                <div class="info">
-                    <h3>Daycare Booking</h3>
-                    <small class="text-muted">New Booking</small>
-                    <p>
-                        <?php echo $daycarebookingnotification['id']; ?> has been booked for daycare on <?php echo $daycarebookingnotification['drop_off_date'];?> at <?php echo $daycarebookingnotification['drop_off_time'] ;?> to <?php echo $daycarebookingnotification['pick_up_time'] ;?> 
-                    </p>
+       
+            <!-- button to view more bookings path is Daycarebookingform -->
+            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <a href="<?=ROOT?>/receptionist/appointments">
+                <div>
+                    <span class="material-icons-sharp">
+                        arrow_forward
+                    </span>
+                    <h3>View</h3>
                 </div>
             </div>
         </div>
-        <?php } ?>
-    </div>
-       
-        <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
-            <div>
-                <span class="material-icons-sharp">
-                      arrow_forward
-                </span>
-                <h3>View</h3>
-            </div>
-      
-        </div>
- </div>
-</div>
-
-
-
-                <!-- <div class="notification deactive">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                           volume_up
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3></h3>
-                            <small class="text_muted">
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div> -->
-
-            <!-- <div class="notification add-reminder">
-              <div>
-                <span class="material-icons-sharp">
-                    arrow_forward
-                </span>
-                <h3>View More</h3>
-             </div>
-        </div> -->
-
-            </div>
-
-        </div>
-
+       </div>
 
     </div>
+   <!-- accept modal-->
+   <div class="modal-form" id="accept-modal">
+            <div class="modal-content-delete">
+                <h1>Accept the Ride</h1>
+                <p>Start the Journey</p>
+                <div class="flex-container">
+                    <button class="reject" onclick="closeAcceptModal()">Cancel</button>
+                    <button id="accept-booking" class="d-button" onclick="acceptBooking()">Accept</button>
+                </div>
+            </div>
+        </div>
+     
 
 <script>
-const sideMenu = document.querySelector('aside');
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
+var acceptModal = document.getElementById("accept-modal");
 
-// const darkMode = document.querySelector('.dark-mode');
+function openAcceptModal(id) {
+    console.log(id);
+    acceptModal.style.display = "block";
+    // Set the booking ID in the data attribute of the accept button
+    document.getElementById("accept-booking").setAttribute("data-booking-id", id);
+}
 
-menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'block';
-});
+function closeAcceptModal() {
+    acceptModal.style.display = "none";
+}
 
-closeBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'none';
-});
+document.querySelectorAll('.acceptButton').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openAcceptModal(id);
+            });
+        });
+// Function to accept the booking
+function acceptBooking() {
+    // Retrieve the booking ID from the accept button's data attribute
+    var bookingId = document.getElementById("accept-booking").getAttribute("data-booking-id");
+    
+    // Send an AJAX request to accept the booking
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", `<?= ROOT ?>/ambulancedriver/acceptBooking?booking_id=${id}`, true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+   
+            console.log("Booking accepted successfully");
+      
+            closeAcceptModal();
+           
+        } else {
+            // Handle error
+            console.error("Error accepting booking");
+        }
+    };
+    xhr.onerror = function() {
+        // Handle error
+        console.error("Error accepting booking");
+    };
+    xhr.send();
+}
 
-
-
-</script>    
+ 
+    </script>
  </body>
 </html>

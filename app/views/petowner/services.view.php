@@ -52,6 +52,7 @@
 
         .card-text {
             padding: 20px;
+            text-align: center;
         }
 
         .card-title {
@@ -82,7 +83,7 @@
             width: fit-content;
             color:#6a3879;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 24px;
             text-decoration: none;
             transition: background-color 0.5s, color 0.5s, transform 0.5s;
         }
@@ -100,7 +101,7 @@
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h2 style="text-align:center; color:black; padding-top:20px; font-size:60px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
+    <h2 style="text-align:center; color:#353535; padding-top:20px; font-size:40px; font-weight:bold; font-family:'Poppins', sans-serif">Our Services</h2>
     <div class="container">
         <!-- Static cards with three columns per row -->
         <div class="card">
@@ -134,7 +135,7 @@
             <div class="card-text" >
                 <h3 class="card-title">Pet Ambulance Services</h3>
                 <p class="card-description"> Need a safe and convenient way to get your pet to our center? Our pet transport service ensures a comfortable journey. We offer easy booking and caring drivers who treat your pets like their own.</p>           
-                <div class="button" style="margin-top:40px;">
+                <div class="button">
                     <a href="<?php echo ROOT?>/petowner/petambulance" class="btn">Book an Ambulance</a>
                 </div>
             </div>

@@ -14,12 +14,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         :root {
-            --color-primary: #CF9FFF;
+            --color-primary: #665676;
             --color-danger: #FF0060;
             --color-success: #1B9C85;
             --color-warning: #F7D060;
             --color-white: #fff;
-            --color-info-dark: #7d8da1;
+            --color-info-dark: #ffffff;
             --color-dark: #363949;
             --color-light: #E6E6FA;
             --color-dark-variant: #677483;
@@ -174,6 +174,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 350px;
+
         }
 
         .notification:hover {
@@ -186,6 +187,7 @@
             align-items: center;
             margin: 0;
             width: 100%;
+
         }
 
         .notification .icon {
@@ -252,15 +254,20 @@
         <?php include 'navbar.php'; ?>
 
     <!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
+<div class="container" style="display:flex; flex-direction:column; align-items: space-between; padding: 20px">
+<div class="flex-container" style="display:flex; justify-content: space-between;">
+<div>
+    <button class="add-new-button">Add New</button>
+</div>
+<div>
+    <button class="user-profile-button" onclick="location.href='<?php echo ROOT ?>/petowner/userprofile'">Profile Settings</button>
+</div>
 
-    <div class="panel-header" style="margin-left:310px; margin-top:160px;">
-            <button class="add-new-button">Add New</button>
-    </div>
-
+        </div>
     <div class="container" style="display:flex; flex-direction:row;">
  
-        <div class="new-users" style="display:flex; width:70%; margin-left:230px; margin-top:80px;">
-            <div class="user-list" style="display:flex; flex-direction:row; gap:0.5rem; ">
+        <div class="new-users" style="display:flex; width:70%;  ">
+            <div class="user-list" style="display:flex; flex-wrap: wrap; gap:1rem; ">
             <?php
 
                  foreach ($pets as $pet): ?>
@@ -291,13 +298,8 @@
                 </div>
             </div>
 
-        <div class="announcement" style="display:flex; flex-direction:column; margin-top:15px;">
-            <div>
-                <div style="margin-left:300px; margin-top:5px;">
-                    <span class="material-icons-sharp">
-                        notifications_none
-                    </span>
-           </div>
+        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap;">
+            
             <?php 
 
             ?>
@@ -528,7 +530,7 @@
             addModal.style.display = "none";
         }
     });
-
+    
     function updateFormInit() {
         // Attach event listeners for validation on input for update form
         document.getElementById('update-name').addEventListener('input', validateUpdateName);

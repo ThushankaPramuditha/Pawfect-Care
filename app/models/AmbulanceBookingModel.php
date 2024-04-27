@@ -8,14 +8,72 @@ class AmbulanceBookingModel
     protected $allowedColumns = ['id','pet_id','pickup_lat','driver_id','pickup_lng','date_time','status'];
 
 
-    public function getAllAmbulanceBookings() {
-        $query = "SELECT ab.*, p.name AS pet_name, p.owner_id
+    public function getAllAmbulanceBookings($userId) {
+        $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id AS pet_owner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
                   FROM ambulancebookings AS ab
-                  JOIN pets AS p ON ab.pet_id = p.id";
-        return $this->query($query);
-        
+                  JOIN pets AS p ON ab.pet_id = p.id
+                  JOIN petowners AS po ON p.petowner_id = po.id
+                  JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+                  WHERE ad.user_id = :user_id
+                  ORDER BY ab.date_time DESC";
+        return $this->query($query, ['user_id' => $userId]);
+    }
+    
+
+ //get today's most recent booking
+ public function getTodaysMostRecentBooking($userId) {
+    // Get today's date of Colombo timezone
+    date_default_timezone_set('Asia/Colombo');
+    $today = date('Y-m-d');
+
+
+
+    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+              FROM ambulancebookings AS ab
+              JOIN pets AS p ON ab.pet_id = p.id
+              JOIN petowners AS po ON p.petowner_id = po.id
+              JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+              WHERE ad.user_id = :user_id
+              AND DATE(ab.date_time) = :today AND ab.status = 'pending'
+              ORDER BY ab.date_time DESC LIMIT 1";
+
+    return $this->get_row($query, ['user_id' => $userId, 'today' => $today]);
+}
+
+//accept bookings
+public function acceptBooking($id) {
+    $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
+    $bindings = [':id' => $id];
+    $result = $this->query($query, $bindings);
+    return $result; 
+}
+
+public function getLocationBypetIdandTime($pet_id) {
+    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
+              FROM ambulancebookings AS ab
+              JOIN pets AS p ON ab.pet_id = p.id
+              WHERE ab.pet_id = :pet_id AND DATE(ab.date_time) = CURDATE()
+              ORDER BY ab.date_time DESC";
+    $result = $this->get_row($query, ['pet_id' => $pet_id]);
+
+    if ($result === false) {
+        // Error occurred, handle it or log it
+        // Example: trigger_error($this->error(), E_USER_ERROR);
+        return false; // Return false to indicate failure
     }
 
+    return $result; // Return the result if successful
+}
+    
+    public function getAmbulanceDriverId($id) {
+        $query = "SELECT a.*, u.email ,u.status
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id
+                  WHERE a.id = :id";
+        // show($id);
+        // die();
+        return $this->get_row($query, ['id' => $id]);
+    }
     public function getAmbulanceDriverById($id) {
         $query = "SELECT a.*, u.email ,u.status
                   FROM ambulancedrivers AS a
@@ -24,6 +82,17 @@ class AmbulanceBookingModel
         // show($id);
         // die();
         return $this->get_row($query, ['id' => $id]);
+    }
+
+    public function getLastInsertedId(){
+        $query = "SELECT id FROM ambulancebookings ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query);
+    
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
     }
 
     public function addBooking($data) {
@@ -66,7 +135,7 @@ class AmbulanceBookingModel
             return false;
         }
     }
-
+  
 
     public function getBookingById($id) {
         $query = "SELECT ab.*, p.name AS pet_name, p.owner_id
@@ -75,7 +144,7 @@ class AmbulanceBookingModel
                   WHERE ab.id = :id";
         return $this->get_row($query, ['id' => $id]);
     }
-
+    
 
     public function updateBookingStatus($id, $status) {
         $query = "UPDATE ambulancebookings SET status = :status WHERE id = :id";
@@ -90,7 +159,16 @@ class AmbulanceBookingModel
         return $this->get_row($query, ['pet_id' => $pet_id]);
     }
 
- 
+   public function countTodayBookings($userId) {
+        $query = "SELECT COUNT(*) AS total
+                  FROM ambulancebookings AS ab
+                  JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+                  WHERE  DATE(date_time) = CURDATE() AND ad.user_id = :user_id";
+        $result = $this->get_row($query, ['user_id' => $userId]);
+        return $result->total;
+    }
+
+
 
     public function validate($data)
     {

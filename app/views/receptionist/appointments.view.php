@@ -121,7 +121,7 @@ Add Appointment Modal -->
 
         
         // Real-time pet detail updating
-        document.getElementById('pet_id').addEventListener('change', function() {
+        document.getElementById('pet_id').addEventListener('keyup', function() {
             var petId = this.value.trim(); 
             if (petId) {
                 $.ajax({

@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+
     
     <title>Dashboard</title>
     <style>
@@ -40,7 +43,7 @@
     appearance: 0;
     border: 0;
     text-decoration: none;
-    box-sizing: border-box;
+   
 }
 
 html{
@@ -484,8 +487,6 @@ main table tbody tr td:last-child,
 main table tbody tr td:first-child {
     display: none;
 }
-
-
    
 }
 
@@ -613,7 +614,9 @@ main table tbody tr td:first-child {
     background-color: var(--color-white);
 }
 
-        </style>
+#map { height: 350px; width:300px;}
+
+</style>
           
 
 </head>
@@ -628,146 +631,83 @@ main table tbody tr td:first-child {
         <!-- Main Content -->
 
         <main>
-            <!-- <h1>Analytics</h1> -->
-            <!-- Analyses -->
-            <div class="analyse" style="margin-top:50px;">
+            <!-- <h1>Analytics</h1> --> 
+           <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Daycare Bookings</p>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingtoday; ?></p>
-
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Transport Bookings</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
                         </div>
                     </div>
                 </div>
-          
-            
-              <!-- filled slots -->
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;">Accepted Bookings</p>
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsaccepted; ?></p>
-
-                        </div>
-                    </div>
-                </div>
-             
-
-               <!-- free slots -->
-                 <div class="sales">
-                      <div class="status">
-                            <div class="info">
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Declined Bookings</p>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $daycarebookingsdeclined; ?></p>
-                            </div>
-                      </div>
-                 </div>
-                </div>
+    
+            </div> 
             <!-- End of Analyses -->
 
-            <!-- New Users Section -->
-         
-    <div style="margin-top:100px; display:flex; flex-direction:row;">
-      <div>
-        <canvas id="myDonutChart" width="400" height="350"></canvas>
-        <script>
-            // Get the canvas element
-            var ctx = document.getElementById('myDonutChart').getContext('2d');
-
-            // Define data for the chart
-            var data = {
-                labels: ['All Bookings', 'Accepted', 'Decliend'],
-                datasets: [{
-                    label: 'My First Dataset',
- 
-                    //add the bookings data
-                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
-                
-                    backgroundColor: [
-                        //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
-                         
-                        
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
-
-            // Configure options for the chart
-            var options = {
-                cutout: 70, // Change this value to adjust the size of the hole in the middle
-                responsive: false, // Disable responsiveness for fixed size
-            };
-
-            // Create the donut chart
-            var myDonutChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: data,
-                options: options
-            });
-        </script>
-       
-        </div>
-        <div style="margin-left:50px;">
-        <canvas id="myBarChart" width="300" height="350"></canvas>
-        <script>
+             <!-- New Users Section  -->
+            <div class="new-users">
+            <h2>Recent Bookings</h2>
+            <div class="user-list" style="display: flex; flex-direction: column;">
+            <div class="user" style="align-items: center; display: flex; justify-content: center;">
+                <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
+                <h3><?php echo $recentbookings->pet_owner_name ?></h3>
+                <p><?php echo $recentbookings->pet_owner_contact ?></p>
+                <p><?php echo $recentbookings->date_time ?></p>
+                <p><?php echo $recentbookings->pickup_lat . ', ' . $recentbookings->pickup_lng ?></p>
+                <!-- Button to accept the bookings -->
+            </div>
+            <div style="display:flex; flex-direction:row;">
+            <div style="margin-left:100px; margin-top:2px;">
+                <button style="background-color:rgb(153, 102, 255); padding: 5px; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>">View</a></button>
+            </div>
+            <div style="align-items: center; display: flex; margin-left:450px;">
+                <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color: rgb(153, 102, 255); padding: 5px; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
+                </div>
+            </div>  
            
-            // Get the canvas element
-            var ctx = document.getElementById('myBarChart').getContext('2d');
-             //function to get week1, week2, week3, week4 bookings
-            
-            // Define data for the chart
-            var data = {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                datasets: [{
-                    label: 'Bookings in a Week',
-                    data : [10, 20, 30, 40],
-                   
-                    backgroundColor: [
-                        //colors like purple , rose and blue,red
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 0, 65)'  
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
-                }]
-            };
+             </div>
+            </div>
 
-            // Configure options for the chart
-            var options = {
-                responsive: false, // Disable responsiveness for fixed size
-            };
+            <!-- End of New Users Section -->
 
-            // Create the bar chart
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: options
-            });
+            <!-- Recent Orders Section -->
+            <div class="recent-orders">
+                <h2>Booking Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pet Owner Name</th>
+                            <th>Pet Name </th>
+                            <th>Date & Time</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($ambulancebookings as $ambulance): ?>
+                        <tr>
+                            <td><?php echo $ambulance->pet_owner_name ?></td>
+                            <td><?php echo $ambulance->pet_name ?></td>
+                            <td><?php echo $ambulance->date_time ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- End of Recent Orders Section -->	
+       
 
-
-        </script>
-        </div>
-    </div>
-
-    
-            
         </main>
         <!-- End of Main Content -->
 
         <!-- Right Section -->
-        <div class="right-section">
+    <div class="right-section">
             <div class="nav">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">
                         menu
                     </span>
                </button>
-
             </div>
             <!-- End of Nav -->
 
@@ -779,7 +719,7 @@ main table tbody tr td:first-child {
                 </div>
             </div>
 
-            <div class="reminders">
+        <div class="reminders">
                 <div class="header">
                     <h2>Notifications</h2>
                     <span class="material-icons-sharp">
@@ -788,68 +728,134 @@ main table tbody tr td:first-child {
                 </div>
 
 
-<div>
-  
-    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-    <?php   foreach ($data['daycarebookings'] as $daycarebooking)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
-            <div class="notification-item">
-                <div class="info">
-                    <h3>Daycare Booking</h3>
-                    <small class="text-muted">New Booking</small>
-                    <p>
-                    <?php echo 'pet_id:' . $daycarebooking->pet_id . ' has been booked for daycare on ' . $daycarebooking->drop_off_date . ' at ' . $daycarebooking->drop_off_time . ' to ' . $daycarebooking->pick_up_time; ?>
+          <div>
+            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <?php foreach ($transportnotifications as $notification) {?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                <span class="close" style="margin-left:280px;">&times;</span>
+                    <div class="notification-item" style="display:flex; justify-content:center;">
+                        <div class="info">
+                            <h3>Transport Bookings</h3>
+                            <small class="text-muted">New Booking</small>
+                            <p>
+                                <?php echo $notification->message ?>
+                            </p>
+                            <div style="margin-left:100px; margin-top:2px;">
+                                <button style="background-color:rgb(153, 102, 255); padding: 5px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php }?>
+            </div>
 
-                    </p>
+       
+            <!-- button to view more bookings path is Daycarebookingform -->
+            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
+                <div>
+                    <span class="material-icons-sharp">
+                        arrow_forward
+                    </span>
+                    <h3>View</h3>
                 </div>
             </div>
         </div>
-        <?php } ?>
-    </div>
-       
-        <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
-            <div>
-                <span class="material-icons-sharp">
-                      arrow_forward
-                </span>
-                <h3>View</h3>
-            </div>
-      
-        </div>
- </div>
-</div>
-
-            </div>
-
-        </div>
-
+       </div>
 
     </div>
+   <!-- accept modal-->
+   <div class="modal-form" id="accept-modal">
+            <div class="modal-content-delete">
+                <h1>Accept the Ride</h1>
+                <p>Start the Journey</p>
+                <div class="flex-container">
+                    <button class="reject">Cancel</button>
+                    <a id="accept-booking" href=""><button class="d-button">Accept</button></a>
+                </div>
+            </div>
+        </div>
+     
 
 <script>
-const sideMenu = document.querySelector('aside');
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
 
-// const darkMode = document.querySelector('.dark-mode');
-
-menuBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'block';
+$('body').on('click', '.accept-button', function(){
+    var id = <?php echo json_encode($recentbookings->id); ?>;
+    console.log(id);
+    openAcceptModal(id);
 });
 
-closeBtn.addEventListener('click', () => {
-    sideMenu.style.display = 'none';
-});
+var acceptModal = document.getElementById("accept-modal");
+
+ // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+function openAcceptModal(id) {
+            console.log(id);
+            acceptModal.style.display = "block";
+            document.getElementById("accept-booking").href = `<?php echo ROOT?>/Ambulancedriver/Dashboardambulancedriver/acceptBooking/${id}`;
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
 
 
+document.querySelectorAll('.accept-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var id = this.parentElement.parentElement.getAttribute('key');
+                console.log(id)
+                openAcceptModal(id);
+            });
+        });
 
-</script>    
+var closeButtons = document.querySelectorAll('.close');
+
+var noButtons = document.querySelectorAll('.reject');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                acceptModal.style.display = "none";
+            });
+    });
+    noButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+               acceptModal.style.display = "none";
+            });
+        });
+      
+
+// JavaScript code
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Function to open the modal
+//     function openAcceptModal(id) {
+//         var acceptModal = document.getElementById("accept-modal");
+//         acceptModal.style.display = "block";
+//         document.getElementById("accept-booking").href = `<?php echo ROOT?>/Ambulancedriver/Dashboardambulancedriver/acceptBooking/${id}`;
+//     }
+
+//     // Function to close the modal
+//     function closeAcceptModal() {
+//         var acceptModal = document.getElementById("accept-modal");
+//         acceptModal.style.display = "none";
+//     }
+
+//     // Event listeners
+//     document.querySelectorAll('.accept-button').forEach(function (button) {
+//         button.addEventListener('click', function () {
+//             var id = this.getAttribute('data-id');
+//             openAcceptModal(id);
+//         });
+//     });
+
+//     document.querySelectorAll('.close-modal').forEach(function (button) {
+//         button.addEventListener('click', function () {
+//             closeAcceptModal();
+//         });
+//     });
+// });
+
+
+    </script>
  </body>
 </html>

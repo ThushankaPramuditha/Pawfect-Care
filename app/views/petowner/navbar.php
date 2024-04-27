@@ -60,13 +60,14 @@
             font-size: 18px; /* Increased font size */
             color: #333; /* Dark grey color */
         }
-        .logout-button {
+        button[type="submit"] {
             background-color: #6a387944;
             border:none;
             width: fit-content;
             color:#6a3879;
             border-radius: 5px;
             padding: 10px 20px;
+            margin:10px !important;
             font-size: 18px;
             cursor: pointer;
             transition: background-color 0.3s;

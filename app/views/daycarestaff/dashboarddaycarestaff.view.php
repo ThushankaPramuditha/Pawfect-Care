@@ -791,7 +791,7 @@ main table tbody tr td:first-child {
 <div>
   
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-    <?php   foreach ($data['daycarebookings'] as $daycarebooking)  { ?>
+    <?php   foreach ($daycarenotifications as $notification)  { ?>
          <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
          
             <div class="notification-item">
@@ -799,7 +799,7 @@ main table tbody tr td:first-child {
                     <h3>Daycare Booking</h3>
                     <small class="text-muted">New Booking</small>
                     <p>
-                    <?php echo 'pet_id:' . $daycarebooking->pet_id . ' has been booked for daycare on ' . $daycarebooking->drop_off_date . ' at ' . $daycarebooking->drop_off_time . ' to ' . $daycarebooking->pick_up_time; ?>
+                    <?php echo $notification->message?>
 
                     </p>
                 </div>

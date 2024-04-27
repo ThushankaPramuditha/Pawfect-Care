@@ -16,17 +16,17 @@
                 <div style="width: 90%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link<?= ($activePage == 'dashboardambulancedriver') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulacedriver/dashboardambulancedriver">
+                            <a class="nav-link<?= ($activePage == 'dashboardambulancedriver') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulancedriver/dashboardambulancedriver">
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link<?= ($activePage == 'myprofile') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulacedriver/myprofile">
+                            <a class="nav-link<?= ($activePage == 'myprofile') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulancedriver/myprofile">
                                 My Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link<?= ($activePage == 'ridedetails') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulacedriver/ridedetails">
+                            <a class="nav-link<?= ($activePage == 'ridedetails') ? '-active' : '';?>" href="<?php echo ROOT?>/ambulancedriver/ridedetails">
                                 Ride details
                             </a>
                         </li>

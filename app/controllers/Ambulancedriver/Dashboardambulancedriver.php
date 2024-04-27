@@ -5,6 +5,8 @@ class Dashboardambulancedriver
     use Controller;
 
     public function index() {
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
+
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
         $userdataModel = new AmbulanceDriversModel();
         $ambulancebookingmodel = new AmbulanceBookingModel();
@@ -21,6 +23,8 @@ class Dashboardambulancedriver
     
     public function acceptBooking(string $id) : void
     {
+        AuthorizationMiddleware::authorize(['Ambulance Driver']);
+
         
         $ambulancebookingmodel = new AmbulanceBookingModel();
         $success = $ambulancebookingmodel->acceptBooking($id);

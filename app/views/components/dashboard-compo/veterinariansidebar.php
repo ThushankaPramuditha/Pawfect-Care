@@ -8,130 +8,7 @@
 
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/sidebar.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <style>
-        /* Sidebar styles */
-        .sidebar {
-            width: 230px;
-            min-height: 100vh;
-            background-color: #140e23;
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Remove ul disc style */
-        .sidebar .nav {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .sidebar .nav-container{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            padding-top: 80px;
-            flex-grow: 1; /* Flex grow to push the bottom container down */
-
-        }
-        .sidebar .nav-item {
-            margin-bottom: 10px;
-        }
-
-        .sidebar .nav-link {
-            color: #ffffff; /* New text color */
-            font-size: 20px; /* Increase the font size */
-            text-decoration: none;
-            display: block;
-            padding: 10px 20px;
-            border-radius: 5px;
-        
-        }
-
-        .sidebar .nav-item:hover {
-            background-color: #4b2756; /* Theme color on hover */
-            color: #fff; /* Text color on hover */
-        }
-
-        .sidebar .nav-item:active {
-            background-color: #4b2756; /* Theme color for active item */
-            color: #fff; /* Text color for active item */
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            margin: 0;
-            color: #333;
-            
-        }
-        .sidebar .nav-item a:hover {
-            background-color: #4b2756; /* Theme color on hover */
-            color: #fff; /* Text color on hover */
-        }
-
-        /* Active menu item */
-        .sidebar .nav-item.active {
-            background-color: #4b2756; /* Theme color for active item */
-            color: #fff; /* Text color for active item */
-        }
-
-        .sidebar .center-image {
-            display: flex;
-            width: 90%;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 10px;
-        }
-
-        .sidebar .center-image img {
-            width: 100%; /* Adjust the size as needed */
-        }
-
-        .sidebar .top-container {
-            display: flex;
-            width: 100%;
-            align-items: flex-start;
-            flex-direction: column;
-        }
-
-        .sidebar .bottom-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .sidebar .logout-button {
-            width: fit-content;
-            height: 45px;
-            border: none;
-            color: #fff;
-            background-color: #6a3879;
-            border-radius: 5px;
-            margin-bottom: 40px;
-            font-size: 20px; /* Increase the font size */
-            padding: 10px 40px;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Added box shadow */
-
-            
-        }
-
-        .sidebar .logout-button:hover {
-            background-color: #4b2756; /* Theme color on hover */
-            color: #fff; /* Text color on hover */
-        }
-        .sidebar .logout-button:active {
-            background-color: #4b2756; /* Theme color on hover */
-            color: #fff; /* Text color on hover */
-        }
-
-
-
-        </style>
+    
     
 </head>
 
@@ -141,26 +18,26 @@
         <div class="nav-container">
             <div class="top-container">
                 
-                <div style="width: 100%">
+                <div style="width: 90%">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/dashboardveterinarian">
-                                <span class="menu-title">Dashboard</span>
+                            <a class="nav-link<?= ($activePage == 'dashboardveterinarian') ? '-active' : '';?>" href="<?php echo ROOT?>/veterinarian/dashboardveterinarian">
+                                Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/myprofile">
-                                <span class="menu-title">My Profile</span>
+                            <a class="nav-link<?= ($activePage == 'myprofile') ? '-active' : '';?>" href="<?php echo ROOT?>/veterinarian/myprofile">
+                                My Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/petdetails">
-                                <span class="menu-title">Pet Details</span>
+                            <a class="nav-link<?= ($activePage == 'petdetails') ? '-active' : '';?>" href="<?php echo ROOT?>/veterinarian/petdetails">
+                                Pet Details
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ROOT?>/veterinarian/appointments">
-                                <span class="menu-title">Appointments</span>
+                            <a class="nav-link<?= ($activePage == 'appointments') ? '-active' : '';?>" href="<?php echo ROOT?>/veterinarian/appointments">
+                                Appointments
                             </a>
                         </li>
                         

@@ -10,7 +10,7 @@ class ServicesModel
     public function getAllServices()
     {
         //order the date by ascending order
-        $query = "SELECT service, description
+        $query = "SELECT *
          FROM services 
          ORDER BY id ASC";
         

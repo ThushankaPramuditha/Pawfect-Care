@@ -1,3 +1,5 @@
+<?php $activePage = 'daycarestaff'; ?>
+
 <form id="updated-form" action="<?php echo ROOT?>/Admin/DayCareStaff/update/<?php echo $daycarestaff->id; ?>" method="post">
     <div class="column">
         <label for="update-name">Full Name:</label>

@@ -128,8 +128,7 @@
 </head>  
 <body>
 
-<?php include '../app/views/navbar.php' ?>
-<!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
+<?php include 'navbar.php'; ?>
     <div class="modal-content" style="margin-top:10px;">
     <div style="display: flex; justify-content: center;">
             <h1>Daycare Booking</h1>

@@ -45,29 +45,35 @@ class Daycarebookinguser
         'medications' => $medications,
         'pet_owner_id' => $petOwnerId,
     ];
-    
-    // $notificationmodel = new NotificationModel();
-    // $notificationData = [
-    //     'user_id' => $user_id,
-    //     'message' => $data['message'],
-    //     'type' => 'transport',
-    //     'appointment_id' => $appointment_id,
-    //     'status' => 'unread'
-    // ];
 
-    // $transportnotification = $notificationmodel->addNotification($notificationData);
+    // Add notification
 
-    // if ($transportnotification !== false) {
-    //     echo "Notification added successfully";
-    // } else {
-    //     echo "Failed to add notification";
-    // }
-    
+
     // Call the model method to add the daycare booking
     $success = $model->addDaycarebooking($data);
     // Check the result and provide feedback
     if ($success === true) {
-        // Successful insertion
+        
+        $appointment_id = $model->getLastInsertedId();
+        $daycarestaffmodel = new DaycarestaffModel();
+        // $daycarestaffId = $daycarestaffmodel->getDaycareStaffId();
+        $notificationmodel = new NotificationModel();
+        $notificationData = [
+            'user_id' => $_SESSION['USER']->id,
+            'receiver_id' => 'NULL',
+            'message' => "Pet owner " . $_SESSION['USER']->id . " has booked a daycare service for pet $petId at $dropOffTime on $dropOffDate.",
+            'type' => 'daycare',
+            'appointment_id' => $appointment_id,
+            'status' => 'unread'
+        ];
+    
+        $daycarenotification = $notificationmodel->addNotification($notificationData);
+    
+        if ($daycarenotification !== false) {
+            echo "Notification added successfully";
+        } else {
+            echo "Failed to add notification";
+        }
         // echo "Daycare booking successfully added.";
         redirect('petowner/daycarebookinguser?true');
         //after successful booking, redirect to the services page

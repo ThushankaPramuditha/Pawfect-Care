@@ -129,8 +129,7 @@ class VaccinationhistoryModel
                 veterinarians v ON a.vet_id = v.id
             JOIN
                 pets p ON a.pet_id = p.id 
-            WHERE a.pet_id = :petId
-            AND
+            WHERE a.pet_id = :petId AND
             (vc.serial_no LIKE :searchTerm OR
             vc.vaccine_name LIKE :searchTerm OR
             v.name LIKE :searchTerm)
@@ -174,17 +173,16 @@ class VaccinationhistoryModel
     {
         $data['date'] = date('Y-m-d');
 
-        // Get vet_id from VeterinariansModel
         $vetModel = new VeterinariansModel();
         $vetId = $vetModel->getVetIdByName($data['vet_name']);
 
         if ($vetId !== false) {
-            // Get appointment_id from AppointmentModel
+            
             $appointmentsModel = new AppointmentsModel();
             $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'], $data['date'], $vetId);
 
             if ($appointmentId !== false) {
-                // Prepare vaccination-specific data
+                
                 $vaccinationData = [
                     'appointment_id' => $appointmentId,
                     'weight' => $data['weight'],
@@ -195,16 +193,15 @@ class VaccinationhistoryModel
                     'remarks' => $data['remarks'],
                 ];
 
-                // Insert vaccination data into the vaccinations table
                 return $this->insert($vaccinationData);
 
             } else {
-                // Handle the case where no appointment is found
+                
                 $this->errors[] = 'Appointment id not found.';
                 return false;
             }
         } else {
-            // Handle the case where no veterinarian is found
+            
             $this->errors[] = 'Veterinarian not found.';
             return false;
         }
@@ -213,7 +210,7 @@ class VaccinationhistoryModel
     public function updateVaccinationHistory($id, array $data)
     {
 
-        // Filter data to only include allowed columns
+        //allowed columns
         $data = array_filter($data, function ($key){
             return in_array($key, $this->allowedColumns);
         }, ARRAY_FILTER_USE_KEY);

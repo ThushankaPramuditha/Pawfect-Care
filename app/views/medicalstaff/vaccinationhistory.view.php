@@ -5,36 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaccination History</title>
-</head>
-
-<script src="<?php echo ROOT ?>/assets/js/validatehistory.js"></script>
-<link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 <?php $activePage = 'petdetails';?>
-
+    <script src="<?php echo ROOT ?>/assets/js/validatehistory.js"></script>
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+</head>
 
 <body onload="setInitialDate()">
 
-    <!--?php $_SESSION['addnewpath'] = 'addvaccination' ?>-->
-    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
 <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header">
             <button class="add-new-button">Add New</button>
-            <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search by vaccination...">
-                    <button class="search-button">Search</button>
-                </div>
+
+            <?php if (!empty($vaccinationhistory)): ?>
+            <?php $petId = $vaccinationhistory[0]->pet_id; ?>
             
-    </header>
-        </div>
-        <?php include '../app/views/components/tables/vaccinationhistoryupdatetable.php'; ?>
+            <?php endif; ?>
+
+            <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search by vaccine name ,serial number or veterinarian...">
+                    <button class="search-button">Search</button>
+            </div>
+            
+            </header>
+    </div>
+    <?php include '../app/views/components/tables/vaccinationhistoryupdatetable.php'; ?>
     </div>
 </div>
+
 </body>
-
 </html>
-
 
 <!-- Add vaccination Modal -->
 
@@ -119,32 +121,32 @@
 
 <script>
 
-            /*$(document).ready(function(){
+            $(document).ready(function(){
                 //$('.search-button').on('click', function(){ 
                 $('#search').on('keyup', function(){
-                    //var searchTerm = $('#search').val(); // Get the search term from the input field
+                    //var searchTerm = $('#search').val(); 
                     var searchTerm = $(this).val();
-                    var petId = <?php echo json_encode($vaccinationhistory->pet_id); ?>;
+                    var petId = <?= json_encode($petId); ?>;
                     
                     console.log(petId)
                     $.ajax({
                         url: "<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/search",
                         type: "POST",
-                        data: { pet_id: petId,search: searchTerm  }, 
+                        data: { search: searchTerm,petId:petId }, 
                         success: function(data) {
                             $('tbody').html(data);
                         }
                     
                     });
-                    console.log(searchTerm)
                 });
 
                 // to update when filtered by search
                 $('body').on('click', '.edit-icon', function(){
                     var Id = $(this).closest('tr').attr('key');
+                    var petId = <?= json_encode($petId); ?>;
                     openUpdateModal(Id,petId);
                 });
-            });*/
+            });
 
 
 
@@ -182,13 +184,10 @@
             }
 
     function setInitialDate() {
-        // Get the current date in the format YYYY-MM-DD
+       
         var currentDate = new Date().toISOString().split('T')[0];
-
-        // Set the value of the date input field
         document.getElementById('date').value = currentDate;
     }
-
     // Call setInitialDate() when the form is loaded
     window.addEventListener('DOMContentLoaded', setInitialDate);
 
@@ -316,6 +315,22 @@
         }
         return true;
     }
+
+     //sweeetalert for validation SUCCESS and ERROR
+     window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+                if (flash.success) {
+                    Swal.fire('Success', flash.success, 'success');
+                } else if (flash.error) {
+                    Swal.fire('Error', flash.error, 'error');
+                }
+                <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
+        
+
+
 </script>
 </body>
 

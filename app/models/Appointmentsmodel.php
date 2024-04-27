@@ -68,13 +68,14 @@ class AppointmentsModel
         // YYYY-MM-DD format
         $currentDate = date('Y-m-d');
         $query = "SELECT
+            a.id,
             a.date_time,
             a.patient_no,
             a.pet_id,
+            a.vet_id,
             p.name AS pet_name,
             po.name AS petowner,
             po.contact,
-            v.name AS vet_name,
             a.status
         FROM
             appointments a
@@ -90,7 +91,7 @@ class AppointmentsModel
             a.vet_id = :vet_id
         ORDER BY a.id ASC";
 
-        // Bind the current date and vet_id parameters to the query
+        // Bind the parameters to the query
         $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
 
         return $this->query($query, $data);
@@ -191,7 +192,79 @@ class AppointmentsModel
         return $this->query($query, $bindings);
     }
 
-    
+    public function searchForMedStaff($term)
+    {
+        $term = "%{$term}%";
+        
+        $currentDate = date('Y-m-d');
+        $query = "SELECT
+                a.id,
+                a.date_time,
+                a.patient_no,
+                a.pet_id,
+                p.name AS pet_name,
+                po.name AS petowner,
+                po.contact,
+                v.name AS vet_name,
+                a.status
+                FROM
+                    appointments a
+                JOIN
+                    pets p ON a.pet_id = p.id
+                JOIN
+                    petowners po ON p.petowner_id = po.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                WHERE
+                    DATE(a.date_time) = :current_date AND
+                    (p.name LIKE :term OR
+                    po.contact LIKE :term OR
+                    v.name LIKE :term OR
+                    a.status LIKE :term)
+                ORDER BY a.id ASC";
+
+                // Bind the parameters to the query
+                $data = array(':current_date' => $currentDate,':term' => $term);
+        
+        return $this->query($query, $data);
+    }
+
+    public function searchForVet($term,$vetId)
+    {
+        $term = "%{$term}%";
+        
+        $currentDate = date('Y-m-d');
+        $query = "SELECT
+                a.id,
+                a.date_time,
+                a.patient_no,
+                a.pet_id,
+                p.name AS pet_name,
+                po.name AS petowner,
+                po.contact,
+                a.status
+            FROM
+                appointments a
+            JOIN
+                pets p ON a.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            JOIN
+                veterinarians v ON a.vet_id = v.id
+            WHERE
+                (DATE(a.date_time) = :current_date
+                AND
+                a.vet_id = :vet_id) AND
+                (p.name LIKE :term OR
+                po.contact LIKE :term)
+            ORDER BY a.id ASC";
+
+        // Bind the parameters to the query
+        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId,':term' => $term);
+
+        return $this->query($query, $data);
+    }
+
 
     public function addAppointment(array $data)
     {
@@ -268,14 +341,56 @@ class AppointmentsModel
         $income = $count * 400;
         return $income;
     }
+
+
+     public function getLastInsertedId(){
+        $query = "SELECT id FROM appointments ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query);
     
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
+     }
 
+     public function getPatientNo($petId){
+        $query = "SELECT patient_no FROM appointments WHERE pet_id = :pet_id ORDER BY id DESC LIMIT 1";
+        $result = $this->query($query, [':pet_id' => $petId]);
+    
+        if ($result && !empty($result[0]->patient_no)) {
+            return $result[0]->patient_no; // Access patient_no property of the first row
+        } else {
+            return null; // Return null if no record is found or patient_no is empty
+        }
+     }
 
+     public function getVetName($vetId){
+        $query = "SELECT name FROM veterinarians WHERE id = :vet_id";
+        $result = $this->query($query, [':vet_id' => $vetId]);
+    
+        if ($result && !empty($result[0]->name)) {
+            return $result[0]->name; // Access name property of the first row
+        } else {
+            return null; // Return null if no record is found or name is empty
+        }
+     }
+
+     public function getPetOwnerEmailById($id){
+        $query = "SELECT u.email 
+                  FROM appointments As a
+                    JOIN pets AS p ON a.pet_id = p.id
+                    JOIN petowners AS po ON p.petowner_id = po.id
+                    JOIN users AS u ON po.user_id = u.id
+                    WHERE a.id = :id";
+        $result = $this->query($query, [':id' => $id]);
+
+        if ($result && !empty($result[0]->email)) {
+            return $result[0]->email; // Access email property of the first row
+        } else {
+            return null; // Return null if no record is found or email is empty
+        }         
      
-
-    
-    
-
     public function updateAppointment($id, array $data)
     {
         // alowed column
@@ -286,44 +401,7 @@ class AppointmentsModel
         return $this->update($id, $data, 'id');
     }
 
-
-    /*public function searchForMedStaff($term)
-    {
-        $term = "%{$term}%";
-        
-        $currentDate = date('Y-m-d');
-        $query = "SELECT
-                a.id,
-                a.date_time,
-                a.patient_no,
-                a.pet_id,
-                p.name AS pet_name,
-                po.name AS petowner,
-                po.contact,
-                v.name AS vet_name,
-                a.status
-                FROM
-                    appointments a
-                JOIN
-                    pets p ON a.pet_id = p.id
-                JOIN
-                    petowners po ON p.petowner_id = po.id
-                JOIN
-                    veterinarians v ON a.vet_id = v.id
-                WHERE
-                    DATE(a.date_time) = :current_date AND
-                    (p.name LIKE :term OR
-                    po.contact LIKE :term OR
-                    v.name LIKE :term OR
-                    a.status LIKE :term)
-                ORDER BY a.id ASC";
-
-                // Bind the parameters to the query
-                $data = array(':current_date' => $currentDate,':term' => $term);
-        
-        return $this->query($query, $data);
-    }*/
-
+    
 
     public function validate($data)
     {

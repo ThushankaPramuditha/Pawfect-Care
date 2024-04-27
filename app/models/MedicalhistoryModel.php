@@ -134,90 +134,7 @@ class MedicalhistoryModel
         return $this->query($query, $parameters);
     }
 
-    public function getMedicalHistoryForPetIdById($id,$pet_id)
-    {
-        $query = "SELECT
-        DATE(a.date_time) AS date,
-        p.id AS pet_id,
-        t.id,
-        t.appointment_id,
-        t.weight,
-        t.temperature,
-        t.med_condition,
-        t.treatment,
-        t.prescription,
-        v.name AS treated_by,
-        t.remarks
-        FROM
-            treatments t
-        JOIN
-            appointments a ON t.appointment_id = a.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        JOIN
-            pets p ON a.pet_id = p.id
-        WHERE a.pet_id = :pet_id AND t.id = :id";
-
-        return $this->get_row($query, ['pet_id' => $pet_id, 'id' => $id]);
-    }
-
-    /*public function addTreatment($data)
-    {
-        return $this->insert($data);
-    }*/
-
-    public function addTreatment($data)
-    {
-        $data['date'] = date('Y-m-d');
-
-        // Get vet_id 
-        $vetModel = new VeterinariansModel();
-        $vetId = $vetModel->getVetIdByName($data['vet_name']);
-
-        if ($vetId !== false) {
-            // Get appointment_id 
-            $appointmentsModel = new AppointmentsModel();
-            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'],$data['date'], $vetId);
-            //date('Y-m-d', strtotime($data['date_time']))
-
-            if ($appointmentId !== false) {
-    
-                $treatmentData = [
-                    'appointment_id' => $appointmentId,
-                    'weight' => $data['weight'],
-                    'temperature' => $data['temperature'],
-                    'med_condition' => $data['med_condition'],
-                    'treatment' => $data['treatment'],
-                    'prescription' => $data['prescription'],
-                    'remarks' => $data['remarks'],
-                ];
-
-                
-                return $this->insert($treatmentData);
-
-            } else {
-                // Handle the case where no appointment is found
-                $this->errors[] = 'Appointment id not found.';
-                return false;
-            }
-        } else{
-            // Handle the case where no veterinarian is found
-            $this->errors[] = 'Veterinarian not found.';
-            return false;
-        }
-    }
-
-    public function updateMedicalHistory($id, array $data)
-    {
-        // alowed column
-        $data = array_filter($data, function ($key) {
-            return in_array($key, $this->allowedColumns);
-        }, ARRAY_FILTER_USE_KEY);
-    
-        return $this->update($id, $data, 'id');
-    }
-
-   /*public function deleteMedicalHistory($id)
+     /*public function deleteMedicalHistory($id)
     {
         return $this->delete($id);
     }*/
@@ -256,9 +173,91 @@ class MedicalhistoryModel
        
     }*/
 
+    public function getMedicalHistoryForPetIdById($id,$pet_id)
+    {
+        $query = "SELECT
+        DATE(a.date_time) AS date,
+        p.id AS pet_id,
+        t.id,
+        t.appointment_id,
+        t.weight,
+        t.temperature,
+        t.med_condition,
+        t.treatment,
+        t.prescription,
+        v.name AS treated_by,
+        t.remarks
+        FROM
+            treatments t
+        JOIN
+            appointments a ON t.appointment_id = a.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        JOIN
+            pets p ON a.pet_id = p.id
+        WHERE a.pet_id = :pet_id AND t.id = :id";
 
-        
-    public function validate($data)
+        return $this->get_row($query, ['pet_id' => $pet_id, 'id' => $id]);
+    }
+
+    /*public function addTreatment($data)
+    {
+        return $this->insert($data);
+    }*/
+
+    public function addTreatment($data)
+    {
+        $data['date'] = date('Y-m-d');
+
+         
+        $vetModel = new VeterinariansModel();
+        $vetId = $vetModel->getVetIdByName($data['vet_name']);
+
+        if ($vetId !== false) {
+            
+            $appointmentsModel = new AppointmentsModel();
+            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'],$data['date'], $vetId);
+            //date('Y-m-d', strtotime($data['date_time']))
+
+            if ($appointmentId !== false) {
+    
+                $treatmentData = [
+                    'appointment_id' => $appointmentId,
+                    'weight' => $data['weight'],
+                    'temperature' => $data['temperature'],
+                    'med_condition' => $data['med_condition'],
+                    'treatment' => $data['treatment'],
+                    'prescription' => $data['prescription'],
+                    'remarks' => $data['remarks'],
+                ];
+
+                
+                return $this->insert($treatmentData);
+
+            } else {
+               
+                $this->errors[] = 'Appointment id not found.';
+                return false;
+            }
+        } else{
+           
+            $this->errors[] = 'Veterinarian not found.';
+            return false;
+        }
+    }
+
+    public function updateMedicalHistory($id, array $data)
+    {
+
+        // Filter data to only include allowed columns
+        $data = array_filter($data, function ($key){
+            return in_array($key, $this->allowedColumns);
+        }, ARRAY_FILTER_USE_KEY);
+    
+        return $this->update($id, $data, 'id');
+    }
+
+     public function validate($data)
     {
         $this->errors = [];
 

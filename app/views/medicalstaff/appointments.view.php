@@ -8,6 +8,7 @@
     <title>Appointments</title>
 </head>
 
+
 <body>
 <?php $activePage = 'appointments';?>
 
@@ -17,7 +18,7 @@
     <div style = "margin-left: 230px; margin-top:130px">
     <div class="panel-header" style="display:flex; justify-content:flex-end">
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search appointment...">
+                    <input type="text" id="search" placeholder="Search By name,contact,status or veterinarian">
                     <button class="search-button">Search</button>
             </div>
             

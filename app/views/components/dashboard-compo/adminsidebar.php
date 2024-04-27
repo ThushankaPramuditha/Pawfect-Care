@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/sidebar.css">
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>  
+
 </head>
 
 <body>
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#ffff;">
         <div class="nav-container">
             <div class="top-container">
                 <div style="width: 90%">

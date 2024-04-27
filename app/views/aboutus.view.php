@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfect Care - Home</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap" rel="stylesheet">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&display=swap');a
         *{
         margin:0;
         padding:0;
@@ -36,7 +36,7 @@
         flex-direction:column;
         width:500px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-        border-radius: 12px;
+        border-radius: 24px;
         overflow: hidden;
         margin: 20px 0;
         transition: transform 0.3s;
@@ -56,24 +56,46 @@
         width:100%;
         height:100%;
         object-fit:cover;
+        border-radius: 24px;
         object-position:bottom;
         }
+
         .card-text{
         margin:-30px auto;
         margin-right:20px;
-        height:150px;
+        height:120px;
         width:500px;
-        background-color:purple;
-        color:white;
-        padding:20px,40px,0,20px;
-    
+        background-color:#D7CADB;
+        color:#6A3879;
+        padding-top:20px;
+        text-transform: capitalize;
         }
 
         .card-body{
         font-size:1.25rem;
         }
 
-      
+        .about-h{
+            font-family: 'Poppins',sans-serif; 
+            font-size:40px; 
+            color:#353535; 
+            font-weight:bolder;
+
+        }
+
+        .about-text{
+            font-family:'Poppins',sans-serif;  
+            font-size:20px; 
+            color:#666;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 50px;
+
+        }
+
+        .des{
+            
+        }
        
         </style>
 
@@ -84,14 +106,14 @@
 
 <div class="container">
 
-        <h2 style="font-family: 'Poppins',sans-serif; font-size:50px; color:purple; font-weight:bolder;">About Us</h2>
+        <h2 class="about-h">About Us</h2>
         <div class="Aboutus"  >
-        <p style="font-family:'Poppins',sans-serif;  font-size:30px; color:black;">Welcome to Pawfect Care, your trusted partner in pet wellness. Our mission is to provide the highest standard of pet care and to foster a community of pet lovers dedicated to their furry companions' well-being.</p>
+        <p class="about-text">Welcome to Pawfect Care, your trusted partner in pet wellness. Our mission is to provide the highest standard of pet care and to foster a community of pet lovers dedicated to their furry companions' well-being.</p>
         </div>
 
-        <h2 style="font-family: 'Poppins',sans-serif;font-size:50px; color:purple; font-weight:bolder;">Our commitment</h2>
+        <h2 class="about-h">Our commitment</h2>
         <div class="Ourcommitment">
-        <p style="font-family: 'Poppins', sans-serif; font-size:30px; color:black;">At Pawfect Care, we're not just a pet care center; we're a family of pet enthusiasts dedicated to your pets' health. Our team of passionate veterinarians and pet care experts work tirelessly to ensure every pet receives personalized care, and we're committed to making pet care more accessible and convenient.</p>
+        <p class="about-text">At Pawfect Care, we're not just a pet care center; we're a family of pet enthusiasts dedicated to your pets' health. Our team of passionate veterinarians and pet care experts work tirelessly to ensure every pet receives personalized care, and we're committed to making pet care more accessible and convenient.</p>
         </div>
 
     <div class="Vetinfo"style="display:flex; flex-direction:row; margin-top:200px;">
@@ -102,7 +124,7 @@
             </div>
             <div class="card-text">
                 <h2>Dr. Mihiraj Magamage</h2>
-                <p>specializes in preventive care</p>
+                <p class="des">specializes in preventive care</p>
             </div>
         </div>
 
@@ -112,7 +134,7 @@
             </div>
             <div class="card-text">
                 <h2>Dr. Wasanthi Alwis</h2>
-                <p>specializes in pet Surgeries</p>
+                <p class="des">specializes in pet Surgeries</p>
             </div>
         </div>
     </div>

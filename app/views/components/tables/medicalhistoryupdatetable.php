@@ -43,10 +43,10 @@
                     <!--td class="edit-action-buttons">
                         <button class="edit-icon" onclick="openUpdateModal(<!?php echo $history->id; ?>, <!?php echo $history->pet_id; ?>)"></button>
                     </td-->
-
                     <td class="edit-action-buttons">
-                        <button class="edit-icon" id="<?= $history->id ?>"pet-id="<?= $history->pet_id ?>"></button>
+                            <button class="edit-icon" id="<?= $history->id ?>"pet-id="<?= $history->pet_id ?>"></button>
                     </td>
+                    
                 </tr>
                 
             <?php endforeach; ?>

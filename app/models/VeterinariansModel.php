@@ -162,6 +162,12 @@ class VeterinariansModel
         return $this->update($id, $data, 'id');
     }
 
+    public function updateAvailability($id, $newAvailability)
+    {
+        
+        $query = "UPDATE veterinarians SET availability = :newAvailability WHERE id = :id";
+        return $this->query($query, ['newAvailability' => $newAvailability, 'id' => $id]);
+    }
     
 
     public function deleteVeterinarian($id)

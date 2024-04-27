@@ -315,6 +315,25 @@ class AppointmentsModel
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
 
+    public function countweekAppointments($vetId){
+        $today = date('Y-m-d');
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE WEEK(date_time) = WEEK(:today)
+        AND vet_id = :vet_id";
+        $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+
+    public function countweekallAppointments(){
+        $today = date('Y-m-d');
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE WEEK(date_time) = WEEK(:today)";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+
     //I want a function to get incomefrom appointmets for weeek1, week2, week3 week4
     public function incomeFromAppointmentsForWeek($week) {
         $startDate = date('Y-m-d', strtotime("first day of this month"));

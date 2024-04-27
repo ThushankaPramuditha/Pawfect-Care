@@ -229,6 +229,16 @@ public function searchByDate($date)
 
             }
 
+            public function countweekallBookings(){
+                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
+                $result = $this->query($query);
+                // if not found
+                if(!$result){
+                    return 0;
+                }
+                return count($result);
+            }
+
             public function countTodayacceptedBookings(){
                 $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'accepted'";
                 $result = $this->query($query);
@@ -238,7 +248,58 @@ public function searchByDate($date)
                 }
                 return count($result);
             }
-
+            public function countDaycareBookingForWeek($week) {
+                // Get the start and end dates for the current month
+                $startDate = date('Y-m-d', strtotime("first day of this month"));
+                $endDate = date('Y-m-d', strtotime("last day of this month"));
+            
+                // Get the start dates for each week of the month
+                $week1 = date('Y-m-d', strtotime("first day of this month"));
+                $week2 = date('Y-m-d', strtotime("first day of this month + 1 week"));
+                $week3 = date('Y-m-d', strtotime("first day of this month + 2 weeks"));
+                $week4 = date('Y-m-d', strtotime("first day of this month + 3 weeks"));
+            
+                // Determine the start and end dates for the specified week
+                if ($week == 1) {
+                    $startDate = $week1;
+                    $endDate = $week2;
+                } elseif ($week == 2) {
+                    $startDate = $week2;
+                    $endDate = $week3;
+                } elseif ($week == 3) {
+                    $startDate = $week3;
+                    $endDate = $week4;
+                } elseif ($week == 4) {
+                    $startDate = $week4;
+                    $endDate = date('Y-m-d', strtotime("last day of this month"));
+                }
+            
+                // Construct the SQL query to count daycare bookings for the specified week
+                $query = "SELECT COUNT(*) AS total 
+                          FROM daycarebookinguser 
+                          WHERE drop_off_date >= :start_date 
+                          AND drop_off_date < :end_date 
+                          AND status = 'accepted'";
+            
+                // Set query parameters
+                $params = [
+                    ':start_date' => $startDate,
+                    ':end_date' => $endDate
+                ];
+            
+                // Execute the query
+                $result = $this->query($query, $params);
+            
+                // Check if the query result is false
+                if ($result === false) {
+                    return 0;
+                }
+            
+                // Return the count of daycare bookings
+                return $result[0]->total ?? 0;  
+            }
+            
+            
             public function countTodaydeclinedBookings(){
                 $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'declined'";
                 $result = $this->query($query);

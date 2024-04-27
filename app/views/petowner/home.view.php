@@ -249,8 +249,8 @@
         }
 
         .card2-text{
-        background-color:#6a3879;
-        color:#fff;
+        background-color:#9b59b6;
+        color:#FFF8F0;
         border-radius:0 0 20px 20px;
         font-size: 20px;
         font-weight: normal;
@@ -313,7 +313,7 @@
       position: absolute;
       gap: .5em;
       flex-direction: column;
-      background-color: black;
+      background-color: #8F4BAA;
       color: white;
       height: 70%;
       bottom: 0;
@@ -424,6 +424,7 @@
             line-height: 1.6;
         }
 
+        
        
        
     </style>
@@ -546,6 +547,7 @@
         </div>
         <!-- <button type="submit" >View More</button> -->
     </div>
+
 
     <div class="container" style="margin-top:100px;">
         <h2 style="color:#4f5484; font-weight:bold">Why Create an Account?</h2>

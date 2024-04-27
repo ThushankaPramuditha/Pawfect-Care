@@ -9,6 +9,7 @@
 <script src="<?php echo ROOT?>/assets/js/validatemedicalhistory.js"></script>
 <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
 
+<?php $activePage = 'petdetails';?>
 
 <body onload="setInitialDate()">
 

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
 
 </head>
+<?php $activePage = 'myprofile'; ?>
+
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>

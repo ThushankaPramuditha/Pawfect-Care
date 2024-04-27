@@ -6,6 +6,7 @@
     <title>Change Password</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
+    <?php $activePage = 'myprofile';?>
 
 </head>
 

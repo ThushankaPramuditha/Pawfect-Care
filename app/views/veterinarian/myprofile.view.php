@@ -6,6 +6,7 @@
     <title>My Profile</title>
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/basic.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <?php $activePage = 'myprofile';?>
 
 </head>
 

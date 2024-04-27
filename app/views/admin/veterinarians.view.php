@@ -12,7 +12,7 @@
 
 
 <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
-
+<?php $activePage = 'veterinarians'; ?>
 
 <body>
 <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>

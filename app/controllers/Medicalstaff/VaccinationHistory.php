@@ -9,9 +9,14 @@ class VaccinationHistory
         AuthorizationMiddleware::authorize(['Medical Staff']);
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistoryForPetId($a);
+
+        $appointmentsModel = new AppointmentsModel();
+        $data['appointments'] = $appointmentsModel->getCurrentPatientNo();
+
         $this->view('medicalstaff/vaccinationhistory', $data);
 
     }

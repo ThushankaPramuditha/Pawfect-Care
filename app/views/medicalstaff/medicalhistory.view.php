@@ -54,7 +54,7 @@
                             <input type="date" id="date" name="date" required><br>
 
                             <label for="patient no">Patient No:</label>
-                            <input type="text" id="patient_no" name="patient_no" ><br>
+                            <input type="text" class="disabled-field" id="patient_no" name="patient_no" value="<?php echo htmlspecialchars($data['appointments']); ?>"readonly><br>
                             <div id="error-patient_no" class="error-message"></div>
 
                             <label for="weight">Weight:</label>

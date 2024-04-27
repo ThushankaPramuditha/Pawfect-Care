@@ -13,6 +13,9 @@ class MedicalHistory
         $medicalhistoryModel = new MedicalhistoryModel();
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
         $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistoryForPetId($petId);
+
+        $appointmentsModel = new AppointmentsModel();
+        $data['appointments'] = $appointmentsModel->getCurrentPatientNo();
        
         $this->view('medicalstaff/medicalhistory', $data);
     }

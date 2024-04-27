@@ -7,11 +7,11 @@
                     <!--input type="datetime-local" class="disabled-field" id="update-date_time" name="date_time" value="<//?php echo $medicalhistory->date_time;?>" disabled readonly-->
 
                     <label for="update-weight">Weight:</label>
-                    <input type="text" id="update-weight" name="weight" value="<?php echo $medicalhistory->weight;?>">
+                    <input type="text" id="update-weight" name="weight" value="<?php echo $medicalhistory->weight;?>"><br>
                     <div id="error-update-weight" class="error-message"></div>
 
                     <label for="update-temperature">Temperature:</label>
-                    <input type="text" id="update-temperature" name="temperature" value="<?php echo $medicalhistory->temperature;?>">
+                    <input type="text" id="update-temperature" name="temperature" value="<?php echo $medicalhistory->temperature;?>"><br>
                     <div id="error-update-temperature" class="error-message"></div>
 
                     <!--label for="update-medical condition">Medical Condition:</label>

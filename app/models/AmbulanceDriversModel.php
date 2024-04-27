@@ -152,6 +152,12 @@ class AmbulanceDriversModel
         return false;
     }
 
+    public function updateAvailability($id, $newAvailability)
+    {
+        
+        $query = "UPDATE ambulancedrivers SET availability = :newAvailability WHERE id = :id";
+        return $this->query($query, ['newAvailability' => $newAvailability, 'id' => $id]);
+    }
 
     public function validate($data)
     {

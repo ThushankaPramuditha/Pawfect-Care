@@ -65,9 +65,9 @@ body{
     background-color: var(--color-background);
 }
 
-a{
+/* a{
     color: var(--color-dark);
-}
+} */
 
 img{
     display: block;
@@ -628,12 +628,11 @@ main table tbody tr td:first-child {
 <body>
 <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     <div class="container">
-   
       <div>
-      <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
+            <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>
         </div>
-        <!-- Main Content -->
 
+        <!-- End of Sidebar -->
         <main>
             <!-- <h1>Analytics</h1> --> 
            <div class="analyse" style="margin-top:50px;">
@@ -663,43 +662,17 @@ main table tbody tr td:first-child {
             </div>
             <div style="display:flex; flex-direction:row;">
             <div style="margin-left:100px; margin-top:2px;">
-                <button style="background-color:rgb(153, 102, 255); padding: 5px; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>">View</a></button>
+                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>">View</a></button>
             </div>
             <div style="align-items: center; display: flex; margin-left:450px;">
-                <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color: rgb(153, 102, 255); padding: 5px; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
+                <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
                 </div>
             </div>  
            
              </div>
             </div>
 
-            <!-- End of New Users Section -->
-
-            <!-- Recent Orders Section -->
-            <div class="recent-orders">
-                <h2>Booking Table</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Pet Owner Name</th>
-                            <th>Pet Name </th>
-                            <th>Date & Time</th>
-                         
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($ambulancebookings as $ambulance): ?>
-                        <tr>
-                            <td><?php echo $ambulance->pet_owner_name ?></td>
-                            <td><?php echo $ambulance->pet_name ?></td>
-                            <td><?php echo $ambulance->date_time ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- End of Recent Orders Section -->	
-       
+           
 
         </main>
         <!-- End of Main Content -->
@@ -735,8 +708,8 @@ main table tbody tr td:first-child {
           <div>
             <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
             <?php foreach ($transportnotifications as $notification) {?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                <span class="close" style="margin-left:280px;">&times;</span>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <!-- <span class="close" style="margin-left:280px;">&times;</span> -->
                     <div class="notification-item" style="display:flex; justify-content:center;">
                         <div class="info">
                             <h3>Transport Bookings</h3>
@@ -745,7 +718,7 @@ main table tbody tr td:first-child {
                                 <?php echo $notification->message ?>
                             </p>
                             <div style="margin-left:100px; margin-top:2px;">
-                                <button style="background-color:rgb(153, 102, 255); padding: 5px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a></button>
+                                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a></button>
                             </div>
                         </div>
                     </div>
@@ -755,7 +728,7 @@ main table tbody tr td:first-child {
 
        
             <!-- button to view more bookings path is Daycarebookingform -->
-            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879;  color:#ffff; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
             <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
                 <div>
                     <span class="material-icons-sharp">

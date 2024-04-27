@@ -52,7 +52,7 @@ class Daycarebookinguser
     // Call the model method to add the daycare booking
     $success = $model->addDaycarebooking($data);
     // Check the result and provide feedback
-    if ($success === true) {
+    if ($success) {
         
         $appointment_id = $model->getLastInsertedId();
         $daycarestaffmodel = new DaycarestaffModel();
@@ -74,17 +74,20 @@ class Daycarebookinguser
         } else {
             echo "Failed to add notification";
         }
-        // echo "Daycare booking successfully added.";
-        redirect('petowner/daycarebookinguser?true');
-        //after successful booking, redirect to the services page
 
-        
+        $_SESSION['flash'] = ['success' => 'Daycare Booking Added successfully.'];
+        header('Location: ' . ROOT . '/petowner/daycarebookinguser');
+        exit;
+     
        
     } else {
-        // Failed insertion
-        echo "Failed to add daycare booking. Error: " . $success;
-       
+        $_SESSION['flash'] = ['error' => 'Failed to add daycare Booking.'];
+        header('Location: ' . ROOT . '/petowner/daycarebookinguser');
+        exit;
     }
+
+    redirect('petowner/services');
+    
 }
 
 }

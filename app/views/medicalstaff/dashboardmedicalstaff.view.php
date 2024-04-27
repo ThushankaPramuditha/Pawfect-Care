@@ -634,9 +634,9 @@ main table tbody tr td:first-child {
                 <div class="sales">
                     <div class="status">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:50px;">Current<br> Number</p>
-                       
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:70px;">Current<br> Number</p>
+<!--                        
+                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p> -->
 
                         </div>
                     </div>
@@ -654,9 +654,6 @@ main table tbody tr td:first-child {
                         </div>
                     </div>
                 </div>
-             
-
-             >
 
                 </div>
             <!-- End of Analyses -->
@@ -709,7 +706,7 @@ main table tbody tr td:first-child {
     ?>
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
         <?php   foreach ($data['allappointments'] as $appointment)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
             <!-- <div class="icon">
                 <span class="material-icons-sharp">
                     volume_up
@@ -730,13 +727,13 @@ main table tbody tr td:first-child {
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:white;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:white;">View</h3>
             </div>
       
         </div>

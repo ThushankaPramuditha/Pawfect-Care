@@ -10,6 +10,7 @@ class AppointmentsModel
     public function getAllAppointments()
     {
         $query = "SELECT
+        a.id,
         a.date_time,
         a.patient_no,
         a.pet_id,
@@ -314,6 +315,25 @@ class AppointmentsModel
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
 
+    public function countweekAppointments($vetId){
+        $today = date('Y-m-d');
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE WEEK(date_time) = WEEK(:today)
+        AND vet_id = :vet_id";
+        $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+
+    public function countweekallAppointments(){
+        $today = date('Y-m-d');
+        $query = "SELECT COUNT(*) AS total 
+        FROM {$this->table} 
+        WHERE WEEK(date_time) = WEEK(:today)";
+        $result = $this->query($query, [':today' => $today]);
+        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+    }
+
     //I want a function to get incomefrom appointmets for weeek1, week2, week3 week4
     public function incomeFromAppointmentsForWeek($week) {
         $startDate = date('Y-m-d', strtotime("first day of this month"));
@@ -365,6 +385,22 @@ class AppointmentsModel
         }
      }
 
+     public function getCurrentPatientNo()
+    {
+        $query = "SELECT patient_no 
+                FROM appointments 
+                WHERE status = 'current' LIMIT 1";
+
+        $result = $this->query($query);
+
+        if ($result && $result[0] && isset($result[0]->patient_no)) {
+            return $result[0]->patient_no;
+        } else {
+            return null; 
+        }
+    }
+
+
      public function getVetName($vetId){
         $query = "SELECT name FROM veterinarians WHERE id = :vet_id";
         $result = $this->query($query, [':vet_id' => $vetId]);
@@ -388,9 +424,11 @@ class AppointmentsModel
         if ($result && !empty($result[0]->email)) {
             return $result[0]->email; // Access email property of the first row
         } else {
-            return null; // Return null if no record is found or email is empty
+            return null; // Return null if no record is found or email is empty        
+
         }  
-     }       
+    }       
+
      
     public function updateAppointment($id, array $data)
     {
@@ -401,7 +439,18 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
+     
 
+    public function getVetIdbyUserId($userId){
+        $query = "SELECT id FROM veterinarians WHERE user_id = :user_id";
+        $result = $this->query($query, [':user_id' => $userId]);
+    
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
+    }
     
 
     public function validate($data)

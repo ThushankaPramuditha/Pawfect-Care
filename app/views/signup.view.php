@@ -90,7 +90,7 @@
     </div>
 
     <script>
-    
+        
         document.getElementById('name').addEventListener('input', validateName);
         document.getElementById('address').addEventListener('focus', validateName);
         document.getElementById('contact_no').addEventListener('focus', validateAddress);

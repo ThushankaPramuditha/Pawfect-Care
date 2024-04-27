@@ -41,7 +41,7 @@
     appearance: 0;
     border: 0;
     text-decoration: none;
-    box-sizing: border-box;
+    
 }
 
 html{
@@ -686,10 +686,9 @@ main table tbody tr td:first-child {
                     data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
                 
                     backgroundColor: [
-                        //colors like purple , rose and blue
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
+                        'rgb(204, 102, 255)',
+                        'rgb(255, 204, 255)',
+                        'rgb(102, 0, 102)'
                          
                         
                     ],
@@ -713,28 +712,21 @@ main table tbody tr td:first-child {
        
         </div>
         <div style="margin-left:50px;">
-        <canvas id="myBarChart" width="300" height="350"></canvas>
+       <!-- line chart  -->
+        <canvas id="myLineChart" width="400" height="350"></canvas>
         <script>
-           
             // Get the canvas element
-            var ctx = document.getElementById('myBarChart').getContext('2d');
-             //function to get week1, week2, week3, week4 bookings
-            
+            var ctx = document.getElementById('myLineChart').getContext('2d');
+
             // Define data for the chart
             var data = {
                 labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
                 datasets: [{
-                    label: 'Bookings in a Week',
-                    data : [10, 20, 30, 40],
-                   
-                    backgroundColor: [
-                        //colors like purple , rose and blue,red
-                        'rgb(153, 102, 255)',
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 0, 65)'  
-                    ],
-                    hoverOffset: 4 // Add space when hovered over a segment
+                    label: 'Weekly Bookings',
+                    data: [<?php echo $week1count; ?>, <?php echo $week2count; ?>, <?php echo $week3count; ?>, <?php echo $week4count; ?>],
+                    fill: false,
+                    borderColor: 'rgb(204, 102, 255)',
+                    tension: 0.1
                 }]
             };
 
@@ -743,15 +735,14 @@ main table tbody tr td:first-child {
                 responsive: false, // Disable responsiveness for fixed size
             };
 
-            // Create the bar chart
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
+            // Create the line chart
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
                 data: data,
                 options: options
             });
-
-
         </script>
+
         </div>
     </div>
 
@@ -791,9 +782,9 @@ main table tbody tr td:first-child {
 
 <div>
   
-    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
+    <div  style="display:flex; flex-direction:column; overflow:hidden; height:300px; overflow-y:scroll;" >
     <?php   foreach ($daycarenotifications as $notification)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
          
             <div class="notification-item">
                 <div class="info">
@@ -810,13 +801,13 @@ main table tbody tr td:first-child {
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:#ffff;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:#ffff;">View</h3>
             </div>
       
         </div>
@@ -835,7 +826,7 @@ const sideMenu = document.querySelector('aside');
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-btn');
 
-// const darkMode = document.querySelector('.dark-mode');
+
 
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';

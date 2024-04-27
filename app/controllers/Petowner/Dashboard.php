@@ -5,28 +5,25 @@ class Dashboard
     use Controller;
 
     public function index(string $a = '', string $b = '', string $c = ''): void
-    {
+    {  
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+        $data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         $userId = $_SESSION['USER']->id;
         $petownerModel = new PetownersModel();
         $petsModel = new PetsModel();
         $data['user_id'] = $userId;
         $data['daycareBookings']= $petownerModel->getDaycareBookingsByUserId($userId);
         $data['pets'] = $petsModel->getAllPetsByUserId($userId);
-        $data['petownerId'] = $petownerModel->getPetOwnerById($userId); 
+        $data['petownerId'] = $petownerModel->getPetOwnerById($userId);
+        $receiveId = $petownerModel->getPetOwnerIdByUserId( $_SESSION['USER']->id);
+        
+        //notifications
+        $notificationModel = new NotificationModel();
+        $data['vetappointmentnotifications'] = $notificationModel->getVetNotificationByUserId($userId);
+        $data['daycarenotifications'] = $notificationModel->getDaycareNotificationsByReceiverId($receiveId);
 
-      
-        // $data = [
-        //     'daycareBookings' => $daycareBookings,
-        //     'pets' => $pets,
-        //     'petownerId' => $petOwnerId // Updated variable name
-        // ];
-
-        AuthorizationMiddleware::authorize(['Pet Owner']);
-        $userdataModel = new PetownersModel();
-		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-        // $petDetailsModel = new PetsModel();
-
-
+   
         $this->view('petowner/dashboard', $data);
     }
     

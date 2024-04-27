@@ -25,7 +25,6 @@ class Dashboardambulancedriver
     {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
 
-        
         $ambulancebookingmodel = new AmbulanceBookingModel();
         $success = $ambulancebookingmodel->acceptBooking($id);
         

@@ -25,7 +25,7 @@
             <?php endif; ?>
 
             <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search by vaccine name ,serial number or veterinarian...">
+                    <input type="text" id="search" placeholder="Search by vaccine name,serial number or veterinarian...">
                     <button class="search-button">Search</button>
             </div>
             
@@ -52,7 +52,7 @@
                     <input type="date" id="date" name="date" required><br>
 
                     <label for="patient no">Patient No:</label>
-                    <input type="text" id="patient_no" name="patient_no"><br>
+                    <input type="text" class="disabled-field" id="patient_no" name="patient_no" value="<?php echo htmlspecialchars($data['appointments']); ?>"readonly><br>
                     <div id="error-patient_no" class="error-message"></div>
 
                     <label for="weight">Weight:</label>

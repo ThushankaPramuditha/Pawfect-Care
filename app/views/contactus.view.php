@@ -249,6 +249,7 @@
             margin-left:100px; 
             color: #353535; 
             font-size:40px; 
+            padding-bottom: 10px;
         }
 
     </style>
@@ -289,7 +290,7 @@
         <div class="feedback-form-container">
             <form id = "feedback-form" action="<?=ROOT?>/petowner/feedbacks/add" method="post">
                 <textarea name="feedback" placeholder="Enter Your Feedback..." class="in" style="width:100%"></textarea>
-                <button type="submit" style="background-color: purple; color: white; padding: 10px 20px; border: none; cursor: pointer;">Submit</button>
+                <button type="submit" style="background-color: purple; align-self:center; color: white; padding: 10px 20px; border: none; cursor: pointer;">Submit</button>
             </form>
         </div>
     </div>

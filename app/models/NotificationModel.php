@@ -65,11 +65,38 @@ class NotificationModel{
         }
     }
 
+    public function getVetNotificationByVetUserId($userId)
+    {
+        $query = "SELECT n.*, a.pet_id, a.date_time, u.email AS vet_email
+                  FROM notifications AS n
+                  JOIN appointments AS a ON n.appointment_id = a.id
+                  JOIN veterinarians AS v ON a.vet_id = v.id
+                  JOIN users AS u ON v.user_id = u.id
+                  WHERE n.type = 'vet' AND v.user_id = :user_id
+                  ORDER BY n.created_at DESC";
+        return $this->query($query, ['user_id' => $userId]);
+    }
+
+    public function getVetNotificationByUserId($userId)
+    {
+        $query = "SELECT n.*, a.pet_id, a.date_time, u.email AS vet_email
+                  FROM notifications AS n
+                  JOIN appointments AS a ON n.appointment_id = a.id
+                  JOIN veterinarians AS v ON a.vet_id = v.id
+                  JOIN users AS u ON v.user_id = u.id
+                  WHERE n.type = 'vet' AND n.user_id = :user_id
+                  ORDER BY n.created_at DESC";
+        return $this->query($query, ['user_id' => $userId]);
+    }
+
+
+    
+
     public function getDaycareNotifications(){
         $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
                   FROM notifications AS n
                   JOIN daycarebookinguser AS d ON n.appointment_id = d.id
-                  WHERE n.type = 'daycare'
+                  WHERE n.type = 'daycare' AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         $result = $this->query($query);
     
@@ -83,6 +110,26 @@ class NotificationModel{
         }
     }
     
+    public function getDaycareNotificationsByUserId($userId)
+    {
+        $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
+                  FROM notifications AS n
+                  JOIN daycarebookinguser AS d ON n.appointment_id = d.id
+                  WHERE n.type = 'daycare' AND n.user_id = :user_id
+                  ORDER BY n.created_at DESC";
+        return $this->query($query, ['user_id' => $userId]);
+    }
+
+    public function getDaycareNotificationsByReceiverId($receiverId)
+    {
+        $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
+                  FROM notifications AS n
+                  JOIN daycarebookinguser AS d ON n.appointment_id = d.id
+                  WHERE n.type = 'daycare' AND n.receiver_id = :receiver_id
+                  ORDER BY n.created_at DESC";
+        return $this->query($query, ['receiver_id' => $receiverId]);
+    }
+
     public function getNotificationsByUserId($userId)
     {
         $query = "SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at DESC";

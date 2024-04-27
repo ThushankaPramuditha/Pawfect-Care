@@ -52,31 +52,6 @@ class Appointments
         redirect('medicalstaff/appointments');
     }*/
 
-    /*public function update(string $id = ''): void
-    {
-        $appointmentsModel = new AppointmentsModel();
-        
-        // Fetch the vaccination history by ID
-        $data['appointments'] = $appointmentsModel->getAppointmentsById($id);
-
-        // Check if the history data is available
-        if (!$data['appointments']) {
-            // Redirect or handle the case where data is not found
-            redirect('medicalstaff/appointments');
-        }
-
-        // Check if the form is submitted
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Perform the update
-            $appointmentsModel->updateAppointments($id, $_POST);
-            // Redirect after update
-            redirect('medicalstaff/appointments');
-        }
-
-        // Load the update view
-        $this->view('medicalstaff/appointments/update', $data);
-    }*/
-
 
     /*public function add(string $a = '', string $b = '', string $c = ''): void
     {

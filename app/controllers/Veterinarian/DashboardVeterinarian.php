@@ -21,6 +21,8 @@ class DashboardVeterinarian
         $vetId = $appointmentmodel->getVetIdByUserId($_SESSION['USER']->id);
 		$data['counttodayallAppointments'] = $appointmentmodel->countTodayAppointments($vetId);
 		$data['countweekallAppointments'] = $appointmentmodel->countweekAppointments($vetId);
+		// $data['current'] = $appointmentsModel->getCurrentPatient();
+
 		$data['vetnotifications'] = $notificationModel->getVetNotificationByVetUserId($_SESSION['USER']->id);
 
 		$this->view('veterinarian/dashboardveterinarian',$data);

@@ -46,7 +46,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #ffff;
-    padding: 20px;
+    padding: 0;
     margin: 0;
     color: #333;
     

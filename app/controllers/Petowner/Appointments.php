@@ -93,4 +93,19 @@ class Appointments
         }
     }
 
+    public function cancel($appointment_id){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $model = new AppointmentsModel();
+        $result = $model->updatePatientStatus($appointment_id, 'cancelled');
+        if ($result) {
+            $_SESSION['flash'] = ['success' => 'Appointment successfully cancelled.'];
+            header('Location: '.ROOT.'/petowner/dashboard');
+            exit;
+        } else {
+            $_SESSION['flash'] = ['error' => 'Failed to cancel appointment.'];
+            header('Location: '.ROOT.'/petowner/dashboard');
+            exit;
+        }
+    }
+
 }

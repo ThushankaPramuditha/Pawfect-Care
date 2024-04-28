@@ -58,7 +58,7 @@ html{
 body{
     width: 100vw;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif ;
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;
@@ -636,37 +636,18 @@ main table tbody tr td:first-child {
         <!-- Main Content -->
 
         <main>
-            <!-- <h1>Analytics</h1> --> 
-           <div class="analyse" style="margin-top:50px;">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Today Appointments</p>
-                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $allappointments; ?></p>
-                        </div>
-                    </div>
-                </div>
-    
-            </div> 
+            
             <!-- End of Analyses -->
 
              <!-- New Users Section  -->
-             <div class="new-users">
-                <h2>Veterinarians</h2>
-                <div class="user-list" style="display: flex; ">
-                    <?php foreach ($veterinarians as $veterinarian) { ?>
-                        <div class="user" style="align-items: center; display: flex; justify-content: center;">
-                            <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
-                            <h2><?php echo $veterinarian->name ?></h2>
-                            <p style="color: <?php echo ($veterinarian->availability === 'available') ? 'green' : 'red'; ?>">
-                                 <?php echo $veterinarian->availability; ?>
-                            </p>
-                            <div style="align-items: center; display: flex; justify-content: center;">  
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
+
+             <div class="new-users" style= "display: flex; justify-content: center;  align-items: center; flex-direction: column; margin-top:80px">
+                <h2>Current Patients</h2>
+                <?php include '../app/views/components/currentpatient.php'; ?>
+
             </div>
+
+
 
 
             <!-- End of New Users Section -->
@@ -690,7 +671,7 @@ main table tbody tr td:first-child {
             </div>
             <!-- End of Nav -->
 
-            <div class="user-profile1" style="margin-top:50px;">
+            <div class="user-profile1" style="margin-top:80px;">
                 <div class="logo">
                 <img src="<?=ROOT?>/assets/images/logocolor.png" alt="Pawfect Care Logo" style="width:200px;">
                     <!-- <h2>PawfectCare</h2> -->

@@ -22,6 +22,8 @@
 
         body {
             background-color: #f4f4f4;
+            padding: 0 !important;
+
         }
 
         

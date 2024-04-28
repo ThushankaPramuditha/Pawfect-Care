@@ -314,6 +314,7 @@
                                     <div class="info">
                                         <small class="text-muted" style="font-size:14px;">Appointment</small>
                                         <p><?php echo $vnotification->message ?></p>
+                                        <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>'">Cancel Appointment</button>
                                     </div>
                                 </div>
                             </div>

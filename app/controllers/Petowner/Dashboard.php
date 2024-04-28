@@ -74,14 +74,15 @@ class Dashboard
      
     public function viewPetDetails(string $a = '', string $b = '', string $c = ''):void {
         AuthorizationMiddleware::authorize(['Pet Owner']);
+
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-        
         $petDetailsModel = new PetsModel();
         //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
 
         $data['pet'] = $petDetailsModel->getPetById($a);
         
+       
 
 
         $this->view('petowner/dashboard/update', $data);

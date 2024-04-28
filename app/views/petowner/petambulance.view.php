@@ -38,13 +38,19 @@
             </div>
             <div class="container" style="margin-bottom:20px;">
                 <h4><b><?php echo $ambulance->name ?></b></h4>
-                <p class="available"><?php echo $ambulance->availability ?></p>
+                <p class="available" style="color: <?php echo $ambulance->availability == 'available' ? '#00c749' : '#ff0000'; ?>">
+                    <?php echo $ambulance->availability ?>
+                </p>
                 <p>contact number: <?php echo $ambulance->contact ?></p>
                 <div class="button-container" style="margin-left:0px; margin-top:10px;">
-                <a href="<?php echo ROOT?>/petowner/bookrideform?ambulance_id=<?php echo $ambulance->id ?>" class="btn">Book an Ambulance</a>
+                    <?php if ($ambulance->availability == 'available'): ?>
+                        <a href="<?php echo ROOT?>/petowner/bookrideform?ambulance_id=<?php echo $ambulance->id ?>" class="btn">Book an Ambulance</a>
+                    <?php else: ?>
+                        <a class="btn disabled" style="cursor: not-allowed;">Book an Ambulance</a>
+                    <?php endif; ?>
                 </div>
-            
             </div>
+
         </div>
     <?php endforeach; ?>
 </div>

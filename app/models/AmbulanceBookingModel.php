@@ -26,9 +26,7 @@ class AmbulanceBookingModel
     date_default_timezone_set('Asia/Colombo');
     $today = date('Y-m-d');
 
-
-
-    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+    $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id, po.name AS pet_owner_name, po.contact AS pet_owner_contact, ad.id AS driver_id, ad.name AS driver_name, ad.contact AS driver_contact ,ad.availability AS driver_availability
               FROM ambulancebookings AS ab
               JOIN pets AS p ON ab.pet_id = p.id
               JOIN petowners AS po ON p.petowner_id = po.id
@@ -40,14 +38,48 @@ class AmbulanceBookingModel
     return $this->get_row($query, ['user_id' => $userId, 'today' => $today]);
 }
 
-//accept bookings
+
 public function acceptBooking($id) {
+    // Update the booking status to 'accepted'
     $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
     $bindings = [':id' => $id];
     $result = $this->query($query, $bindings);
-    return $result; 
-}
+    
+    if ($result) {
 
+        $driverId = $this->getDriverId($id);
+        // If the booking was successfully accepted, update the ambulance driver availability
+       // You need to implement this method to get the driver ID for the booking
+        if ($driverId) {
+            $updateDriverQuery = "UPDATE ambulancedrivers SET availability = 'unavailable' WHERE id = :driverId";
+            $driverBindings = [':driverId' => $driverId];
+            $driverResult = $this->query($updateDriverQuery, $driverBindings);
+            
+            // Return true if both updates were successful
+            return $driverResult;
+        }
+    }
+    
+    // Return false if the booking acceptance or driver availability update failed
+    return false;
+}
+    // driverId
+
+    public function getDriverId($id) {
+        $query = "SELECT driver_id FROM ambulancebookings WHERE id = :id";
+        $result = $this->get_row($query, ['id' => $id]);
+        return $result->driver_id;
+    }
+
+
+
+ public function finishRide($driverId) {
+    $query = "UPDATE ambulancebookings SET status = 'completed' WHERE driver_id = :driver_id AND status = 'accepted'";
+    $bindings = [':driver_id' => $driverId];
+    $result = $this->query($query, $bindings);
+    return $result;
+}
+ 
 public function getLocationBypetIdandTime($pet_id) {
     $query = "SELECT ab.*, p.name AS pet_name, p.petowner_id
               FROM ambulancebookings AS ab
@@ -168,6 +200,16 @@ public function getLocationBypetIdandTime($pet_id) {
         return $result->total;
     }
 
+    // countWeekBookings
+    public function countWeekBookings($userId){
+        $query = "SELECT COUNT(*) AS total
+                  FROM ambulancebookings AS ab
+                  JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
+                  WHERE WEEK(date_time) = WEEK(NOW()) AND ad.user_id = :user_id";
+        $result = $this->get_row($query, ['user_id' => $userId]);
+        return $result->total;
+    }
+
     
 
     public function countTodayAmbulancebookings(){
@@ -239,6 +281,18 @@ public function getLocationBypetIdandTime($pet_id) {
 
 
         return empty($this->errors);
+    }
+
+    /////////////////////////////////////////////////////////////////
+
+    public function getPetOwnerEmailByPetId($petId) {
+        $query = "SELECT u.email
+                  FROM petowners AS po
+                  JOIN users AS u ON po.user_id = u.id
+                  JOIN pets AS p ON po.id = p.petowner_id
+                  WHERE p.id = :pet_id";
+        $result = $this->get_row($query, ['pet_id' => $petId]);
+        return $result->email;
     }
 }
 

@@ -635,17 +635,31 @@ main table tbody tr td:first-child {
         <!-- End of Sidebar -->
         <main>
             <!-- <h1>Analytics</h1> --> 
-           <div class="analyse" style="margin-top:50px;">
+            <div style="display:flex; flex-direction:row;">
+                 <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
-                    <div class="status">
+                    <div class="status"  style="width:200px;">
                         <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Transport Bookings</p>
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Today Bookings</p>
                                 <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaybookings; ?></p>
                         </div>
                     </div>
                 </div>
     
             </div> 
+
+            <div class="analyse" style="margin-top:50px;">
+                <div class="sales">
+                    <div class="status" style="width:200px;">
+                        <div class="info" >
+                            <p style="font-size:20px; text-align:center; font-weight:bolder;">Week Bookings</p>
+                                <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $weekbookings; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
             <!-- End of Analyses -->
 
              <!-- New Users Section  -->
@@ -653,26 +667,63 @@ main table tbody tr td:first-child {
             <h2>Recent Bookings</h2>
             <div class="user-list" style="display: flex; flex-direction: column;">
             <div class="user" style="align-items: center; display: flex; justify-content: center;">
-                <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
+                <img src="<?= ROOT ?>/assets/images/ambulance.png" alt="Taxi Image">
+
+                <?php if (empty($recentbookings)): ?>
+                    <!-- Sad Emoji Icon -->
+                    <div style="margin-top:20px;">
+                    <i class="far fa-frown" style="font-size: 50px; color:red;"></i>
+                    </div>
+                     <h3 style="margin-top:10px;">No Bookings Available Right Now </h3>
+                <?php else: ?>
                 <h3><?php echo $recentbookings->pet_owner_name ?></h3>
                 <p><?php echo $recentbookings->pet_owner_contact ?></p>
                 <p><?php echo $recentbookings->date_time ?></p>
                 <p><?php echo $recentbookings->pickup_lat . ', ' . $recentbookings->pickup_lng ?></p>
                 <!-- Button to accept the bookings -->
+               
+               
             </div>
             <div style="display:flex; flex-direction:row;">
             <div style="margin-left:100px; margin-top:2px;">
-                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>">View</a></button>
+                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>&driver_id=<?php echo $recentbookings->driver_id ?>&driver_availability=<?php echo $recentbookings->driver_availability ?>">View</a></button>
             </div>
             <div style="align-items: center; display: flex; margin-left:450px;">
                 <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
                 </div>
             </div>  
-           
+            <?php endif; ?>
              </div>
             </div>
+          <!-- #region -->
 
-           
+            <!-- Recent Orders Section -->
+            <!-- <div class="recent-orders">
+            <div class="availability-container">
+                <button type="button" class="availability-btn" style="padding: 10px 20px; background-color: <?= $driverdetails->availability == 'available' ? '#28a745' : '#dc3545'; ?>; color: #fff; border: none; border-radius: 5px; cursor: pointer;"
+                    onclick="toggleAvailability(<?= htmlspecialchars($recentbookings->driver_id); ?>)">
+                    <?= $driverdetails->availability == 'available' ? "Mark as Unavailable" : "Mark as Available"; ?>
+                </button>
+                <span class="availability-text" style="margin-top: 10px; display: block; font-size: 14px;">
+                    <?= $driverdetails->availability == 'available' ? "You are currently available." : "You are currently unavailable."; ?>
+                </span>
+            </div>
+        </div> -->
+        <div class="recent-orders">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #ccc; border-radius: 20px; padding: 20px; width: 300px; height:180px;margin: 0 auto; background-color:#cfc3d3;">
+                    <img src="<?php echo ROOT?>/assets/images/petowner.png" alt="Driver Profile Picture" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 10px;"><?= htmlspecialchars($driverdetails->name) ?></h3> 
+                    <p style="color: <?= $driverdetails->availability == 'available' ? '#00c749' : '#ff0000'; ?>; margin-bottom: 20px;">
+                        <?= $driverdetails->availability == 'available' ? "Available" : "Unavailable"; ?>
+                    </p>
+                    <button type="button" class="btn"
+                            onclick="window.location.href='<?=ROOT?>/Ambulancedriver/Dashboardambulancedriver/changeAvailability/<?= htmlspecialchars($driverdetails->id); ?>'" style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; border-radius: 5px; width: 140px; cursor:pointer;" >
+                            <?= $driverdetails->availability == 'available' ? "Mark as Unavailable" : "Mark as Available"; ?>
+                    </button>
+                </div>
+            </div>
+
+            <!-- End of Recent Orders Section -->
 
         </main>
         <!-- End of Main Content -->
@@ -706,10 +757,11 @@ main table tbody tr td:first-child {
 
 
           <div>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
-            <?php foreach ($transportnotifications as $notification) {?>
+            <div  style="display:flex; flex-direction:column; overflow:hidden; height:235px; overflow-y:scroll;" >
+            <?php if (!empty($transportnotifications)): ?>
+            <?php foreach ($transportnotifications as $notification): ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <!-- <span class="close" style="margin-left:280px;">&times;</span> -->
+                    <!-- <span class="close" style="margin-left:280px;">&times;</span> -->
                     <div class="notification-item" style="display:flex; justify-content:center;">
                         <div class="info">
                             <h3>Transport Bookings</h3>
@@ -718,12 +770,25 @@ main table tbody tr td:first-child {
                                 <?php echo $notification->message ?>
                             </p>
                             <div style="margin-left:100px; margin-top:2px;">
-                                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a></button>
+                                <!-- <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
+                                    <a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a>
+                                </button> -->
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php }?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no transport notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+     
             </div>
 
        
@@ -801,36 +866,6 @@ var noButtons = document.querySelectorAll('.reject');
             });
         });
       
-
-// JavaScript code
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Function to open the modal
-//     function openAcceptModal(id) {
-//         var acceptModal = document.getElementById("accept-modal");
-//         acceptModal.style.display = "block";
-//         document.getElementById("accept-booking").href = `<?php echo ROOT?>/Ambulancedriver/Dashboardambulancedriver/acceptBooking/${id}`;
-//     }
-
-//     // Function to close the modal
-//     function closeAcceptModal() {
-//         var acceptModal = document.getElementById("accept-modal");
-//         acceptModal.style.display = "none";
-//     }
-
-//     // Event listeners
-//     document.querySelectorAll('.accept-button').forEach(function (button) {
-//         button.addEventListener('click', function () {
-//             var id = this.getAttribute('data-id');
-//             openAcceptModal(id);
-//         });
-//     });
-
-//     document.querySelectorAll('.close-modal').forEach(function (button) {
-//         button.addEventListener('click', function () {
-//             closeAcceptModal();
-//         });
-//     });
-// });
 
 
     </script>

@@ -680,7 +680,7 @@ main table tbody tr td:first-child {
             var data = {
                 labels: ['All Bookings', 'Accepted', 'Decliend'],
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: 'Today Bookings',
  
                     //add the bookings data
                     data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],

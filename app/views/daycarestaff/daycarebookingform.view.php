@@ -23,7 +23,7 @@
         .modal-form {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 999;
             left: 0;
             top: 0;
             width: 100%;
@@ -87,13 +87,17 @@
     <div style="margin-top: 80px;">
         <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>
         <div style="margin-left: 230px; margin-top:130px">
-        <div class="panel-header">
-            <div class="search-bar" style="margin-left:920px;">
-            <input type="text" id="search" placeholder="yyyy-mm-dd">
-                    <button class="search-button">Search</button>
-                </div>
-  
-            </div>
+        <div class="panel-header" style="display:flex;">
+          <div class="filter-date">
+                  <input type="date"  id="date-filter" placeholder="Filter by date..." style="background-color: #ffffff; margin:0px; color: #666 ">   
+          </div>
+
+          <div class="search-bar">
+                  <input type="text" id="search" placeholder="Search appointments...">
+                  <button class="search-button">Search</button>
+          </div>
+    </header>
+        </div>
             </div>
     </div>
 
@@ -159,19 +163,36 @@
         </div>
     </div>
     <script>
-              $(document).ready(function(){
-            $('#search').on('keyup', function(){
-                var searchTerm = $(this).val();
+            //   $(document).ready(function(){
+            // $('#search').on('keyup', function(){
+            //     var searchTerm = $(this).val();
+            //     $.ajax({
+            //     url: "<?php echo ROOT ?>/Daycarestaff/Daycarebookingform/search",
+            //     type: "POST",
+            //     data: {search: searchTerm},
+            //     success: function(data) {
+            //         $('tbody').html(data);
+            //     }
+            //     });
+            // });
+            
+            $(document).ready(function() {
+            $('#date-filter').change(updateTable);
+            $('#search').on('keyup', updateTable);
+            function updateTable() {
+                var searchTerm = $('#search').val();
+                var filterDate = $('#date-filter').val(); 
+                
                 $.ajax({
-                url: "<?php echo ROOT ?>/Daycarestaff/Daycarebookingform/search",
-                type: "POST",
-                data: {search: searchTerm},
-                success: function(data) {
-                    $('tbody').html(data);
-                }
+                    url: "<?php echo ROOT ?>/Daycarestaff/Daycarebookingform/search",
+                    type: "POST",
+                    data: { search: searchTerm, date: filterDate }, 
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
                 });
-            });
-
+            }  
+        });
             
             $('body').on('click', '.deactivate-button', function(){
                 var id = $(this).closest('tr').attr('key');
@@ -186,7 +207,7 @@
                 var id = $(this).closest('tr').attr('key');
                 openFinishModal(id);
             });
-        });
+        
         // $(document).ready(function() {
         //     $("#datepicker").datepicker({
         //         dateFormat: 'yy-mm-dd', // Format the date as yyyy-mm-dd
@@ -224,7 +245,6 @@
             console.log(id);
             acceptModal.style.display = "block";
             document.getElementById("accept-booking").href = `<?php echo ROOT?>/Daycarestaff/Daycarebookingform/accept/${id}`;
-
             span.onclick = function() {
                 modal.style.display = "none";
             }

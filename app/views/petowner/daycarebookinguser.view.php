@@ -241,6 +241,7 @@
     });
 
     window.onload = function() {
+
         <?php if (isset($_SESSION['flash'])): ?>
         const flash = <?php echo json_encode($_SESSION['flash']); ?>;
         if (flash.success) {
@@ -252,6 +253,7 @@
         <?php endif; ?>
     };
     </script>
+
 </body>
 
 </html>

@@ -8,6 +8,7 @@
     <script src="<?php echo ROOT?>/assets/js/validatestaff.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
+    <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 
     <?php $activePage = 'daycarebookingform';?>
 
@@ -20,44 +21,66 @@
       border: none;
       border-radius: 4px;
     }
+
+    .slot-button {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+       .slot-button:hover {
+          background-color: #6a3879; 
+      }
   </style>
 </head>
 
 <body>
     <div style="margin-top: 80px;">
-    <?php include '../app/views/components/panel-header-bar/hiadmin.php'; ?>
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     </div>
     <div style = "margin-top: 80px; ">
     <?php include '../app/views/components/dashboard-compo/daycaresidebar.php'; ?>  
     <div style="margin-left: 230px; margin-top:130px;">
-    <div class="panel-header">
-            <div class="search-bar" style="margin-left:930px;" >
-                    <input type="text" id="search" placeholder="yyyy-mm-dd">
-                    <button class="search-button">View</button>
-                </div>
-        </div>
-          <div style="margin-left: 20px; margin-right:20px;">
-            <?php include '../app/views/components/tables/daycarebookingtable.php'; ?>
+    <div class="panel-header" style="display:flex;">
+          <!-- <div class="filter-date">
+                  <input type="date"  id="date-filter" placeholder="Filter by date..." style="background-color: #ffffff; margin:0px; color: #666 ">   
           </div>
+
+          <div class="search-bar">
+                  <input type="text" id="search" placeholder="Search appointments...">
+                  <button class="search-button">Search</button>
+          </div> -->
+    </header>
+        </div>
+
+          <div style="margin-left: 20px; margin-right:20px;">
+        <!-- Your HTML code for displaying bookings -->
+          <?php include '../app/views/components/tables/daycarebookingtable.php'; ?>
     </div>
 
     <script>
-
-$(document).ready(function(){
-      $('#search').on('keyup', function(){
-       var searchTerm = $(this).val();
-       $.ajax({
-       url: "<?php echo ROOT ?>/Daycarestaff/Daycrebooking/search",
-       type: "POST",
-       data: {search: searchTerm},
-       success: function(data) {
-       $('tbody').html(data);
-             }
-           });
+   $(document).ready(function() {
+            $('#date-filter').change(updateTable);
+            $('#search').on('keyup', updateTable);
+            function updateTable() {
+                var searchTerm = $('#search').val();
+                var filterDate = $('#date-filter').val(); 
+                
+                $.ajax({
+                    url: "<?php echo ROOT ?>/Daycarestaff/daycarebooking/search",
+                    type: "POST",
+                    data: { search: searchTerm, date: filterDate }, 
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
+                });
+            }  
         });
-    });
     </script>
-
 
 </body>
 </html>

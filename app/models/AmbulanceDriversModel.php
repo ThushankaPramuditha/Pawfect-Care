@@ -159,6 +159,11 @@ class AmbulanceDriversModel
         return $this->query($query, ['newAvailability' => $newAvailability, 'id' => $id]);
     }
 
+    public function updateAvailabilityToAvailable($id)
+    {
+        return $this->updateAvailability($id, 'available');
+    }
+
     public function validate($data)
     {
         $this->errors = [];

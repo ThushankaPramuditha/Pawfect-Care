@@ -365,7 +365,9 @@ class AppointmentsModel
     }
 
 
+
     public function countTodayAppointments($vetId) {
+
         date_default_timezone_set('Asia/Colombo');
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
@@ -377,7 +379,7 @@ class AppointmentsModel
                 //return zero if null, else return total
         return $result[0]->total ?? 0; 
     }
-       
+  
     public function counttodayallAppointments(){
         date_default_timezone_set('Asia/Colombo');
 

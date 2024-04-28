@@ -42,6 +42,75 @@ class Dashboardambulancedriver
             
             // Redirect to the URL
             redirect($url);
+            $ambulancebookingmodel = new AmbulanceBookingModel();
+            // $petOwnerEmail = $ambulancebookingmodel->getPetOwnerEmailByPetId($pet_id);
+            // $model = new AmbulanceBookingModel();
+             // $petOwnerEmail = $model->getPetOwnerEmailById($id);
+              //sample email
+              $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+              if($petOwnerEmail) {
+                  // Send email to the pet owner
+              
+                  $subject = "Ambulance Booking Confirmation";
+                  $message = "
+                  <html>
+                  <head>
+                  <title>Ambulance Booking Confirmation</title>
+                  <style>
+                      body {
+                          font-family: Arial, sans-serif;
+                          font-size: 16px;
+                          line-height: 1.6;
+                          color: #333;
+                      }
+                      .container {
+                          max-width: 600px;
+                          margin: 0 auto;
+                          padding: 20px;
+                          border: 1px solid #ccc;
+                          border-radius: 5px;
+                          background-color: #f9f9f9;
+                      }
+                      h2 {
+                          color: #6a3879;
+                          margin-top: 0;
+                      }
+                      p {
+                          margin-bottom: 20px;
+                      }
+                      ul {
+                          padding-left: 20px;
+                      }
+                  </style>
+                  </head>
+                  <body>
+                  <div class='container'>
+                      <h2>Ambulance Booking Confirmation</h2>
+                      <p>Dear Customer,</p>
+                      <p>We are pleased to inform you that your ambulance booking has been confirmed.</p>
+                      <p>Your driver is on the way to pick you up. Please be ready at your designated location.</p>
+                      <p>Your Driver Details:</p>
+                      <ul>
+                          <li><strong>Booking ID:</strong> $recentbooking->id</li>
+                          <li><strong>Booking Date:</strong> $recentbooking->date_time</li>
+                          <li><strong>Driver Name:</strong> $recentbooking->driver_name</li>
+                          <li><strong>Driver Contact:</strong> $recentbooking->driver_contact</li>
+                          <li><strong>Driver Email:</strong> $recentbooking->driver_email</li>
+                      </ul>
+                      <p>If you have any questions or need further assistance, please feel free to contact us at any time.</p>
+                      <p>Thank you for choosing our ambulance service.</p>
+                      <p>Best Regards,<br> Your Ambulance Service Team</p>
+                  </div>
+                  </body>
+                  </html>
+                  ";
+           
+                  $emailModel = new EmailModel();
+                  $emailModel->sendEmail($petOwnerEmail, $subject, $message);
+              } else {
+                  // $_SESSION['error'] = "Failed to fetch pet owner email!";
+                  
+              }
         } else {
             echo "Failed to accept booking. Error: " . $success;
         }

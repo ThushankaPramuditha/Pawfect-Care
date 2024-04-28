@@ -23,7 +23,7 @@
                 <div class="form-container">
                     <form action="<?php echo ROOT?>/admin/reports/generateAppointmentReport" method="post">
                         <label for="from">From:</label>
-                        <input type="date" id="from" name="from" required>
+                        <input type="date" id="from" name="from" max="<?= date('Y-m-d'); ?>"required>
                         <label for="to">To:</label>
                         <input type="date" id="to" name="to" required>
                         <button type="submit">Generate Report</button>
@@ -35,7 +35,7 @@
                 <div class="form-container">
                     <form action="<?php echo ROOT?>/admin/reports/generateDaycareReport" method="post">
                         <label for="from">From:</label>
-                        <input type="date" id="from" name="from" required>
+                        <input type="date" id="from" name="from" max="<?= date('Y-m-d'); ?>" required>
                         <label for="to">To:</label>
                         <input type="date" id="to" name="to" required>
                         <button type="submit">Generate Report</button>

@@ -25,7 +25,6 @@
         <div id="error-update-breed" class="error-message"></div>
 
 
-    </div>
     <div class="flex-container">
             <button type="submit" >Update Pet</button>
     </div>

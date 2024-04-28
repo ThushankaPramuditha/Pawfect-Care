@@ -377,7 +377,7 @@
         <h1>Add Pets</h1>
         <div class="form-container">
             <form id="add-pet-form" action="<?php echo ROOT?>/Petowner/dashboard/addPet" method="post">
-                <div class="column">
+                
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name">
                     <div id="error-name" class="error-message"></div>
@@ -402,7 +402,7 @@
                     <input type="text" id="breed" name="breed">
                     <div id="error-breed" class="error-message"></div>
                 
-                </div>
+                
                 <div class="flex-container">
                     <button type="submit" id="add-pet-button">Add Pet</button>
                 </div>

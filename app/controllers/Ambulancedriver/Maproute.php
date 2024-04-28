@@ -6,7 +6,9 @@ class Maproute
 
     public function index()
     {
+
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
+
         $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
         $userdataModel = new AmbulanceDriversModel();
         $ambulancebookingmodel = new AmbulanceBookingModel();

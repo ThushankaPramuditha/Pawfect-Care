@@ -5,7 +5,7 @@ class PetsModel
     use Model;
 
     protected $table = 'pets';
-    protected $allowedColumns = ['name', 'birthday', 'gender', 'species', 'breed', 'petowner_id'];
+    protected $allowedColumns = ['id','name', 'birthday', 'gender', 'species', 'breed', 'petowner_id'];
 
     public function getAllPetDetails()
     {
@@ -15,24 +15,24 @@ class PetsModel
             pets p
         JOIN
             petowners po ON p.petowner_id = po.id
-        ORDER BY P.id ASC";
+        ORDER BY p.id ASC";
 
         return $this->query($query);
     }
 
-    /*public function getPetDetailsById($id)
+    public function search($term)
     {
-        //return $this->first(['id' => $id]);
-        $query = "SELECT p.*, po.name AS owner_name, po.contact
-        FROM
-            pets p
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        WHERE p.id= :id";
-
-        return $this->get_row($query, ['id' => $id]);
-    }*/
-
+        $term = "%{$term}%";
+        $query = "SELECT p.*, po.name AS owner_name, po.contact, po.nic
+                FROM pets p
+                JOIN petowners po ON p.petowner_id = po.id
+                WHERE p.name LIKE :term
+                OR p.id LIKE :term
+                OR po.nic LIKE :term
+                ORDER BY p.id ASC ";
+        
+        return $this->query($query, [':term' => $term]);
+    }
     
     public function getAllPetsByUserId($id) {
         $query = "SELECT p.*, u.email, u.status

@@ -79,7 +79,25 @@
 
 
 <script>
+$(document).ready(function() {
+        $('#search').on('keyup', updateTable);
 
+        function updateTable() {
+            var searchTerm = $('#search').val();
+
+            $.ajax({
+                url: "<?php echo ROOT ?>/Receptionist/petownerdetails/search",
+                type: "POST",
+                data: {
+                    search: searchTerm,
+                },
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+            });
+        }
+
+    });
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
 

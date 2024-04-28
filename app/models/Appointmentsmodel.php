@@ -98,6 +98,45 @@ class AppointmentsModel
         return $this->query($query, $data);
     }
 
+    public function getVetIdByAppointmentId($appId)
+    {
+        $query = "SELECT vet_id    
+        FROM appointments a
+        WHERE id = :appId";
+
+        // Bind the parameters to the query
+        $data = array(':appId' => $appId);
+
+        return $this->get_row($query, $data);
+    }
+
+    public function checkAlreadyCurrent($vetId) {
+        date_default_timezone_set('Asia/Colombo');
+        $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
+        $query = "SELECT COUNT(*) as total
+                  FROM {$this->table} 
+                  WHERE DATE(date_time) = :today
+                    AND vet_id = :vetId
+                  AND status = 'current'";
+        $data = [
+            ':vetId' => $vetId,
+            ':today' => $today
+        ];
+        
+        $result = $this->query($query, $data);
+        //return zero if null, else return total
+        return $result[0]->total ?? 0; 
+
+       }
+    
+
+    public function updatePatientStatus($id, $status)
+    {
+        
+        $query = "UPDATE appointments SET status = :status WHERE id = :id";
+        return $this->query($query, ['status' => $status, 'id' => $id]);
+    }
+
 
     public function getAppointmentById($id)
     {
@@ -269,8 +308,10 @@ class AppointmentsModel
 
     public function addAppointment(array $data)
     {
+        
         // Check how many appointments already exist for today
         $appointmentsToday = $this->countTodayAppointments($vetId);
+       
 
         if ($appointmentsToday >= 3) {
             return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
@@ -294,8 +335,9 @@ class AppointmentsModel
     }
 
 
-      //get the active appointment count for current date for particular vet
-      public function countTodayAppointments($vetId) {
+
+    public function countTodayAppointments($vetId) {
+
         date_default_timezone_set('Asia/Colombo');
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
@@ -304,38 +346,47 @@ class AppointmentsModel
         AND vet_id = :vet_id
         AND status != 'cancelled'";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+                //return zero if null, else return total
+        return $result[0]->total ?? 0; 
     }
   
     public function counttodayallAppointments(){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE DATE(date_time) = :today";
         $result = $this->query($query, [':today' => $today]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+                //return zero if null, else return total
+
+        return $result[0]->total ?? 0; 
     }
 
     public function countweekAppointments($vetId){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE WEEK(date_time) = WEEK(:today)
         AND vet_id = :vet_id";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+        return $result[0]->total ?? 0; 
     }
 
     public function countweekallAppointments(){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE WEEK(date_time) = WEEK(:today)";
         $result = $this->query($query, [':today' => $today]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+        //return zero if null, else return total
+        return $result[0]->total ?? 0; 
     }
 
-    //I want a function to get incomefrom appointmets for weeek1, week2, week3 week4
     public function incomeFromAppointmentsForWeek($week) {
         $startDate = date('Y-m-d', strtotime("first day of this month"));
         $endDate = date('Y-m-d', strtotime("last day of this month"));

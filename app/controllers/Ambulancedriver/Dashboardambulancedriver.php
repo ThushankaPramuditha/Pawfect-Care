@@ -6,6 +6,7 @@ class Dashboardambulancedriver
 
     public function index() {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
+
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
         $userdataModel = new AmbulanceDriversModel();
         $ambulancebookingmodel = new AmbulanceBookingModel();
@@ -26,6 +27,7 @@ class Dashboardambulancedriver
     public function acceptBooking(string $id) : void
     {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
+
         $ambulancebookingmodel = new AmbulanceBookingModel();
        $recentbooking= $ambulancebookingmodel->getTodaysMostRecentBooking($_SESSION['USER']->id);
         $success = $ambulancebookingmodel->acceptBooking($id);

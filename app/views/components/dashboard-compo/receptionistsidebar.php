@@ -48,6 +48,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link<?= ($activePage == 'oldappointments') ? '-active' : '';?>" href="<?php echo ROOT?>/receptionist/oldappointments">
+                            Old Appointments 
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link<?= ($activePage == 'veterinarians') ? '-active' : '';?>" href="<?php echo ROOT?>/receptionist/veterinarians">
                             Veterinarians
                         </a>

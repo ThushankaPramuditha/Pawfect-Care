@@ -25,4 +25,17 @@ class DashboardVeterinarian
 
 		$this->view('veterinarian/dashboardveterinarian',$data);
 	}
+
+	public function cancelNotification(string $id){
+        AuthorizationMiddleware::authorize(['Veterinarian']);
+        $notificationModel = new NotificationModel();
+        $success = $notificationModel->cancelNotification($id);
+        if($success){
+            
+            echo "Notification cancelled successfully";
+        }
+        else{
+            echo "Failed to cancel notification";
+        };
+    }
 }

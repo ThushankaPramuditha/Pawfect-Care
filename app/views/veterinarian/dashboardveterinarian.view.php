@@ -711,12 +711,8 @@ main table tbody tr td:first-child {
             <?php if (is_array($vetnotifications) || is_object($vetnotifications)) : ?>
             <?php foreach ($vetnotifications as $notification) : ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                    <!-- <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div> -->
                     <div class="notification-item">
+                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:290px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span>
                         <div class="info">
                             <h3>Appointment Booking</h3>
                             <small class="text-muted">New Booking</small>
@@ -728,8 +724,14 @@ main table tbody tr td:first-child {
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
-            <br>
-            <h2>No notifications available</h2>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Appointment notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
         <?php endif; ?>
 
     </div>

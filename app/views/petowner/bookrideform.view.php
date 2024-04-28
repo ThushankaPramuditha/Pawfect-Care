@@ -281,12 +281,12 @@ map.on('click', function(e) {
 
     const distance = map.distance([lat, lng], [6.580656, 79.963901]);
     
-    //If your current location to location [6.580656, 79.963901] greater than 20000m
-    if (distance > 10000) {
+    //If your current location to location [6.580656, 79.963901] greater than 25000m
+    if (distance > 25000) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Sorry Location is too far to reach.'
+            text: 'Sorry Location is too far to reach.Within 25km Only.'
         });
         return;
     }

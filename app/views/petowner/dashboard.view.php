@@ -305,29 +305,40 @@
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
                 <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
-                    
-                    <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
-                    <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                   
-                        <div class="notification-item"  style="height:80px;">
-                            <!-- add a close icon to delete notifications -->
-                            <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
-                            <div class="info">
-                                <small class="text-muted" style="font-size:14px;">Appointment</small>
-                                <p>
-                                <?php echo $vnotification->message ?></p>
+                <?php if (!empty($vetappointmentnotifications)): ?>
+                        <?php foreach ($vetappointmentnotifications as $vnotification): ?>
+                            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
+                                <div class="notification-item" style="height:80px;">
+                                    <!-- Add a close icon to delete notifications -->
+                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
+                                    <div class="info">
+                                        <small class="text-muted" style="font-size:14px;">Appointment</small>
+                                        <p><?php echo $vnotification->message ?></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Vet Appointment notifications at the moment.</p>
                     </div>
-                    <?php } ?>
+                </div>
+            </div>
+                    <?php endif; ?>
+
              </div>
                     <p style="font-size:20px; font-weight:bolder;">Daycare Booking</p>
                     <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
-                        <?php foreach ($daycarenotifications as $dnotification) { ?>
+                       <?php if (!empty($daycarenotifications)): ?>
+                        <?php foreach ($daycarenotifications as $dnotification): ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
                             <div class="notification-item" style="height:80px;">
-                            <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
+                            <!-- <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span> -->
+                            <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $dnotification->id ?>)">close</span>
                                 <div class="info">
                                     <small class="text-muted" style="font-size:14px;">Daycare booking</small>
                                     <p>
@@ -336,14 +347,25 @@
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Daycarebooking notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
+                    <?php endif; ?>
                     </div>
             <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
             <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
-                <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
+            <?php if (!empty($vetappointmentnotifications)): ?>
+                <?php foreach ($vetappointmentnotifications as $vnotification): ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <div class="notification-item" style="height:80px;">
-                    <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
+                    <!-- <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span> -->
                         <div class="info">
                             
                             <small class="text-muted"style="font-size:14px;">Vaccination Reminder</small>
@@ -353,7 +375,17 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
+                <? else:?>
+                    <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Upcoming Vaccination notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
+                <?php endif; ?> 
             </div>
         </div>
  </div>
@@ -428,7 +460,7 @@
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
     var updateModal = document.getElementById("update-modal");
-
+  
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
@@ -581,6 +613,36 @@
             <?php unset($_SESSION['flash']); ?>
         <?php endif; ?>
     };
+
+    
+
+
+    function cancelNotification(notificationId) {
+        // Make an AJAX request to the controller endpoint
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo ROOT?>/Petowner/Dashboard/cancelnotification/" + notificationId, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Handle success response
+                console.log("Notification canceled successfully.");
+                window.location.reload();
+                // You can perform additional actions here if needed
+            } else {
+                // Handle error response
+                console.error("Failed to cancel notification. Status code: " + xhr.status);
+                window.location.reload();
+
+            }
+        };
+        xhr.onerror = function () {
+            // Handle network errors
+            console.error("Network error occurred while canceling notification.");
+            window.location.reload();
+        };
+        xhr.send();
+    }
+
+
         
 
 </script>

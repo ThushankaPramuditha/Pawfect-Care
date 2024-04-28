@@ -39,6 +39,31 @@ class AmbulanceBookingModel
 }
 
 
+// public function acceptBooking($id) {
+//     // Update the booking status to 'accepted'
+//     $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
+//     $bindings = [':id' => $id];
+//     $result = $this->query($query, $bindings);
+    
+//     if ($result) {
+
+//         $driverId = $this->getDriverId($id);
+//         // If the booking was successfully accepted, update the ambulance driver availability
+//        // You need to implement this method to get the driver ID for the booking
+//         if ($driverId) {
+//             $updateDriverQuery = "UPDATE ambulancedrivers SET availability = 'unavailable' WHERE id = :driverId";
+//             $driverBindings = [':driverId' => $driverId];
+//             $driverResult = $this->query($updateDriverQuery, $driverBindings);
+            
+//             // Return true if both updates were successful
+//             return $driverResult;
+//         }
+//     }
+    
+//     // Return false if the booking acceptance or driver availability update failed
+//     return false;
+// }
+
 public function acceptBooking($id) {
     // Update the booking status to 'accepted'
     $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
@@ -46,23 +71,29 @@ public function acceptBooking($id) {
     $result = $this->query($query, $bindings);
     
     if ($result) {
-
+        // Get the driver ID for the booking
         $driverId = $this->getDriverId($id);
+
         // If the booking was successfully accepted, update the ambulance driver availability
-       // You need to implement this method to get the driver ID for the booking
         if ($driverId) {
+            // Update the driver's availability
             $updateDriverQuery = "UPDATE ambulancedrivers SET availability = 'unavailable' WHERE id = :driverId";
             $driverBindings = [':driverId' => $driverId];
             $driverResult = $this->query($updateDriverQuery, $driverBindings);
+
+            // Update the notification status to 'read' if the notification type is 'transport'
+            $updateNotificationQuery = "UPDATE notifications SET status = 'read' WHERE appointment_id = :appointmentId AND type = 'transport'";
+            $notificationBindings = [':appointmentId' => $id];
+            $notificationResult = $this->query($updateNotificationQuery, $notificationBindings);
             
-            // Return true if both updates were successful
-            return $driverResult;
+            // Return true if all updates were successful
+            return $driverResult && $notificationResult;
         }
     }
-    
-    // Return false if the booking acceptance or driver availability update failed
+    // Return false if any update fails
     return false;
 }
+
     // driverId
 
     public function getDriverId($id) {

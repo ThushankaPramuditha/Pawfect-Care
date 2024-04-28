@@ -71,7 +71,45 @@ class DaycarebookingModel
     
         return $this->query($query, [':term' => $term]);
     }
-    
+
+    public function hasBookingsForDate($date)
+    {
+        $query = "SELECT COUNT(*) AS total FROM daycarebooking WHERE date = ?";
+        $result = $this->query($query, [$date]);
+        return $result[0]->total > 0;
+    }
+
+    public function insertTimeSlots($date, $timeslots)
+    {
+        foreach ($timeslots as $times) {
+            $query = "INSERT INTO daycarebooking (time, filled_slots, free_slots, date) VALUES (?, 0, 10, ?)";
+            $result = $this->query($query, [$times, $date]);
+        }
+        return $result; 
+    }
+
+    public function getBookingsByDate($date)
+    {
+        $query = "SELECT * FROM daycarebooking WHERE date = ?";
+        $result = $this->query($query, [$date]);
+        return $result;
+    }
+
+    // public function searchForDaycarebooking($term, $date = '')
+    // {
+    //     $term = "%{$term}%";
+    //     $dateCondition = !empty($date) ? "AND DATE(date_time) = :date" : "";
+    //     $query = "SELECT db.*
+    //               FROM daycarebooking db
+    //               WHERE db.date LIKE :term
+    //                {$dateCondition}";
+       
+    //         $bindings = [':term' => $term];
+    //         if (!empty($date)) {
+    //             $bindings[':date'] = $date;
+    //         }
+    //         return $this->query($query, $bindings);
+    // }
     public function validate($data)
     {
         $this->errors = [];

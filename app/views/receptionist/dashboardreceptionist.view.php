@@ -640,9 +640,11 @@ main table tbody tr td:first-child {
             <!-- End of Analyses -->
 
              <!-- New Users Section  -->
+
              <div class="new-users" style= "display: flex; justify-content: center;  align-items: center; flex-direction: column; margin-top:80px">
                 <h2>Current Patients</h2>
                 <?php include '../app/views/components/currentpatient.php'; ?>
+
             </div>
 
 
@@ -678,16 +680,16 @@ main table tbody tr td:first-child {
             </div>
 
         <div class="reminders">
-                <div class="header">
+                <!-- <div class="header">
                     <h2>Notifications</h2>
                     <span class="material-icons-sharp">
                         notifications_none
                     </span>
-                </div>
+                </div> -->
 
 
           <div>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <!-- <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
             <?php foreach ($vetnotifications as $notification) {?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
                     <div class="notification-item">
@@ -701,11 +703,11 @@ main table tbody tr td:first-child {
                     </div>
                 </div>
             <?php }?>
-            </div>
+            </div> -->
 
        
             <!-- button to view more bookings path is Daycarebookingform -->
-            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <!-- <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
             <a href="<?=ROOT?>/receptionist/appointments">
                 <div>
                     <span class="material-icons-sharp" style="color:white;">
@@ -713,7 +715,8 @@ main table tbody tr td:first-child {
                     </span>
                     <h3 style="color:white;">View</h3>
                 </div>
-            </div>
+            </div> -->
+            
         </div>
        </div>
 

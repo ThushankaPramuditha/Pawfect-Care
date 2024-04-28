@@ -7,22 +7,19 @@ class Daycarebooking
 {
 	use Controller;
 	
-		public function index(string $a = '', string $b = '', string $c = ''): void
-		{
-			AuthorizationMiddleware::authorize(['Daycare Staff']);
-			$daycarebookingModel = new DaycarebookingModel();
-			$data['daycarebooking'] = $daycarebookingModel->findAll();
+	public function index(string $a = '', string $b = '', string $c = ''): void
+    {
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
+        $userdataModel = new DaycareStaffModel();
+        $data['userdata'] = $userdataModel->getDaycareRoleDataById($_SESSION['USER']->id);
+        $this->view('daycarestaff/daycarebooking', $data);
+    }
 	
-			// You can include any additional logic or data fetching here
-	
-			$this->view('daycarestaff/daycarebooking', $data);
-		}
 	
 		public function update(string $a = '', string $b = '', string $c = ''): void
 		{
 			$daycarebookingModel = new DaycarebookingModel();
 			$daycarebookingModel->updateDaycarebooking($a, $_POST);
-	
 			redirect('daycarestaff/daycarebooking');
 		}
 	
@@ -30,7 +27,6 @@ class Daycarebooking
 		{
 			$daycarebookingModel = new DaycarebookingModel();
 			$daycarebookingModel->addDaycarebooking($_POST);
-	
 			redirect('daycarebooking');
 		}
 	
@@ -69,24 +65,6 @@ class Daycarebooking
 			redirect('daycarestaff/daycarebooking');
 		}
 
-		public function search(): void
-    {
-        $daycarebookingModel = new DaycarebookingModel();
-        $searchTerm = $_POST['search'] ?? '';
-        $daycarebooking = $daycarebookingModel->search($searchTerm);
-
-        if (empty($daycarebooking)) {
-            echo "<tr><td colspan='20'>No daycare booking found</td></tr>";
-        } else {
-            foreach ($daycarebooking as $dbooking) {
-                echo "<tr key='{$dbooking->id}'>";
-                echo "<td>{$dbooking->filled_slots}</td>";
-				echo "<td>{$dbooking->free_slots}</td>";
-                echo "</tr>";
-            }
-        }
-        exit; 
-    }
 
 }
 	

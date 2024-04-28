@@ -60,14 +60,74 @@ class Bookrideform
     
             $transportnotification = $notificationmodel->addNotification($notificationData);
     
-            if ($transportnotification !== false) {
+            if ($transportnotification !== false) {  
+              // $petOwnerEmail = $model->getPetOwnerEmailById($id);
+              //sample email
+               $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+                if($petOwnerEmail) {
+                    // Send email to the pet owner
+                   
+                    $subject = "Ambulance Booking Confirmation";
+                    $message = "
+                    <html>
+                    <head>
+                    <title>Ambulance Facility Booking</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.6;
+                            color: #333;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            background-color: #f9f9f9;
+                        }
+                        h2 {
+                            color: #6a3879;
+                        }
+                        p {
+                            margin-bottom: 20px;
+                        }
+                    </style>
+                    </head>
+                    <body>
+                    <div class='container'>
+                        <h2>Thank You for Booking an Ambulance</h2>
+                        <p>We have received your ambulance booking request. Our team is processing your request, and you will receive a confirmation email shortly.</p>
+                        <p>Your Booking Details:</p>
+                        <ul>
+                            <li><strong>Pet ID:</strong> $pet_id</li>
+                            <li><strong>Driver ID:</strong> $driver_id</li>
+                            <li><strong>Pickup Date & Time:</strong> $date_time</li>
+                        </ul>
+                        <p>If you have any questions or need further assistance, please feel free to contact us.</p>
+                        <p>Contact No: 011-1234567</p>
+                        <p>Thank you for choosing our ambulance service.</p>
+                    </div>
+                    </body>
+                    </html>
+                    ";
+                    
+                    $emailModel = new EmailModel();
+                    $emailModel->sendEmail($petOwnerEmail, $subject, $message);
+                } else {
+                    // $_SESSION['error'] = "Failed to fetch pet owner email!";
+                    
+                }
                 echo "Notification added successfully";
             } else {
                 echo "Failed to add notification";
             }
             // Redirect to the services page
             redirect('petowner/bookrideform?true');
-        } else {
+        } 
+        
+        else {
             // Failed insertion
             echo "Failed to add ambulance booking. Error: " . $success;
         }

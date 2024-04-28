@@ -310,10 +310,11 @@
                     <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
                     <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                    
-                        <div class="notification-item">
+                        <div class="notification-item"  style="height:80px;">
+                            <!-- add a close icon to delete notifications -->
+                            <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
                             <div class="info">
-                                <h3>Vet Appointment</h3>
-                                <small class="text-muted">New Booking</small>
+                                <small class="text-muted" style="font-size:14px;">Appointment</small>
                                 <p>
                                 <?php echo $vnotification->message ?></p>
                             </div>
@@ -331,10 +332,10 @@
                         <?php foreach ($daycarenotifications as $dnotification) { ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
-                            <div class="notification-item">
+                            <div class="notification-item" style="height:80px;">
+                            <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
                                 <div class="info">
-                                    <h3>Daycare Booking</h3>
-                                    <small class="text-muted">New Booking</small>
+                                    <small class="text-muted" style="font-size:14px;">Daycare booking</small>
                                     <p>
                                     <?php echo $dnotification->message ?></p>
                                     </p>
@@ -353,15 +354,11 @@
             <?php if (!empty($vetappointmentnotifications)) { ?>
                 <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                    <!-- <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div> --> 
-                    <div class="notification-item">
+                    <div class="notification-item" style="height:80px;">
+                    <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span>
                         <div class="info">
-                            <h3>Upcoming Vaccination</h3>
-                            <small class="text-muted">New Booking</small>
+                            
+                            <small class="text-muted"style="font-size:14px;">Vaccination Reminder</small>
                             <p>
                             <?php echo $vnotification->message?></p>
                             </p>

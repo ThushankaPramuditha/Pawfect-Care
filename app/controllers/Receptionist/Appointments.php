@@ -14,7 +14,8 @@ class Appointments
         $userdataModel = new ReceptionistsModel();
         $appointmentsModel = new Appointmentsmodel();
         $vetsModel = new VeterinariansModel();
-
+        $today = date('Y-m-d');
+		$data['today'] = $today;
 		$data['userdata'] = $userdataModel->getReceptionistRoleDataById($_SESSION['USER']->id);
         $data['veterinarians'] = $vetsModel->getAllAvailableVeterinarians(); // Fetch all vets
         $data['appointments'] = $appointmentsModel->getAllAppointments();

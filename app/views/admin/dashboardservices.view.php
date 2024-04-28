@@ -119,7 +119,8 @@ b{
 .container{
     display: grid;
     width: 96%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-right; 2 rem;
     gap: 1.8rem;
     grid-template-columns: 12rem auto 23rem;
 }
@@ -153,7 +154,7 @@ main .analyse > div:hover{
 main .analyse > div .status{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 main .analyse h3{
@@ -634,7 +635,7 @@ main table tbody tr td:first-child {
             <div class="analyse" style="margin-top:50px;">
                 <div class="sales">
                     <div class="status">
-                        <div class="info" style="margin-left:30px;">
+                        <div class="info" >
                             <p style="font-size:20px; display:flex; justify-content:center; text-align:center; font-weight:bolder;">Vet<br> Appointments</p>
                                 <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $appointmentbookings; ?></p>
                         </div>
@@ -645,7 +646,7 @@ main table tbody tr td:first-child {
               <!-- filled slots -->
                 <div class="sales">
                     <div class="status">
-                        <div class="info"  style="margin-left:60px;">
+                        <div class="info">
                         <p style="font-size:20px; display:flex; justify-content:center; font-weight:bolder;text-align:center;">Daycare<br> Bookings</p>
                             <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $todaydaycarebookings; ?></p>
 
@@ -657,7 +658,7 @@ main table tbody tr td:first-child {
                <!-- free slots -->
                  <div class="sales">
                       <div class="status">
-                            <div class="info" style="margin-left:10px;">
+                            <div class="info" >
                             <p style="font-size:20px; display:flex; justify-content:center; font-weight:bolder;text-align:center;">Ambulance Bookings</p>
                                 <p style="font-size:20px; text-align:center; font-weight:bolder;"><?php echo $ambulancebookings; ?></p>
                             </div>
@@ -766,7 +767,7 @@ main table tbody tr td:first-child {
             </div>
             <!-- End of Nav -->
 
-            <div class="user-profile1" style="margin-top:50px;">
+            <div class="user-profile1" style="margin-top:60px;">
                 <div class="logo">
                 <img src="<?=ROOT?>/assets/images/logocolor.png" alt="Pawfect Care Logo" style="width:200px;">
                     <!-- <h2>PawfectCare</h2> -->

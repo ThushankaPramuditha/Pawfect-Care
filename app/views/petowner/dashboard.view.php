@@ -51,6 +51,7 @@
 
         body {
             width: 100vw;
+            padding:0;
             height: 100vh;
             font-family: 'Poppins', sans-serif;
             font-size: 0.88rem;
@@ -255,7 +256,7 @@
 
     <!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
 <div class="container" style="display:flex; flex-direction:column; align-items: space-between; padding: 20px">
-<div class="flex-container" style="display:flex; justify-content: space-between;">
+<div class="flex-container" style="display:flex; justify-content: space-between; padding:0 40px;">
 <div>
     <button class="add-new-button">Add New</button>
 </div>
@@ -264,9 +265,9 @@
 </div>
 
         </div>
-    <div class="container" style="display:flex; flex-direction:row;">
+    <div class="container" style="display:flex; flex-direction:row; padding: 0 40px;">
  
-        <div class="new-users" style="display:flex; width:70%;  ">
+        <div class="new-users" style="display:flex; width:70%;  margin-right: 20px;">
             <div class="user-list" style="display:flex; flex-wrap: wrap; gap:1rem; ">
             <?php
 
@@ -298,14 +299,14 @@
                 </div>
             </div>
 
-        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:100px;">
+        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;">
             
             <?php 
 
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
                 <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
-                    
+                <?php if (!empty($vetappointmentnotifications)) { ?>
                     <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
                     <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                    
@@ -320,9 +321,14 @@
                         </div>
                     </div>
                     <?php } ?>
+                <?php } else { ?>
+                    <p>No new notifications</p>
+                <?php } ?>
              </div>
+
                     <p style="font-size:20px; font-weight:bolder;">Daycare Booking</p>
                     <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                    <?php if (!empty($daycarenotifications)) { ?>
                         <?php foreach ($daycarenotifications as $dnotification) { ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
@@ -337,9 +343,15 @@
                             </div>
                         </div>
                         <?php } ?>
+                    <?php } else { ?>
+                        <p>No new notifications</p>
+                    <?php } ?>
                     </div>
+
+
             <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
             <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+            <?php if (!empty($vetappointmentnotifications)) { ?>
                 <?php foreach ($vetappointmentnotifications as $vnotification) { ?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <div class="notification-item" style="height:80px;">
@@ -354,6 +366,9 @@
                     </div>
                 </div>
                 <?php } ?>
+            <?php } else { ?>
+                <p>No new notifications</p>
+            <?php } ?>
             </div>
         </div>
  </div>

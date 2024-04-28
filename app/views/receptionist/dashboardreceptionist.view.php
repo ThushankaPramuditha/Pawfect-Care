@@ -58,7 +58,7 @@ html{
 body{
     width: 100vw;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif ;
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;

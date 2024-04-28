@@ -14,6 +14,7 @@
     <style>
     body {
         font-family: Arial, sans-serif;
+        padding: 0;
         margin: 0;
         color: #333;
         font-size: 16px;

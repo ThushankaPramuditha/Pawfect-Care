@@ -6,7 +6,7 @@ class Dashboardambulancedriver
 
     public function index() {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
-
+        date_default_timezone_set('Asia/Colombo');
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
         $userdataModel = new AmbulanceDriversModel();
         $ambulancebookingmodel = new AmbulanceBookingModel();
@@ -26,6 +26,7 @@ class Dashboardambulancedriver
     
     public function acceptBooking(string $id) : void
     {
+        date_default_timezone_set('Asia/Colombo');
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
 
         $ambulancebookingmodel = new AmbulanceBookingModel();
@@ -120,7 +121,7 @@ class Dashboardambulancedriver
     
     public function changeAvailability($id)
     {
-    
+        date_default_timezone_set('Asia/Colombo');
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
         $driversModel = new AmbulanceDriversModel();
         $currentAvailability = $driversModel->getAmbulanceDriverById($id);

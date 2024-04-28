@@ -283,6 +283,7 @@ public function searchByDate($date)
             }
 
             public function countTodayacceptedBookings(){
+                date_default_timezone_set('Asia/Colombo');
                 $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) = CURDATE() AND status = 'accepted'";
                 $result = $this->query($query);
                 // if not found
@@ -292,6 +293,7 @@ public function searchByDate($date)
                 return count($result);
             }
             public function countDaycareBookingForWeek($week) {
+                date_default_timezone_set('Asia/Colombo');
                 // Get the start and end dates for the current month
                 $startDate = date('Y-m-d', strtotime("first day of this month"));
                 $endDate = date('Y-m-d', strtotime("last day of this month"));
@@ -344,6 +346,7 @@ public function searchByDate($date)
             
             
             public function countTodaydeclinedBookings(){
+                date_default_timezone_set('Asia/Colombo');
                 $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'declined'";
                 $result = $this->query($query);
                 // if not found

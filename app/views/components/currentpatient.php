@@ -109,7 +109,6 @@
                     <h3 class="card-title"  style = "color: red">Patient No</h3>
                     <h3 class="card-title" style = "color: red"><?= htmlspecialchars($current->patient_no) ?></h3>
 
-
                 </div>
             </div>
 

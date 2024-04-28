@@ -786,8 +786,8 @@ main table tbody tr td:first-child {
 <div>
   
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-            <?php if (is_array($feedbacks) || is_object($feedbacks)) { ?>
-            <?php foreach ($feedbacks as $feedback) { ?>
+            <?php if (is_array($feedbacks) || is_object($feedbacks)): ?>
+            <?php foreach ($feedbacks as $feedback) :?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <div class="notification-item">
                         <div class="info">
@@ -800,10 +800,17 @@ main table tbody tr td:first-child {
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        <?php } else { ?>
-            <h3>No feedbacks at the moment.</h3>
-        <?php } ?>
+            <?php endforeach; ?>
+        <?php  else: ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p> There are no Feedbacks at the moment.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->

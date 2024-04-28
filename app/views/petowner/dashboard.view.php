@@ -310,9 +310,9 @@
                             <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                                 <div class="notification-item" style="height:80px;">
                                     <!-- Add a close icon to delete notifications -->
-                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
+                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:11px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
                                     <div class="info">
-                                        <small class="text-muted" style="font-size:14px;">Appointment</small>
+                                        <!-- <small class="text-muted" style="font-size:14px;">Appointment</small> -->
                                         <p><?php echo $vnotification->message ?></p>
                                         <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>'">Cancel Appointment</button>
                                     </div>

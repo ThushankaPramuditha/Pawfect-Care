@@ -137,7 +137,7 @@ class AppointmentsModel
         return $this->query($query, ['status' => $status, 'id' => $id]);
     }
 
-    public function getCurrentPatient()
+   public function getCurrentPatient()
     {
         date_default_timezone_set('Asia/Colombo');
 
@@ -166,6 +166,36 @@ class AppointmentsModel
 
 
     }
+     public function getCurrentPatientForVet($vetId)
+    {
+        date_default_timezone_set('Asia/Colombo');
+
+        $currentDate = date('Y-m-d');
+
+        $query = "SELECT
+        a.patient_no,
+        a.pet_id AS pet_id,
+        po.id AS owner_id,
+        v.name AS vet_name
+        FROM
+            appointments a
+        JOIN
+            pets p ON a.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        WHERE
+            DATE(a.date_time) = :current_date
+            AND a.status = 'current'  AND a.vet_id = :vet_id";
+
+        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
+
+        return $this->query($query, $data);
+
+    }
+
+
 
 
     public function getAppointmentById($id)

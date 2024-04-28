@@ -94,6 +94,7 @@ foreach ($bookingsToday as $booking) {
         </tbody>
     </table>
 <?php endforeach; ?>
+
 <script>
    async function bookSlots(id) {
        await fetch(`<?php echo ROOT?>/daycarestaff/daycarebooking/bookSlots/${id}`);

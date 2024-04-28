@@ -16,20 +16,62 @@
     <style>
         #map {
             width:100%;
-            height: 100vh;
+            height: 80vh;
             align-items: center;
         }
     </style>
 </head>
 <body>
     
-    <div style="display: flex; flex-direction:row;">
+    <div style="display: flex; flex-direction:column;">
+    <?php
+
+
+
+?>
+
     <div id="map"></div>
-    <div>
-       <button onclick="window.location.href='<?php echo ROOT?>/ambulancedriver/dashboardambulancedriver'">Back</button>
+    <div style="display: flex; flex-direction:row; margin-top:50px;">
+        <div style="align-items: center; display: flex; margin-left:600px;">
+ 
+       <button onclick="window.location.href='<?php echo ROOT?>/ambulancedriver/dashboardambulancedriver'"style="background-color:#6a3879; padding: 10px; border-radius: 5px; color:#ffff; border-radius:5px; width: 140px; cursor:pointer;">Back</button>
+        </div>
+        
+        <div>
+        <div style="align-items: center; display: flex; margin-left:10px;">
+       
+            <button type="button" class="btn" onclick="finishRide()" style="background-color:#6a3879; padding: 10px; border-radius: 5px; color:#ffff; border-radius:5px; width: 140px; cursor:pointer;">
+                Finish Ride
+            </button>
+
+                <script>
+                    function finishRide() {
+                        // Extract driver_id from the URL
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const driverId = urlParams.get('driver_id');
+                        console.log(driverId);
+                    
+                        // Redirect to the finish ride URL with the driver_id
+                        window.location.href = '<?=ROOT?>/Ambulancedriver/Maproute/finishride/' + driverId;
+                    }
+
+                    //swal success
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Ride Completed',
+                        text: 'You have successfully completed the ride',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                </script>
+        </div>
+
+    </div>
     </div>
     </div>
 
+   
     <script>
         //view Colombo
         var map = L.map('map').setView([6.9271, 79.8612], 11);
@@ -69,5 +111,6 @@
         })
         
        
+      
 
     </script>

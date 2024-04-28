@@ -296,6 +296,7 @@ class AppointmentsModel
 
       //get the active appointment count for current date for particular vet
       public function countTodayAppointments($vetId) {
+        date_default_timezone_set('Asia/Colombo');
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
@@ -305,7 +306,7 @@ class AppointmentsModel
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
         return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
     }
-       
+  
     public function counttodayallAppointments(){
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 

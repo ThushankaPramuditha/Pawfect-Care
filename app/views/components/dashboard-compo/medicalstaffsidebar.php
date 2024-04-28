@@ -25,6 +25,7 @@
                         <a class="nav-link<?= ($activePage == 'dashboardmedicalstaff') ? '-active' : '';?>" href="<?php echo ROOT?>/medicalstaff/dashboardmedicalstaff">
                             Dashboard
                         </a>
+                        
                     </li>
                     <li class="nav-item">
                         <a class="nav-link<?= ($activePage == 'myprofile') ? '-active' : '';?>" href="<?php echo ROOT?>/medicalstaff/myprofile">

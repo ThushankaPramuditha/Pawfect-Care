@@ -282,6 +282,18 @@ public function getLocationBypetIdandTime($pet_id) {
 
         return empty($this->errors);
     }
+
+    /////////////////////////////////////////////////////////////////
+
+    public function getPetOwnerEmailByPetId($petId) {
+        $query = "SELECT u.email
+                  FROM petowners AS po
+                  JOIN users AS u ON po.user_id = u.id
+                  JOIN pets AS p ON po.id = p.petowner_id
+                  WHERE p.id = :pet_id";
+        $result = $this->get_row($query, ['pet_id' => $petId]);
+        return $result->email;
+    }
 }
 
 

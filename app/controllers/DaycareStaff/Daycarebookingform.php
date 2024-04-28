@@ -187,12 +187,18 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
     {
         $daycarebookinguserModel = new DaycarebookinguserModel();
         $searchTerm = $_POST['search'] ?? '';
-        $daycarebookinguser = $daycarebookinguserModel->search($searchTerm);
+        $filterDate = $_POST['date'] ?? '';
+        $daycarebookinguser = $daycarebookinguserModel->searchforDaycareStaff($searchTerm, $filterDate);
 
         if (empty($daycarebookinguser)) {
             echo "<tr><td colspan='20'>No daycare booking found</td></tr>";
         } else {
             foreach ($daycarebookinguser as $daycarebooking) {
+                // echo "<tr key='{$daycarebooking->id}' style='" . 
+                // ($daycarebooking->status == 'accepted' ? 'color: #2e7d32;' : 
+                // ($daycarebooking->status == 'finished' ? 'color: #FFEA00;' : 
+                // ($daycarebooking->status == 'declined' ? 'color: #c62828;' : ''))) . 
+                // "'>";
                 echo "<tr key='{$daycarebooking->id}'>";
                 echo "<td>{$daycarebooking->drop_off_date}</td>";
 				echo "<td>{$daycarebooking->pet_owner_name}</td>";
@@ -200,11 +206,11 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 				echo "<td>{$daycarebooking->pet_owner_contact}</td>";
                 echo "<td>{$daycarebooking->drop_off_time}</td>";
                 echo "<td>{$daycarebooking->pick_up_time}</td>";
+                echo "<td>{$daycarebooking->status}</td>";
                 echo "<td>{$daycarebooking->list_of_items}</td>";
                 echo "<td>{$daycarebooking->allergies}</td>";
                 echo "<td>{$daycarebooking->pet_behaviour}</td>";
                 echo "<td>{$daycarebooking->medications}</td>";
-				echo "<td>{$daycarebooking->status}</td>";
                 echo "<td class='activate-action-buttons'>";
                 echo "<button class='activate-button'>Accept</button>";
                 echo "</td>";
@@ -220,39 +226,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
         exit; 
     }
 
-	public function searchByDate(): void
-{
-    $daycarebookinguserModel = new DaycarebookinguserModel();
-    $searchDate = $_POST['date'] ?? '';
-    $daycarebookinguser = $daycarebookinguserModel->searchByDate($searchDate);
-
-    if (empty($daycarebookinguser)) {
-        echo "<tr><td colspan='20'>No daycare booking found</td></tr>";
-    } else {
-        foreach ($daycarebookinguser as $daycarebooking) {
-            echo "<tr key='{$daycarebooking->id}'>";
-            echo "<td>{$daycarebooking->drop_off_date}</td>";
-            echo "<td>{$daycarebooking->pet_owner_name}</td>";
-            echo "<td>{$daycarebooking->pet_name}</td>";
-            echo "<td>{$daycarebooking->pet_owner_contact}</td>";
-            echo "<td>{$daycarebooking->drop_off_time}</td>";
-            echo "<td>{$daycarebooking->pick_up_time}</td>";
-            echo "<td>{$daycarebooking->list_of_items}</td>";
-            echo "<td>{$daycarebooking->allergies}</td>";
-            echo "<td>{$daycarebooking->pet_behaviour}</td>";
-            echo "<td>{$daycarebooking->medications}</td>";
-            echo "<td>{$daycarebooking->status}</td>";
-            echo "<td class='activate-action-buttons'>";
-            echo "<button class='activate-button'>Activate</button>";
-            echo "</td>";
-            echo "<td class='deactivate-action-buttons'>";
-            echo "<button class='deactivate-button'>Deactivate</button>";
-            echo "</td>";
-            echo "</tr>";
-        }
-    }
-    exit;
-}
+	
 
 }
 

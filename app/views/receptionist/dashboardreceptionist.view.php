@@ -657,7 +657,10 @@ main table tbody tr td:first-child {
                     <?php foreach ($veterinarians as $veterinarian) { ?>
                         <div class="user" style="align-items: center; display: flex; justify-content: center;">
                             <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Taxi Image">
-                            <h3><?php echo $veterinarian->name ?></h3>
+                            <h2><?php echo $veterinarian->name ?></h2>
+                            <p style="color: <?php echo ($veterinarian->availability === 'available') ? 'green' : 'red'; ?>">
+                                 <?php echo $veterinarian->availability; ?>
+                            </p>
                             <div style="align-items: center; display: flex; justify-content: center;">  
                             </div>
                         </div>
@@ -696,16 +699,16 @@ main table tbody tr td:first-child {
             </div>
 
         <div class="reminders">
-                <div class="header">
+                <!-- <div class="header">
                     <h2>Notifications</h2>
                     <span class="material-icons-sharp">
                         notifications_none
                     </span>
-                </div>
+                </div> -->
 
 
           <div>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
+            <!-- <div  style="display:flex; flex-direction:column; overflow:hidden; height:290px; overflow-y:scroll;" >
             <?php foreach ($vetnotifications as $notification) {?>
                 <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
                     <div class="notification-item">
@@ -719,11 +722,11 @@ main table tbody tr td:first-child {
                     </div>
                 </div>
             <?php }?>
-            </div>
+            </div> -->
 
        
             <!-- button to view more bookings path is Daycarebookingform -->
-            <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+            <!-- <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
             <a href="<?=ROOT?>/receptionist/appointments">
                 <div>
                     <span class="material-icons-sharp" style="color:white;">
@@ -731,7 +734,8 @@ main table tbody tr td:first-child {
                     </span>
                     <h3 style="color:white;">View</h3>
                 </div>
-            </div>
+            </div> -->
+            
         </div>
        </div>
 

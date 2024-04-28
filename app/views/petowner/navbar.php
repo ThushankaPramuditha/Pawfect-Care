@@ -9,6 +9,8 @@
     <style>
         /* Navbar Styles */
         .navbar {
+            font-family: Arial, sans-serif !important;
+            margin:0;
             display: flex;
             justify-content: space-between;
             margin-top: 10px; /* Increased margin */
@@ -23,7 +25,15 @@
             height: auto;
         }
 
+        .navlogo {
+            margin:0 !important;
+            padding:0 !important;
+            box-sizing: border-box;
+        }
+
         .nav-links {
+            margin:0 !important;
+            padding:0 !important;
             list-style: none;
             padding: 0;
             display: flex;

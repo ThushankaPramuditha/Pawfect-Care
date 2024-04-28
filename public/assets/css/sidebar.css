@@ -1,5 +1,6 @@
 /* Sidebar styles */
 .sidebar {
+    font-family: Arial, sans-serif !important;
     width: 230px;
     min-height: 100vh;
     background-color: #cfc3d3;
@@ -70,7 +71,6 @@
 
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 20px;
     margin: 0;

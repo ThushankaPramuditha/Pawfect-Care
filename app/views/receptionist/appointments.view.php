@@ -24,10 +24,7 @@
             <div class="panel-header">
                 <button class="add-new-button">Add New</button>
 
-                <div class="filter-date">
-                    <input type="date" id="date-filter" placeholder="Filter by date..."
-                        style="background-color: #ffffff; margin:0px; color: #666 ">
-                </div>
+            
 
                 <div class="search-bar">
                     <input type="text" id="search" placeholder="Search appointments...">
@@ -41,15 +38,13 @@
                     <thead>
                         <tr>
 
-                            <th>Date Time</th>
                             <th>Patient No.</th>
                             <th>Status</th>
+                            <th>Vet Name</th>
                             <th>Pet ID</th>
                             <th>Pet Name</th>
                             <th>Pet Owner</th>
                             <th>Contact Number</th>
-                            <th>Vet Name</th>
-                            <th class="edit-action-buttons"></th>
 
                         </tr>
                     </thead>
@@ -57,7 +52,6 @@
                         <?php if (is_array($appointments) && !empty($appointments)): ?>
                         <?php foreach ($appointments as $appointment): ?>
                         <tr key="<?php echo $appointment->id; ?>">
-                            <td><?= htmlspecialchars($appointment->date_time); ?></td>
                             <td><?= htmlspecialchars($appointment->patient_no); ?></td>
                             <td><select class="status-select" data-appointment-id="<?= $appointment->id ?>">
                                     <option value="pending" <?= $appointment->status == 'pending' ? 'selected' : '' ?>>
@@ -71,14 +65,12 @@
                                 </select>
 
                             </td>
+                            <td><?= htmlspecialchars($appointment->vet_name); ?></td>
                             <td><?= htmlspecialchars($appointment->pet_id); ?></td>
                             <td><?= htmlspecialchars($appointment->pet_name); ?></td>
                             <td><?= htmlspecialchars($appointment->petowner); ?></td>
                             <td><?= htmlspecialchars($appointment->contact); ?></td>
-                            <td><?= htmlspecialchars($appointment->vet_name); ?></td>
-                            <td class="edit-action-buttons">
-                                <!button class="edit-icon"></button>
-                            </td>
+                            
                         </tr>
 
                         <?php endforeach; ?>
@@ -165,19 +157,16 @@ Add Appointment Modal -->
 
     <script>
     $(document).ready(function() {
-        $('#date-filter').change(updateTable);
         $('#search').on('keyup', updateTable);
 
         function updateTable() {
             var searchTerm = $('#search').val();
-            var filterDate = $('#date-filter').val();
 
             $.ajax({
                 url: "<?php echo ROOT ?>/Receptionist/Appointments/search",
                 type: "POST",
                 data: {
                     search: searchTerm,
-                    date: filterDate
                 },
                 success: function(data) {
                     $('tbody').html(data);

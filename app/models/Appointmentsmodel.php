@@ -8,8 +8,8 @@ class AppointmentsModel
     protected $allowedColumns = ['patient_no','date_time','pet_id','vet_id','status'];
 
     public function getAllAppointments()
-    {
-        $query = "SELECT
+{
+    $query = "SELECT
         a.id,
         a.date_time,
         a.patient_no,
@@ -19,18 +19,26 @@ class AppointmentsModel
         po.contact,
         v.name AS vet_name,
         a.status
-        FROM
-            appointments a
-        JOIN
-            pets p ON a.pet_id = p.id
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        ORDER BY a.date_time DESC";
+    FROM
+        appointments a
+    JOIN
+        pets p ON a.pet_id = p.id
+    JOIN
+        petowners po ON p.petowner_id = po.id
+    JOIN
+        veterinarians v ON a.vet_id = v.id
+    ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
 
-        return $this->query($query);
-    }
+    return $this->query($query);
+}
 
     public function getAppointmentsForCurrentDate()
     {
@@ -56,7 +64,15 @@ class AppointmentsModel
             veterinarians v ON a.vet_id = v.id
         WHERE
             DATE(a.date_time) = :current_date
-        ORDER BY a.id ASC";
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
 
         // Bind the current date parameter to the query
         $data = array(':current_date' => $currentDate);
@@ -227,7 +243,53 @@ class AppointmentsModel
 
     }
 
+    public function searchForTodayReceptionist($term) {
+        date_default_timezone_set('Asia/Colombo');
+
+        $term = "%{$term}%";
+        $today = date('Y-m-d');
+        
+        $query = "SELECT
+            a.id,
+            a.date_time,
+            a.patient_no,
+            a.pet_id,
+            p.name AS pet_name,
+            po.name AS petowner,
+            po.contact,
+            v.name AS vet_name,
+            a.status
+            FROM appointments a
+            JOIN
+                pets p ON a.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            JOIN
+                veterinarians v ON a.vet_id = v.id
+            WHERE 
+            DATE(a.date_time) = :today AND
+            (p.name LIKE :term 
+            OR po.name LIKE :term 
+            OR po.contact LIKE :term
+            OR v.name LIKE :term)
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
+    
+        $bindings = [':term' => $term, ':today' => $today];
+      
+        return $this->query($query, $bindings);
+    }
+
     public function searchForReceptionist($term, $date = '') {
+        date_default_timezone_set('Asia/Colombo');
+
         $term = "%{$term}%";
         $dateCondition = !empty($date) ? "AND DATE(date_time) = :date" : "";
         
@@ -251,8 +313,18 @@ class AppointmentsModel
             WHERE 
             (p.name LIKE :term 
             OR po.name LIKE :term 
-            OR po.contact LIKE :term)
-            {$dateCondition}";
+            OR po.contact LIKE :term
+            OR v.name LIKE :term)
+            {$dateCondition}
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
     
         $bindings = [':term' => $term];
         if (!empty($date)) {

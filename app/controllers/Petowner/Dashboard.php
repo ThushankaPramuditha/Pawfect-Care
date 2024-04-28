@@ -89,6 +89,20 @@ class Dashboard
 
     }
 
+    //cancel notification
+    public function cancelNotification(string $id){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $notificationModel = new NotificationModel();
+        $success = $notificationModel->cancelNotification($id);
+        if($success){
+            
+            echo "Notification cancelled successfully";
+        }
+        else{
+            echo "Failed to cancel notification";
+        };
+    }
+
    
 
     //validation

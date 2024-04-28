@@ -769,11 +769,24 @@ main table tbody tr td:first-child {
                             <p>
                                 <?php echo $notification->message ?>
                             </p>
-                            <div style="margin-left:100px; margin-top:2px;">
-                                <!-- <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
+                            <div style="display:flex; flex-direction:row;">
+                            <div style="margin-left:10px; margin-top:2px;">
+                                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
                                     <a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a>
-                                </button> -->
+                                </button>
+                            </div>  
+                              
+                             <div style="margin-left:150px; margin-top:2px;">
+                                <!-- <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
+                                    <a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a> -->
+                                        <?php if (!empty($recentbookings->id)): ?>
+                                            <!-- Display the button only when $recentbookings->id is not empty -->
+                                            <button class="accept-button" data-id="<?php echo $recentbookings->id ?>" style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; width: 50px; cursor:pointer;">Accept</button>
+                                        <?php endif; ?>
+                
                             </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -55,5 +55,17 @@ class DashboardServices
         return $income;
     }
     
+	public function cancelNotification(string $id){
+        AuthorizationMiddleware::authorize(['Admin']);
+        $notificationModel = new NotificationModel();
+        $success = $notificationModel->cancelNotification($id);
+        if($success){
+            
+            echo "Notification cancelled successfully";
+        }
+        else{
+            echo "Failed to cancel notification";
+        };
+    }
 
 }

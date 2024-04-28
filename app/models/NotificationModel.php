@@ -30,7 +30,7 @@ class NotificationModel{
         $query = "SELECT n.*, ab.pet_id, ab.pickup_lat, ab.pickup_lng, ab.date_time
                   FROM notifications AS n
                   JOIN ambulancebookings AS ab ON n.appointment_id = ab.id
-                  WHERE n.receiver_id = :receiver_id AND n.type = 'transport' 
+                  WHERE n.receiver_id = :receiver_id AND n.type = 'transport' AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         $result = $this->query($query, ['receiver_id' => $driverId]);
     
@@ -51,7 +51,7 @@ class NotificationModel{
                   JOIN appointments AS a ON n.appointment_id = a.id
                   JOIN veterinarians AS v ON a.vet_id = v.id
                   JOIN users AS u ON v.user_id = u.id
-                  WHERE n.type = 'vet'
+                  WHERE n.type = 'vet' AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         $result = $this->query($query);
     
@@ -72,7 +72,7 @@ class NotificationModel{
                   JOIN appointments AS a ON n.appointment_id = a.id
                   JOIN veterinarians AS v ON a.vet_id = v.id
                   JOIN users AS u ON v.user_id = u.id
-                  WHERE n.type = 'vet' AND v.user_id = :user_id
+                  WHERE n.type = 'vet' AND v.user_id = :user_id AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         return $this->query($query, ['user_id' => $userId]);
     }
@@ -84,7 +84,7 @@ class NotificationModel{
                   JOIN appointments AS a ON n.appointment_id = a.id
                   JOIN veterinarians AS v ON a.vet_id = v.id
                   JOIN users AS u ON v.user_id = u.id
-                  WHERE n.type = 'vet' AND n.user_id = :user_id
+                  WHERE n.type = 'vet' AND n.user_id = :user_id AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         return $this->query($query, ['user_id' => $userId]);
     }
@@ -115,7 +115,7 @@ class NotificationModel{
         $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
                   FROM notifications AS n
                   JOIN daycarebookinguser AS d ON n.appointment_id = d.id
-                  WHERE n.type = 'daycare' AND n.user_id = :user_id
+                  WHERE n.type = 'daycare' AND n.user_id = :user_id AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         return $this->query($query, ['user_id' => $userId]);
     }
@@ -125,7 +125,7 @@ class NotificationModel{
         $query = "SELECT n.*, d.pet_id, d.drop_off_time, d.drop_off_date
                   FROM notifications AS n
                   JOIN daycarebookinguser AS d ON n.appointment_id = d.id
-                  WHERE n.type = 'daycare' AND n.receiver_id = :receiver_id
+                  WHERE n.type = 'daycare' AND n.receiver_id = :receiver_id AND n.status = 'unread'
                   ORDER BY n.created_at DESC";
         return $this->query($query, ['receiver_id' => $receiverId]);
     }
@@ -157,6 +157,12 @@ class NotificationModel{
     public function deleteNotification($id)
     {
         $query = "DELETE FROM notifications WHERE id = :id";
+        return $this->query($query, ['id' => $id]);
+    }
+
+    public function cancelNotification($id)
+    {
+        $query = "UPDATE notifications SET status = 'read' WHERE id = :id";
         return $this->query($query, ['id' => $id]);
     }
 

@@ -6,14 +6,14 @@ body {
     padding: 20px;
     margin: 0;
     color: #333;
-    
+   
 }
 
 .container {
     display:flex;
     justify-content: space-between; /* Display children in a row with space between them */
     align-items: center; /* Center vertically */
-    height: 100vh; /* Set container height to 100% of viewport height */
+    height: 90vh; /* Set container height to 100% of viewport height */
     width: 50%; /* Set container width to 100% of viewport width */
     background-color:#FCFCFE;
     border-radius: 50px;

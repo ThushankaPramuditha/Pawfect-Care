@@ -38,6 +38,19 @@ class DashboardDaycareStaff
         $this->view('daycarestaff/dashboarddaycarestaff',$data);
     }
 
+    public function cancelNotification(string $id){
+        AuthorizationMiddleware::authorize(['Daycare Staff']);
+        $notificationModel = new NotificationModel();
+        $success = $notificationModel->cancelNotification($id);
+        if($success){
+            
+            echo "Notification cancelled successfully";
+        }
+        else{
+            echo "Failed to cancel notification";
+        };
+    }
+
 
 
 //  function to get the appointment details from the database

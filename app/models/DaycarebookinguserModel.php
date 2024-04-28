@@ -257,9 +257,12 @@ public function searchByDate($date)
             }
 
             public function countTodayBookings() {
-                $query = "SELECT * FROM daycarebookinguser WHERE created_at = CURDATE()";
+                // timezone 
+                date_default_timezone_set('Asia/Colombo');
+                //count today  from  created at datetime
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) = CURDATE()";
                 $result = $this->query($query);
-                // if not found
+
                 if(!$result){
                     return 0;
                 }
@@ -270,7 +273,7 @@ public function searchByDate($date)
             public function countweekallBookings(){
                 // timezone 
                 date_default_timezone_set('Asia/Colombo');
-                $query = "SELECT * FROM daycarebookinguser WHERE created_at BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
                 $result = $this->query($query);
                 // if not found
                 if(!$result){
@@ -280,7 +283,7 @@ public function searchByDate($date)
             }
 
             public function countTodayacceptedBookings(){
-                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'accepted'";
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) = CURDATE() AND status = 'accepted'";
                 $result = $this->query($query);
                 // if not found
                 if(!$result){

@@ -14,6 +14,8 @@ class Veterinarians
             // show($servicesModel->findAll());
             $data['vets'] = $vetsModel->getAllVeterinarians();
 
+            
+            
 		$this->view('receptionist/veterinarians',$data);
 	}
 

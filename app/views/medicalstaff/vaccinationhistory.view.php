@@ -21,7 +21,8 @@
 
             <?php if (!empty($vaccinationhistory)): ?>
             <?php $petId = $vaccinationhistory[0]->pet_id; ?>
-            
+            <script>var petId = <?= json_encode($petId); ?>;</script>
+
             <?php endif; ?>
 
             <div class="search-bar">
@@ -126,7 +127,6 @@
                 $('#search').on('keyup', function(){
                     //var searchTerm = $('#search').val(); 
                     var searchTerm = $(this).val();
-                    var petId = <?= json_encode($petId); ?>;
                     
                     console.log(petId)
                     $.ajax({
@@ -143,7 +143,6 @@
                 // to update when filtered by search
                 $('body').on('click', '.edit-icon', function(){
                     var Id = $(this).closest('tr').attr('key');
-                    var petId = <?= json_encode($petId); ?>;
                     openUpdateModal(Id,petId);
                 });
             });

@@ -19,6 +19,7 @@ class DashboardMedicalStaff
 		// Fetch data for various metrics
 		$data['appointmentbookings'] = $appointmentsmodel->counttodayallAppointments();
 		$data['allappointments'] = $appointmentsmodel->getAllAppointments();
+        // $data['current'] = $appointmentsModel->getCurrentPatient();
 
 
 		$this->view('medicalstaff/dashboardmedicalstaff',$data);

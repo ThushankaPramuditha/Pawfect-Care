@@ -48,7 +48,6 @@ class Daycarebookinguser
 
     // Add notification
 
-
     // Call the model method to add the daycare booking
     $success = $model->addDaycarebooking($data);
     // Check the result and provide feedback
@@ -78,15 +77,15 @@ class Daycarebookinguser
         $_SESSION['flash'] = ['success' => 'Daycare Booking Added successfully.'];
         header('Location: ' . ROOT . '/petowner/daycarebookinguser');
         exit;
-     
-       
-    } else {
+        
+    } 
+    else {
         $_SESSION['flash'] = ['error' => 'Failed to add daycare Booking.'];
         header('Location: ' . ROOT . '/petowner/daycarebookinguser');
         exit;
     }
 
-    redirect('petowner/services');
+   
     
 }
 

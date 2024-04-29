@@ -285,8 +285,8 @@ map.on('click', function(e) {
     if (distance > 25000) {
         Swal.fire({
             icon: 'error',
-            title: 'Error',
-            text: 'Sorry Location is too far to reach.Within 25km Only.'
+            title: 'Sorry!!',
+            text: 'Location should be within 25 km from Pet Care Center.'
         });
         return;
     }

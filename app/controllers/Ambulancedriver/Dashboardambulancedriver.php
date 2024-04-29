@@ -6,7 +6,7 @@ class Dashboardambulancedriver
 
     public function index() {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
-
+        date_default_timezone_set('Asia/Colombo');
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
         $userdataModel = new AmbulanceDriversModel();
         $ambulancebookingmodel = new AmbulanceBookingModel();
@@ -26,13 +26,32 @@ class Dashboardambulancedriver
     
     public function acceptBooking(string $id) : void
     {
+        date_default_timezone_set('Asia/Colombo');
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
 
         $ambulancebookingmodel = new AmbulanceBookingModel();
-       $recentbooking= $ambulancebookingmodel->getTodaysMostRecentBooking($_SESSION['USER']->id);
+        $recentbooking= $ambulancebookingmodel->getTodaysMostRecentBooking($_SESSION['USER']->id);
         $success = $ambulancebookingmodel->acceptBooking($id);
         
         if ($success === true) {
+            $petOwnerId =  $ambulancebookingmodel->getPetOwnerId($id);
+            // send notification
+            $notificationModel = new NotificationModel();
+            $notificationData = [
+                'user_id' => $_SESSION['USER']->id,
+                'receiver_id' =>$petOwnerId,
+                'message' => "Your Ride accepted and be ready driver is on the way",
+                'type' => 'transport',
+                'appointment_id' => $id,
+                'status' => 'unread'
+            ];
+            $daycarenotification = $notificationModel->addNotification($notificationData);
+            if ($daycarenotification !== false) {
+                echo "Notification added successfully";
+            } else {
+                echo "Failed to add notification";
+            }
+          
             $urlParams = http_build_query([
                 'pet_id' => $recentbooking->pet_id,
                 'date' => urlencode($recentbooking->date_time),
@@ -42,12 +61,14 @@ class Dashboardambulancedriver
             
             // Redirect to the URL
             redirect($url);
+           
+            // Send email to the pet owner
+            $pet_id = $recentbooking->pet_id;
             $ambulancebookingmodel = new AmbulanceBookingModel();
-            // $petOwnerEmail = $ambulancebookingmodel->getPetOwnerEmailByPetId($pet_id);
-            // $model = new AmbulanceBookingModel();
+            $petOwnerEmail = $ambulancebookingmodel->getPetOwnerEmailByPetId($pet_id);
              // $petOwnerEmail = $model->getPetOwnerEmailById($id);
               //sample email
-              $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+            //   $petOwnerEmail = 'thushankapramuditha17@gmail.com';
               if($petOwnerEmail) {
                   // Send email to the pet owner
               
@@ -104,13 +125,13 @@ class Dashboardambulancedriver
                   </body>
                   </html>
                   ";
-           
+
                   $emailModel = new EmailModel();
                   $emailModel->sendEmail($petOwnerEmail, $subject, $message);
               } else {
-                  // $_SESSION['error'] = "Failed to fetch pet owner email!";
-                  
-              }
+                //   $_SESSION['error'] = "Failed to fetch pet owner email!";  
+               }
+           
         } else {
             echo "Failed to accept booking. Error: " . $success;
         }
@@ -120,7 +141,7 @@ class Dashboardambulancedriver
     
     public function changeAvailability($id)
     {
-    
+        date_default_timezone_set('Asia/Colombo');
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
         $driversModel = new AmbulanceDriversModel();
         $currentAvailability = $driversModel->getAmbulanceDriverById($id);

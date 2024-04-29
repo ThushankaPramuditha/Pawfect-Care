@@ -6,6 +6,8 @@
     <title>Book an Ambulance</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/bookingpages.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/panelheader.css">
+<!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .button {
             background-color: #6a387944;
@@ -31,7 +33,9 @@
 <h1>Book Pet Ambulance</h1>
 
 <div class="cardcontainer">
-    <?php foreach ($data['ambulancedrivers'] as $ambulance): ?>
+        
+<?php if (!empty($availableambulancedrivers)): ?>
+    <?php foreach ($availableambulancedrivers as $ambulance): ?>
         <div class="card">
             <div class="image-container">
                 <img src="<?= ROOT ?>/assets/images/petowner.png" alt="Avatar" style="align-item:center; width:100px; margin-top:20px;">
@@ -50,9 +54,16 @@
                     <?php endif; ?>
                 </div>
             </div>
-
         </div>
     <?php endforeach; ?>
+<?php else: ?>
+    <!-- <p>No available ambulance drivers found.</p> -->
+    <div class="no-drivers-found">
+    <p>No available ambulance drivers found. <i class="far fa-frown"></i></p>
+</div>
+
+<?php endif; ?>
+
 </div>
 
 </body>

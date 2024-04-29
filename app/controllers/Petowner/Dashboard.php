@@ -22,8 +22,8 @@ class Dashboard
         $notificationModel = new NotificationModel();
         $data['vetappointmentnotifications'] = $notificationModel->getVetNotificationByUserId($userId);
         $data['daycarenotifications'] = $notificationModel->getDaycareNotificationsByReceiverId($receiveId);
-
-   
+        $data['transportnotifications'] = $notificationModel->getTransportNotificationByPetOwnerId($receiveId);
+        
         $this->view('petowner/dashboard', $data);
     }
     

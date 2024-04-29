@@ -120,7 +120,7 @@ b{
     display: grid;
     width: 96%;
     /* margin: 0 auto; */
-    margin-right; 2 rem;
+    margin-right: 2 rem;
     gap: 1.8rem;
     grid-template-columns: 12rem auto 23rem;
 }

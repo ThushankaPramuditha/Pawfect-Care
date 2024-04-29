@@ -10,6 +10,7 @@ class PetAmbulance
         $data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
         $ambulancedrivermodel = new AmbulanceDriversModel();
         $data['ambulancedrivers'] = $ambulancedrivermodel->getAllAmbulanceDrivers();
+        $data['availableambulancedrivers'] = $ambulancedrivermodel->getAvailableAmbulanceDrivers();
 
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $userdataModel = new PetownersModel();

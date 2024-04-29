@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body>
+<body    style=" padding: 0;">
 <?php include 'navbar.php'; ?>
 
 <h1>Book Pet Ambulance</h1>

@@ -19,8 +19,8 @@
 <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>   
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <h1>Edit Profile</h1> 
-        <div class = "formcontainer" id="updateveterianrian"> 
-            <form id="edit-profile-form" action="<?php echo ROOT?>/Veterinarian/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
+        <div class = "formcontainer" id="updatereceptionist"> 
+            <form id="edit-profile-form" action="<?php echo ROOT?>/receptionist/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
                 <label for="update-name">Full Name:</label>
                 <input type="text" id="update-name" name="name" value="<?php echo $userdata->name;?>">

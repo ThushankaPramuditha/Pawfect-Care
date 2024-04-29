@@ -89,6 +89,8 @@ class Appointments
 
     public function updateStatus() {
         date_default_timezone_set('Asia/Colombo');
+        AuthorizationMiddleware::authorize(['Receptionist']);
+
 
         $id = $_POST['appointmentId'];
         $status = $_POST['status'];

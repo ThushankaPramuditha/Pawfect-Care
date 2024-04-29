@@ -52,6 +52,7 @@
         body {
             width: 100vw;
             height: 100vh;
+            padding:0;
             font-family: 'Poppins', sans-serif;
             font-size: 0.88rem;
             user-select: none;
@@ -255,7 +256,7 @@
 
     <!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
 <div class="container" style="display:flex; flex-direction:column; align-items: space-between; padding: 20px">
-<div class="flex-container" style="display:flex; justify-content: space-between;">
+<div class="flex-container" style="display:flex; justify-content: space-between; padding:0 40px;">
 <div>
     <button class="add-new-button">Add New</button>
 </div>
@@ -264,9 +265,9 @@
 </div>
 
         </div>
-    <div class="container" style="display:flex; flex-direction:row;">
+        <div class="container" style="display:flex; flex-direction:row; padding: 0 40px;">
  
-        <div class="new-users" style="display:flex; width:70%;  ">
+        <div class="new-users" style="display:flex; width:70%;  margin-right: 20px;">
             <div class="user-list" style="display:flex; flex-wrap: wrap; gap:1rem; ">
             <?php
 
@@ -298,7 +299,7 @@
                 </div>
             </div>
 
-        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:100px;">
+            <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;">
             
             <?php 
 
@@ -308,13 +309,13 @@
                 <?php if (!empty($vetappointmentnotifications)): ?>
                         <?php foreach ($vetappointmentnotifications as $vnotification): ?>
                             <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                                <div class="notification-item" style="height:80px;">
+                                <div class="notification-item" style="min-height:50px;">
                                     <!-- Add a close icon to delete notifications -->
                                     <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
                                     <div class="info">
                                         <small class="text-muted" style="font-size:14px;">Appointment</small>
                                         <p><?php echo $vnotification->message ?></p>
-                                        <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>'">Cancel Appointment</button>
+                                        <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>/<?php echo $vnotification->id?>'">Cancel Appointment</button>
                                     </div>
                                 </div>
                             </div>

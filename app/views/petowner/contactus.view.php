@@ -326,15 +326,23 @@
                 <button type="submit" name="submit" style="color:white; height:auto; background-color: #6a3779; border-radius:24px; align-self: center; width: 400px;">Send Message</button>
             </form>
         </div>
-
-            
-
-
-
-
-
-        
+ 
 </div>
+<script>
+    //sweeetalert for validation SUCCESS and ERROR
+    window.onload = function() {
+                <?php if (isset($_SESSION['flash'])): ?>
+                    const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+    
+                    if (flash.success) {
+                        Swal.fire('Success', flash.success, 'success');
+                    } else if (flash.error) {
+                        Swal.fire('Error', flash.error, 'error');
+                    }
+                    <?php unset($_SESSION['flash']); ?>
+                <?php endif; ?>
+            };
+    </script>
 
 
 </body>

@@ -22,8 +22,8 @@
 <?php include '../app/views/components/dashboard-compo/ambulancedriversidebar.php'; ?>  
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <h1>Edit Profile</h1> 
-        <div class = "formcontainer" id="updateveterianrian"> 
-            <form id="edit-profile-form" action="<?php echo ROOT?>/Receptionist/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
+        <div class = "formcontainer" id="updatedriver"> 
+            <form id="edit-profile-form" action="<?php echo ROOT?>/ambulancedriver/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
             
                 <label for="update-name">Full Name:</label>
                 <input type="text" id="update-name" name="name" value="<?php echo $userdata->name;?>">

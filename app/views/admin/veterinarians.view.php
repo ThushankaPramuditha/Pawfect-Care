@@ -196,17 +196,19 @@ $(document).ready(function() {
         });
     });
 
-    // to update when filtered by search
+    //ajax request to open update model of the selected veterinarian
     $('body').on('click', '.edit-icon', function() {
         var id = $(this).closest('tr').attr('key');
         openUpdateModal(id);
     });
 
-
+//ajax request to open deactivate model of the selected veterinarian
     $('body').on('click', '.deactivate-button', function() {
         var id = $(this).closest('tr').attr('key');
         openDeactivateModal(id);
     });
+
+    //ajax request to open activate model of the selected veterinarian
     $('body').on('click', '.activate-button', function() {
         var id = $(this).closest('tr').attr('key');
         openActivateModal(id);
@@ -228,6 +230,7 @@ function openAddModal() {
     addModal.style.display = "block";
 }
 
+// to open update form modal
 function openUpdateModal(id) {
     console.log(id);
     updateModal.style.display = "block";
@@ -358,6 +361,8 @@ function validateAddForm() {
     }
     return true;
 }
+
+//event handler for add form submission when form is submitted
 document.getElementById("add-staff-form").addEventListener('submit', function(event) {
 
     if (!validateAddForm()) {

@@ -16,7 +16,7 @@
 <div class="logo">
 
     <a href="<?php echo ROOT?>/home">
-    <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+    <img src="<?php echo ROOT?>/assets/images/logocolor.png" alt="Pawfect Care Logo">
 
    </a>
  </div>

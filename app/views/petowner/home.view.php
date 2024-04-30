@@ -15,7 +15,7 @@
         margin: 0 !important;
         padding: 0;
         height: 100vh;
-        background-color: gradient;
+        background-color: #f4f4f4;
         background-size: 600% 100%;
         animation: gradientAnimation 10s infinite;
         /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
@@ -461,7 +461,7 @@
 
         <div class="right-section" style="margin-top:-60px;">
             <img src="<?php echo ROOT?>/assets/images/loginphoto2.png" alt="Login Photo" class="photo"
-                style=" width: 80%; padding: 20px; border-radius:20px; margin-top:-5px; margin-left:50px;">
+                style=" width: 74%; padding: 20px; border-radius:20px; margin-top:-5px; margin-left:50px;">
         </div>
     </div>
 
@@ -471,7 +471,7 @@
         <div class="services-section">
             <h2 class style="color:#4f5484; font-weight:bold">Our Services</h2>
             <div
-                style="display:flex; dlex-direction:row; justify-content:space-between; margin-top:50px; margin-bottom:0px; ">
+                style="display:flex; flex-direction:row; justify-content:space-between; margin-top:50px; margin-bottom:0px; ">
                 <div class="container">
                     <div class="card">
                         <div class="card-image">
@@ -497,7 +497,7 @@
                             <p class="card-description">Our daycare services are designed to keep your pets active and
                                 engaged while you're away. Our secure facilities and trained staff ensure a day filled
                                 with play, exercise, and socialization. Your pet will love it here!</p>
-                            <div class="button">
+                            <div class="button" style="margin-top:42px;">
                                 <a href="<?php echo ROOT?>/petowner/daycarebookinguser" class="btn">Book a Slot</a>
                             </div>
                         </div>
@@ -511,7 +511,7 @@
                             <p class="card-description"> Need a safe and convenient way to get your pet to our center?
                                 Our pet transport service ensures a comfortable journey. We offer easy booking and
                                 caring drivers who treat your pets like their own.</p>
-                            <div class="button">
+                            <div class="button"style="margin-top:42px;">
                                 <a href="<?php echo ROOT?>/petowner/petambulance" class="btn">Book an Ambulance</a>
                             </div>
                         </div>
@@ -519,7 +519,7 @@
                 </div>
             </div>
 
-            <div class="service card section"
+            <div 
                 style=" margin-top:0px; flex-direction:column; width:100%; margin-left:160px;">
 
                 <div class="top row" style="display:flex; flex-direction:row; margin-top:100px;">
@@ -574,8 +574,8 @@
     </div>
 
 
-    <div class="container" style="margin-top:100px;">
-        <h2 style="color:#4f5484; font-weight:bold">Why Create an Account?</h2>
+    <div class="container" style="margin-top:100px;  text-align: center;">
+        <h2 style="color:#4f5484; font-weight:bold; margin-left:360px;">Why Create an Account?</h2>
         <div style="display:flex; flex-direction:row; gap:60px; margin-bottom:200px;">
             <div class="card4">
                 <div class="card4-descript">
@@ -625,7 +625,7 @@
 
 
         <div class="container" style="margin-top:100px;">
-            <h2 style="color:#4f5484; margin-bottom:40px;">Feedbacks From Our Petowners</h2>
+            <h2 style="color:#4f5484; margin-bottom:40px; margin-left:300px;">Feedbacks From Our Petowners</h2>
             <div class="feedback-container">
                 <!-- Static cards with three columns per row -->
 

@@ -68,7 +68,7 @@
 
         .card:hover {
         transform: scale(1.05);
-        background-color: ;
+        /* background-color: ; */
         }
 
         .card-image{
@@ -334,13 +334,30 @@
         </div>
 
             
-
-
-
-
-
-        
 </div>
+
+<script>
+   
+   //swal error session
+    <?php if(isset($_SESSION['error'])): ?>
+        swal({
+            title: "<?=$_SESSION['error']?>",
+            icon: "error",
+            button: "OK",
+        });
+    <?php unset($_SESSION['error']); endif; ?>
+
+    //swal success session
+    <?php if(isset($_SESSION['success'])): ?>
+        swal({
+            title: "<?=$_SESSION['success']?>",
+            icon: "success",
+            button: "OK",
+        });
+    <?php unset($_SESSION['success']); endif; ?>
+    
+    
+    </script>
 
 
 </body>

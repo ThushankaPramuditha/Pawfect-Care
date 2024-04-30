@@ -11,9 +11,10 @@ class Appointments
     
         $petId = $_POST['pet_id'];
         $vetId = $_POST['vet_id'];
-        $dateTime = $_POST['date_time'];  // Adjust based on actual input and needs
+        $dateTime = $_POST['date_time'];  // Adjust based on actual input and needs. Assuming date and time of the appointment
     
         $model = new AppointmentsModel();
+        //Add appoinment to the database 
         $result = $model->addAppointment([
             'pet_id' => $petId,
             'vet_id' => $vetId,
@@ -24,7 +25,8 @@ class Appointments
             echo "Appointment successfully saved.";
             $patient_no = $model->getPatientNo($petId);
             $vet_name = $model->getVetName($vetId);
-            // Add notification
+
+            // Add notificationfor the vet
             $appointment_id = $model->getLastInsertedId();
             $notificationModel = new NotificationModel();
             $notificationData = [
@@ -78,9 +80,10 @@ class Appointments
     
 
     public function checkAvailability() {
-        AuthorizationMiddleware::authorize(['Pet Owner']);
-        date_default_timezone_set('Asia/Colombo');
+        AuthorizationMiddleware::authorize(['Pet Owner']); // Authorize access
+        date_default_timezone_set('Asia/Colombo'); // Set the default timezone
 
+        // Retrieve vet ID from the POST
         $vetId = $_POST['vet_id'];
     
         $model = new AppointmentsModel();
@@ -93,13 +96,16 @@ class Appointments
         }
     }
 
+    //cancel appoinments
     public function cancel($appointment_id, $notif_id){
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $model = new AppointmentsModel();
         $result = $model->updatePatientStatus($appointment_id, 'cancelled');
 
+        // Cancel the associated notification
         $notificationModel = new NotificationModel();
         $success = $notificationModel->cancelNotification($notif_id);
+        // Redirect to the dashboard page
         if ($result) {
             $_SESSION['flash'] = ['success' => 'Appointment successfully cancelled.'];
             header('Location: '.ROOT.'/petowner/dashboard');

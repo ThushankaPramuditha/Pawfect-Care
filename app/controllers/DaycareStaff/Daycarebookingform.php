@@ -82,21 +82,21 @@ public function accept(string $id): void
         
         //  $petOwnerEmail = $this->getPetOwnerEmailByPetId($petOwnerId);
           
-        //   $notificationModel = new NotificationModel();
-        //     $notificationData = [
-        //         'user_id' => $_SESSION['USER']->id,
-        //         'receiver_id' =>$petOwnerId,
-        //         'message' => "Your Daycare booking accepted successfully!",
-        //         'type' => 'daycare',
-        //         'appointment_id' => $id,
-        //         'status' => 'unread'
-        //     ];
-        //     $daycarenotification = $notificationModel->addNotification($notificationData);
-        //     if ($daycarenotification !== false) {
-        //         echo "Notification added successfully";
-        //     } else {
-        //         echo "Failed to add notification";
-        //     }
+          $notificationModel = new NotificationModel();
+            $notificationData = [
+                'user_id' => $_SESSION['USER']->id,
+                'receiver_id' =>$petOwnerId,
+                'message' => "Your Daycare booking accepted successfully!",
+                'type' => 'daycare',
+                'appointment_id' => $id,
+                'status' => 'unread'
+            ];
+            $daycarenotification = $notificationModel->addNotification($notificationData);
+            if ($daycarenotification !== false) {
+                echo "Notification added successfully";
+            } else {
+                echo "Failed to add notification";
+            }
            
             // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
             //sample email
@@ -121,7 +121,8 @@ public function accept(string $id): void
 
     } 
 
-    redirect('daycarestaff/daycarebooking');
+    // redirect('daycarestaff/daycarebookingbooking');
+       redirect('daycarestaff/daycarebookingbookingform');
 }
 
 
@@ -157,9 +158,9 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
 		if ($success) {
 			$_SESSION['message'] = "Daycare booking finished successfully!";
 
-              // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
+            $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
             //sample email
-            $petOwnerEmail = 'thushankapramuditha17@gmail.com';
+            // $petOwnerEmail = 'thushankapramuditha17@gmail.com';
             if($petOwnerEmail) {
                 // Send email to the pet owner
                 $subject = "Your Daycare Booking Time has been finished";
@@ -200,7 +201,7 @@ public function getPetOwnerEmailByPetId(PDO $pdo, string $pet_id): ?string
                 // ($daycarebooking->status == 'declined' ? 'color: #c62828;' : ''))) . 
                 // "'>";
                 echo "<tr key='{$daycarebooking->id}'>";
-                echo "<td>{$daycarebooking->drop_off_date}</td>";
+                echo "<td style='width: 100px;'>" . date('m/d', strtotime($daycarebooking->drop_off_date)) . "</td>";
 				echo "<td>{$daycarebooking->pet_owner_name}</td>";
 				echo "<td>{$daycarebooking->pet_name}</td>";
 				echo "<td>{$daycarebooking->pet_owner_contact}</td>";

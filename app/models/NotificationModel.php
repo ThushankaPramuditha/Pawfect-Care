@@ -60,7 +60,7 @@ class NotificationModel{
             // Return the query result
             return $result;
         } else {
-            // Query failed, return an empty array or handle the error as needed
+            //  return an empty array 
             return [];
         }
     }
@@ -105,7 +105,7 @@ class NotificationModel{
             // Return the query result
             return $result;
         } else {
-            // Query failed, return an empty array or handle the error as needed
+            // return an empty array
             return [];
         }
     }
@@ -129,6 +129,19 @@ class NotificationModel{
                   ORDER BY n.created_at DESC";
         return $this->query($query, ['receiver_id' => $receiverId]);
     }
+
+
+
+        public function getTransportNotificationByPetOwnerId($receiveId){
+        $query = "SELECT n.*,ab.date_time, ab.id
+        FROM notifications AS n
+        JOIN ambulancebookings AS ab ON n.appointment_id = ab.id
+        JOIN pets AS p ON ab.pet_id = p.id
+        JOIN petowners AS po ON p.petowner_id = po.id
+        WHERE n.type = 'transport' AND n.receiver_id = :receiver_id AND n.status = 'unread'
+        ORDER BY n.created_at DESC";
+        return $this->query($query, ['receiver_id' => $receiveId]);
+         }
 
     public function getNotificationsByUserId($userId)
     {

@@ -253,6 +253,49 @@
         <?php unset($_SESSION['flash']); ?>
         <?php endif; ?>
     };
+
+   
+     // Get today's date
+     var today = new Date();
+    
+    // Format the date as yyyy-mm-dd
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var minDate = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('drop-off-date').min = minDate;
+
+    var dropOffTimeInput = document.getElementById('drop-off-time');
+var pickUpTimeInput = document.getElementById('pick-up-time');
+
+// Add change event listener to drop-off time input
+dropOffTimeInput.addEventListener('change', function() {
+    var dropOffTimeValue = dropOffTimeInput.value;
+    var dropOffTime = new Date('2000-01-01T' + dropOffTimeValue);
+
+    // Check if drop-off time is less than 8 am
+    if (dropOffTime.getHours() < 8) {
+        document.getElementById('error-drop-off-time').textContent = 'Drop off time must be greater than 8:00 AM.';
+        dropOffTimeInput.value = '';
+    } else {
+        document.getElementById('error-drop-off-time').textContent = '';
+    }
+});
+
+
+pickUpTimeInput.addEventListener('change', function() {
+    var pickUpTimeValue = pickUpTimeInput.value;
+    var pickUpTime = new Date('2000-01-01T' + pickUpTimeValue);
+
+    // Check if pick-up time is greater than 8 pm
+    if (pickUpTime.getHours() >= 20) {
+        document.getElementById('error-pick-up-time').textContent = 'Pick up time must be less than 8:00 PM.';
+        pickUpTimeInput.value = '';
+    } else {
+        document.getElementById('error-pick-up-time').textContent = '';
+    }
+});
+
     </script>
 
 </body>

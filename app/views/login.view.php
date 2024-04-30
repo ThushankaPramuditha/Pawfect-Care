@@ -16,6 +16,7 @@
 
 <body>
 
+
     <div class="logo">
 
         <a href="<?php echo ROOT?>/home">
@@ -66,6 +67,7 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" ><br>
                 <div id="error-password" class="error-message"></div>
+
 
 
                 <div class="flex-container">

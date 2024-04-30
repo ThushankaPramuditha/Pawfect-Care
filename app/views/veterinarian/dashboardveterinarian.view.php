@@ -633,39 +633,12 @@ main table tbody tr td:first-child {
 
         <main>
           
-            <div class="analyse" style="margin-top:50px;">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:70px;">Current<br> Number</p>
-<!--                        
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p> -->
 
-                        </div>
-                    </div>
-                </div>
-          
-            
-           
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:40px;">Total<br>Appointments</p>
-                
-                            <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:40px;"><?php echo $counttodayallAppointments; ?></p>
+        <div class="new-users" style= "display: flex; justify-content: center;  align-items: center; flex-direction: column; margin-top:80px">
+                <h2>Current Patients</h2>
+                <?php include '../app/views/components/currentpatientvet.php'; ?>
 
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-            <!-- End of Analyses -->
-
-            <!-- New Users Section -->
-         
-    <div style="margin-top:50px; display:flex; flex-direction:row;">
-      
-    </div>
+            </div>
 
     
             

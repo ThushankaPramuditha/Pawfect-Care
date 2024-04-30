@@ -40,7 +40,7 @@ class Feedbacks
             header('Location: ' . ROOT . '/admin/feedbacks');
             exit();
         }
-
+        
         redirect('admin/feedbacks');
     }
 

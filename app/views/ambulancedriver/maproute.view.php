@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Map Route</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
@@ -54,16 +55,6 @@
                         // Redirect to the finish ride URL with the driver_id
                         window.location.href = '<?=ROOT?>/Ambulancedriver/Maproute/finishride/' + driverId;
                     }
-
-                    //swal success
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Ride Completed',
-                        text: 'You have successfully completed the ride',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-
                 </script>
         </div>
 
@@ -73,6 +64,8 @@
 
    
     <script>
+
+   
         //view Colombo
         var map = L.map('map').setView([6.9271, 79.8612], 11);
        
@@ -110,7 +103,5 @@
         .addTo(map);
         })
         
-       
       
-
     </script>

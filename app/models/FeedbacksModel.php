@@ -47,6 +47,35 @@ public function getNotPostedFeedbacks()
         return "No feedbacks at the moment.";
     }
 }
+   
+// public function getNotPostedandRejectedFeedbacks()
+// {
+//     $query = "SELECT f.*, po.name AS owner_name
+//               FROM feedbacks f
+//               JOIN petowners po 
+//               ON f.petowner_id = po.id
+//               WHERE f.status = 'not posted' OR f.status = 'rejected'";
+
+//     $feedbacks = $this->query($query);
+
+//     // Check if there are feedbacks
+//     if ($feedbacks && count($feedbacks) > 0) {
+//         return $feedbacks;
+//     } else {
+//         return "No feedbacks at the moment.";
+//     }
+// }
+
+    public function getFeedbacksByOwner($ownerId)
+    {
+        $query = "SELECT f.*, po.name AS owner_name
+        FROM feedbacks f
+        JOIN petowners po 
+        ON f.petowner_id = po.id
+        WHERE f.petowner_id = :owner_id";
+
+        return $this->query($query, ['owner_id' => $ownerId]);
+}
 
 
     public function search($term)

@@ -23,7 +23,7 @@ class DashboardMedicalStaff
         $notificationModel = new NotificationModel();
 		$data['vetnotifications'] = $notificationModel->getVetNotificationByVetUserId($_SESSION['USER']->id);
 
-        // $data['current'] = $appointmentsModel->getCurrentPatient();
+        $data['current'] = $appointmentsmodel->getCurrentPatient();
 
 		$this->view('medicalstaff/dashboardmedicalstaff',$data);
 	}

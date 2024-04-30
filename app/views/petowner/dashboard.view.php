@@ -59,6 +59,7 @@
             overflow-x: hidden;
             color: var(--color-dark);
             background-color: var(--color-background);
+            /* background: linear-gradient(19deg, #82a4ff 0%, #97d2fc 100%); */
         }
 
 
@@ -295,25 +296,23 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-                <div class="new-users" style="display:flex; flex-direction:column;">
-                </div>
+                
             </div>
 
-            <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;">
-            
+            <!-- <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;"> -->
+            <div class="announcement" style="display: flex; flex-direction: column; align-items: flex-end; flex-wrap: wrap; margin-left: 20px; align-self: flex-end;">
             <?php 
-
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
-                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll; margin-left:40px;" >
                 <?php if (!empty($vetappointmentnotifications)): ?>
                         <?php foreach ($vetappointmentnotifications as $vnotification): ?>
                             <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                                 <div class="notification-item" style="min-height:50px;">
                                     <!-- Add a close icon to delete notifications -->
-                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
+                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:11px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
                                     <div class="info">
-                                        <small class="text-muted" style="font-size:14px;">Appointment</small>
+                                        <!-- <small class="text-muted" style="font-size:14px;">Appointment</small> -->
                                         <p><?php echo $vnotification->message ?></p>
                                         <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>/<?php echo $vnotification->id?>'">Cancel Appointment</button>
                                     </div>
@@ -322,7 +321,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
                         <p>There are no Vet Appointment notifications at the moment.</p>
@@ -352,7 +351,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
                         <p>There are no Daycarebooking notifications at the moment.</p>
@@ -361,34 +360,35 @@
             </div>
                     <?php endif; ?>
                     </div>
-            <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
-            <?php if (!empty($vetappointmentnotifications)): ?>
-                <?php foreach ($vetappointmentnotifications as $vnotification): ?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                    <div class="notification-item" style="height:80px;">
-                    <!-- <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span> -->
-                        <div class="info">
+            <p style="font-size:20px; font-weight:bolder;">Ambulance Notification</p>
+                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                       <?php if (!empty($transportnotifications)): ?>
+                        <?php foreach ($transportnotifications as $tnotification): ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
-                            <small class="text-muted"style="font-size:14px;">Vaccination Reminder</small>
-                            <p>
-                            <?php echo $vnotification->message?></p>
-                            </p>
+                            <div class="notification-item" style="height:80px;">
+                            <!-- <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span> -->
+                            <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $tnotification->id ?>)">close</span>
+                                <div class="info">
+                                    <!-- <small class="text-muted" style="font-size:14px;">Daycare booking</small> -->
+                                    <p>
+                                    <?php echo $tnotification->message ?></p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-                <? else:?>
-                    <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
-                        <p>There are no Upcoming Vaccination notifications at the moment.</p>
+                        <p>There are no  notifications of Ambulance Booking at the moment.</p>
                     </div>
                 </div>
             </div>
-                <?php endif; ?> 
-            </div>
+                    <?php endif; ?>
+                    </div>
         </div>
  </div>
 

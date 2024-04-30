@@ -22,7 +22,7 @@ body {
     display: flex;
     width: 40%;
     align-items: center; /* Center vertically */
-    justify-content: space-between; /* Center horizontally */
+    justify-content: space-between;
 }
 
 
@@ -127,7 +127,6 @@ input[type="date"]{
     font-size: 16px;
     outline-color:#6a3879;
 }
-
 /*for long text fields*/
 .formcontainer textarea {
     display: block;
@@ -140,14 +139,14 @@ input[type="date"]{
     border-radius: 5px;
     font-size: 16px;
     outline-color:#6a3879;
-    resize: vertical; /* can vertically resize */
+    resize: vertical; /* Allow vertical resizing */
 
 }
 .formcontainer .error-message {
-    color: #ff0000;
-    margin-bottom: 1px; 
-    font-size: 0.9em; 
-    padding: 1px; 
+    color: #ff0000; /* Red color for the text */
+    margin-bottom: 1px; /* Add some space above the message */
+    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 1px; /* Padding inside the message */
 }
 
 .formcontainer h1 {

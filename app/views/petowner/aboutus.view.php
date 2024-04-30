@@ -13,12 +13,16 @@
         padding:0;
         box-sizing:border-box;
         font-family:'Poppins', sans-serif;
-
         }
+
          body{
         background-color: #f4f4f4; 
+<<<<<<< HEAD
+        /*background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);*/
+=======
         /* background: linear-gradient(19deg, #82a4ff 0%, #97d2fc 100%); */
         /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
+>>>>>>> 5e50e27dc7aac7e8ec8ab71b3f0b28d28a119d0f
         background-size:cover;
         background-position:right;
         background-attachment:fixed;

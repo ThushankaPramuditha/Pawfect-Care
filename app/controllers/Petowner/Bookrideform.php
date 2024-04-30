@@ -3,15 +3,17 @@ class Bookrideform
 {
     use Controller;
 
+    // Display the booking form
     public function index(string $a = '', string $b = '', string $c = ''): void
     {
        
         $petsModel = new PetsModel();
         $ambulancedrivermodel = new AmbulanceDriversModel();
-        $user_id = $_SESSION['USER']->id;
+        $user_id = $_SESSION['USER']->id; 
         $data['pets'] = $petsModel->getAllPetsByUserId($user_id);
         $data['ambulancedrivers'] = $ambulancedrivermodel->getAllAmbulanceDrivers();
-        
+     
+    //pass data to form
     $data['user_id'] = $user_id;
         $this->view('petowner/bookrideform', $data);
     }

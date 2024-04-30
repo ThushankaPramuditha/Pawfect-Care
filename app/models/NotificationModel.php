@@ -60,7 +60,7 @@ class NotificationModel{
             // Return the query result
             return $result;
         } else {
-            // Query failed, return an empty array or handle the error as needed
+            //  return an empty array 
             return [];
         }
     }
@@ -105,7 +105,7 @@ class NotificationModel{
             // Return the query result
             return $result;
         } else {
-            // Query failed, return an empty array or handle the error as needed
+            // return an empty array
             return [];
         }
     }

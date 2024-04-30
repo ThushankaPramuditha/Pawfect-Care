@@ -685,10 +685,7 @@ main table tbody tr td:first-child {
                
             </div>
             <div style="display:flex; flex-direction:row;">
-            <div style="margin-left:100px; margin-top:2px;">
-                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; padding-left:10px; padding-right:10px; border-radius: 5px;"><a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $recentbookings->pet_id ?>&date=<?php echo $recentbookings->date_time ?>&driver_id=<?php echo $recentbookings->driver_id ?>&driver_availability=<?php echo $recentbookings->driver_availability ?>">View</a></button>
-            </div>
-            <div style="align-items: center; display: flex; margin-left:450px;">
+            <div style="align-items: center; display: flex; margin-left:360px;">
                 <button class="accept-button" <?php echo $recentbookings->id ?> style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; border-radius: 5px; width: 50px; cursor:pointer;">Accept</button>
                 </div>
             </div>  
@@ -697,18 +694,7 @@ main table tbody tr td:first-child {
             </div>
           <!-- #region -->
 
-            <!-- Recent Orders Section -->
-            <!-- <div class="recent-orders">
-            <div class="availability-container">
-                <button type="button" class="availability-btn" style="padding: 10px 20px; background-color: <?= $driverdetails->availability == 'available' ? '#28a745' : '#dc3545'; ?>; color: #fff; border: none; border-radius: 5px; cursor: pointer;"
-                    onclick="toggleAvailability(<?= htmlspecialchars($recentbookings->driver_id); ?>)">
-                    <?= $driverdetails->availability == 'available' ? "Mark as Unavailable" : "Mark as Available"; ?>
-                </button>
-                <span class="availability-text" style="margin-top: 10px; display: block; font-size: 14px;">
-                    <?= $driverdetails->availability == 'available' ? "You are currently available." : "You are currently unavailable."; ?>
-                </span>
-            </div>
-        </div> -->
+           
         <div class="recent-orders">
                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #ccc; border-radius: 20px; padding: 20px; width: 300px; height:180px;margin: 0 auto; background-color:#cfc3d3;">
                     <img src="<?php echo ROOT?>/assets/images/petowner.png" alt="Driver Profile Picture" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px;">
@@ -769,21 +755,9 @@ main table tbody tr td:first-child {
                             <p>
                                 <?php echo $notification->message ?>
                             </p>
-                            <div style="display:flex; flex-direction:row;">
-                            <div style="margin-left:10px; margin-top:2px;">
-                                <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
-                                    <a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a>
-                                </button>
-                            </div>  
-                              
-                             <div style="margin-left:150px; margin-top:2px;">
-                                <!-- <button style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff">
-                                    <a href="<?= ROOT ?>/ambulancedriver/maproute?pet_id=<?php echo $notification->pet_id ?>&date=<?php echo $notification->date_time ?>">View</a> -->
-                                        <?php if (!empty($recentbookings->id)): ?>
-                                            <!-- Display the button only when $recentbookings->id is not empty -->
-                                            <button class="accept-button" data-id="<?php echo $recentbookings->id ?>" style="background-color:#6a3879; padding: 5px; border-radius: 5px; color:#ffff; width: 50px; cursor:pointer;">Accept</button>
-                                        <?php endif; ?>
-                
+                            <div style="display:flex; flex-direction:row;">  
+                             <div style="margin-left:100px; margin-top:2px;">
+                                
                             </div>
                             </div>
 

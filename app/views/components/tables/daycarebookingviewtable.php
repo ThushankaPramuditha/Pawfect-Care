@@ -104,7 +104,7 @@ function getPetName($pdo, $pet_id)
                             ($daycarebooking->status == 'declined' ? 'color: #c62828;' : '')) 
                         ?>"> -->
                         <tr key="<?= $daycarebooking->id; ?>">
-                        <td><?= date('m/d', strtotime($daycarebooking->drop_off_date)); ?></td>
+                        <td style="width:100px;"><?= date('m/d', strtotime($daycarebooking->drop_off_date)); ?></td>
                         <td><?= getPetOwnerName($pdo, $daycarebooking->pet_id); ?></td>
                         <td><?= getPetName($pdo, $daycarebooking->pet_id); ?></td>
                         <td><?= getPetownerContact($pdo, $daycarebooking->pet_id); ?></td>

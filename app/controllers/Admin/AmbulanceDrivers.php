@@ -6,7 +6,9 @@ class AmbulanceDrivers
 
 	public function index(string $a = '', string $b = '', string $c = ''): void
 	{
+        //says that only the admin role that has access to this controller
         AuthorizationMiddleware::authorize(['Admin']);
+
 		$ambulancedriversModel = new AmbulanceDriversModel();
 		$data['ambulancedrivers'] = $ambulancedriversModel->getAllAmbulanceDrivers();
         

@@ -26,8 +26,8 @@ body {
     border-radius: 5px;
 }
 .logo img {
-    width: 150px; /* Adjust the width to your desired size */
-    height: auto; /* Maintain the aspect ratio by setting height to 'auto' */
+    width: 150px; 
+    height: auto; 
 }
 
 .container {
@@ -190,8 +190,8 @@ input[type="radio"] {
 
 /* Styling for the radio button when it's checked */
 input[type="radio"]:checked {
-    border: 2px solid #9971FE; /* Change the border color when the radio button is checked */
-    background-color: #9971FE; /* Change the background color when the radio button is checked */
+    border: 2px solid #9971FE;
+    background-color: #9971FE; 
 }
 .error-message {
     color: #ff0000; /* Red color for the text */

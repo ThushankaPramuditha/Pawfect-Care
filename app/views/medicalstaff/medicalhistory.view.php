@@ -55,7 +55,7 @@
                             <input type="date" id="date" name="date" required><br>
 
                             <label for="patient no">Patient No:</label>
-                            <input type="text" class="disabled-field" id="patient_no" name="patient_no" value="<?php echo htmlspecialchars($data['appointments']); ?>"readonly><br>
+                            <input type="text"  id="patient_no" name="patient_no" ><br>
                             <div id="error-patient_no" class="error-message"></div>
 
                             <label for="weight">Weight:</label>
@@ -79,10 +79,6 @@
                             <label for="prescription">Prescription:</label>
                             <input type="text" id="prescription" name="prescription"><br>
                             <div id="error-prescription" class="error-message"></div>
-
-                            <label for="treated by">Treated By:</label>
-                            <input type="text" id="treated_by" name="vet_name"><br>
-                            <div id="error-treated_by" class="error-message"></div>
 
                             <label for="remarks">Remarks:</label>
                             <textarea id="remarks" name="remarks" rows="4" style="border-radius: 10px;"></textarea><br>

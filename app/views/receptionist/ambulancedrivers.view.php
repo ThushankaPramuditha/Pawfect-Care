@@ -108,6 +108,8 @@
         <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
         <div style="margin-left: 230px;  padding: 10px 10px 100px 100px;">
             <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+
+            <!-- cards to display all ambulance drivers -->
             <div class="card-container">
                 <?php if (!empty($data['ambulancedrivers'])): ?>
                 <?php foreach ($data['ambulancedrivers'] as $drivers): ?>

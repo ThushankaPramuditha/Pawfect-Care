@@ -67,7 +67,7 @@
 
         .card:hover {
         transform: scale(1.05);
-        background-color: ;
+        /* background-color: ; */
         }
 
         .card-image{
@@ -178,7 +178,7 @@
             align-self: center;
             padding: 10px 20px; 
             border: none; 
-            cursor: pointer;"
+            cursor: pointer;
 
         }
 

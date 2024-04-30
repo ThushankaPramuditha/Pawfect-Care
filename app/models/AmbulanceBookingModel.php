@@ -39,31 +39,6 @@ class AmbulanceBookingModel
 }
 
 
-// public function acceptBooking($id) {
-//     // Update the booking status to 'accepted'
-//     $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";
-//     $bindings = [':id' => $id];
-//     $result = $this->query($query, $bindings);
-    
-//     if ($result) {
-
-//         $driverId = $this->getDriverId($id);
-//         // If the booking was successfully accepted, update the ambulance driver availability
-//        // You need to implement this method to get the driver ID for the booking
-//         if ($driverId) {
-//             $updateDriverQuery = "UPDATE ambulancedrivers SET availability = 'unavailable' WHERE id = :driverId";
-//             $driverBindings = [':driverId' => $driverId];
-//             $driverResult = $this->query($updateDriverQuery, $driverBindings);
-            
-//             // Return true if both updates were successful
-//             return $driverResult;
-//         }
-//     }
-    
-//     // Return false if the booking acceptance or driver availability update failed
-//     return false;
-// }
-
 public function acceptBooking($id) {
     // Update the booking status to 'accepted'
     $query = "UPDATE ambulancebookings SET status = 'accepted' WHERE id = :id AND status = 'pending'";

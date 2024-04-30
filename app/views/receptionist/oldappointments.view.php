@@ -21,13 +21,12 @@
         <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
 
         <div style="margin-left: 230px; margin-top:130px">
-            <div class="panel-header">
 
+            <div class="panel-header">
                 <div class="filter-date">
                     <input type="date" id="date-filter" placeholder="Filter by date..."
                         style="background-color: #ffffff; margin:0px; color: #666 ">
                 </div>
-
                 <div class="search-bar">
                     <input type="text" id="search" placeholder="Search appointments...">
                     <button class="search-button">Search</button>
@@ -35,11 +34,12 @@
 
                 </header>
             </div>
+            
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                        <th>Date Time</th>
+                            <th>Date Time</th>
                             <th>Patient No.</th>
                             <th>Pet ID</th>
                             <th>Pet Name</th>
@@ -53,14 +53,14 @@
                         <?php if (is_array($appointments) && !empty($appointments)): ?>
                         <?php foreach ($appointments as $appointment): ?>
                         <tr key="<?php echo $appointment->id; ?>">
-                        <td><?= htmlspecialchars($appointment->date_time); ?></td>
+                            <td><?= htmlspecialchars($appointment->date_time); ?></td>
                             <td><?= htmlspecialchars($appointment->patient_no); ?></td>
                             <td><?= htmlspecialchars($appointment->pet_id); ?></td>
                             <td><?= htmlspecialchars($appointment->pet_name); ?></td>
                             <td><?= htmlspecialchars($appointment->petowner); ?></td>
                             <td><?= htmlspecialchars($appointment->contact); ?></td>
                             <td><?= htmlspecialchars($appointment->vet_name); ?></td>
-                            <td><?= htmlspecialchars($appointment->status); ?></td>  
+                            <td><?= htmlspecialchars($appointment->status); ?></td>
                         </tr>
 
                         <?php endforeach; ?>
@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-  
+
 
     <script>
     $(document).ready(function() {

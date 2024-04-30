@@ -31,13 +31,11 @@
 
     .card {
         flex: 1 1 40%;
-        /* Each card will take up roughly 30% of the container width */
         display: flex;
         flex-direction: column;
         padding: 10px;
         margin: 10px;
-        max-width: calc(100%/2 - 20px);
-        /* Ensuring all cards have the same height */
+        min-width: 300px;
         border-radius: 12px;
         overflow: hidden;
         transition: transform 0.3s;

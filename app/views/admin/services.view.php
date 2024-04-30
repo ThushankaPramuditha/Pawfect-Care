@@ -188,11 +188,11 @@ Add Service Modal -->
 
     // to update when filtered bu search
     $('body').on('click', '.edit-icon', function() {
-            var id = $(this).closest('tr').attr('key');
-            console.log(id)
+        var id = $(this).closest('tr').attr('key');
+        console.log(id)
 
-            openUpdateModal(id);
-        });
+        openUpdateModal(id);
+    });
 
     // Event listeners for delete buttons click
     document.querySelectorAll('.delete-icon').forEach(function(button) {
@@ -225,7 +225,7 @@ Add Service Modal -->
     });
 
     document.getElementById("add-service-form").addEventListener('submit', function(event) {
-       
+
         addModal.style.display = "none";
     });
 

@@ -59,6 +59,7 @@
             overflow-x: hidden;
             color: var(--color-dark);
             background-color: var(--color-background);
+            /* background: linear-gradient(19deg, #82a4ff 0%, #97d2fc 100%); */
         }
 
 
@@ -295,17 +296,15 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-                <div class="new-users" style="display:flex; flex-direction:column;">
-                </div>
+                
             </div>
 
-            <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;">
-            
+            <!-- <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;"> -->
+            <div class="announcement" style="display: flex; flex-direction: column; align-items: flex-end; flex-wrap: wrap; margin-left: 20px; align-self: flex-end;">
             <?php 
-
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
-                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll; margin-left:40px;" >
                 <?php if (!empty($vetappointmentnotifications)): ?>
                         <?php foreach ($vetappointmentnotifications as $vnotification): ?>
                             <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
@@ -322,7 +321,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
                         <p>There are no Vet Appointment notifications at the moment.</p>
@@ -352,7 +351,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
                         <p>There are no Daycarebooking notifications at the moment.</p>
@@ -381,7 +380,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
-                <div class="notification-item" style="display:flex; justify-content:center;">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
                     <div class="info">
                         <h3>No Notifications</h3>
                         <p>There are no  notifications of Ambulance Booking at the moment.</p>

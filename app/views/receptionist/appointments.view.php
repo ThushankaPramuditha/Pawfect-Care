@@ -23,9 +23,6 @@
         <div style="margin-left: 230px; margin-top:130px">
             <div class="panel-header">
                 <button class="add-new-button">Add New</button>
-
-            
-
                 <div class="search-bar">
                     <input type="text" id="search" placeholder="Search appointments...">
                     <button class="search-button">Search</button>
@@ -33,6 +30,8 @@
 
                 </header>
             </div>
+
+
             <div class="table-container">
                 <table>
                     <thead>
@@ -54,14 +53,10 @@
                         <tr key="<?php echo $appointment->id; ?>">
                             <td><?= htmlspecialchars($appointment->patient_no); ?></td>
                             <td><select class="status-select" data-appointment-id="<?= $appointment->id ?>">
-                                    <option value="pending" <?= $appointment->status == 'pending' ? 'selected' : '' ?>>
-                                        Pending</option>
-                                    <option value="current" <?= $appointment->status == 'current' ? 'selected' : '' ?>>
-                                        Current</option>
-                                    <option value="finished"
-                                        <?= $appointment->status == 'finished' ? 'selected' : '' ?>>Finished</option>
-                                    <option value="cancelled"
-                                        <?= $appointment->status == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                                    <option value="pending" <?= $appointment->status == 'pending' ? 'selected' : '' ?>>Pending</option>
+                                    <option value="current" <?= $appointment->status == 'current' ? 'selected' : '' ?>>Current</option>
+                                    <option value="finished" <?= $appointment->status == 'finished' ? 'selected' : '' ?>>Finished</option>
+                                    <option value="cancelled" <?= $appointment->status == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                 </select>
 
                             </td>
@@ -70,7 +65,7 @@
                             <td><?= htmlspecialchars($appointment->pet_name); ?></td>
                             <td><?= htmlspecialchars($appointment->petowner); ?></td>
                             <td><?= htmlspecialchars($appointment->contact); ?></td>
-                            
+
                         </tr>
 
                         <?php endforeach; ?>
@@ -92,7 +87,6 @@
 </html>
 
 Add Appointment Modal -->
-
     <div class="modal-form" id="add-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -177,7 +171,7 @@ Add Appointment Modal -->
     });
 
 
-//ajax to chnage the state of patient
+    //ajax to chnage the state of patient
     $(document).ready(function() {
         $(document).on('change', '.status-select', function() {
             var status = $(this).val();
@@ -190,14 +184,14 @@ Add Appointment Modal -->
                     appointmentId: appointmentId,
                     status: status
                 },
-                dataType: 'json', 
+                dataType: 'json',
                 success: function(response) {
                     Swal.fire({
                         title: response.status === 'success' ? 'Success' : 'Error',
                         text: response.message,
                         icon: response.status === 'success' ? 'success' : 'error'
                     }).then(() => {
-                        location.reload(); 
+                        location.reload();
                     });
                 },
                 error: function(xhr, status, error) {

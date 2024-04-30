@@ -91,7 +91,10 @@ foreach ($bookingsToday as $booking) {
         <tbody>
             <?php foreach ($bookings as $booking): ?>
                 <tr key="<?= $booking->id ?>">
-                    <td><?= htmlspecialchars($booking->time); ?></td>
+                    <!-- /display booking time like 08:00:00- 10:00:00 -->
+                    <td><?= htmlspecialchars(date('H:i:s', strtotime($booking->time))) ?> - <?= htmlspecialchars(date('H:i:s', strtotime($booking->time . '+2 hours'))) ?></td>
+<!--                   
+                    <td><?= htmlspecialchars($booking->time)?></td> -->
                     <td><?= htmlspecialchars($booking->filled_slots); ?></td>
                     <td><?= htmlspecialchars($booking->free_slots); ?></td>
                     <td>

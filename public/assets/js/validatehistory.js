@@ -31,38 +31,18 @@ function validateTemperature() {
     }
 }
 
-function validateVaccineName() {
-    var vaccineName = document.getElementById('vaccine_name').value;
+function validateVaccines() {
+    var vaccineName = document.getElementById('vaccines').value;
     if (!vaccineName) {
-        document.getElementById('error-vaccine_name').textContent = "* Vaccine Name is required.";
+        document.getElementById('error-vaccines').textContent = "* Vaccine  is required.";
         return false;
     } else {
-        document.getElementById('error-vaccine_name').textContent = "";
+        document.getElementById('error-vaccines').textContent = "";
         return true;
     }
 }
 
-function validateSerialNo() {
-    var serialNo = document.getElementById('serial_no').value;
-    if (!serialNo) {
-        document.getElementById('error-serial_no').textContent = "* Serial No is required.";
-        return false;
-    } else {
-        document.getElementById('error-serial_no').textContent = "";
-        return true;
-    }
-}
-function validateAdministeredBy() {
-    var administeredBy = document.getElementById('administered_by').value;
-    if (!administeredBy) {
-        document.getElementById('error-administered_by').textContent = "* Administered By is required.";
-        return false;
-    } else {
-        document.getElementById('error-administered_by').textContent = "";
-        return true;
-    }
 
-}
 
 function validateDueDate() {
     var DueDate = document.getElementById('due_date').value;
@@ -123,17 +103,7 @@ function validateUpdateSerialNo() {
     }
 }*/
 
-function validateUpdateDueDate() {
-    var DueDate = document.getElementById('update-due_date').value;
-    if (!DueDate) {
-        document.getElementById('error-update-due_date').textContent = "* Next Due Date is required.";
-        return false;
-    } else {
-        document.getElementById('error-update-due_date').textContent = "";
-        return true;
-    }
-    
-}
+
 
 
  //if (!contact.match(/^[0-9]{10}$/))   "* Contact number must be 10 digits."

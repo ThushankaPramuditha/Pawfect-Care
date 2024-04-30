@@ -137,14 +137,14 @@ class AppointmentsModel
     }
 
    
-    public function getAppointmentId($patientNo, $date, $vetId)
+    public function getAppointmentId($patientNo, $date)
     {
-        $query = "SELECT id FROM $this->table WHERE patient_no = :patient_no AND DATE(date_time) = :date AND vet_id = :vet_id";
+        $query = "SELECT id FROM $this->table WHERE patient_no = :patient_no AND DATE(date_time) = :date";
         
         $bindings = [
             'patient_no' => $patientNo,
             'date' => $date,
-            'vet_id' => $vetId,
+            
         ];
 
         $result = $this->query($query, $bindings);
@@ -385,13 +385,13 @@ class AppointmentsModel
         }
      }
 
-     public function getCurrentPatientNo()
+     public function getCurrentPatientNo($vetId)
     {
         $query = "SELECT patient_no 
                 FROM appointments 
-                WHERE status = 'current' LIMIT 1";
+                WHERE status = 'current' AND vet_id = :vet_id LIMIT 1";
 
-        $result = $this->query($query);
+        $result = $this->query($query, [':vet_id' => $vetId]);
 
         if ($result && $result[0] && isset($result[0]->patient_no)) {
             return $result[0]->patient_no;
@@ -400,8 +400,7 @@ class AppointmentsModel
         }
     }
 
-
-     public function getVetName($vetId){
+    public function getVetName($vetId){
         $query = "SELECT name FROM veterinarians WHERE id = :vet_id";
         $result = $this->query($query, [':vet_id' => $vetId]);
     

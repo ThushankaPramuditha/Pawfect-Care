@@ -16,7 +16,13 @@ class Feedbacks
         $postdata['feedback']= $_POST['feedback'];
 
         $feedbacksModel = new FeedbacksModel();
-        $feedbacksModel->addFeedback($postdata);
+        $success = $feedbacksModel->addFeedback($postdata);
+
+        if($success) {
+            $_SESSION['flash'] = ['success' => 'Feedback added successfully'];
+        } else {
+            $_SESSION['flash'] = ['error' => 'Failed to add feedback'];
+        }
 
         $this->view('petowner/contactus', $data);
     }

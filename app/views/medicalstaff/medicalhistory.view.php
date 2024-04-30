@@ -36,6 +36,7 @@
 
 <body>
 
+
     <!--?php $_SESSION['addnewpath'] = 'addtreatment' ?-->
     <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     <div style="margin-top: 80px; ">
@@ -44,8 +45,13 @@
             <div class="panel-header">
                 <button class="add-new-button">Add New</button>
 
-                <?php if (!empty($medicalhistory)): ?>
-                <?php $petId = $medicalhistory[0]->pet_id; ?>
+               
+            <?php if (!empty($medicalhistory)): ?>
+            <?php $petId = $medicalhistory[0]->pet_id; ?>
+            <script>var petId = <?= json_encode($petId); ?>;</script>
+
+            <?php endif; ?>
+
 
                 <?php endif; ?>
 
@@ -174,6 +180,8 @@
     <!--button id="add-new-prescription" name="add_new_prescription">+ Other</button><br-->
 
 
+                       
+
     <!--button id="done">Done</button>
 
         </div>
@@ -207,34 +215,34 @@
     </div>-->
 
     <script>
-    $(document).ready(function() {
-        //$('.search-button').on('click', function(){ 
-        $('#search').on('keyup', function() {
-            //var searchTerm = $('#search').val(); 
-            var searchTerm = $(this).val();
+  
 
 
-            console.log(petId)
-            $.ajax({
-                url: "<?php echo ROOT ?>/Medicalstaff/MedicalHistory/search",
-                type: "POST",
-                data: {
-                    search: searchTerm,
-                    petId: petId
-                },
-                success: function(data) {
-                    $('tbody').html(data);
-                }
 
-            });
-        });
+            $(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); 
+                    var searchTerm = $(this).val();
+                    
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Medicalstaff/MedicalHistory/search",
+                        type: "POST",
+                        data: { search: searchTerm,petId:petId }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                });
 
-        // to update when filtered by search
-        $('body').on('click', '.edit-icon', function() {
-            var Id = $(this).closest('tr').attr('key');
+                // to update when filtered by search
+                $('body').on('click', '.edit-icon', function(){
+                    var Id = $(this).closest('tr').attr('key');
+                    openUpdateModal(Id,petId);
+                });
 
-            openUpdateModal(Id, petId);
-        });
     });
 
 

@@ -22,7 +22,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 0;
             margin: 0;
             color: #333;
             font-size: 16px;
@@ -276,6 +276,22 @@ function error(err) {
 map.on('click', function(e) {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
+    // const distance = e.latlng.distanceTo(marker.getLatLng());
+    // add location [6.580656, 79.963901] to the map 
+
+    const distance = map.distance([lat, lng], [6.580656, 79.963901]);
+    
+    //If your current location to location [6.580656, 79.963901] greater than 25000m
+    if (distance > 25000) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Sorry!!',
+            text: 'Location should be within 25 km from Pet Care Center.'
+        });
+        return;
+    }
+
+
 
     // Remove existing marker
     if (marker) {
@@ -288,6 +304,15 @@ map.on('click', function(e) {
     // Update hidden input field with coordinates
     document.getElementById('pick-up-lat').value = lat;
     document.getElementById('pick-up-lng').value = lng;
+
+    //check if the distance is greater than 15000m
+    // if (distance > 100) {
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'Error',
+    //         text: 'Please select a location within 100m from your current location.'
+    //     });
+    // }
 });
 
     </script>

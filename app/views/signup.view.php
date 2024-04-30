@@ -14,7 +14,7 @@
    <div>
    <div class="logo">
        <a href="<?php echo ROOT?>/home">
-       <img src="<?php echo ROOT?>/assets/images/footer-logo.png" alt="Pawfect Care Logo">
+       <img src="<?php echo ROOT?>/assets/images/logocolor.png" alt="Pawfect Care Logo">
       </a>
     </div>
 
@@ -47,6 +47,7 @@
             });
         <?php endif; ?>
         </script>
+       
 
                 <h1>Sign Up</h1>
                 
@@ -78,11 +79,10 @@
                 <input type="password" id="confirm_password" name="confirm_password">
                 <div id="error-confirm-password" class="error-message"></div>
 
-                <div class="flex-container">
+                <div class="flex-container" style="margin-top:-20px;">
                     <button class="button" type="submit" name="signup">Sign up</button>
                 </div>
-                <p>Already have an account? <a href="<?php echo ROOT?>/login">Login</a>.</p>
-                
+                <p style="margin-top:-22px;">Already have an account? <a href="<?php echo ROOT?>/login">Login</a>.</p>
             </form>
                
         </div>

@@ -35,6 +35,12 @@
                                 Daycare Bookings
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link<?= ($activePage == 'daycarebooking') ? '-active' : '';?>" href="<?php echo ROOT?>/daycarestaff/daycarebooking">
+                                Today Slots
+                            </a>
+                        </li>
                         
                 
                     </ul>

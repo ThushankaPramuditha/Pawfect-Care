@@ -34,6 +34,7 @@
 
 <body>
 
+
     <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
     <div style="margin-top: 80px; ">
         <?php include '../app/views/components/dashboard-compo/medicalstaffsidebar.php'; ?>
@@ -41,10 +42,11 @@
             <div class="panel-header">
                 <button class="add-new-button">Add New</button>
 
-                <?php if (!empty($vaccinationhistory)): ?>
-                <?php $petId = $vaccinationhistory[0]->pet_id; ?>
+            <?php if (!empty($vaccinationhistory)): ?>
+            <?php $petId = $vaccinationhistory[0]->pet_id; ?>
+            <script>var petId = <?= json_encode($petId); ?>;</script>
 
-                <?php endif; ?>
+            <?php endif; ?>
 
                 <div class="search-bar">
                     <input type="text" id="search"
@@ -176,35 +178,37 @@
 
 
 <script>
-$(document).ready(function() {
-    //$('.search-button').on('click', function(){ 
-    $('#search').on('keyup', function() {
-        //var searchTerm = $('#search').val(); 
-        var searchTerm = $(this).val();
-        var petId = <?= json_encode($petId); ?>;
 
-        console.log(petId)
-        $.ajax({
-            url: "<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/search",
-            type: "POST",
-            data: {
-                search: searchTerm,
-                petId: petId
-            },
-            success: function(data) {
-                $('tbody').html(data);
-            }
 
-        });
-    });
 
-    // to update when filtered by search
-    $('body').on('click', '.edit-icon', function() {
-        var Id = $(this).closest('tr').attr('key');
-        var petId = <?= json_encode($petId); ?>;
-        openUpdateModal(Id, petId);
-    });
-});
+
+            $(document).ready(function(){
+                //$('.search-button').on('click', function(){ 
+                $('#search').on('keyup', function(){
+                    //var searchTerm = $('#search').val(); 
+                    var searchTerm = $(this).val();
+                    
+                    console.log(petId)
+                    $.ajax({
+                        url: "<?php echo ROOT ?>/Medicalstaff/VaccinationHistory/search",
+                        type: "POST",
+                        data: { search: searchTerm,petId:petId }, 
+                        success: function(data) {
+                            $('tbody').html(data);
+                        }
+                    
+                    });
+                });
+
+                // to update when filtered by search
+                $('body').on('click', '.edit-icon', function(){
+                    var Id = $(this).closest('tr').attr('key');
+                    openUpdateModal(Id,petId);
+                });
+            });
+
+
+
 
 
 

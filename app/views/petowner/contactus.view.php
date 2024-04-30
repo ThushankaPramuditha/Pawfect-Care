@@ -67,7 +67,7 @@
 
         .card:hover {
         transform: scale(1.05);
-        background-color: ;
+        /* background-color: ; */
         }
 
         .card-image{
@@ -137,7 +137,7 @@
 
         .contact{
             font-size: 20px;
-            color: #353535;
+            color: #666;
         }
 
         .contactinfo span {
@@ -178,12 +178,12 @@
             align-self: center;
             padding: 10px 20px; 
             border: none; 
-            cursor: pointer;"
+            cursor: pointer;
 
         }
 
         .button:hover {
-            background-color: darkmagenta;
+            background-color: #6a3779;
         }
 
         /* Add to your existing styles */
@@ -196,13 +196,13 @@
         }
 
         .feedback-form-container form button:hover {
-            background-color: darkmagenta; /* Slightly darker purple on hover */
+            background-color: #6a3779; /* Slightly darker purple on hover */
         }
 
         .para
         {
             margin-left:50px; 
-            color: #353535; 
+            color: #666; 
             font-size:20px;
             text-align: center; 
             margin-bottom: 40px;
@@ -284,7 +284,7 @@
         <div class="feedback-form-container">
             <form id = "feedback-form" action="<?=ROOT?>/petowner/feedbacks/add" method="post">
                 <textarea name="feedback" placeholder="Enter Your Feedback..." class="in" style="width:100%"></textarea>
-                <button type="submit" style="color:white; height:auto; background-color: darkmagenta; border-radius:24px; align-self: center; width: 400px;">Submit</button>
+                <button type="submit" style="color:white; height:auto; background-color: #6a3779; border-radius:24px; align-self: center; width: 400px;">Submit</button>
             </form>
         </div>
     </div>
@@ -323,18 +323,26 @@
                 <input class="in-s" type="text" name="name" placeholder="Enter your name">
                 <input type="text" name="email" placeholder="Enter your email" class="in-s">
                 <textarea name="message" placeholder="Got more Questions? let us know..." class="in-s"></textarea>
-                <button type="submit" name="submit" style="color:white; height:auto; background-color: darkmagenta; border-radius:24px; align-self: center; width: 400px;">Send Message</button>
+                <button type="submit" name="submit" style="color:white; height:auto; background-color: #6a3779; border-radius:24px; align-self: center; width: 400px;">Send Message</button>
             </form>
         </div>
-
-            
-
-
-
-
-
-        
+ 
 </div>
+<script>
+    //sweeetalert for validation SUCCESS and ERROR
+    window.onload = function() {
+                <?php if (isset($_SESSION['flash'])): ?>
+                    const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+    
+                    if (flash.success) {
+                        Swal.fire('Success', flash.success, 'success');
+                    } else if (flash.error) {
+                        Swal.fire('Error', flash.error, 'error');
+                    }
+                    <?php unset($_SESSION['flash']); ?>
+                <?php endif; ?>
+            };
+    </script>
 
 
 </body>

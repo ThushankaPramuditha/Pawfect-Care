@@ -37,7 +37,7 @@
         <?php foreach ($data['veterinarians'] as $vet): ?>
             <div class="card">
                 <div class="container">
-                    <h4><b><?= htmlspecialchars($vet->name) ?></b></h4>
+                    <h4><b>Dr. <?= htmlspecialchars($vet->name) ?></b></h4>
                     <p class="availability <?= $vet->availability == 'available' ? 'available' : 'not-available' ?>">
                         <?= $vet->availability == 'available' ? 'Available' : 'Unavailable' ?>
                     </p>
@@ -101,6 +101,8 @@ function proceedPayment(vetId, petId) {
         payhere.onCompleted = function onCompleted(orderId) {
           console.log("Payment completed. OrderID:" + orderId);
           saveAppointment(obj.pet_id, obj.vet_id) ;
+          Swal.fire('Payment Completed', 'Booking placed successfully!', 'success');
+
         };
 
         // Payment window closed

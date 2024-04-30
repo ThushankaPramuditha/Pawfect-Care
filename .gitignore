@@ -2,3 +2,5 @@ app/core/config.php
 vendor
 # add node modules
 node_modules
+.DS_Store
+

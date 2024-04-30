@@ -32,7 +32,13 @@
 $pdo = new PDO("mysql:host=localhost;dbname=pawfect-care", "root", "");
 
 //table
-$statement = $pdo->prepare("SELECT * FROM daycarebookinguser");
+$statement = $pdo->prepare("SELECT * FROM daycarebookinguser ORDER BY 
+    CASE 
+        WHEN status = 'pending' THEN 1
+        WHEN status = 'accepted' THEN 2
+        WHEN status = 'declined' THEN 3
+        WHEN status = 'finished' THEN 4
+    END, drop_off_date DESC");
 $statement->execute();
 $daycarebookinguser = $statement->fetchAll(PDO::FETCH_OBJ);
 
@@ -77,11 +83,12 @@ function getPetName($pdo, $pet_id)
                 <th>Contact Number</th>
                 <th>Drop-Time</th>
                 <th>Pickup-Time</th>
+                <th>Status</th>
                 <th>Items</th>
                 <th>Allergies</th>
                 <th>Behaviour</th>
                 <th>Medications</th>
-                <th>Status</th>
+               
                 <th class="activate-action-buttons"></th>
                 <th class="deactivate-action-buttons"></th>
                 <th class="finish-action-buttons"></th>
@@ -91,27 +98,35 @@ function getPetName($pdo, $pet_id)
         <tbody>
             <?php if (is_array($daycarebookinguser) && !empty($daycarebookinguser)): ?>
                 <?php foreach ($daycarebookinguser as $daycarebooking): ?>
-                    <tr key="<?= $daycarebooking->id; ?>">
-                        <td><?= htmlspecialchars($daycarebooking->drop_off_date); ?></td>
+                    <!-- <tr key="<?= $daycarebooking->id; ?>" style="<?= 
+                            $daycarebooking->status == 'accepted' ? 'color: #2e7d32;' : 
+                            ($daycarebooking->status == 'finished' ? 'color: #FFEA00;' : 
+                            ($daycarebooking->status == 'declined' ? 'color: #c62828;' : '')) 
+                        ?>"> -->
+                        <tr key="<?= $daycarebooking->id; ?>">
+                        <td style="width:100px;"><?= date('m/d', strtotime($daycarebooking->drop_off_date)); ?></td>
                         <td><?= getPetOwnerName($pdo, $daycarebooking->pet_id); ?></td>
                         <td><?= getPetName($pdo, $daycarebooking->pet_id); ?></td>
                         <td><?= getPetownerContact($pdo, $daycarebooking->pet_id); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->drop_off_time); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->pick_up_time); ?></td>
+                        <td><?= htmlspecialchars($daycarebooking->status); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->list_of_items); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->allergies); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->pet_behaviour); ?></td>
                         <td><?= htmlspecialchars($daycarebooking->medications); ?></td>
-                        <td><?= htmlspecialchars($daycarebooking->status); ?></td>
-                        <td class="activate-action-buttons">
-                            <button class="activate-button">Accept</button>
+                       
+                        <td class="activate-action-buttons <?= $daycarebooking->status == 'accepted' || $daycarebooking->status == 'finished' || $daycarebooking->status == 'declined' ? 'disabled' : '' ?>">
+                            <button class="activate-button" <?= $daycarebooking->status == 'accepted' || $daycarebooking->status == 'finished' || $daycarebooking->status == 'declined' ? 'disabled' : '' ?>>Accept</button>
                         </td>
-                        <td class="deactivate-action-buttons">
-                            <button class="deactivate-button">Decline</button>
+                        <td class="deactivate-action-buttons <?= $daycarebooking->status == 'declined' || $daycarebooking->status == 'accepted' || $daycarebooking->status == 'finished' ? 'disabled' : '' ?>">
+                            <button class="deactivate-button" <?= $daycarebooking->status == 'declined' || $daycarebooking->status == 'accepted' || $daycarebooking->status == 'finished' ? 'disabled' : '' ?>>Decline</button>
                         </td>
-                        <td class="finish-action-buttons">
-                            <button class="finish-button">Finish</button>
+                        <td class="finish-action-buttons <?= $daycarebooking->status == 'accepted' || $daycarebooking->status == 'declined' || $daycarebooking->status == 'finished' ? 'disabled' : '' ?>">
+                            <button class="finish-button" <?= $daycarebooking->status == 'accepted' || $daycarebooking->status == 'declined' || $daycarebooking->status == 'finished' ? 'disabled' : '' ?>>Finish</button>
                         </td>
+
+
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

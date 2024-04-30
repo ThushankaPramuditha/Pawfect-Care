@@ -6,15 +6,15 @@ body {
     padding: 20px;
     margin: 0;
     color: #333;
-    
+   
 }
 
 .container {
     display:flex;
-    justify-content: space-between; /* Display children in a row with space between them */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Set container height to 100% of viewport height */
-    width: 50%; /* Set container width to 100% of viewport width */
+    justify-content: space-between; 
+    align-items: center; 
+    height: auto;
+    width: 50%; 
     background-color:#FCFCFE;
     border-radius: 50px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -59,7 +59,7 @@ body {
     align-items: center;
     display: flex;
     border: none;
-    height: auto;
+    height: 800px;
 }
 
 h1 {
@@ -95,7 +95,7 @@ input[type="password"] {
 /* Style for the login button */
 button[type="submit"] {
     background-color: #6a3879;
-    width: 100%;
+    width: 100px;
     color: #fff;
     border: none;
     border-radius: 5px;

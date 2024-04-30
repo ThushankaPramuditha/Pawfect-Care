@@ -633,39 +633,12 @@ main table tbody tr td:first-child {
 
         <main>
           
-            <div class="analyse" style="margin-top:50px;">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:70px;">Current<br> Number</p>
-<!--                        
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p> -->
 
-                        </div>
-                    </div>
-                </div>
-          
-            
-           
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:40px;">Total<br>Appointments</p>
-                
-                            <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:40px;"><?php echo $counttodayallAppointments; ?></p>
+        <div class="new-users" style= "display: flex; justify-content: center;  align-items: center; flex-direction: column; margin-top:80px">
+                <h2>Current Patients</h2>
+                <?php include '../app/views/components/currentpatientvet.php'; ?>
 
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-            <!-- End of Analyses -->
-
-            <!-- New Users Section -->
-         
-    <div style="margin-top:50px; display:flex; flex-direction:row;">
-      
-    </div>
+            </div>
 
     
             
@@ -710,13 +683,9 @@ main table tbody tr td:first-child {
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
             <?php if (is_array($vetnotifications) || is_object($vetnotifications)) : ?>
             <?php foreach ($vetnotifications as $notification) : ?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                    <!-- <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div> -->
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                     <div class="notification-item">
+                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:290px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span>
                         <div class="info">
                             <h3>Appointment Booking</h3>
                             <small class="text-muted">New Booking</small>
@@ -728,23 +697,19 @@ main table tbody tr td:first-child {
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
-            <br>
-            <h2>No notifications available</h2>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Appointment notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
         <?php endif; ?>
 
     </div>
        
-        <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-        <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
-            <div>
-                <span class="material-icons-sharp">
-                      arrow_forward
-                </span>
-                <h3>View</h3>
-            </div>
       
-        </div>
  </div>
 </div>
 

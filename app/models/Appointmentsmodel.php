@@ -8,8 +8,8 @@ class AppointmentsModel
     protected $allowedColumns = ['patient_no','date_time','pet_id','vet_id','status'];
 
     public function getAllAppointments()
-    {
-        $query = "SELECT
+{
+    $query = "SELECT
         a.id,
         a.date_time,
         a.patient_no,
@@ -19,18 +19,26 @@ class AppointmentsModel
         po.contact,
         v.name AS vet_name,
         a.status
-        FROM
-            appointments a
-        JOIN
-            pets p ON a.pet_id = p.id
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        ORDER BY a.date_time DESC";
+    FROM
+        appointments a
+    JOIN
+        pets p ON a.pet_id = p.id
+    JOIN
+        petowners po ON p.petowner_id = po.id
+    JOIN
+        veterinarians v ON a.vet_id = v.id
+    ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
 
-        return $this->query($query);
-    }
+    return $this->query($query);
+}
 
     public function getAppointmentsForCurrentDate()
     {
@@ -56,7 +64,15 @@ class AppointmentsModel
             veterinarians v ON a.vet_id = v.id
         WHERE
             DATE(a.date_time) = :current_date
-        ORDER BY a.id ASC";
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
 
         // Bind the current date parameter to the query
         $data = array(':current_date' => $currentDate);
@@ -97,6 +113,105 @@ class AppointmentsModel
 
         return $this->query($query, $data);
     }
+
+    public function getVetIdByAppointmentId($appId)
+    {
+        $query = "SELECT vet_id    
+        FROM appointments a
+        WHERE id = :appId";
+
+        // Bind the parameters to the query
+        $data = array(':appId' => $appId);
+
+        return $this->get_row($query, $data);
+    }
+
+    public function checkAlreadyCurrent($vetId) {
+        date_default_timezone_set('Asia/Colombo');
+        $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
+        $query = "SELECT COUNT(*) as total
+                  FROM {$this->table} 
+                  WHERE DATE(date_time) = :today
+                    AND vet_id = :vetId
+                  AND status = 'current'";
+        $data = [
+            ':vetId' => $vetId,
+            ':today' => $today
+        ];
+        
+        $result = $this->query($query, $data);
+        //return zero if null, else return total
+        return $result[0]->total ?? 0; 
+
+       }
+    
+
+    public function updatePatientStatus($id, $status)
+    {
+        
+        $query = "UPDATE appointments SET status = :status WHERE id = :id";
+        return $this->query($query, ['status' => $status, 'id' => $id]);
+    }
+
+   public function getCurrentPatient()
+    {
+        date_default_timezone_set('Asia/Colombo');
+
+        $currentDate = date('Y-m-d');
+
+        $query = "SELECT
+        a.patient_no,
+        a.pet_id AS pet_id,
+        po.id AS owner_id,
+        v.name AS vet_name
+        FROM
+            appointments a
+        JOIN
+            pets p ON a.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        WHERE
+            DATE(a.date_time) = :current_date
+            AND a.status = 'current'";
+
+        $data = array(':current_date' => $currentDate);
+        
+        return $this->query($query, $data);
+
+
+    }
+     public function getCurrentPatientForVet($vetId)
+    {
+        date_default_timezone_set('Asia/Colombo');
+
+        $currentDate = date('Y-m-d');
+
+        $query = "SELECT
+        a.patient_no,
+        a.pet_id AS pet_id,
+        po.id AS owner_id,
+        v.name AS vet_name
+        FROM
+            appointments a
+        JOIN
+            pets p ON a.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        JOIN
+            veterinarians v ON a.vet_id = v.id
+        WHERE
+            DATE(a.date_time) = :current_date
+            AND a.status = 'current'  AND a.vet_id = :vet_id";
+
+        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
+
+        return $this->query($query, $data);
+
+    }
+
+
 
 
     public function getAppointmentById($id)
@@ -158,7 +273,53 @@ class AppointmentsModel
 
     }
 
+    public function searchForTodayReceptionist($term) {
+        date_default_timezone_set('Asia/Colombo');
+
+        $term = "%{$term}%";
+        $today = date('Y-m-d');
+        
+        $query = "SELECT
+            a.id,
+            a.date_time,
+            a.patient_no,
+            a.pet_id,
+            p.name AS pet_name,
+            po.name AS petowner,
+            po.contact,
+            v.name AS vet_name,
+            a.status
+            FROM appointments a
+            JOIN
+                pets p ON a.pet_id = p.id
+            JOIN
+                petowners po ON p.petowner_id = po.id
+            JOIN
+                veterinarians v ON a.vet_id = v.id
+            WHERE 
+            DATE(a.date_time) = :today AND
+            (p.name LIKE :term 
+            OR po.name LIKE :term 
+            OR po.contact LIKE :term
+            OR v.name LIKE :term)
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
+    
+        $bindings = [':term' => $term, ':today' => $today];
+      
+        return $this->query($query, $bindings);
+    }
+
     public function searchForReceptionist($term, $date = '') {
+        date_default_timezone_set('Asia/Colombo');
+
         $term = "%{$term}%";
         $dateCondition = !empty($date) ? "AND DATE(date_time) = :date" : "";
         
@@ -182,8 +343,18 @@ class AppointmentsModel
             WHERE 
             (p.name LIKE :term 
             OR po.name LIKE :term 
-            OR po.contact LIKE :term)
-            {$dateCondition}";
+            OR po.contact LIKE :term
+            OR v.name LIKE :term)
+            {$dateCondition}
+            ORDER BY 
+        CASE 
+            WHEN a.status = 'current' THEN 1
+            WHEN a.status = 'pending' THEN 2
+            WHEN a.status = 'finished' THEN 3
+            WHEN a.status = 'cancelled' THEN 4
+            ELSE 5
+        END ASC,
+        a.id ASC";
     
         $bindings = [':term' => $term];
         if (!empty($date)) {
@@ -269,8 +440,10 @@ class AppointmentsModel
 
     public function addAppointment(array $data)
     {
+        
         // Check how many appointments already exist for today
         $appointmentsToday = $this->countTodayAppointments($vetId);
+       
 
         if ($appointmentsToday >= 3) {
             return "Maximum appointments for today reached."; // Limiting to 3 appointments per day
@@ -294,8 +467,10 @@ class AppointmentsModel
     }
 
 
-      //get the active appointment count for current date for particular vet
-      public function countTodayAppointments($vetId) {
+
+    public function countTodayAppointments($vetId) {
+
+        date_default_timezone_set('Asia/Colombo');
         $today = date('Y-m-d'); // Ensures date is in the correct format for MySQL
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
@@ -303,38 +478,47 @@ class AppointmentsModel
         AND vet_id = :vet_id
         AND status != 'cancelled'";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+                //return zero if null, else return total
+        return $result[0]->total ?? 0; 
     }
-       
+  
     public function counttodayallAppointments(){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE DATE(date_time) = :today";
         $result = $this->query($query, [':today' => $today]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+                //return zero if null, else return total
+
+        return $result[0]->total ?? 0; 
     }
 
     public function countweekAppointments($vetId){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE WEEK(date_time) = WEEK(:today)
         AND vet_id = :vet_id";
         $result = $this->query($query, [':today' => $today, ':vet_id' => $vetId]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+        return $result[0]->total ?? 0; 
     }
 
     public function countweekallAppointments(){
+        date_default_timezone_set('Asia/Colombo');
+
         $today = date('Y-m-d');
         $query = "SELECT COUNT(*) AS total 
         FROM {$this->table} 
         WHERE WEEK(date_time) = WEEK(:today)";
         $result = $this->query($query, [':today' => $today]);
-        return $result[0]->total ?? 0; // Make sure to handle the case where result is empty
+        //return zero if null, else return total
+        return $result[0]->total ?? 0; 
     }
 
-    //I want a function to get incomefrom appointmets for weeek1, week2, week3 week4
     public function incomeFromAppointmentsForWeek($week) {
         $startDate = date('Y-m-d', strtotime("first day of this month"));
         $endDate = date('Y-m-d', strtotime("last day of this month"));
@@ -438,7 +622,18 @@ class AppointmentsModel
     
         return $this->update($id, $data, 'id');
     }
+     
 
+    public function getVetIdbyUserId($userId){
+        $query = "SELECT id FROM veterinarians WHERE user_id = :user_id";
+        $result = $this->query($query, [':user_id' => $userId]);
+    
+        if ($result && !empty($result[0]->id)) {
+            return $result[0]->id; // Access id property of the first row
+        } else {
+            return null; // Return null if no record is found or id is empty
+        }
+    }
     
 
     public function validate($data)

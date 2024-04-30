@@ -630,42 +630,13 @@ main table tbody tr td:first-child {
 
         <main>
           
-            <div class="analyse" style="margin-top:50px;">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info" >
-                            <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:70px;">Current<br> Number</p>
-<!--                        
-                                <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:50px;"><?php echo $appointmentbookings; ?></p> -->
-
-                        </div>
-                    </div>
-                </div>
-          
-            
-           
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                        <p style="font-size:20px; text-align:center; font-weight:bolder;margin-left:40px;">Total<br>Appointments</p>
-                
-                            <p style="font-size:20px; text-align:center; font-weight:bolder; margin-left:40px;"><?php echo $appointmentbookings; ?></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-            <!-- End of Analyses -->
-
-            <!-- New Users Section -->
          
-    <div style="margin-top:50px; display:flex; flex-direction:row;">
-      
-    </div>
+            <div class="new-users" style= "display: flex; justify-content: center;  align-items: center; flex-direction: column; margin-top:80px">
+                <h2>Current Patients</h2>
+                <?php include '../app/views/components/currentpatient.php'; ?>
 
-    
-            
+            </div>
+
         </main>
         <!-- End of Main Content -->
 
@@ -705,35 +676,41 @@ main table tbody tr td:first-child {
 
     ?>
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
-        <?php   foreach ($data['allappointments'] as $appointment)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-            <!-- <div class="icon">
-                <span class="material-icons-sharp">
-                    volume_up
-                </span>
-            </div> -->
-            <div class="notification-item">
-                <div class="info">
-                    <h3>Appointment Booking</h3>
-                    <small class="text-muted">New Booking</small>
-                    <p>
-                    <?php echo 'pet_id:' . $appointment->pet_id . ' books an appointment '. 'at' . $appointment->date_time ?>
-
-                    </p>
+    <?php if (is_array($vetnotifications) || is_object($vetnotifications)) : ?>
+            <?php foreach ($vetnotifications as $notification) : ?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
+                    <div class="notification-item">
+                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:290px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span>
+                        <div class="info">
+                            <h3>Appointment Booking</h3>
+                            <small class="text-muted">New Booking</small>
+                            <p>
+                                <?php echo $notification->message; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no transport notifications at the moment.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php } ?>
+        <?php endif; ?>
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:white;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:white;">View</h3>
             </div>
       
         </div>
@@ -763,6 +740,32 @@ menuBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
+
+//
+function cancelNotification(notificationId) {
+        // Make an AJAX request to the controller endpoint
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo ROOT?>/Medicalstaff/Dashboardmedicalstaff/cancelnotification/" + notificationId, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Handle success response
+                console.log("Notification canceled successfully.");
+                window.location.reload();
+                // You can perform additional actions here if needed
+            } else {
+                // Handle error response
+                console.error("Failed to cancel notification. Status code: " + xhr.status);
+                window.location.reload();
+
+            }
+        };
+        xhr.onerror = function () {
+            // Handle network errors
+            console.error("Network error occurred while canceling notification.");
+            window.location.reload();
+        };
+        xhr.send();
+    }
 
 
 

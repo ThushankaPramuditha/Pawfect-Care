@@ -17,6 +17,27 @@ class AmbulanceDriversModel
         
     }
 
+    // public function getAvailableAmbulanceDrivers() {
+    //      $query ="SELECT a.*, u.email ,u.status
+    //               FROM ambulancedrivers AS a
+    //               JOIN users AS u ON a.user_id = u.id
+    //               WHERE a.availability = 'available'";
+    //             //   join ambulacebookings table and check the pending bookings for drivers is 1 and drivers availability available  
+    // }
+    public function getAvailableAmbulanceDrivers() {
+        $query = "SELECT a.*, u.email, u.status
+                  FROM ambulancedrivers AS a
+                  JOIN users AS u ON a.user_id = u.id
+                  WHERE a.availability = 'available'
+                  AND NOT EXISTS (
+                      SELECT 1
+                      FROM ambulancebookings AS ab
+                      WHERE ab.driver_id = a.id
+                      AND ab.status = 'pending'
+                  )";
+        return $this->query($query);
+    }
+
     public function getAmbulanceDriverById($id) {
         $query = "SELECT a.*, u.email ,u.status
                   FROM ambulancedrivers AS a
@@ -157,6 +178,11 @@ class AmbulanceDriversModel
         
         $query = "UPDATE ambulancedrivers SET availability = :newAvailability WHERE id = :id";
         return $this->query($query, ['newAvailability' => $newAvailability, 'id' => $id]);
+    }
+
+    public function updateAvailabilityToAvailable($id)
+    {
+        return $this->updateAvailability($id, 'available');
     }
 
     public function validate($data)

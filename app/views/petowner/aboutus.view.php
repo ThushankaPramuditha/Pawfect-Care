@@ -17,6 +17,7 @@
         }
          body{
         background-color: #f4f4f4; 
+        /* background: linear-gradient(19deg, #82a4ff 0%, #97d2fc 100%); */
         /* background:url(https://images.unsplash.com/photo-1639759032532-c7f288e9ef4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);  */
         background-size:cover;
         background-position:right;
@@ -34,7 +35,7 @@
         .card{
         display:flex;
         flex-direction:column;
-        width:500px;
+        width:400px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0);
         border-radius: 24px;
         overflow: hidden;
@@ -49,7 +50,7 @@
         }
 
         .card-image{
-        width:500px;
+        width:400px;
         height:400px;
         }
         .card-image>img{
@@ -64,7 +65,7 @@
         margin:-30px auto;
         margin-right:20px;
         height:120px;
-        width:500px;
+        width:400px;
         background-color:#D7CADB;
         color:#6A3879;
         padding-top:20px;
@@ -77,15 +78,16 @@
 
         .about-h{
             font-family: 'Poppins',sans-serif; 
-            font-size:40px; 
+            font-size:43px; 
             color:#353535; 
             font-weight:bolder;
+            margin-top:80px;
 
         }
 
         .about-text{
             font-family:'Poppins',sans-serif;  
-            font-size:20px; 
+            font-size:23px; 
             color:#666;
             text-align: center;
             padding-top: 20px;
@@ -107,7 +109,7 @@
 <div class="container">
 
         <h2 class="about-h">About Us</h2>
-        <div class="Aboutus"  >
+        <div class="Aboutus">
         <p class="about-text">Welcome to Pawfect Care, your trusted partner in pet wellness. Our mission is to provide the highest standard of pet care and to foster a community of pet lovers dedicated to their furry companions' well-being.</p>
         </div>
 
@@ -116,7 +118,8 @@
         <p class="about-text">At Pawfect Care, we're not just a pet care center; we're a family of pet enthusiasts dedicated to your pets' health. Our team of passionate veterinarians and pet care experts work tirelessly to ensure every pet receives personalized care, and we're committed to making pet care more accessible and convenient.</p>
         </div>
 
-    <div class="Vetinfo"style="display:flex; flex-direction:row; margin-top:200px;">
+        <h2 class="about-h">Meet Our Vets</h2>
+    <div class="Vetinfo"style="display:flex; flex-direction:row; margin-top:60px;">
         <div class="card" style="margin-right:100px;">
             <div class="card-image">
                 <img src="<?php echo ROOT?>/assets/images/maledoctor1.jpg" alt="">

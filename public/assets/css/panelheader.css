@@ -321,6 +321,12 @@ input[type="date"]{
         max-width: 100%;
         margin: 0 auto;
 }
+
+label, input, select, .error-message {
+    width: 100%; /* Ensures full width for each element within the container */
+    box-sizing: border-box; /* Includes padding and border in the element's width */
+}
+
 .modal-content input[type="text"],
 input[type="tel"], 
 input[type="password"], 
@@ -340,6 +346,23 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 
+.modal-content select {
+    width: 30%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #ECECEC; 
+    cursor: pointer; 
+    font-size: 16px; 
+    color: #333; 
+    -moz-appearance: none; /* Remove default styling in Firefox */
+    -webkit-appearance: none; /* Remove default styling in Chrome/Safari */
+    appearance: none; /* Remove default styling */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M1.41421%206L6%2010.5858L10.5858%206L12%207.41421L6%2013.4142L0%207.41421L1.41421%206Z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Positioning custom arrow */
+}
 
 /* Style for the image container */
 .modal-form .modal-content .img-container {

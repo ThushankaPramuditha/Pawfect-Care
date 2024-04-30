@@ -5,28 +5,25 @@ class Dashboard
     use Controller;
 
     public function index(string $a = '', string $b = '', string $c = ''): void
-    {
+    {  
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $userdataModel = new PetownersModel();
+        $data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
         $userId = $_SESSION['USER']->id;
         $petownerModel = new PetownersModel();
         $petsModel = new PetsModel();
         $data['user_id'] = $userId;
         $data['daycareBookings']= $petownerModel->getDaycareBookingsByUserId($userId);
         $data['pets'] = $petsModel->getAllPetsByUserId($userId);
-        $data['petownerId'] = $petownerModel->getPetOwnerById($userId); 
-
-      
-        // $data = [
-        //     'daycareBookings' => $daycareBookings,
-        //     'pets' => $pets,
-        //     'petownerId' => $petOwnerId // Updated variable name
-        // ];
-
-        AuthorizationMiddleware::authorize(['Pet Owner']);
-        $userdataModel = new PetownersModel();
-		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-        // $petDetailsModel = new PetsModel();
-
-
+        $data['petownerId'] = $petownerModel->getPetOwnerById($userId);
+        $receiveId = $petownerModel->getPetOwnerIdByUserId( $_SESSION['USER']->id);
+        
+        //notifications
+        $notificationModel = new NotificationModel();
+        $data['vetappointmentnotifications'] = $notificationModel->getVetNotificationByUserId($userId);
+        $data['daycarenotifications'] = $notificationModel->getDaycareNotificationsByReceiverId($receiveId);
+        $data['transportnotifications'] = $notificationModel->getTransportNotificationByPetOwnerId($receiveId);
+        
         $this->view('petowner/dashboard', $data);
     }
     
@@ -77,18 +74,33 @@ class Dashboard
      
     public function viewPetDetails(string $a = '', string $b = '', string $c = ''):void {
         AuthorizationMiddleware::authorize(['Pet Owner']);
+
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-        
         $petDetailsModel = new PetsModel();
         //  $data['pet'] = $petDetailsModel->getPetDetailsById($a);
 
         $data['pet'] = $petDetailsModel->getPetById($a);
         
+       
 
 
         $this->view('petowner/dashboard/update', $data);
 
+    }
+
+    //cancel notification
+    public function cancelNotification(string $id){
+        AuthorizationMiddleware::authorize(['Pet Owner']);
+        $notificationModel = new NotificationModel();
+        $success = $notificationModel->cancelNotification($id);
+        if($success){
+            
+            echo "Notification cancelled successfully";
+        }
+        else{
+            echo "Failed to cancel notification";
+        };
     }
 
    

@@ -23,10 +23,16 @@ function validateName() {
 
 function validateBirthday() {
     var birthday = document.getElementById('birthday').value;
+    var today = new Date();
+    var inputDate = new Date(birthday);
     if (!birthday) {
         document.getElementById('error-birthday').textContent = "* Birthday is required.";
         return false;
-    } else {
+    } else if (inputDate > today) {
+        document.getElementById('error-birthday').textContent = "* Birthday cannot be in the future.";
+        return false;
+    }
+    else {
         document.getElementById('error-birthday').textContent = "";
         return true;
     }

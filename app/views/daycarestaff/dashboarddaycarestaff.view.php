@@ -680,15 +680,15 @@ main table tbody tr td:first-child {
             var data = {
                 labels: ['All Bookings', 'Accepted', 'Decliend'],
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: 'Today Bookings',
  
                     //add the bookings data
-                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
+                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsdeclined; ?>],
                 
                     backgroundColor: [
-                        'rgb(173, 216, 230)',
-                        'rgb(0, 0, 255)',
-                        'rgb(0, 0, 139)'
+                        'rgb(204, 102, 255)',
+                        'rgb(255, 204, 255)',
+                        'rgb(102, 0, 102)'
                          
                         
                     ],
@@ -711,7 +711,7 @@ main table tbody tr td:first-child {
         </script>
        
         </div>
-        <div style="margin-left:50px;">
+        <div style="margin-left:10px;">
        <!-- line chart  -->
         <canvas id="myLineChart" width="400" height="350"></canvas>
         <script>
@@ -725,7 +725,7 @@ main table tbody tr td:first-child {
                     label: 'Weekly Bookings',
                     data: [<?php echo $week1count; ?>, <?php echo $week2count; ?>, <?php echo $week3count; ?>, <?php echo $week4count; ?>],
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(204, 102, 255)',
                     tension: 0.1
                 }]
             };
@@ -783,31 +783,43 @@ main table tbody tr td:first-child {
 <div>
   
     <div  style="display:flex; flex-direction:column; overflow:hidden; height:300px; overflow-y:scroll;" >
-    <?php   foreach ($daycarenotifications as $notification)  { ?>
-         <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+    <?php if (is_array($daycarenotifications) || is_object($daycarenotifications)) : ?>
+    <?php   foreach ($daycarenotifications as $notification): ?>
+         <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
          
-            <div class="notification-item">
+            <div class="notification-item" >
+            <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:290px; font-size:12px;" onclick="cancelNotification(<?php echo $notification->id ?>)">close</span>
+
                 <div class="info">
                     <h3>Daycare Booking</h3>
                     <small class="text-muted">New Booking</small>
                     <p>
                     <?php echo $notification->message?>
-
                     </p>
                 </div>
             </div>
         </div>
-        <?php } ?>
+        <?php endforeach; ?>
+        <?php else: ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no transport notifications at the moment.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>         
     </div>
        
         <!-- button to view more bookings path is Daycarebookingform -->
-        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:rgb(153, 102, 255); cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; cursor:pointer; color:white; font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
         <a href="<?=ROOT?>/daycarestaff/daycarebookingform">
             <div>
-                <span class="material-icons-sharp">
+                <span class="material-icons-sharp" style="color:#ffff;">
                       arrow_forward
                 </span>
-                <h3>View</h3>
+                <h3 style="color:#ffff;">View</h3>
             </div>
       
         </div>
@@ -836,7 +848,30 @@ closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
 
+function cancelNotification(notificationId) {
+        // Make an AJAX request to the controller endpoint
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo ROOT?>/Daycarestaff/Dashboarddaycarestaff/cancelnotification/" + notificationId, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Handle success response
+                console.log("Notification canceled successfully.");
+                window.location.reload();
+                // You can perform additional actions here if needed
+            } else {
+                // Handle error response
+                console.error("Failed to cancel notification. Status code: " + xhr.status);
+                window.location.reload();
 
+            }
+        };
+        xhr.onerror = function () {
+            // Handle network errors
+            console.error("Network error occurred while canceling notification.");
+            window.location.reload();
+        };
+        xhr.send();
+    }
 
 </script>    
  </body>

@@ -129,17 +129,55 @@ public function getBookingsForDate($date)
 }
 
 
-public function search($term)
-{
-    $term = "%{$term}%";
+// public function search($term)
+// {
+//     $term = "%{$term}%";
  
-       $query = "SELECT d.* , p.name AS pet_name, po.name AS pet_owner_name, po.contact AS pet_owner_contact
-                FROM daycarebookinguser d
-                JOIN pets p ON d.pet_id = p.id
-                JOIN petowners po ON p.petowner_id = po.id
-                WHERE d.drop_off_date LIKE :term";
+//        $query = "SELECT d.* , p.name AS pet_name, po.name AS pet_owner_name, po.contact AS pet_owner_contact
+//                 FROM daycarebookinguser d
+//                 JOIN pets p ON d.pet_id = p.id
+//                 JOIN petowners po ON p.petowner_id = po.id
+//                 WHERE d.drop_off_date LIKE :term";
 
-          return $this->query($query, [':term' => $term]);
+//           return $this->query($query, [':term' => $term]);
+// }
+
+public function searchforDaycareStaff($term, $date = '') {
+    $term = "%{$term}%";
+    $dateCondition = !empty($date) ? "AND DATE(drop_off_date) = :date" : "";
+    
+    $query = "SELECT
+        d.id,
+        d.drop_off_time,
+        d.pick_up_time,
+        d.drop_off_date,
+        d.pet_id,
+        d.list_of_items,
+        d.allergies,
+        d.pet_behaviour,
+        d.medications,
+        d.status,
+        p.name AS pet_name,
+        po.name AS pet_owner_name,
+        po.contact AS pet_owner_contact,
+        d.status
+        FROM daycarebookinguser d
+        JOIN
+            pets p ON d.pet_id = p.id
+        JOIN
+            petowners po ON p.petowner_id = po.id
+        WHERE 
+        (po.name LIKE :term 
+        OR po.contact LIKE :term
+        OR po.id LIKE :term)
+        {$dateCondition}";
+    
+    $bindings = [':term' => $term];
+    if (!empty($date)) {
+        $bindings[':date'] = $date;
+    }
+    
+    return $this->query($query, $bindings);
 }
 
         public function getLastInsertedId(){
@@ -219,9 +257,12 @@ public function searchByDate($date)
             }
 
             public function countTodayBookings() {
-                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE()";
+                // timezone 
+                date_default_timezone_set('Asia/Colombo');
+                //count today  from  created at datetime
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) = CURDATE()";
                 $result = $this->query($query);
-                // if not found
+
                 if(!$result){
                     return 0;
                 }
@@ -230,7 +271,9 @@ public function searchByDate($date)
             }
 
             public function countweekallBookings(){
-                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
+                // timezone 
+                date_default_timezone_set('Asia/Colombo');
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
                 $result = $this->query($query);
                 // if not found
                 if(!$result){
@@ -240,7 +283,8 @@ public function searchByDate($date)
             }
 
             public function countTodayacceptedBookings(){
-                $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'accepted'";
+                date_default_timezone_set('Asia/Colombo');
+                $query = "SELECT * FROM daycarebookinguser WHERE DATE(drop_off_date) = CURDATE() AND status = 'accepted'";
                 $result = $this->query($query);
                 // if not found
                 if(!$result){
@@ -249,6 +293,7 @@ public function searchByDate($date)
                 return count($result);
             }
             public function countDaycareBookingForWeek($week) {
+                date_default_timezone_set('Asia/Colombo');
                 // Get the start and end dates for the current month
                 $startDate = date('Y-m-d', strtotime("first day of this month"));
                 $endDate = date('Y-m-d', strtotime("last day of this month"));
@@ -301,6 +346,7 @@ public function searchByDate($date)
             
             
             public function countTodaydeclinedBookings(){
+                date_default_timezone_set('Asia/Colombo');
                 $query = "SELECT * FROM daycarebookinguser WHERE drop_off_date = CURDATE() AND status = 'declined'";
                 $result = $this->query($query);
                 // if not found

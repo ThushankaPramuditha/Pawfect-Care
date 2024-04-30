@@ -35,5 +35,31 @@ class PetOwnerDetails
         };
     }
 
+    public function search(): void
+    {
+        
+        $petownersModel = new PetownersModel();
+        $searchTerm = $_POST['search'] ?? '';
+        $petownersModel = $petownersModel->search($searchTerm);
+        
+        if(empty($petownersModel)){
+            echo "<tr><td colspan='20'>No petowners found</td></tr>";
+        }
+        else{
+            foreach ($petownersModel as $petowners) {
+                echo "<tr key='{$petowners->id}'>";
+                echo "<td>{$petowners->id}</td>";
+                echo "<td>{$petowners->name}</td>";
+                echo "<td>{$petowners->nic}</td>";
+                echo "<td>{$petowners->email}</td>";
+                echo "<td>{$petowners->address}</td>";
+                echo "<td>{$petowners->contact}</td>";
+                echo "</tr>";
+            }
+        }
+        exit; 
+
+    }
+
 }
 

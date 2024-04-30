@@ -52,12 +52,14 @@
         body {
             width: 100vw;
             height: 100vh;
+            padding:0;
             font-family: 'Poppins', sans-serif;
             font-size: 0.88rem;
             user-select: none;
             overflow-x: hidden;
             color: var(--color-dark);
             background-color: var(--color-background);
+            /* background: linear-gradient(19deg, #82a4ff 0%, #97d2fc 100%); */
         }
 
 
@@ -255,7 +257,7 @@
 
     <!-- <?php include '../app/views/components/dashboard-compo/petownersidebar.php'; ?> -->
 <div class="container" style="display:flex; flex-direction:column; align-items: space-between; padding: 20px">
-<div class="flex-container" style="display:flex; justify-content: space-between;">
+<div class="flex-container" style="display:flex; justify-content: space-between; padding:0 40px;">
 <div>
     <button class="add-new-button">Add New</button>
 </div>
@@ -264,9 +266,9 @@
 </div>
 
         </div>
-    <div class="container" style="display:flex; flex-direction:row;">
+        <div class="container" style="display:flex; flex-direction:row; padding: 0 40px;">
  
-        <div class="new-users" style="display:flex; width:70%;  ">
+        <div class="new-users" style="display:flex; width:70%;  margin-right: 20px;">
             <div class="user-list" style="display:flex; flex-wrap: wrap; gap:1rem; ">
             <?php
 
@@ -294,70 +296,99 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-                <div class="new-users" style="display:flex; flex-direction:column;">
-                </div>
+                
             </div>
 
-        <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap;">
-            
+            <!-- <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;"> -->
+            <div class="announcement" style="display: flex; flex-direction: column; align-items: flex-end; flex-wrap: wrap; margin-left: 20px; align-self: flex-end;">
             <?php 
-
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
-                <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                    <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                    <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                   
-                        <div class="notification-item">
-                            <div class="info">
-                                <h3>Daycare Booking</h3>
-                                <small class="text-muted">New Booking</small>
-                                <p>
-                 <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
-
+                <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll; margin-left:40px;" >
+                <?php if (!empty($vetappointmentnotifications)): ?>
+                        <?php foreach ($vetappointmentnotifications as $vnotification): ?>
+                            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
+                                <div class="notification-item" style="min-height:50px;">
+                                    <!-- Add a close icon to delete notifications -->
+                                    <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:11px;" onclick="cancelNotification(<?php echo $vnotification->id ?>)">close</span>
+                                    <div class="info">
+                                        <!-- <small class="text-muted" style="font-size:14px;">Appointment</small> -->
+                                        <p><?php echo $vnotification->message ?></p>
+                                        <button style = "font-size:0.8rem; padding:0.5rem; margin:0; " onclick="location.href='<?=ROOT?>/petowner/appointments/cancel/<?php echo $vnotification->appointment_id?>/<?php echo $vnotification->id?>'">Cancel Appointment</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Vet Appointment notifications at the moment.</p>
                     </div>
-                    <?php } ?>
+                </div>
+            </div>
+                    <?php endif; ?>
+
              </div>
                     <p style="font-size:20px; font-weight:bolder;">Daycare Booking</p>
-                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                        <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                        <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
+                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                       <?php if (!empty($daycarenotifications)): ?>
+                        <?php foreach ($daycarenotifications as $dnotification): ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
                             
-                            <div class="notification-item">
+                            <div class="notification-item" style="height:80px;">
+                            <!-- <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span> -->
+                            <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $dnotification->id ?>)">close</span>
                                 <div class="info">
-                                    <h3>Daycare Booking</h3>
-                                    <small class="text-muted">New Booking</small>
+                                    <small class="text-muted" style="font-size:14px;">Daycare booking</small>
                                     <p>
-                                    <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
+                                    <?php echo $dnotification->message ?></p>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
-                    </div>
-            <p style="font-size:20px; font-weight:bolder;">Upcoming Vaccinations</p>
-            <div  style="display:flex; flex-direction:column; overflow:hidden; height:132px; overflow-y:scroll;" >
-                <?php foreach ($daycareBookings as $daycarebookingnotification) { ?>
-                <div class="notification" style="display:flex; flex-direction:column; background-color:#CBC3E3">
-                    <!-- <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div> --> 
-                    <div class="notification-item">
-                        <div class="info">
-                            <h3>Daycare Booking</h3>
-                            <small class="text-muted">New Booking</small>
-                            <p>
-                            <?php echo $daycarebookingnotification->petowner_name; ?> your booking is accepted <?php echo $daycarebookingnotification->drop_off_date;?> at <?php echo $daycarebookingnotification->drop_off_time ;?> to <?php echo $daycarebookingnotification->pick_up_time ;?></p>
-                            </p>
-                        </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no Daycarebooking notifications at the moment.</p>
                     </div>
                 </div>
-                <?php } ?>
             </div>
+                    <?php endif; ?>
+                    </div>
+            <p style="font-size:20px; font-weight:bolder;">Ambulance Notification</p>
+                    <div  style="display:flex; flex-direction:column; overflow:hidden; height:120px; overflow-y:scroll;" >
+                       <?php if (!empty($transportnotifications)): ?>
+                        <?php foreach ($transportnotifications as $tnotification): ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
+                            
+                            <div class="notification-item" style="height:80px;">
+                            <!-- <span class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;">close</span> -->
+                            <span id="cancel-notification" class="material-icons-sharp" style="cursor:pointer; color:#6a3879; margin-left:300px; font-size:12px;" onclick="cancelNotification(<?php echo $tnotification->id ?>)">close</span>
+                                <div class="info">
+                                    <!-- <small class="text-muted" style="font-size:14px;">Daycare booking</small> -->
+                                    <p>
+                                    <?php echo $tnotification->message ?></p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;height:80px;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p>There are no  notifications of Ambulance Booking at the moment.</p>
+                    </div>
+                </div>
+            </div>
+                    <?php endif; ?>
+                    </div>
         </div>
  </div>
 
@@ -377,7 +408,7 @@
         <h1>Add Pets</h1>
         <div class="form-container">
             <form id="add-pet-form" action="<?php echo ROOT?>/Petowner/dashboard/addPet" method="post">
-                <div class="column">
+                
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name">
                     <div id="error-name" class="error-message"></div>
@@ -402,7 +433,7 @@
                     <input type="text" id="breed" name="breed">
                     <div id="error-breed" class="error-message"></div>
                 
-                </div>
+                
                 <div class="flex-container">
                     <button type="submit" id="add-pet-button">Add Pet</button>
                 </div>
@@ -431,7 +462,7 @@
     // Get the modal elements
     var addModal = document.getElementById("add-modal");
     var updateModal = document.getElementById("update-modal");
-
+  
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
@@ -584,6 +615,36 @@
             <?php unset($_SESSION['flash']); ?>
         <?php endif; ?>
     };
+
+    
+
+
+    function cancelNotification(notificationId) {
+        // Make an AJAX request to the controller endpoint
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo ROOT?>/Petowner/Dashboard/cancelnotification/" + notificationId, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Handle success response
+                console.log("Notification canceled successfully.");
+                window.location.reload();
+                // You can perform additional actions here if needed
+            } else {
+                // Handle error response
+                console.error("Failed to cancel notification. Status code: " + xhr.status);
+                window.location.reload();
+
+            }
+        };
+        xhr.onerror = function () {
+            // Handle network errors
+            console.error("Network error occurred while canceling notification.");
+            window.location.reload();
+        };
+        xhr.send();
+    }
+
+
         
 
 </script>

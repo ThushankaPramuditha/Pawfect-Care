@@ -65,17 +65,6 @@ function validatePrescription() {
     }
 }
 
-function validateTreatedBy() {
-    var treatedBy = document.getElementById('treated_by').value;
-    if (!treatedBy) {
-        document.getElementById('error-treated_by').textContent = "* Treated By is required.";
-        return false;
-    } else {
-        document.getElementById('error-treated_by').textContent = "";
-        return true;
-    }
-
-}
 
 //validate update form
 

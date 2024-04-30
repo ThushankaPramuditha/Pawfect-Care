@@ -5,7 +5,7 @@ class MedicalhistoryModel
     use Model;
 
     protected $table = 'treatments';
-    protected $allowedColumns = ['appointment_id','weight','temperature','med_condition','treatment','prescription','remarks'];
+    protected $allowedColumns = ['appointment_id','weight','temperature','med_condition','treatment','prescription','remarks','created_by'];
 
     /*public function getAllMedicalHistory()
     {
@@ -85,7 +85,8 @@ class MedicalhistoryModel
         t.treatment,
         t.prescription,
         v.name AS treated_by,
-        t.remarks
+        t.remarks,
+        t.created_by
         FROM
             treatments t
         JOIN
@@ -113,7 +114,8 @@ class MedicalhistoryModel
         t.treatment,
         t.prescription,
         v.name AS treated_by,
-        t.remarks
+        t.remarks,
+        t.created_by
         FROM
             treatments t
         JOIN
@@ -205,30 +207,41 @@ class MedicalhistoryModel
         return $this->insert($data);
     }*/
 
-    public function addTreatment($data)
+    public function addTreatment($patientNo,$weight,$temperature,$medCondition,$treatment,$prescriptionDetails,$remarks,$createdBy)
     {
-        $data['date'] = date('Y-m-d');
+        $date = date('Y-m-d');
 
          
-        $vetModel = new VeterinariansModel();
-        $vetId = $vetModel->getVetIdByName($data['vet_name']);
+        //$vetModel = new VeterinariansModel();
+        //$vetId = $vetModel->getVetIdByName($data['vet_name']);
 
-        if ($vetId !== false) {
+        //if ($vetId !== false) {
             
             $appointmentsModel = new AppointmentsModel();
-            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'],$data['date'], $vetId);
+            $appointmentId = $appointmentsModel->getAppointmentId($patientNo, $date);
             //date('Y-m-d', strtotime($data['date_time']))
+
+              // Construct arrays for  names 
+            $prescriptionNames = [];
+
+            foreach ($prescriptionDetails as $prescription) {
+                $prescriptionNames[] = $prescription['prescription'];
+               
+            } 
+              // Implode arrays into strings
+            $prescriptionNamesString = implode(', ', $prescriptionNames);
 
             if ($appointmentId !== false) {
     
                 $treatmentData = [
                     'appointment_id' => $appointmentId,
-                    'weight' => $data['weight'],
-                    'temperature' => $data['temperature'],
-                    'med_condition' => $data['med_condition'],
-                    'treatment' => $data['treatment'],
-                    'prescription' => $data['prescription'],
-                    'remarks' => $data['remarks'],
+                    'weight' => $weight,
+                    'temperature' => $temperature,
+                    'med_condition' => $medCondition,
+                    'treatment' => $treatment,
+                    'prescription' =>  $prescriptionNamesString,
+                    'remarks' => $remarks,
+                    'created_by'=>$createdBy,
                 ];
 
                 
@@ -239,11 +252,11 @@ class MedicalhistoryModel
                 $this->errors[] = 'Appointment id not found.';
                 return false;
             }
-        } else{
+        /*} else{
            
             $this->errors[] = 'Veterinarian not found.';
             return false;
-        }
+        }*/
     }
 
     public function updateMedicalHistory($id, array $data)
@@ -255,6 +268,12 @@ class MedicalhistoryModel
         }, ARRAY_FILTER_USE_KEY);
     
         return $this->update($id, $data, 'id');
+    }
+
+    public function getAllPrescriptions() {
+       
+        $query = "SELECT DISTINCT prescription FROM treatments";
+        return $this->query($query);
     }
 
      public function validate($data)

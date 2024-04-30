@@ -414,7 +414,7 @@
                     <div id="error-name" class="error-message"></div>
 
                     <label for="birthday">Date of Birth:</label>
-                    <input type="date" id="birthday" name="birthday">
+                    <input type="date" id="birthday" name="birthday" max="<?php echo date('Y-m-d');?>">
                     <div id="error-birthday" class="error-message"></div>
 
                      <!-- enum to select gender-->

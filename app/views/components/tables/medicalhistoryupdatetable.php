@@ -21,6 +21,7 @@
                 <th>Prescription</th>
                 <th>Treated By</th>
                 <th>Remarks</th>
+                <th>Created By</th>
                 <th class="edit-action-buttons"></th>
             </tr>
         </thead>
@@ -40,6 +41,7 @@
                     <td><?= htmlspecialchars($history->prescription); ?></td>
                     <td><?= htmlspecialchars($history->treated_by); ?></td>
                     <td><?= htmlspecialchars($history->remarks); ?></td>
+                    <td><?= htmlspecialchars($history->created_by); ?></td>
                     <!--td class="edit-action-buttons">
                         <button class="edit-icon" onclick="openUpdateModal(<!?php echo $history->id; ?>, <!?php echo $history->pet_id; ?>)"></button>
                     </td-->

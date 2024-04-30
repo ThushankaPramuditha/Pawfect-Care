@@ -11,7 +11,7 @@ class Bookrideform
         $user_id = $_SESSION['USER']->id;
         $data['pets'] = $petsModel->getAllPetsByUserId($user_id);
         $data['ambulancedrivers'] = $ambulancedrivermodel->getAllAmbulanceDrivers();
-         
+        
     $data['user_id'] = $user_id;
         $this->view('petowner/bookrideform', $data);
     }

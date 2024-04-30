@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/panelheader.css">
     <link rel="stylesheet" href="<?php echo ROOT?>/assets/css/tables.css">
 
-    <?php $activePage = 'daycarebookingform';?>
+    <?php $activePage = 'daycarebooking';?>
 
   <style>
     .view-date-button {

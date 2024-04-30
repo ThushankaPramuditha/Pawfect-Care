@@ -82,21 +82,21 @@ public function accept(string $id): void
         
         //  $petOwnerEmail = $this->getPetOwnerEmailByPetId($petOwnerId);
           
-        //   $notificationModel = new NotificationModel();
-        //     $notificationData = [
-        //         'user_id' => $_SESSION['USER']->id,
-        //         'receiver_id' =>$petOwnerId,
-        //         'message' => "Your Daycare booking accepted successfully!",
-        //         'type' => 'daycare',
-        //         'appointment_id' => $id,
-        //         'status' => 'unread'
-        //     ];
-        //     $daycarenotification = $notificationModel->addNotification($notificationData);
-        //     if ($daycarenotification !== false) {
-        //         echo "Notification added successfully";
-        //     } else {
-        //         echo "Failed to add notification";
-        //     }
+          $notificationModel = new NotificationModel();
+            $notificationData = [
+                'user_id' => $_SESSION['USER']->id,
+                'receiver_id' =>$petOwnerId,
+                'message' => "Your Daycare booking accepted successfully!",
+                'type' => 'daycare',
+                'appointment_id' => $id,
+                'status' => 'unread'
+            ];
+            $daycarenotification = $notificationModel->addNotification($notificationData);
+            if ($daycarenotification !== false) {
+                echo "Notification added successfully";
+            } else {
+                echo "Failed to add notification";
+            }
            
             // $petOwnerEmail = $daycarebookinguserModel->getPetOwnerEmailById($id);
             //sample email

@@ -37,8 +37,26 @@ class Maproute
 
         if ($success) {
             $_SESSION['flash'] = ['success' => 'Finish Ride successfully!'];
+
+            echo '<script>
+            Swal.fire({
+                icon: "success",
+                title: "Finish Ride successfully!",
+                text: "Availability updated successfully.",
+            });
+          </script>';
+
+          
         } else {
             $_SESSION['flash'] = ['error' => 'Failed to Finish the ride availability.'];
+
+            echo '<script>
+            Swal.fire({
+                icon: "error",
+                title: "Failed to Finish the ride availability.",
+                text: "Please try again later.",
+            });
+            </script>';
         }
 
         header('Location: ' . ROOT . '/ambulancedriver/dashboardambulancedriver');

@@ -18,12 +18,21 @@ if (!hasBookingsForDate($pdo, $today)) {
         '10:00 - 12:00',
         '12:00 - 14:00',
         '14:00 - 16:00',
-        '16:00 - 18:00'
+        '16:00 - 18:00',
+        '18:00 - 20:00'
     ];
 
     foreach ($timeslots as $times) {
-        $statement = $pdo->prepare("INSERT INTO daycarebooking (time, filled_slots, free_slots, date) VALUES (?, 0, 10, ?)");
-        $statement->execute([$times, $today]);
+        // Split the time range by '-'
+    $timeRange = explode(' - ', $times);
+    
+    // Format the time range as desired
+    $formattedTime = date('H:i', strtotime($timeRange[0])) . ' - ' . date('H:i', strtotime($timeRange[1]));
+
+    // Insert the formatted time into the database
+    $statement = $pdo->prepare("INSERT INTO daycarebooking (time, filled_slots, free_slots, date) VALUES (?, 0, 10, ?)");
+    $statement->execute([$formattedTime, $today]);
+
     }
     
 }

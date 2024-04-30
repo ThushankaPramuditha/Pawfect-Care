@@ -95,6 +95,7 @@
 
     b {
         color: var(--color-dark);
+
     }
 
     .text-muted {
@@ -799,29 +800,56 @@
                 </div>
 
 
-                <div>
 
-                    <div style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;">
-                        <?php if (is_array($feedbacks) || is_object($feedbacks)) { ?>
-                        <?php foreach ($feedbacks as $feedback) { ?>
-                        <div class="notification"
-                            style="display:flex; flex-direction:column; background-color:#cfc3d3;">
-                            <div class="notification-item">
-                                <div class="info">
-                                    <h3>Feedback</h3>
-                                    <p>
-                                        Pet Owner ID: <?php echo $feedback->petowner_id; ?><br>
-                                        Feedback: <?php echo $feedback->feedback; ?><br>
-                                        Date: <?php echo $feedback->date; ?>
-                                    </p>
-                                </div>
-                            </div>
+<div>
+  
+    <div  style="display:flex; flex-direction:column; overflow:hidden; height:310px; overflow-y:scroll;" >
+            <?php if (is_array($feedbacks) || is_object($feedbacks)): ?>
+            <?php foreach ($feedbacks as $feedback) :?>
+                <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3;">
+                    <div class="notification-item">
+                        <div class="info">
+                            <h3>Feedback</h3>
+                            <p>
+                                Pet Owner ID: <?php echo $feedback->petowner_id; ?><br>
+                                Feedback: <?php echo $feedback->feedback; ?><br>
+                                Date: <?php echo $feedback->date; ?>
+                            </p>
+
                         </div>
                         <?php } ?>
                         <?php } else { ?>
                         <h3>No feedbacks at the moment.</h3>
                         <?php } ?>
                     </div>
+
+                </div>
+            <?php endforeach; ?>
+        <?php  else: ?>
+            <div class="notification" style="display:flex; flex-direction:column; background-color:#cfc3d3">
+                <div class="notification-item" style="display:flex; justify-content:center;">
+                    <div class="info">
+                        <h3>No Notifications</h3>
+                        <p> There are no Feedbacks at the moment.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+       
+        <!-- button to view more bookings path is Daycarebookingform -->
+        <div style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; color:white; cursor:pointer;  font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
+        <a href="<?=ROOT?>/admin/feedbacks">
+            <div>
+                <span class="material-icons-sharp" style="color:#ffff;">
+                      arrow_forward
+                </span>
+                <h3 style="color:#ffff">View</h3>
+            </div>
+      
+        </div>
+ </div>
+</div>
 
                     <!-- button to view more bookings path is Daycarebookingform -->
                     <div

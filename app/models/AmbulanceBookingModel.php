@@ -32,7 +32,7 @@ class AmbulanceBookingModel
               JOIN petowners AS po ON p.petowner_id = po.id
               JOIN ambulancedrivers AS ad ON ab.driver_id = ad.id
               WHERE ad.user_id = :user_id
-              AND DATE(ab.date_time) = :today AND ab.status = 'pending'
+              AND DATE(ab.date_time) = :today AND ab.status = 'pending' 
               ORDER BY ab.date_time DESC LIMIT 1";
 
     return $this->get_row($query, ['user_id' => $userId, 'today' => $today]);
@@ -242,7 +242,6 @@ public function getLocationBypetIdandTime($pet_id) {
     }
 
     
-
     public function countTodayAmbulancebookings(){
         $query = "SELECT COUNT(*) AS total
                   FROM ambulancebookings
@@ -317,14 +316,24 @@ public function getLocationBypetIdandTime($pet_id) {
     /////////////////////////////////////////////////////////////////
 
     public function getPetOwnerEmailByPetId($petId) {
-        $query = "SELECT u.email
-                  FROM petowners AS po
-                  JOIN users AS u ON po.user_id = u.id
-                  JOIN pets AS p ON po.id = p.petowner_id
-                  WHERE p.id = :pet_id";
+       $query ="SELECT u.email
+                FROM ambulancebookings AS ab
+                JOIN pets AS p ON ab.pet_id = p.id
+                JOIN petowners AS po ON p.petowner_id = po.id
+                JOIN users AS u ON po.user_id = u.id
+                WHERE ab.pet_id = :pet_id";
         $result = $this->get_row($query, ['pet_id' => $petId]);
         return $result->email;
     }
-}
 
+    public function getPetOwnerId($id) {
+        $query ="SELECT ab.*, p.petowner_id
+                 FROM ambulancebookings AS ab
+                 JOIN pets AS p ON ab.pet_id = p.id
+                 WHERE ab.id = :id";
+        $result = $this->get_row($query, ['id' => $id]);
+        return $result->petowner_id;
+}
+   
+}
 

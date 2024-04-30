@@ -683,7 +683,7 @@ main table tbody tr td:first-child {
                     label: 'Today Bookings',
  
                     //add the bookings data
-                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsaccepted; ?>],
+                    data : [<?php echo $daycarebookingtoday; ?>, <?php echo $daycarebookingsaccepted; ?>, <?php echo $daycarebookingsdeclined; ?>],
                 
                     backgroundColor: [
                         'rgb(204, 102, 255)',

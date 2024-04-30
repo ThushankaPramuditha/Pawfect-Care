@@ -14,8 +14,8 @@ class VaccinationHistory
         //$data['vaccinationhistory'] = $vaccinationhistoryModel->findAll();
         $data['vaccinationhistory'] = $vaccinationhistoryModel->getAllVaccinationHistoryForPetId($a);
 
-        $appointmentsModel = new AppointmentsModel();
-        $data['appointments'] = $appointmentsModel->getCurrentPatientNo();
+        $vaccinesModel = new VaccinesModel();
+        $data['vaccines']  = $vaccinesModel->getAllVaccines();
 
         $this->view('medicalstaff/vaccinationhistory', $data);
 
@@ -53,12 +53,47 @@ class VaccinationHistory
         $userdataModel = new MedicalStaffModel();
 		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
 
+        $_POST['created_by'] = $data['userdata']->id;
+        //show( $_POST['created_by']);
+        //die();
         $vaccinationhistoryModel = new VaccinationhistoryModel();
         //$petId = $a;
-        $success = $vaccinationhistoryModel->addVaccination($_POST);
+        //Handle selected vaccines
+        $selectedVaccines = $_POST['vaccines'];
+        
+        // Initialize arrays to store selected vaccine details
+        $vaccineDetails = [];
+        $vaccinesModel = new VaccinesModel();
+    
+        // Extract vaccine details for each selected vaccine
+        foreach ($selectedVaccines as $vaccineId) {
+            
+        $vaccine = $vaccinesModel->getVaccineById($vaccineId);
+        
+            if ($vaccine !== false) {
+                // Add vaccine details to the array
+                $vaccineDetails[] = [
+                    'vaccine_name' => $vaccine[0]->name,
+                    'serial_no' => $vaccine[0]->serial_no
+                ];
+            }
+        }
+    
 
+        // Pass vaccine details along with other form data to addVaccination method
+        $success = $vaccinationhistoryModel->addVaccination(
+        $_POST['patient_no'],
+        $_POST['weight'],
+        $_POST['temperature'],
+        $vaccineDetails,
+        $_POST['due_date'],
+        $_POST['remarks'],
+        $_POST['created_by']);
+        
         if($success){
             $_SESSION['flash'] = ['success' => 'Vaccination added successfully!'];
+            //show( $_SESSION['flash'] );
+            //die();
             header("Location: " . $_SERVER['HTTP_REFERER']);
             //redirect("medicalstaff/vaccinationhistory/{$petId}");
             exit();
@@ -106,6 +141,7 @@ class VaccinationHistory
                 echo "<td>{$history->administered_by}</td>";
                 echo "<td>{$history->due_date}</td>";
                 echo "<td>{$history->remarks}</td>";
+                echo "<td>{$history->created_by}</td>";
                 echo "<td class='edit-action-buttons'>";
                 echo "<button class='edit-icon' id='{$history->id}' pet-id='{$history->pet_id}'></button>";
                 echo "</td>";
@@ -115,5 +151,3 @@ class VaccinationHistory
         exit;
     }
 }
-
-

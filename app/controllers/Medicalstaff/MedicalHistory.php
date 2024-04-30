@@ -14,8 +14,11 @@ class MedicalHistory
         //$data['medicalhistory'] = $medicalhistoryModel->findAll();
         $data['medicalhistory'] = $medicalhistoryModel->getAllMedicalHistoryForPetId($petId);
 
-        $appointmentsModel = new AppointmentsModel();
-        $data['appointments'] = $appointmentsModel->getCurrentPatientNo();
+        $prescriptions = $medicalhistoryModel->getAllPrescriptions();
+        $data['prescriptions'] = $prescriptions;
+
+        $prescriptionsModel = new PrescriptionsModel();
+        $data['prescriptions']  = $prescriptionsModel->getAllPrescriptions();
        
         $this->view('medicalstaff/medicalhistory', $data);
     }
@@ -49,24 +52,68 @@ class MedicalHistory
     public function add(string $a = '', string $b = '', string $c = ''): void
     {
         AuthorizationMiddleware::authorize(['Medical Staff']);
+
+        // Fetch the current user's data
         $userdataModel = new MedicalStaffModel();
-		$data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        $data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+        
+        // Set the created_by field in $_POST
+        $_POST['created_by'] = $data['userdata']->id;
 
         $medicalhistoryModel = new MedicalhistoryModel();
-        //$petId = $_POST['pet_id']??'';
-        $success = $medicalhistoryModel->addTreatment($_POST);
-
-        if($success){
-            $_SESSION['flash'] = ['success' => 'Treatment added successfully!'];
+        
+        // Initialize array to store prescription details
+        $prescriptionDetails = [];
+        
+        // Fetch selected prescriptions
+        $selectedPrescriptions = $_POST['prescriptions'];
+        
+        // Initialize the PrescriptionsModel
+        $prescriptionsModel = new PrescriptionsModel();
+        
+        // Extract prescription details for each selected prescription
+        foreach ($selectedPrescriptions as $prescriptionId) {
+            $prescription = $prescriptionsModel->getPrescriptionById($prescriptionId);
+            if ($prescription !== false) {
+                // Add prescription details to the array
+                $prescriptionDetails[] = [
+                    'prescription_name' => $prescription[0]->name,
+                    
+                ];
+            }
+        }
+        
+        // for'other_prescription_input' , add it also
+        /*if (isset($_POST['other_prescription_input']) && !empty($_POST['other_prescription_input'])) {
+            // Add the other prescription to the array
+            $prescriptionDetails[] = [
+                'prescription_name' => $_POST['other_prescription_input'],
+               
+            ];
+        }*/
+        
+        // Pass prescription details along with other form data to addVaccination method
+        $success = $medicalhistoryModel->addTreatment(
+            $_POST['patient_no'],
+            $_POST['weight'],
+            $_POST['temperature'],
+            $_POST['med_condition'],
+            $_POST['treatment'],
+            $prescriptionDetails, // Pass prescription details
+            $_POST['remarks'],
+            $_POST['created_by']
+        );
+        
+        if ($success) {
+            $_SESSION['flash'] = ['success' => 'Vaccination added successfully!'];
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        } else {
+            $_SESSION['flash'] = ['error' => 'Failed to add vaccination'];
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
         }
-        else{
-            $_SESSION['flash'] = ['error' => 'Failed to add treatment'];
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        };
-       
+        
     }
 
     public function viewMedicalHistory(string $a = '', string $b = '', string $c = ''): void
@@ -104,6 +151,7 @@ class MedicalHistory
                 echo "<td>{$history->prescription}</td>";
                 echo "<td>{$history->treated_by}</td>";
                 echo "<td>{$history->remarks}</td>";
+                echo "<td>{$history->created_by}</td>";
                 echo "<td class='edit-action-buttons'>";
                 echo "<button class='edit-icon' id='{$history->id}' pet-id='{$history->pet_id}'></button>";
                 echo "</td>";

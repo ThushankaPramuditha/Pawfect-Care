@@ -20,6 +20,7 @@
                 <th>Administered By</th>
                 <th>Next Due Date</th>
                 <th>Remarks</th>
+                <th>Created By</th>
                 <th class="edit-action-buttons"></th>
             </tr>
         </thead>
@@ -39,6 +40,7 @@
                         <td><?= htmlspecialchars($history->administered_by); ?></td>
                         <td><?= htmlspecialchars($history->due_date); ?></td>
                         <td><?= htmlspecialchars($history->remarks); ?></td>
+                        <td><?= htmlspecialchars($history->created_by); ?></td>
                         <td class="edit-action-buttons">
                             <button class="edit-icon" id="<?= $history->id ?>"pet-id="<?= $history->pet_id ?>"></button>
                         </td>

@@ -6,7 +6,7 @@ class VaccinationhistoryModel
     use Model;
 
     protected $table = 'vaccinations';
-    protected $allowedColumns = ['appointment_id','weight','temperature','vaccine_name','serial_no','due_date','remarks'];
+    protected $allowedColumns = ['appointment_id','weight','temperature','vaccine_name','serial_no','due_date','remarks','created_by'];
 
      //CHECK THIS ADD VACCHISTORY PART
 
@@ -29,7 +29,8 @@ class VaccinationhistoryModel
                 vc.serial_no,
                 v.name AS administered_by,
                 vc.due_date,
-                vc.remarks
+                vc.remarks,
+                vc.created_by
             FROM
                 vaccinations vc
             JOIN
@@ -63,7 +64,8 @@ class VaccinationhistoryModel
                   vc.serial_no,
                   v.name AS administered_by,
                   vc.due_date,
-                  vc.remarks
+                  vc.remarks,
+                  vc.created_by
                 FROM
                     vaccinations vc
                 JOIN
@@ -92,7 +94,8 @@ class VaccinationhistoryModel
                     vc.serial_no,
                     v.name AS administered_by,
                     vc.due_date,
-                    vc.remarks
+                    vc.remarks,
+                    vc.created_by
                 FROM
                     vaccinations vc
                 JOIN
@@ -120,7 +123,8 @@ class VaccinationhistoryModel
                 vc.serial_no,
                 v.name AS administered_by,
                 vc.due_date,
-                vc.remarks
+                vc.remarks,
+                vc.created_by
             FROM
                 vaccinations vc
             JOIN
@@ -155,7 +159,8 @@ class VaccinationhistoryModel
                     vc.serial_no,
                     v.name AS administered_by,
                     vc.due_date,
-                    vc.remarks
+                    vc.remarks,
+                    vc.created_by
                 FROM
                     vaccinations vc
                 JOIN
@@ -169,42 +174,58 @@ class VaccinationhistoryModel
         return $this->get_row($query, ['pet_id' => $pet_id, 'id' => $id]);
     }
 
-    public function addVaccination($data)
+    public function addVaccination($patientNo,$weight,$temperature,$vaccineDetails,$dueDate,$remarks,$createdBy)
     {
-        $data['date'] = date('Y-m-d');
+        $date = date('Y-m-d');
 
-        $vetModel = new VeterinariansModel();
-        $vetId = $vetModel->getVetIdByName($data['vet_name']);
+        //$vetModel = new VeterinariansModel();
+        //$vetId = $vetModel->getVetIdByName($data['vet_name']);
 
-        if ($vetId !== false) {
+        //if ($vetId !== false) {
             
-            $appointmentsModel = new AppointmentsModel();
-            $appointmentId = $appointmentsModel->getAppointmentId($data['patient_no'], $data['date'], $vetId);
+        $appointmentsModel = new AppointmentsModel();
+        $appointmentId = $appointmentsModel->getAppointmentId($patientNo, $date);
 
-            if ($appointmentId !== false) {
+        // Construct arrays for vaccine names and serial numbers
+        $vaccineNames = [];
+        $serialNumbers = [];
+
+        foreach ($vaccineDetails as $vaccine) {
+            $vaccineNames[] = $vaccine['vaccine_name'];
+            $serialNumbers[] = $vaccine['serial_no'];
+        } 
+        //show($vaccineNames );
+        //die();
+
+        // Implode arrays into strings
+        $vaccineNamesString = implode(', ', $vaccineNames);
+        $serialNumbersString = implode(', ', $serialNumbers);
+
+        if ($appointmentId !== false) {
                 
-                $vaccinationData = [
-                    'appointment_id' => $appointmentId,
-                    'weight' => $data['weight'],
-                    'temperature' => $data['temperature'],
-                    'vaccine_name' => $data['vaccine_name'],
-                    'serial_no' => $data['serial_no'],
-                    'due_date' => $data['due_date'],
-                    'remarks' => $data['remarks'],
-                ];
+            $vaccinationData = [
+                'appointment_id' => $appointmentId,
+                'weight' => $weight,
+                'temperature' => $temperature,
+                'vaccine_name' => $vaccineNamesString, //  as string
+                'serial_no' => $serialNumbersString,   //  as string
+                'due_date' => $dueDate,
+                'remarks' => $remarks,
+                'created_by'=>$createdBy,
+            ];
 
-                return $this->insert($vaccinationData);
+            return $this->insert($vaccinationData);
 
             } else {
                 
                 $this->errors[] = 'Appointment id not found.';
                 return false;
             }
-        } else {
+       /* } else {
             
             $this->errors[] = 'Veterinarian not found.';
             return false;
-        }
+        }*/
     }
 
     public function updateVaccinationHistory($id, array $data)
@@ -217,6 +238,19 @@ class VaccinationhistoryModel
     
         return $this->update($id, $data, 'id');
     }
+
+    public function getAllSerialNos() {
+       
+        $query = "SELECT DISTINCT serial_no FROM vaccinations";
+        return $this->query($query);
+    }
+
+    public function getAllVaccineNames() {
+       
+        $query = "SELECT DISTINCT vaccine_name FROM vaccinations";
+        return $this->query($query);
+    }
+    
 
     /*public function search($pet_id , $term)
     {

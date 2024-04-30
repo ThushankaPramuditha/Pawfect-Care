@@ -20,6 +20,7 @@
     <div style="margin-top: 80px; ">
         <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
         <div style="margin-left: 230px; margin-top:130px">
+
             <div class="panel-header" style="display:flex; justify-content:space-between">
                 <button class="add-new-button">Add New</button>
                 <div class="search-bar">
@@ -29,9 +30,12 @@
 
                 </header>
             </div>
+
             <?php include '../app/views/components/tables/petdetailstable.php'; ?>
         </div>
     </div>
+
+
     <!-- Add Pets Modal -->
     <div class="modal-form" id="add-modal">
         <div class="modal-content">
@@ -72,121 +76,120 @@
                     <div class="flex-container">
                         <button type="submit" id="add-pet-button">Add Pet</button>
                     </div>
-            
-            </form>
+
+                </form>
+            </div>
+
         </div>
 
-    </div>
 
 
+        <script>
+        $(document).ready(function() {
+            $('#search').on('keyup', updateTable);
 
-    <script>
+            function updateTable() {
+                var searchTerm = $('#search').val();
+                console.log(searchTerm);
 
-$(document).ready(function() {
-        $('#search').on('keyup', updateTable);
-
-        function updateTable() {
-            var searchTerm = $('#search').val();
-            console.log(searchTerm);
-
-            $.ajax({
-                url: "<?php echo ROOT ?>/Receptionist/petdetails/search",
-                type: "POST",
-                data: {
-                    search: searchTerm,
-                },
-                success: function(data) {
-                    $('tbody').html(data);
-                }
-            });
-        }
-
-    });
-    // Get the modal elements
-    var addModal = document.getElementById("add-modal");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-
-    // Function to open add form modal
-    function openAddModal() {
-        addModal.style.display = "block";
-    }
-    // Event listener for add button click
-    document.querySelector('.add-new-button').addEventListener('click', function() {
-        openAddModal();
-    });
-
-
-
-
-    var closeButtons = document.querySelectorAll('.close');
-
-    // Close modals when the no button is clicked
-    var noButtons = document.querySelectorAll('.reject');
-
-    closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            addModal.style.display = "none";
-
+                $.ajax({
+                    url: "<?php echo ROOT ?>/Receptionist/petdetails/search",
+                    type: "POST",
+                    data: {
+                        search: searchTerm,
+                    },
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
+                });
+            }
 
         });
-    });
+        // Get the modal elements
+        var addModal = document.getElementById("add-modal");
 
-    // Attach event listeners for validation on input for add form
-    document.getElementById('petowner_id').addEventListener('input', validateID);
-    document.getElementById('name').addEventListener('focus', validateID);
-    document.getElementById('birthday').addEventListener('focus', validateName);
-    document.getElementById('gender').addEventListener('focus', validateBirthday);
-    document.getElementById('species').addEventListener('focus', validateGender);
-    document.getElementById('breed').addEventListener('focus', validateSpecies);
-    document.getElementById('breed').addEventListener('input', validateBreed);
-
-    function validateAddForm() {
-        var isValid = true;
-
-        isValid = validateID() && isValid;
-        isValid = validateName() && isValid;
-        isValid = validateBirthday() && isValid;
-        isValid = validateGender() && isValid;
-        isValid = validateSpecies() && isValid;
-        isValid = validateBreed() && isValid;
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
 
-        if (!isValid) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Validation Error',
-                html: "Please correct the errors before submitting.",
+        // Function to open add form modal
+        function openAddModal() {
+            addModal.style.display = "block";
+        }
+        // Event listener for add button click
+        document.querySelector('.add-new-button').addEventListener('click', function() {
+            openAddModal();
+        });
+
+
+
+
+        var closeButtons = document.querySelectorAll('.close');
+
+        // Close modals when the no button is clicked
+        var noButtons = document.querySelectorAll('.reject');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                addModal.style.display = "none";
+
+
             });
-            return false;
-        }
-        return true;
-    }
+        });
 
-    document.getElementById("add-pet-form").addEventListener('submit', function(event) {
+        // Attach event listeners for validation on input for add form
+        document.getElementById('petowner_id').addEventListener('input', validateID);
+        document.getElementById('name').addEventListener('focus', validateID);
+        document.getElementById('birthday').addEventListener('focus', validateName);
+        document.getElementById('gender').addEventListener('focus', validateBirthday);
+        document.getElementById('species').addEventListener('focus', validateGender);
+        document.getElementById('breed').addEventListener('focus', validateSpecies);
+        document.getElementById('breed').addEventListener('input', validateBreed);
 
-        if (!validateAddForm()) {
-            event.preventDefault();
-        } else {
-            addModal.style.display = "none";
-        }
-    });
+        function validateAddForm() {
+            var isValid = true;
 
-    //sweeetalert for validation SUCCESS and ERROR
-    window.onload = function() {
-        <?php if (isset($_SESSION['flash'])): ?>
-        const flash = <?php echo json_encode($_SESSION['flash']); ?>;
-        if (flash.success) {
-            Swal.fire('Success', flash.success, 'success');
-        } else if (flash.error) {
-            Swal.fire('Error', flash.error, 'error');
+            isValid = validateID() && isValid;
+            isValid = validateName() && isValid;
+            isValid = validateBirthday() && isValid;
+            isValid = validateGender() && isValid;
+            isValid = validateSpecies() && isValid;
+            isValid = validateBreed() && isValid;
+
+
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    html: "Please correct the errors before submitting.",
+                });
+                return false;
+            }
+            return true;
         }
-        <?php unset($_SESSION['flash']); ?>
-        <?php endif; ?>
-    };
-    </script>
+
+        document.getElementById("add-pet-form").addEventListener('submit', function(event) {
+
+            if (!validateAddForm()) {
+                event.preventDefault();
+            } else {
+                addModal.style.display = "none";
+            }
+        });
+
+        //sweeetalert for validation SUCCESS and ERROR
+        window.onload = function() {
+            <?php if (isset($_SESSION['flash'])): ?>
+            const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+            if (flash.success) {
+                Swal.fire('Success', flash.success, 'success');
+            } else if (flash.error) {
+                Swal.fire('Error', flash.error, 'error');
+            }
+            <?php unset($_SESSION['flash']); ?>
+            <?php endif; ?>
+        };
+        </script>
 </body>
 
 </html>

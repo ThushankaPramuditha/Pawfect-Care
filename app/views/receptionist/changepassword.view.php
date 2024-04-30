@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,81 +12,81 @@
 </head>
 
 <body>
-<?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
-<div style = "margin-top: 80px; ">
-    <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>  
-    <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
-        <div class = "formcontainer"> 
-         
-            <h1>Change Password</h1>
+    <?php include '../app/views/components/panel-header-bar/hiuser.php'; ?>
+    <div style="margin-top: 80px; ">
+        <?php include '../app/views/components/dashboard-compo/receptionistsidebar.php'; ?>
+        <div style="margin-left: 230px; padding: 10px 10px 100px 100px;">
+            <div class="formcontainer">
 
-            <form id="change-password-form" action="<?php echo ROOT?>/receptionist/changepassword/update" method="post">
-            
-            <label for="prev-password">Previous Password:</label>
-                <input type="password" id="prev-password" name="prev-password" required>
-                <div id="error-prev-password" class="error-message"></div>
-                <br>
+                <h1>Change Password</h1>
 
+                <form id="change-password-form" action="<?php echo ROOT?>/receptionist/changepassword/update"
+                    method="post">
 
-                <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="new-password" required>
-                <div id="error-new-password" class="error-message"></div>
-                <br>
+                    <label for="prev-password">Previous Password:</label>
+                    <input type="password" id="prev-password" name="prev-password" required>
+                    <div id="error-prev-password" class="error-message"></div>
+                    <br>
 
 
-                <label for="confirm-password">Confirm New Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-                <div id="error-confirm-password" class="error-message"></div>
-                <br>
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                    <div id="error-new-password" class="error-message"></div>
+                    <br>
 
 
-                <div class="flex-container">
-                    <button type="submit" id="change-password-button" >Change Password</button>
-                </div>
-            </form>   
-     
+                    <label for="confirm-password">Confirm New Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <div id="error-confirm-password" class="error-message"></div>
+                    <br>
+
+
+                    <div class="flex-container">
+                        <button type="submit" id="change-password-button">Change Password</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
-</div>      
     </div>
     <script>
+    document.getElementById('prev-password').addEventListener('input', validatePrevPassword);
+    document.getElementById('new-password').addEventListener('input', validateNewPassword);
+    document.getElementById('confirm-password').addEventListener('input', validateConfirmNewPassword);
 
-        document.getElementById('prev-password').addEventListener('input', validatePrevPassword);
-        document.getElementById('new-password').addEventListener('input', validateNewPassword);
-        document.getElementById('confirm-password').addEventListener('input', validateConfirmNewPassword);
 
-        
-        document.getElementById('change-password-form').addEventListener('submit', function(event) {
-            
-            var isValid = true;
+    document.getElementById('change-password-form').addEventListener('submit', function(event) {
 
-            isValid = validatePrevPassword() && isValid;
-            isValid = validateNewPassword() && isValid;
-            isValid = validateConfirmNewPassword() && isValid;
+        var isValid = true;
 
-            if (!isValid) {
-                event.preventDefault();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Validation Error',
-                    html: "Please correct the errors before submitting.",
-                });
-            }
-        });
+        isValid = validatePrevPassword() && isValid;
+        isValid = validateNewPassword() && isValid;
+        isValid = validateConfirmNewPassword() && isValid;
 
-        //sweeetalert for validation SUCCESS and ERROR
-        window.onload = function() {
-            <?php if (isset($_SESSION['flash'])): ?>
-                const flash = <?php echo json_encode($_SESSION['flash']); ?>;
-                if (flash.success) {
-                    Swal.fire('Success', flash.success, 'success');
-                } else if (flash.error) {
-                    Swal.fire('Error', flash.error, 'error');
-                }
-                <?php unset($_SESSION['flash']); ?>
-            <?php endif; ?>
-        };
- 
-    </script> 
+        if (!isValid) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: "Please correct the errors before submitting.",
+            });
+        }
+    });
+
+    //sweeetalert for validation SUCCESS and ERROR
+    window.onload = function() {
+        <?php if (isset($_SESSION['flash'])): ?>
+        const flash = <?php echo json_encode($_SESSION['flash']); ?>;
+        if (flash.success) {
+            Swal.fire('Success', flash.success, 'success');
+        } else if (flash.error) {
+            Swal.fire('Error', flash.error, 'error');
+        }
+        <?php unset($_SESSION['flash']); ?>
+        <?php endif; ?>
+    };
+    </script>
 
 </body>
+
 </html>

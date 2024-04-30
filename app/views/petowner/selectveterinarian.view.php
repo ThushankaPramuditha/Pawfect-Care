@@ -101,6 +101,8 @@ function proceedPayment(vetId, petId) {
         payhere.onCompleted = function onCompleted(orderId) {
           console.log("Payment completed. OrderID:" + orderId);
           saveAppointment(obj.pet_id, obj.vet_id) ;
+          Swal.fire('Payment Completed', 'Booking placed successfully!', 'success');
+
         };
 
         // Payment window closed

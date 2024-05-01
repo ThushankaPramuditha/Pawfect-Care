@@ -28,6 +28,31 @@ class DaycarebookinguserModel
         return $this->query($query);
     }
 
+//     public function getAllOldDaycarebookings(){
+//         $query = "SELECT 
+//         d.drop_off_time,
+//         d.pick_up_time,
+//         d.drop_off_date,
+//         d.pet_id,
+//         d.status,
+//         d.list_of_items,
+//         d.allergies,
+//         d.pet_behaviour ,
+//         d.medications,
+//          p.name AS pet_name,
+//         po.name AS pet_owner_name,
+//         po.contact  AS pet_owner_contact
+//     FROM
+//         daycarebookinguser d
+//     JOIN
+//         pets p ON d.pet_id = p.id
+//      JOIN
+//          petowners po ON p.petowner_id = po.id
+//          WHERE d.status !='pending'
+//       ORDER BY DESC";
+// return $this->query($query);
+//     }
+
 
     public function addDaycarebooking(array $data)
     {
@@ -142,9 +167,9 @@ public function getBookingsForDate($date)
 //           return $this->query($query, [':term' => $term]);
 // }
 
-public function searchforDaycareStaff($term, $date = '') {
+public function searchforDaycareStaff($term) {
     $term = "%{$term}%";
-    $dateCondition = !empty($date) ? "AND DATE(drop_off_date) = :date" : "";
+  
     
     $query = "SELECT
         d.id,
@@ -169,13 +194,11 @@ public function searchforDaycareStaff($term, $date = '') {
         WHERE 
         (po.name LIKE :term 
         OR po.contact LIKE :term
-        OR po.id LIKE :term)
-        {$dateCondition}";
-    
+        OR po.id LIKE :term
+        OR p.name LIKE :term)
+        ORDER BY d.drop_off_date DESC;
+        ";
     $bindings = [':term' => $term];
-    if (!empty($date)) {
-        $bindings[':date'] = $date;
-    }
     
     return $this->query($query, $bindings);
 }

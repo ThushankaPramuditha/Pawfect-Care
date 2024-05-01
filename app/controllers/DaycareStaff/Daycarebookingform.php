@@ -121,8 +121,8 @@ public function accept(string $id): void
 
     } 
 
-    // redirect('daycarestaff/daycarebookingbooking');
-       redirect('daycarestaff/daycarebookingbookingform');
+    redirect('daycarestaff/daycarebooking');
+    //    redirect('daycarestaff/daycarebookingbookingform');
 }
 
 

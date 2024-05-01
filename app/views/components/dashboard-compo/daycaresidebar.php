@@ -41,6 +41,13 @@
                                 Today Slots
                             </a>
                         </li>
+
+                        
+                        <li class="nav-item">
+                            <a class="nav-link<?= ($activePage == 'olddaycarebookings') ? '-active' : '';?>" href="<?php echo ROOT?>/daycarestaff/olddaycarebookings">
+                                Old Records
+                            </a>
+                        </li>
                         
                 
                     </ul>

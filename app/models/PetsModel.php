@@ -5,7 +5,7 @@ class PetsModel
     use Model;
 
     protected $table = 'pets';
-    protected $allowedColumns = ['id','name', 'birthday', 'gender', 'species', 'breed', 'petowner_id'];
+    protected $allowedColumns = ['id','name', 'birthday', 'gender', 'species', 'breed', 'petowner_id', 'image'];
 
     public function getAllPetDetails()
     {

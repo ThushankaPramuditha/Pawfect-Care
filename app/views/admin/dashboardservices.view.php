@@ -817,10 +817,7 @@
                             </p>
 
                         </div>
-                        <?php } ?>
-                        <?php } else { ?>
-                        <h3>No feedbacks at the moment.</h3>
-                        <?php } ?>
+                        
                     </div>
 
                 </div>
@@ -851,18 +848,6 @@
  </div>
 </div>
 
-                    <!-- button to view more bookings path is Daycarebookingform -->
-                    <div
-                        style="height:50px; display:flex; justify-content:center; align-items:center; background-color:#6a3879; color:white; cursor:pointer;  font-weight:bolder; font-size:20px; margin-top:10px; border-radius:10px;">
-                        <a href="<?=ROOT?>/admin/feedbacks">
-                            <div>
-                                <span class="material-icons-sharp" style="color:#ffff;">
-                                    arrow_forward
-                                </span>
-                                <h3 style="color:#ffff">View</h3>
-                            </div>
-
-                    </div>
                 </div>
             </div>
 

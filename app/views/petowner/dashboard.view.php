@@ -243,6 +243,10 @@
                 background-color: #6a3879;
                 color: #fff;
             }
+
+            .pet button {
+            margin:10px;
+        }
        
 
 
@@ -268,7 +272,7 @@
         </div>
         <div class="container" style="display:flex; flex-direction:row; padding: 0 40px;">
  
-        <div class="new-users" style="display:flex; width:70%;  margin-right: 20px;">
+        <div class="new-users" style="display:flex; width:70%;  margin-right: 10px;">
             <div class="user-list" style="display:flex; flex-wrap: wrap; gap:1rem; ">
             <?php
 
@@ -280,7 +284,7 @@
                         </div>
                         <div style="display:flex; flex-direction:row;">
                             <div style="margin-top:15px;">
-                                <img src="<?php echo ROOT ?>/assets/images/doglogo.jpg">
+                                <img src="<?php echo ROOT ?>/uploads/pets/<?php echo $pet->image ?>">
                             </div>
                             <div class="pet-content" style="margin-left:70px; text-align:left;">
                                 <p style="font-size:15px;">Id: <?php echo $pet->id; ?></p>
@@ -292,6 +296,8 @@
                         <div style="display:flex; flex-direction:row; justify-content:space-between; margin-left:10px;">
                         <button onclick="location.href='<?php echo ROOT ?>/petowner/medicalhistory/getMedicalData/<?php echo $pet->id; ?>'">Medical History</button>
                         <button onclick="location.href='<?php echo ROOT ?>/petowner/vaccinationhistory/getVaccinationData/<?php echo $pet->id; ?>'">Vaccination History</button>
+                        <button onclick="location.href='<?php echo ROOT ?>/petowner/appointmenthistory/getAppointmentData/<?php echo $pet->id; ?>'">Appointment History</button>
+
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -300,7 +306,7 @@
             </div>
 
             <!-- <div class="announcement" style="display:flex; flex-direction:column;  align-content:flex-end ; flex-wrap: wrap; margin-left:20px;"> -->
-            <div class="announcement" style="display: flex; flex-direction: column; align-items: flex-end; flex-wrap: wrap; margin-left: 20px; align-self: flex-end;">
+            <div class="announcement" style="display: flex; flex-direction: column; align-items: flex-end; flex-wrap: wrap; margin-left: 20px; ">
             <?php 
             ?>
                 <p style="font-size:20px; font-weight:bolder;">Vet Appointments</p>
@@ -407,7 +413,7 @@
         <span class="close">&times;</span>
         <h1>Add Pets</h1>
         <div class="form-container">
-            <form id="add-pet-form" action="<?php echo ROOT?>/Petowner/dashboard/addPet" method="post">
+            <form id="add-pet-form" action="<?php echo ROOT?>/Petowner/dashboard/addPet" method="post"  enctype="multipart/form-data">
                 
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name">
@@ -432,7 +438,10 @@
                     <label for="breed">Breed:</label>
                     <input type="text" id="breed" name="breed">
                     <div id="error-breed" class="error-message"></div>
-                
+
+                    <label for="file">Add Image:</label><br>
+                    <input type="file" id="file" name="image"><br><br>
+
                 
                 <div class="flex-container">
                     <button type="submit" id="add-pet-button">Add Pet</button>

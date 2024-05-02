@@ -53,7 +53,6 @@
             <?php endif; ?>
 
 
-                <?php endif; ?>
 
                 <div class="search-bar">
                     <input type="text" id="search" placeholder="Search by medical condition or veterinarian name...">

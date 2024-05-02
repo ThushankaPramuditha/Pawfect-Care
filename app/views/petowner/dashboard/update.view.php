@@ -1,4 +1,4 @@
-<form id="updated-form" action="<?php echo ROOT?>/Petowner/Dashboard/updatePet/<?php echo $pet->id; ?>" method="post">
+<form id="updated-form" action="<?php echo ROOT?>/Petowner/Dashboard/updatePet/<?php echo $pet->id; ?>" method="post" enctype="multipart/form-data">
     <div class="column">
         <label for="update-name">Pet Name:</label>
         <input type="text" id="update-name" name="name" value="<?php echo $pet->name;?>">
@@ -23,6 +23,9 @@
         <label for="update-breed">Breed:</label>
         <input type="text" id="update-breed" name="breed" value="<?php echo $pet->breed;?>">
         <div id="error-update-breed" class="error-message"></div>
+
+        <label for="file">Add Image:</label>
+        <input type="file" id="file" name="image" >
 
 
     <div class="flex-container">

@@ -184,6 +184,14 @@ input[type="date"]{
     display: none;
 }
 
+.image-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+}
+
 /* Style for custom file input button */
 .modal-form .modal-content input[type="file"]::before {
     content: 'Choose Image';

@@ -20,6 +20,17 @@ class EditProfile
     {
         AuthorizationMiddleware::authorize(['Veterinarian']);
         $veterinariansModel = new VeterinariansModel();
+        $data['userdata'] = $veterinariansModel->getVetRoleDataById($_SESSION['USER']->id);
+        $_POST['image'] = upload($_FILES['image'], 'veterinarians');
+
+        // Delete previous image if it exists
+        if (!empty($data['userdata']->image)) {
+            $imagePath = "./uploads/veterinarians/" . $data['userdata']->image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $success = $veterinariansModel->updateVeterinarian($a, $_POST);
 		if($success){
             $_SESSION['flash'] = ['success' => 'Profile updated successfully!'];

@@ -20,7 +20,7 @@
     <div style = "margin-left: 230px; padding: 10px 10px 100px 100px;">
         <h1>Edit Profile</h1> 
         <div class = "formcontainer" id="updateveterianrian"> 
-            <form id="edit-profile-form" action="<?php echo ROOT?>/Veterinarian/EditProfile/update/<?php echo $userdata->id; ?>" method="post">
+            <form id="edit-profile-form" action="<?php echo ROOT?>/Veterinarian/EditProfile/update/<?php echo $userdata->id; ?>" method="post" enctype="multipart/form-data">
             
                 <label for="update-name">Full Name:</label>
                 <input type="text" id="update-name" name="name" value="<?php echo $userdata->name;?>">
@@ -37,6 +37,9 @@
                 <label for="update-qualifications">Qualifications:</label>
                 <textarea id="update-qualifications" name="qualifications" style="border-radius: 10px;" rows="4"><?php echo $userdata->qualifications; ?></textarea>
                 <div id="error-update-qualifications" class="error-message"></div>
+
+                <label for="file">Update Image:</label><br>
+                    <input type="file" id="file" name="image"><br><br>
 
                 <div class="flex-container">
                     <button type="submit" >Update Profile</button>

@@ -5,7 +5,7 @@ class VeterinariansModel
     use Model;
 
     protected $table = 'veterinarians';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status', 'availability'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'qualifications', 'user_id', 'status', 'availability','image'];
 
 
     public function getAllVeterinarians() {

@@ -1,5 +1,5 @@
 # Pawfect Care
-Nethma Jayawardhane care, the Pawfect way!
+## Serving love and care, the Pawfect way!
 
 Welcome to Pawfect Care, a comprehensive pet care management system designed to connect pet owners with pet care services efficiently. This system allows users to book vet appointments, schedule daycare, and request ambulance services in emergencies, all through a user-friendly interface.
 

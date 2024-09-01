@@ -167,6 +167,54 @@ input[type="date"]{
     outline-color:#6a3879;
 }
 
+/* Styles for file input */
+.modal-form .modal-content input[type="file"] {
+    font-family: Arial, sans-serif;
+    display: block;  
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    border: none;
+    font-size: 16px;
+    outline-color: #ccc;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Hide default file input text */
+.modal-form .modal-content input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+.image-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Style for custom file input button */
+.modal-form .modal-content input[type="file"]::before {
+    content: 'Choose Image';
+    display: inline-block;
+    font-size: 16px;
+    background-color: #ECECEC;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Align custom file input button with text input */
+.modal-form .modal-content input[type="file"] {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
 
 
 /* buttons */

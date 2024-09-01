@@ -80,39 +80,56 @@ class AppointmentsModel
         return $this->query($query, $data);
     }
 
-    public function getAppointmentsForVetId($vetId)
+    public function getAllVaccinationHistoryForPetId($pet_id) 
     {
-        // YYYY-MM-DD format
-        $currentDate = date('Y-m-d');
+        
         $query = "SELECT
-            a.id,
-            a.date_time,
-            a.patient_no,
-            a.pet_id,
-            a.vet_id,
-            p.name AS pet_name,
-            po.name AS petowner,
-            po.contact,
-            a.status
-        FROM
-            appointments a
-        JOIN
-            pets p ON a.pet_id = p.id
-        JOIN
-            petowners po ON p.petowner_id = po.id
-        JOIN
-            veterinarians v ON a.vet_id = v.id
-        WHERE
-            DATE(a.date_time) = :current_date
-            AND
-            a.vet_id = :vet_id
-        ORDER BY a.id ASC";
-
-        // Bind the parameters to the query
-        $data = array(':current_date' => $currentDate, ':vet_id' => $vetId);
-
-        return $this->query($query, $data);
+                    DATE(a.date_time) AS date,
+                    vc.appointment_id,
+                    vc.id,
+                    p.id AS pet_id,
+                    vc.weight,
+                    vc.temperature,
+                    vc.vaccine_name,
+                    vc.serial_no,
+                    v.name AS administered_by,
+                    vc.due_date,
+                    vc.remarks,
+                    vc.created_by
+                FROM
+                    vaccinations vc
+                JOIN
+                    appointments a ON vc.appointment_id = a.id
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id 
+                WHERE a.pet_id = :pet_id
+                ORDER BY a.id ASC";
+        return $this->query($query, ['pet_id' => $pet_id]);
     }
+
+    public function getAppointmentsForPetId($pet_id) 
+    {
+        //date, app id, vet name , patient no
+        $query = "SELECT
+                    DATE(a.date_time) AS date,
+                    a.id AS app_id,
+                    p.id AS pet_id,
+                    v.name AS vet_name,
+                    a.patient_no AS patient_no
+                FROM
+                    appointments a 
+                JOIN
+                    veterinarians v ON a.vet_id = v.id
+                JOIN
+                    pets p ON a.pet_id = p.id 
+                WHERE a.pet_id = :pet_id
+                ORDER BY a.id ASC";
+        return $this->query($query, ['pet_id' => $pet_id]);
+    }
+
+    
 
     public function getVetIdByAppointmentId($appId)
     {

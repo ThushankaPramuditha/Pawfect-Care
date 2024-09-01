@@ -1,19 +1,20 @@
-function validateDropOffDate() {
-    var date = document.getElementById('drop-off-date').value;
-    var today = new Date();
-    var inputDate = new Date(date);
+// function validateDropOffDate() {
+//     var date = document.getElementById('drop-off-date').value;
+//     var today = new Date();
+//     var inputDate = new Date(date);
+//     console.log(today);
     
-    if (!date) {
-        document.getElementById('error-drop-off-date').textContent = "* Drop-off date is required.";
-        return false;
-    } else if (inputDate < today) {
-        document.getElementById('error-drop-off-date').textContent = "* Drop-off date cannot be in the past.";
-        return false;
-    } else {
-        document.getElementById('error-drop-off-date').textContent = "";
-        return true;
-    }
-}
+//     if (!date) {
+//         document.getElementById('error-drop-off-date').textContent = "* Drop-off date is required.";
+//         return false;
+//     } else if (inputDate < today) {
+//         document.getElementById('error-drop-off-date').textContent = "* Drop-off date cannot be in the past.";
+//         return false;
+//     } else {
+//         document.getElementById('error-drop-off-date').textContent = "";
+//         return true;
+//     }
+// }
 
 function validateDropOffTime() {
     var date = document.getElementById('drop-off-date').value;

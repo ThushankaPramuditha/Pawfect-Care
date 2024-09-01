@@ -33,9 +33,12 @@ class Dashboard
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
 
         $petDetailsModel = new PetsModel();
+       
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['petowner_id'] = $data['userdata']->id;
+            $_POST['image'] = upload($_FILES['image'], 'pets');
+
             $success = $petDetailsModel->addPet($_POST);
         }
     
@@ -56,8 +59,20 @@ class Dashboard
         AuthorizationMiddleware::authorize(['Pet Owner']);
         $userdataModel = new PetownersModel();
 		$data['userdata'] = $userdataModel->getPetownerRoleDataById($_SESSION['USER']->id);
-
+        $_POST['image'] = upload($_FILES['image'], 'pets');
+    
         $petDetailsModel = new PetsModel();
+        $pet = $petDetailsModel->getPetById($id);
+        
+
+        // Delete previous image if it exists
+        if (!empty($pet->image)) {
+            $imagePath = "./uploads/pets/" . $pet->image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $success = $petDetailsModel->updatePet($id, $_POST);
 
         if($success){
@@ -82,9 +97,6 @@ class Dashboard
 
         $data['pet'] = $petDetailsModel->getPetById($a);
         
-       
-
-
         $this->view('petowner/dashboard/update', $data);
 
     }

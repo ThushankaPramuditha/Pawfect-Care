@@ -20,6 +20,16 @@ class EditProfile
     {
         AuthorizationMiddleware::authorize(['Ambulance Driver']);
         $ambulancedriversModel = new AmbulanceDriversModel();
+        $data['userdata'] = $ambulancedriversModel->getDriverRoleDataById($_SESSION['USER']->id);
+        $_POST['image'] = upload($_FILES['image'], 'ambulancedrivers');
+
+        // Delete previous image if it exists
+        if (!empty($data['userdata']->image)) {
+            $imagePath = "./uploads/ambulancedrivers/" . $data['userdata']->image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         $success = $ambulancedriversModel->updateAmbulanceDriver($a, $_POST);
 		if($success){
             $_SESSION['flash'] = ['success' => 'Profile updated successfully!'];

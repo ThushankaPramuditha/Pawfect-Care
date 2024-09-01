@@ -5,7 +5,7 @@ class AmbulanceDriversModel
     use Model;
 
     protected $table = 'ambulancedrivers';
-    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'license', 'user_id','status'];
+    protected $allowedColumns = ['name', 'address', 'contact', 'nic', 'license', 'user_id','status', 'image'];
 
 
     public function getAllAmbulanceDrivers() {

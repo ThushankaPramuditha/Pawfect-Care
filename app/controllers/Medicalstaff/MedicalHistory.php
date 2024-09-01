@@ -49,23 +49,26 @@ class MedicalHistory
         
     }
 
+
+
     public function add(string $a = '', string $b = '', string $c = ''): void
-    {
-        AuthorizationMiddleware::authorize(['Medical Staff']);
+{
+    AuthorizationMiddleware::authorize(['Medical Staff']);
 
-        // Fetch the current user's data
-        $userdataModel = new MedicalStaffModel();
-        $data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
-        
-        // Set the created_by field in $_POST
-        $_POST['created_by'] = $data['userdata']->id;
+    // Fetch the current user's data
+    $userdataModel = new MedicalStaffModel();
+    $data['userdata'] = $userdataModel->getMedstaffRoleDataById($_SESSION['USER']->id);
+    
+    // Set the created_by field in $_POST
+    $_POST['created_by'] = $data['userdata']->id;
 
-        $medicalhistoryModel = new MedicalhistoryModel();
-        
-        // Initialize array to store prescription details
-        $prescriptionDetails = [];
-        
-        // Fetch selected prescriptions
+    $medicalhistoryModel = new MedicalhistoryModel();
+    
+    /*// Initialize array to store prescription details
+    $prescriptionDetails = [];
+    
+    // Fetch selected prescriptions
+    if (isset($_POST['prescriptions']) && is_array($_POST['prescriptions'])) {
         $selectedPrescriptions = $_POST['prescriptions'];
         
         // Initialize the PrescriptionsModel
@@ -77,44 +80,35 @@ class MedicalHistory
             if ($prescription !== false) {
                 // Add prescription details to the array
                 $prescriptionDetails[] = [
-                    'prescription_name' => $prescription[0]->name,
-                    
+                    'prescription' => $prescription[0]->name,
                 ];
             }
         }
-        
-        // for'other_prescription_input' , add it also
-        /*if (isset($_POST['other_prescription_input']) && !empty($_POST['other_prescription_input'])) {
-            // Add the other prescription to the array
-            $prescriptionDetails[] = [
-                'prescription_name' => $_POST['other_prescription_input'],
-               
-            ];
-        }*/
-        
-        // Pass prescription details along with other form data to addVaccination method
-        $success = $medicalhistoryModel->addTreatment(
-            $_POST['patient_no'],
-            $_POST['weight'],
-            $_POST['temperature'],
-            $_POST['med_condition'],
-            $_POST['treatment'],
-            $prescriptionDetails, // Pass prescription details
-            $_POST['remarks'],
-            $_POST['created_by']
-        );
-        
-        if ($success) {
-            $_SESSION['flash'] = ['success' => 'Vaccination added successfully!'];
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        } else {
-            $_SESSION['flash'] = ['error' => 'Failed to add vaccination'];
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        }
-        
+    }*/
+    
+    // Pass prescription details along with other form data to addTreatment method
+    $success = $medicalhistoryModel->addTreatment(
+        $_POST['patient_no'],
+        $_POST['weight'],
+        $_POST['temperature'],
+        $_POST['med_condition'],
+        $_POST['treatment'],
+        $_POST['prescription'],
+        $_POST['remarks'],
+        $_POST['created_by']
+    );
+    
+    if ($success) {
+        $_SESSION['flash'] = ['success' => 'Treatment added successfully!'];
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    } else {
+        $_SESSION['flash'] = ['error' => 'Failed to add treatment'];
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
+}
+
 
     public function viewMedicalHistory(string $a = '', string $b = '', string $c = ''): void
     {

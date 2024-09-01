@@ -22,7 +22,7 @@ Welcome to Pawfect Care, a comprehensive pet care management system designed to 
 ### Authors
 
 - [Thushanka Pramuditha](https://github.com/ThushankaPramuditha)
-- ⁠[Shashikala Sewwandi](https://github.com/shashikalamunasinghe) 
+- ⁠[Shashikala Munasinghe](https://github.com/shashikalamunasinghe) 
 - [Thewni Jayathilake](https://github.com/ThewniJ)
 
 ### Acknowledgments

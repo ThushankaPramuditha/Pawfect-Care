@@ -25,7 +25,8 @@ class MedicalhistoryModel
         t.treatment,
         t.prescription,
         v.name AS treated_by,
-        t.remarks
+        t.remarks,
+        t.created_by
         FROM
             treatments t
         JOIN
@@ -136,44 +137,6 @@ class MedicalhistoryModel
         return $this->query($query, $parameters);
     }
 
-     /*public function deleteMedicalHistory($id)
-    {
-        return $this->delete($id);
-    }*/
-
-    /*public function search($pet_id , $term)
-    {
-        $term = "%{$term}%";
-
-        $query = "SELECT
-                DATE(a.date_time) AS date,
-                p.id AS pet_id,
-                t.id,
-                t.appointment_id,
-                t.weight,
-                t.temperature,
-                t.med_condition,
-                t.treatment,
-                t.prescription,
-                v.name AS treated_by,
-                t.remarks
-                FROM
-                    treatments t
-                JOIN
-                    appointments a ON t.appointment_id = a.id
-                JOIN
-                    veterinarians v ON a.vet_id = v.id
-                JOIN
-                    pets p ON a.pet_id = p.id
-                WHERE a.pet_id = :pet_id AND
-                    (DATE(a.date_time) = :term OR
-                    t.med_condition = :term OR
-                    v.name = :term)
-                ORDER BY a.id ASC";
-
-        return $this->query($query, ['pet_id' => $pet_id,'term' => $term]);
-       
-    }*/
 
     public function getMedicalHistoryForPetIdById($id,$pet_id)
     {
@@ -207,57 +170,41 @@ class MedicalhistoryModel
         return $this->insert($data);
     }*/
 
-    public function addTreatment($patientNo,$weight,$temperature,$medCondition,$treatment,$prescriptionDetails,$remarks,$createdBy)
-    {
-        $date = date('Y-m-d');
+    public function addTreatment($patientNo, $weight, $temperature, $medCondition, $treatment, $prescriptionDetails, $remarks, $createdBy)
+{
+    $date = date('Y-m-d');
 
-         
-        //$vetModel = new VeterinariansModel();
-        //$vetId = $vetModel->getVetIdByName($data['vet_name']);
+    $appointmentsModel = new AppointmentsModel();
+    $appointmentId = $appointmentsModel->getAppointmentId($patientNo, $date);
 
-        //if ($vetId !== false) {
-            
-            $appointmentsModel = new AppointmentsModel();
-            $appointmentId = $appointmentsModel->getAppointmentId($patientNo, $date);
-            //date('Y-m-d', strtotime($data['date_time']))
+    if ($appointmentId !== false) {
+       /* // Construct arrays for names
+        $prescriptionNames = [];
+        foreach ($prescriptionDetails as $prescription) {
+            $prescriptionNames[] = $prescription['prescription'];
+        } */
 
-              // Construct arrays for  names 
-            $prescriptionNames = [];
+        // Implode arrays into strings
+        //$prescriptionNamesString = implode(', ', $prescriptionNames);
 
-            foreach ($prescriptionDetails as $prescription) {
-                $prescriptionNames[] = $prescription['prescription'];
-               
-            } 
-              // Implode arrays into strings
-            $prescriptionNamesString = implode(', ', $prescriptionNames);
+        $treatmentData = [
+            'appointment_id' => $appointmentId,
+            'weight' => $weight,
+            'temperature' => $temperature,
+            'med_condition' => $medCondition,
+            'treatment' => $treatment,
+            'prescription' => $prescriptionDetails,
+            'remarks' => $remarks,
+            'created_by' => $createdBy,
+        ];
 
-            if ($appointmentId !== false) {
-    
-                $treatmentData = [
-                    'appointment_id' => $appointmentId,
-                    'weight' => $weight,
-                    'temperature' => $temperature,
-                    'med_condition' => $medCondition,
-                    'treatment' => $treatment,
-                    'prescription' =>  $prescriptionNamesString,
-                    'remarks' => $remarks,
-                    'created_by'=>$createdBy,
-                ];
-
-                
-                return $this->insert($treatmentData);
-
-            } else {
-               
-                $this->errors[] = 'Appointment id not found.';
-                return false;
-            }
-        /*} else{
-           
-            $this->errors[] = 'Veterinarian not found.';
-            return false;
-        }*/
+        return $this->insert($treatmentData);
+    } else {
+        $this->errors[] = 'Appointment id not found.';
+        return false;
     }
+}
+
 
     public function updateMedicalHistory($id, array $data)
     {
